@@ -5,11 +5,12 @@ import Inputs from './src/components/shared/textInputs/Inputs'
 import SegmentedTabs from './src/components/shared/segment_tab/SegmentedTabs'
 import Header from './src/components/shared/header/Header'
 import DropDownComponent from './src/components/shared/dropdowns/DropDownComponent'
+import VerifyNumber from './src/screens/auth/VerifyNumber'
 const App = (props) => {
   return (
     <>
     {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
-    <DropDownComponent/>
+    <VerifyNumber/>
     </>
   )
 }

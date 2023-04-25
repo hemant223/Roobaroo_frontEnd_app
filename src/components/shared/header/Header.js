@@ -28,6 +28,15 @@ const Header = props => {
       color:'#fff',
       right:props.upRight,
       bottom:props.upBottom
+    },
+    centerCss:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        // bottom: 33,
+
+bottom:props.verifyBottom
+
     }
   });
   return (
@@ -56,7 +65,7 @@ const Header = props => {
               justifyContent: 'center',
               alignItems: 'center',
               alignSelf: 'center',
-              bottom: 33,
+              bottom: props.stepBottom,
             }}>
             <Text style={{color: '#fff'}}> {props.stepContent}</Text>
           </View>
@@ -64,10 +73,8 @@ const Header = props => {
         {props.centerText && (
           <View
             style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              alignSelf: 'center',
-              bottom: 33,
+            
+            ...styles.centerCss
             }}>
             <Text style={{fontWeight: 'bold', color: '#fff'}}>
               {props.centerContent}
@@ -131,6 +138,8 @@ Header.defaultProps = {
   DownIconRight:12,
   DownBottom:58,
   upRight:12,
-  upBottom:90
+  upBottom:90,
+  verifyBottom:33,
+  stepBottom:33
 
 };
