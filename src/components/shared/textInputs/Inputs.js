@@ -4,6 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import { FontFamily } from '../../../assets/fonts/FontFamily';
 
 const Input = props => {
+    const style = StyleSheet.create({
+        inputContainer: {
+          flexDirection: 'row',
+          paddingHorizontal: 15,
+          // borderWidth: 0.5,
+          borderWidth:props.borderWidth,
+       
+        },
+      });
+      
   return (
     <View>
       {props.textLabel && (
@@ -20,6 +30,8 @@ const Input = props => {
             backgroundColor: props.backgroundColor,
             borderRadius: props.borderRadius,
             borderColor: props.borderColor,
+            borderBottomWidth: props.borderBottomWidth,
+            borderBottomColor:props.borderBottomColor
           },
         ]}>
         {props.icon ? (
@@ -69,14 +81,10 @@ Input.defaultProps = {
   onChangeText: () => {},
   placeholderColor: '#000',
   label: 'label',
+  borderWidth:0.5,
+  borderBottomWidth:0.5,
+  borderBottomColor:'#ddd'
 };
 
 export default Input;
 
-const style = StyleSheet.create({
-  inputContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 15,
-    borderWidth: 0.5,
-  },
-});
