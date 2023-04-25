@@ -17,7 +17,11 @@
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-modal": "^13.0.1",
+    "react-native-radial-slider": "^0.0.4",
+    "react-native-radial-slider2": "^0.0.30",
     "react-native-segmented-control-tab": "^4.0.0",
+    "react-native-svg": "^13.9.0",
     "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
