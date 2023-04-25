@@ -9,7 +9,7 @@ const App = (props) => {
   // alert(background)
   return (
     <>
-    <RadioButton getId={background} setId={setBackGround} />
+    <RadioButton  getId={background} setId={setBackGround} />
     </>
   )
 }

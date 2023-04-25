@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View ,TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
+import { FontFamily } from '../../../assets/fonts/FontFamily';
 
 const RadioButton = (props) => {
     const [background, setBackGround] = useState(1);
@@ -16,7 +17,11 @@ const RadioButton = (props) => {
       }
 
   return (
-    <View style={{ flexDirection: 'row', }}>
+    <>
+      <View style={{marginTop:5,marginBottom:5,marginLeft:22}}>
+            <Text style={{color:'#aeaeae',fontFamily:FontFamily.Popinssemibold,fontSize:15}}>{props.label}</Text>
+        </View>
+            <View style={{ flexDirection: 'row', }}>
     {props?.data?.map((item, index) => {
       const myTouch = props.getId === item.id;
       return (
@@ -44,7 +49,9 @@ const RadioButton = (props) => {
       );
     })}
   </View>
+  </>
   )
+  
 }
 
 export default RadioButton
@@ -56,7 +63,7 @@ RadioButton.defaultProps = {
         { type: 'Female', id: 2, color: false },
         { type: 'Others', id: 3, color: false },
       ],
-    // isDoctor: true,
+    label: 'Label',
   };
 
 
