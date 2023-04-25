@@ -49,7 +49,7 @@ const VerifyNumber = () => {
                 borderWidth={0}
                 borderBottomWidth={1.5}
                 borderRadius={5}
-                placeholder="Enter Visitors mobile"
+                placeholder="Enter OTP sent on visitors phone"
                 placeholderColor="#b6b9bf"
                 textfontSize={16}
                 keyboardType='numeric'
@@ -57,7 +57,7 @@ const VerifyNumber = () => {
             </View>
           </View>
 
-          <View style={{alignSelf: 'center',bottom:'27%'}}>
+          <View style={{alignSelf: 'center',bottom:'20%'}}>
             <FullSizeButtons titleColor="#fff" title="Verify" />
           </View>
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   InputView: {
     alignItems: 'center',
 
-    height: '35%',
+    height: '28%',
     width: '100%',
   },
 });

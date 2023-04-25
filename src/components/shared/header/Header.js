@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {FontFamily} from '../../../assets/fonts/FontFamily';
+// import {Dimensions} from 'react-native';
+// const width = Dimensions.get('screen').width;
+// const height = Dimensions.get('screen').height;
 const Header = props => {
   const styles = StyleSheet.create({
     container: {
@@ -24,20 +28,19 @@ const Header = props => {
       right: props.DownIconRight,
       bottom: props.DownBottom,
     },
-    upCss:{
-      color:'#fff',
-      right:props.upRight,
-      bottom:props.upBottom
+    upCss: {
+      color: '#fff',
+      right: props.upRight,
+      bottom: props.upBottom,
     },
-    centerCss:{
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        // bottom: 33,
+    centerCss: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+ 
 
-bottom:props.verifyBottom
-
-    }
+      bottom: props.verifyBottom,
+    },
   });
   return (
     <>
@@ -67,16 +70,23 @@ bottom:props.verifyBottom
               alignSelf: 'center',
               bottom: props.stepBottom,
             }}>
-            <Text style={{color: '#fff'}}> {props.stepContent}</Text>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 14,
+                fontFamily: FontFamily.PopinsExtraLight,
+              }}>
+              {' '}
+              {props.stepContent}
+            </Text>
           </View>
         )}
         {props.centerText && (
           <View
             style={{
-            
-            ...styles.centerCss
+              ...styles.centerCss,
             }}>
-            <Text style={{fontWeight: 'bold', color: '#fff'}}>
+            <Text style={{fontFamily:FontFamily.PopinsRegular, color: '#fff',fontSize:20}}>
               {props.centerContent}
             </Text>
           </View>
@@ -95,7 +105,7 @@ bottom:props.verifyBottom
               style={{...styles.addCss}}
             />
           )}
-          
+
           {props.iconupdown && (
             <TouchableOpacity style={{alignContent: 'space-between'}}>
               <FontAwesome
@@ -135,11 +145,10 @@ Header.defaultProps = {
   centerContent: 'Verify Number',
   addright: 22,
   addbottom: 67,
-  DownIconRight:12,
-  DownBottom:58,
-  upRight:12,
-  upBottom:90,
-  verifyBottom:33,
-  stepBottom:33
-
+  DownIconRight: 12,
+  DownBottom: 58,
+  upRight: 12,
+  upBottom: 90,
+  verifyBottom: 33,
+  stepBottom: 33,
 };

@@ -50,7 +50,7 @@ const Input = props => {
               color: '#000',
               width: '100%',
               // fontFamily:FontFamily.PopinsMedium,
-              fontSize: 12,
+              fontSize: props.textfontSize,
               top: 2,
             }}
             placeholder={props.placeholder}
@@ -60,6 +60,7 @@ const Input = props => {
             label={'Full Name'}
             textAlignVertical={'top'}
             multiline={true}
+            keyboardType={props.keyboardType}
           />
         </View>
       </View>
@@ -83,7 +84,8 @@ Input.defaultProps = {
   label: 'label',
   borderWidth:0.5,
   borderBottomWidth:0.5,
-  borderBottomColor:'#ddd'
+  borderBottomColor:'#ddd',
+  textfontSize:11,
 };
 
 export default Input;
