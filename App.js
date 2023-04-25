@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { FontFamily } from './src/assets/fonts/FontFamily'
+import LocationModal from './src/components/componentModals/LocationModal'
 
 const App = () => {
   return (
-    <View>
-      <Text style={{color:'#000',fontFamily:FontFamily.PopinsExtraBold }}>Appppppppppppppppppppppppppppppppppp</Text>
-    </View>
+    <>
+    <LocationModal/>
+    </>
   )
 }
 
