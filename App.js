@@ -7,11 +7,14 @@ import Header from './src/components/shared/header/Header'
 import DropDownComponent from './src/components/shared/dropdowns/DropDownComponent'
 import SpeedoMeter from './src/components/shared/speedometer/SpeedoMeter'
 import Login from './src/screens/Login.js/Login'
+import VerifyNumber from './src/screens/auth/VerifyNumber'
+import SplashScreen from './src/screens/splashscreen/SplashScreen'
+import OtpInput from './src/screens/otpInput/OtpInput'
 const App = (props) => {
   return (
     <>
     {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
-    <Login/>
+  <OtpInput/>
     </>
   )
 }
