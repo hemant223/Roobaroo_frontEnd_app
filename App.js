@@ -8,6 +8,11 @@ import DropDownComponent from './src/components/shared/dropdowns/DropDownCompone
 import VerifyNumber from './src/screens/auth/VerifyNumber'
 import VisitorOTP from './src/screens/auth/VisitorOTP'
 import Visits from './src/screens/Visits/Visits'
+import SpeedoMeter from './src/components/shared/speedometer/SpeedoMeter'
+import Login from './src/screens/Login.js/Login'
+
+import SplashScreen from './src/screens/splashscreen/SplashScreen'
+import OtpInput from './src/screens/otpInput/OtpInput'
 import SuccessModal from './src/components/componentModals/SuccessModal'
 import RadioButton from './src/components/shared/buttons/RadioButton'
 
@@ -19,6 +24,7 @@ const App = (props) => {
     {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
  
     <Visits/>
+   
     </>
   )
 }
