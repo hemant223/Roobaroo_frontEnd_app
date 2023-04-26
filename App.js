@@ -18,7 +18,7 @@ const App = (props) => {
   // alert(background)
   return (
     <>
-    <OtpInput />
+    <SpeedoMeter />
     </>
   )
 }
