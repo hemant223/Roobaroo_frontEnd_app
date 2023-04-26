@@ -25,7 +25,7 @@ const Visits = () => {
     </View>
     <ScrollView>
 
-    <View style={{padding:5,margin:5}}>
+    <View style={{padding:5,margin:5 ,top:10}}>
    <SegmentedTab/>
   </View>
     </ScrollView>

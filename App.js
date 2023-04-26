@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import LocationModal from './src/components/componentModals/LocationModal'
 import Inputs from './src/components/shared/textInputs/Inputs'
 import SegmentedTabs from './src/components/shared/segment_tab/SegmentedTabs'
@@ -8,10 +8,16 @@ import DropDownComponent from './src/components/shared/dropdowns/DropDownCompone
 import VerifyNumber from './src/screens/auth/VerifyNumber'
 import VisitorOTP from './src/screens/auth/VisitorOTP'
 import Visits from './src/screens/Visits/Visits'
+import SuccessModal from './src/components/componentModals/SuccessModal'
+import RadioButton from './src/components/shared/buttons/RadioButton'
+
 const App = (props) => {
+  const [background, setBackGround] = useState(1);
+  // alert(background)
   return (
     <>
     {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
+ 
     <Visits/>
     </>
   )
