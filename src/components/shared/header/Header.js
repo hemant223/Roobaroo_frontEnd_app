@@ -1,9 +1,11 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View,Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {FontFamily} from '../../../assets/fonts/FontFamily';
+import { ImagesAssets } from '../ImageAssets';
 const Header = props => {
   const styles = StyleSheet.create({
     container: {
@@ -24,31 +26,40 @@ const Header = props => {
       right: props.DownIconRight,
       bottom: props.DownBottom,
     },
-    upCss:{
-      color:'#fff',
-      right:props.upRight,
-      bottom:props.upBottom
+    upCss: {
+      color: '#fff',
+      right: props.upRight,
+      bottom: props.upBottom,
     },
-    centerCss:{
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        // bottom: 33,
+    centerCss: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+ 
 
-bottom:props.verifyBottom
+      bottom: props.verifyBottom,
+    },
+    Menu: { width: 32, height: 32,left:8 },
 
-    }
   });
   return (
     <>
       <View style={{...styles.container}}>
-        <TouchableOpacity style={{top: 14, flexDirection: 'row', width: '9%'}}>
-          <Ionicons
+        <TouchableOpacity style={{top: props.arrowtop, flexDirection: 'row', width: '9%'}}>
+          {props.backarrowIcon&&<Ionicons
             onPress={props.arrowPress}
             name={props.iconarrow}
             color="#fff"
             size={32}
-          />
+          />}
+           {props.MenuIcon&&<Image
+              source={ImagesAssets.HeaderMenuIcon}
+              style={{
+                ...styles.Menu,
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />}
         </TouchableOpacity>
         <View style={{bottom: 13, width: '10%', left: 32}}>
           {props.rightText && (
@@ -67,16 +78,23 @@ bottom:props.verifyBottom
               alignSelf: 'center',
               bottom: props.stepBottom,
             }}>
-            <Text style={{color: '#fff'}}> {props.stepContent}</Text>
+            <Text
+              style={{
+                color: '#fff',
+                fontSize: 14,
+                fontFamily: FontFamily.PopinsExtraLight,
+              }}>
+              {' '}
+              {props.stepContent}
+            </Text>
           </View>
         )}
         {props.centerText && (
           <View
             style={{
-            
-            ...styles.centerCss
+              ...styles.centerCss,
             }}>
-            <Text style={{fontWeight: 'bold', color: '#fff'}}>
+            <Text style={{fontFamily:FontFamily.PopinsRegular, color: '#fff',fontSize:20}}>
               {props.centerContent}
             </Text>
           </View>
@@ -95,7 +113,7 @@ bottom:props.verifyBottom
               style={{...styles.addCss}}
             />
           )}
-          
+
           {props.iconupdown && (
             <TouchableOpacity style={{alignContent: 'space-between'}}>
               <FontAwesome
@@ -135,11 +153,11 @@ Header.defaultProps = {
   centerContent: 'Verify Number',
   addright: 22,
   addbottom: 67,
-  DownIconRight:12,
-  DownBottom:58,
-  upRight:12,
-  upBottom:90,
-  verifyBottom:33,
-  stepBottom:33
-
+  DownIconRight: 12,
+  DownBottom: 58,
+  upRight: 12,
+  upBottom: 90,
+  verifyBottom: 33,
+  stepBottom: 33,
+  arrowtop:14
 };

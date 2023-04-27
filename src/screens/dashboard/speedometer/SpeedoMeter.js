@@ -32,6 +32,7 @@ const SpeedoMeter = () => {
 
 const styles = StyleSheet.create({
   container: {
+    
   },
 });
 

@@ -4,5 +4,6 @@ export const ImagesAssets = {
    splash_background:require('../../assets/images/splashScreen/bg.png'),
    logo:require('../../assets/images/RoobarooLogo/logo.png'),
    login_background:require('../../assets/images/Login/bg2.png'),
+   HeaderMenuIcon:require('../../assets/images/HeaderImages/side.png')
 
 };
