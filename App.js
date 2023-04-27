@@ -25,13 +25,13 @@ const App = (props) => {
   // alert(background)
   return (
     <>
-    {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
+    <Header MenuIcon  />
  
     {/* <ViewVisit/> */}
     {/* <Visits/> */}
     {/* <VisitorDetails/> */}
     {/* <FilterDropdown/> */}
-    <BarChart/>
+    {/* <BarChart/> */}
     
    
     </>

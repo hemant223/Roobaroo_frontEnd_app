@@ -20,6 +20,7 @@ const VerifyNumber = () => {
         // addbottom={50}
         // DownBottom={36}
         // upBottom={70}
+        backarrowIcon
       />
        
 

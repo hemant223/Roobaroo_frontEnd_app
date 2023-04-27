@@ -22,6 +22,7 @@ const Visits = () => {
         DownBottom={18}
         upBottom={51}
         // updownPress={()=>{alert ('hii')}}
+        backarrowIcon
       />
     </View>
     <ScrollView>
