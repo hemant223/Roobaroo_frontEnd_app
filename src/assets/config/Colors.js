@@ -9,6 +9,7 @@ export const Colors = {
     black: '#000000',
     blanchedalmond: '#ffebcd',
     blue: '#0000ff',
+    Semiblue:'#005db6',
     blueviolet: '#8a2be2',
     brown: '#a52a2a',
     burlywood: '#deb887',
