@@ -6,7 +6,7 @@ import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
 import { ImagesAssets } from "../../components/shared/ImageAssets";
 
-function OtpInput() {
+function OtpInput(props) {
     const [isModalVisible, setModalVisible] = useState(true);
 
     const et1 = useRef()
@@ -124,7 +124,7 @@ function OtpInput() {
                     </View>
                     <View style={{ marginTop: 5, padding: 10, width: '100%', }}>
                         <View style={{ alignSelf: 'center', width: '100%' }}>
-                            <FullSizeButtons titleColor='#fff' title='Send OTP' height={50} width={'100%'} />
+                            <FullSizeButtons onPress={()=>{props.navigation.navigate('Dashboard')}} titleColor='#fff' title='Send OTP' height={50} width={'100%'} />
                         </View>
                     </View>
                 </View>

@@ -6,7 +6,7 @@ import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
 import { ImagesAssets } from "../../components/shared/ImageAssets";
 
-function Login() {
+function Login(props) {
     const [isModalVisible, setModalVisible] = useState(true);
 
     const toggleModal = () => {
@@ -40,7 +40,7 @@ function Login() {
                         </View>
                     <View style={{ marginTop: 5, padding: 10, width: '100%', }}>
                         <View style={{alignSelf:'center',width:'100%'}}>
-                        <FullSizeButtons titleColor='#fff' title='Send OTP' height={50} width={'100%'} />
+                        <FullSizeButtons onPress={()=>{props.navigation.navigate('OtpInput')}}  titleColor='#fff' title='Send OTP' height={50} width={'100%'} />
                         </View>
                     </View>
                 </View>
