@@ -4,6 +4,7 @@ import Modal from "react-native-modal";
 import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
+import { ImagesAssets } from "../../components/shared/ImageAssets";
 
 function OtpInput() {
     const [isModalVisible, setModalVisible] = useState(true);
@@ -25,7 +26,9 @@ function OtpInput() {
 
     return (
         <View>
-            <ImageBackground source={require('../../assets/images/Background.jpg')} style={styles.container} />
+            <View style={{height:'100%',width:'100%'}}>
+            <ImageBackground source={ImagesAssets.login_background} resizeMode='cover' style={{width:'100%',height:'80%'}} />
+            </View>
             <Button title="Show modal" onPress={toggleModal} />
             <Modal isVisible={isModalVisible} style={styles.modal}   >
                 <View style={styles.modalContainer}>
@@ -42,7 +45,8 @@ function OtpInput() {
                             ref={et1}
                             maxLength={1}
                             textAlign={'center'}
-                            style={{ borderBottomWidth: 1 }}
+                            
+                            style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500'}}
                             keyboardType={'number-pad'}
                             onChangeText={txt => {
                                 setF1(txt)
@@ -61,7 +65,7 @@ function OtpInput() {
                             textAlign={'center'}
                             keyboardType={'number-pad'}
 
-                            style={{ borderBottomWidth: 1 }}
+                            style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
                             onChangeText={txt => {
                                 setF2(txt)
                                 if (txt.length >= 1) {
@@ -73,7 +77,7 @@ function OtpInput() {
                         />
 
 
-                        <TextInput style={{ borderBottomWidth: 1 }}
+                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
                             ref={et3}
                             maxLength={1}
                             textAlign={'center'}
@@ -89,7 +93,7 @@ function OtpInput() {
                         />
 
 
-                        <TextInput style={{ borderBottomWidth: 1 }}
+                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
                             ref={et4}
                             maxLength={1}
                             textAlign={'center'}
@@ -103,10 +107,10 @@ function OtpInput() {
                                 }
                             }}
                         />
-                        <TextInput style={{ borderBottomWidth: 1 }}
+                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
                             ref={et5}
                             maxLength={1}
-                            textAlign={'center'}
+                            textAlign={'center'}  
                             keyboardType={'number-pad'}
                             onChangeText={txt => {
                                 setF5(txt)
