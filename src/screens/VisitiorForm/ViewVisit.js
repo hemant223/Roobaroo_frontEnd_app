@@ -49,6 +49,7 @@ const VisitingForm = () => {
         centerText
         centerContent="View Visit"
         verifyBottom={6}
+        backarrowIcon
       />
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>

@@ -1,13 +1,11 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View,Image} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
-// import {Dimensions} from 'react-native';
-// const width = Dimensions.get('screen').width;
-// const height = Dimensions.get('screen').height;
+import { ImagesAssets } from '../ImageAssets';
 const Header = props => {
   const styles = StyleSheet.create({
     container: {
@@ -41,17 +39,27 @@ const Header = props => {
 
       bottom: props.verifyBottom,
     },
+    Menu: { width: 32, height: 32,left:8 },
+
   });
   return (
     <>
       <View style={{...styles.container}}>
         <TouchableOpacity style={{top: props.arrowtop, flexDirection: 'row', width: '9%'}}>
-          <Ionicons
+          {props.backarrowIcon&&<Ionicons
             onPress={props.arrowPress}
             name={props.iconarrow}
             color="#fff"
             size={32}
-          />
+          />}
+           {props.MenuIcon&&<Image
+              source={ImagesAssets.HeaderMenuIcon}
+              style={{
+                ...styles.Menu,
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />}
         </TouchableOpacity>
         <View style={{bottom: 13, width: '10%', left: 32}}>
           {props.rightText && (
