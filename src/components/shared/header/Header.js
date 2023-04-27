@@ -45,7 +45,7 @@ const Header = props => {
   return (
     <>
       <View style={{...styles.container}}>
-        <TouchableOpacity style={{top: 14, flexDirection: 'row', width: '9%'}}>
+        <TouchableOpacity style={{top: props.arrowtop, flexDirection: 'row', width: '9%'}}>
           <Ionicons
             onPress={props.arrowPress}
             name={props.iconarrow}
@@ -151,4 +151,5 @@ Header.defaultProps = {
   upBottom: 90,
   verifyBottom: 33,
   stepBottom: 33,
+  arrowtop:14
 };

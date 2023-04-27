@@ -10,12 +10,13 @@ import VisitorOTP from './src/screens/auth/VisitorOTP'
 import Visits from './src/screens/Visits/Visits'
 import SpeedoMeter from './src/components/shared/speedometer/SpeedoMeter'
 import Login from './src/screens/Login.js/Login'
-
 import SplashScreen from './src/screens/splashscreen/SplashScreen'
 import OtpInput from './src/screens/otpInput/OtpInput'
 import SuccessModal from './src/components/componentModals/SuccessModal'
 import RadioButton from './src/components/shared/buttons/RadioButton'
-
+import VisitingForm from './src/screens/VisitiorForm/VisitingForm'
+import ViewVisit from './src/screens/VisitiorForm/ViewVisit'
+import VisitorDetails from './src/screens/visitorDetails/VisitorDetails'
 const App = (props) => {
   const [background, setBackGround] = useState(1);
   // alert(background)
@@ -23,7 +24,9 @@ const App = (props) => {
     <>
     {/* <Header add  stepText iconupdown centerText DownBottom={20} /> */}
  
-    <Visits/>
+    {/* <ViewVisit/> */}
+    {/* <Visits/> */}
+    <VisitorDetails/>
    
     </>
   )

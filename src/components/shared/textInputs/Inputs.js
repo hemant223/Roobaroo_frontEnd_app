@@ -1,24 +1,30 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Dimensions, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-// import { FontFamily } from '../../../assets/fonts/FontFamily';
+import {FontFamily} from '../../../assets/fonts/FontFamily';
 
 const Input = props => {
-    const style = StyleSheet.create({
-        inputContainer: {
-          flexDirection: 'row',
-          paddingHorizontal: 15,
-          // borderWidth: 0.5,
-          borderWidth:props.borderWidth,
-       
-        },
-      });
-      
+  const style = StyleSheet.create({
+    inputContainer: {
+      flexDirection: 'row',
+      paddingHorizontal: 15,
+      // borderWidth: 0.5,
+      borderWidth: props.borderWidth,
+    },
+  });
+
   return (
     <View>
       {props.textLabel && (
         <View style={{left: 8}}>
-          <Text style={{color: '#c0c0c0'}}>{props.label}</Text>
+          <Text
+            style={{
+              color: '#aeaeae',
+              fontSize: 15,
+              fontFamily: FontFamily.Popinssemibold,
+            }}>
+            {props.label}
+          </Text>
         </View>
       )}
       <View
@@ -31,7 +37,7 @@ const Input = props => {
             borderRadius: props.borderRadius,
             borderColor: props.borderColor,
             borderBottomWidth: props.borderBottomWidth,
-            borderBottomColor:props.borderBottomColor
+            borderBottomColor: props.borderBottomColor,
           },
         ]}>
         {props.icon ? (
@@ -82,11 +88,10 @@ Input.defaultProps = {
   onChangeText: () => {},
   placeholderColor: '#000',
   label: 'label',
-  borderWidth:0.5,
-  borderBottomWidth:0.5,
-  borderBottomColor:'#ddd',
-  textfontSize:11,
+  borderWidth: 0.5,
+  borderBottomWidth: 0.5,
+  borderBottomColor: '#ddd',
+  textfontSize: 11,
 };
 
 export default Input;
-

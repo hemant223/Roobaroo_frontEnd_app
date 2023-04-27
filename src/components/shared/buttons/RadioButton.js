@@ -17,12 +17,14 @@ const RadioButton = props => {
 
   return (
     <>
-      <View style={{marginTop: 5, marginBottom: 5, marginLeft: 22}}>
+      <View style={{marginTop: 5, marginBottom: 5, marginLeft: props.labelLeft}}>
         <Text
           style={{
             color: '#aeaeae',
             fontFamily: FontFamily.Popinssemibold,
             fontSize: 15,
+            left:props.left,
+            right:props.right,
           }}>
           {props.label}
         </Text>
@@ -69,4 +71,7 @@ RadioButton.defaultProps = {
     {type: 'Others', id: 3, color: false},
   ],
   label: 'Label',
+  left:0,
+  labelLeft:22,
+
 };
