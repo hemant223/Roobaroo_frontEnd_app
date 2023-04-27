@@ -32,7 +32,7 @@ const SpeedoMeter = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor:'red',
+    
   },
 });
 

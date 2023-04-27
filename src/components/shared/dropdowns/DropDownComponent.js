@@ -34,6 +34,18 @@ const Dropdown = props => {
         borderColor: props.borderColors,
         height: props.height,
       }}>
+       <View style={{marginTop: 5, marginBottom: 5, marginLeft: props.labelLeft}}>
+        <Text
+          style={{
+            color: '#aeaeae',
+            fontFamily: FontFamily.Popinssemibold,
+            fontSize: 15,
+            left:props.left,
+            right:props.right,
+          }}>
+          {props.label}
+        </Text>
+      </View>
       <TouchableOpacity
         style={{
           ...styles.button,
@@ -149,4 +161,5 @@ Dropdown.defaultProps = {
   onPressfun: () => {},
   onPressfunforAgendaType: () => {},
   height: 'auto',
+  label:'label'
 };
