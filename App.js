@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import SearchBar from './src/components/shared/searchbar/SearchBar';
+import SingleBarChart from './src/components/shared/barChart/BarChart';
+import UserDetail from './src/screens/profile/UserDetail';
 
 
 const App = (props) => {
@@ -8,7 +10,8 @@ const App = (props) => {
   // alert(background)
   return (
     <>
-    <SearchBar/>
+    
+    <UserDetail/>
     </>
   )
 }
