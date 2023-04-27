@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { RadialSlider } from 'react-native-radial-slider';
 
 const SpeedoMeter = () => {
-  const [speed, setSpeed] = useState(30);
+  const [speed, setSpeed] = useState(10);
 
   return (
     <View style={styles.container}>

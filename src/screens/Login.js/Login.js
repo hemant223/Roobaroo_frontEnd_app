@@ -4,6 +4,7 @@ import Modal from "react-native-modal";
 import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
+import { ImagesAssets } from "../../components/shared/ImageAssets";
 
 function Login() {
     const [isModalVisible, setModalVisible] = useState(true);
@@ -14,8 +15,9 @@ function Login() {
 
     return (
         <View>
-            <ImageBackground source={require('../../assets/images/Background.jpg')} style={styles.container} />
-            <Button title="Show modal" onPress={toggleModal} />
+            <View style={{height:'100%',width:'100%'}}>
+            <ImageBackground source={ImagesAssets.login_background} resizeMode='cover' style={{width:'100%',height:'80%'}} />
+            </View>
             <Modal isVisible={isModalVisible} style={styles.modal}   >
                 <View style={styles.modalContainer}>
                     
@@ -51,11 +53,6 @@ export default Login;
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
-        ,
     },
     modal: {
         width: '100%',
