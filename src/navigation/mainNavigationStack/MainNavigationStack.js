@@ -13,6 +13,7 @@ import DrawerNavigation from '../drawerNavigation/DrawerNavigation';
 
 import Login from '../../screens/Login.js/Login';
 import OtpInput from '../../screens/otpInput/OtpInput';
+import Visits from '../../screens/Visits/Visits';
 
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
@@ -59,8 +60,8 @@ function MainNavigationStack(props) {
           options={{headerShown: false}}
         />
          <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
+          name="Visits"
+          component={Visits}
           options={{headerShown: false}}
         />
       
