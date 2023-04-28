@@ -6,6 +6,9 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import { ImagesAssets } from '../ImageAssets';
+// import {Dimensions} from 'react-native';
+// const width = Dimensions.get('screen').width;
+// const height = Dimensions.get('screen').height;
 const Header = props => {
   const styles = StyleSheet.create({
     container: {
@@ -39,32 +42,29 @@ const Header = props => {
 
       bottom: props.verifyBottom,
     },
-    Menu: { width: 32, height: 32,left:8 },
-
+    leftArrow:{
+      width:30,
+      height:30,
+      left:6
+    }
   });
   return (
     <>
       <View style={{...styles.container}}>
         <TouchableOpacity style={{top: props.arrowtop, flexDirection: 'row', width: '9%'}}>
-          {props.backarrowIcon&&<Ionicons
-            onPress={props.arrowPress}
-            name={props.iconarrow}
-            color="#fff"
-            size={32}
-          />}
-           {props.MenuIcon&&<Image
-              source={ImagesAssets.HeaderMenuIcon}
+        <Image
+              source={ImagesAssets.arrowLeft}
               style={{
-                ...styles.Menu,
+                ...styles.leftArrow,
                 // marginHorizontal: isLandscape ? 5 : 5,
               }}
               resizeMode={'center'}
-            />}
+            />
         </TouchableOpacity>
-        <View style={{bottom: 13, width: '10%', left: 32}}>
+        <View style={{bottom: 13, width: '30%', left: 32,}}>
           {props.rightText && (
             <View style={{justifyContent: 'center'}}>
-              <Text style={{fontWeight: 'bold', color: '#fff'}}>
+              <Text style={{fontWeight: 'bold', color: '#fff',left:'6%'}}>
                 {props.rightContent}{' '}
               </Text>
             </View>
