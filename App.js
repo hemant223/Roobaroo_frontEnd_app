@@ -20,20 +20,29 @@ import ViewVisit from './src/screens/visitiorForm/ViewVisit'
 import VisitorDetails from './src/screens/visitorDetails/VisitorDetails'
 import BarChart from './src/components/shared/barChart/BarChart'
 import FilterDropdown from './src/components/shared/dropdowns/FilterDropdown'
+import SubHeader from './src/components/shared/subHeader/SubHeader'
 const App = (props) => {
   const [background, setBackGround] = useState(1);
   // alert(background)
   return (
     <>
-    <Header MenuIcon  />
+    <Header MenuIcon 
+    rightText
  
-    {/* <ViewVisit/> */}
-    {/* <Visits/> */}
+
+    
+    />
+ 
+    {/* <ViewVisit  
+    
+    /> */}
+    {/* <BarChart/> */}
     {/* <VisitorDetails/> */}
     {/* <FilterDropdown/> */}
     {/* <BarChart/> */}
     
-   
+   {/* <VisitorOTP/> */}
+   {/* <VisitingForm/> */}
     </>
   )
 }
