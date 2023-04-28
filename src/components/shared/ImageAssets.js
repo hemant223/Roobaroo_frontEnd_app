@@ -1,6 +1,11 @@
 export const ImagesAssets = {
-   OTP_Gif:require('../../assets/images/otpvideo/otpvideo.mp4'),
+   OTP_Gif:require('../../assets/images/otpvideo/verify.mp4'),
    conf:require('../../assets/images/modal_Img/confirmation.gif'),
+   HeaderMenuIcon:require('../../assets/images/HeaderImages/side.png'),
+   Calender:require('../../assets/images/VisitorImages/calendar.png'),
+   mobileImage:require('../../assets/images/VisitorImages/mobiles.png'),
+   arrowLeft:require('../../assets/images/HeaderImages/arrow-left.png'),
+   Modi:require('../../assets/images/HeaderImages/Modi.jpg'),
    sucessful:require('../../assets/images/modal_Img/sucessful.mp4'),
    splash_background:require('../../assets/images/splashScreen/bg.png'),
    logo:require('../../assets/images/RoobarooLogo/logo.png'),

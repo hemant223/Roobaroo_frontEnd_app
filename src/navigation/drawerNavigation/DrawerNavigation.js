@@ -4,7 +4,7 @@ import {useWindowDimensions} from 'react-native';
 import DrawerContent from './DrawerContent';
 import SplashScreen from '../../screens/splashscreen/SplashScreen';
 import Dashboard from '../../screens/dashboard/Dashboard';
-import Visits from '../../screens/Visits/Visits';
+import Visits from '../../screens/visits/Visits';
 
 const DrawerNav = createDrawerNavigator();
 

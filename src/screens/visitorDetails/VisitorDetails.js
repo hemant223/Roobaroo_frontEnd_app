@@ -12,6 +12,7 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Colors} from '../../assets/config/Colors';
+import { ImagesAssets } from '../../components/shared/ImageAssets';
 
 const DATA = [
   {
@@ -55,8 +56,18 @@ const Item = ({item}) => {
             // backgroundColor: 'yellowgreen',
             bottom: 4,
           }}>
-          <View style={{top: 2}}>
-            <MCIcon name="calendar-month-outline" color={'#186cbd'} size={15} />
+          <View style={{top: 2,width:'6%',
+          // backgroundColor:'yellow'
+          }}>
+            {/* <MCIcon name="calendar-month-outline" color={'#186cbd'} size={15} /> */}
+            <Image
+              source={ImagesAssets.Calender}
+              style={{
+               ...styles.Calender
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />
           </View>
           <Text
             style={{
@@ -64,6 +75,7 @@ const Item = ({item}) => {
               fontFamily: FontFamily.PopinsRegular,
               // fontSize: FontSize.small,
               color: Colors.black,
+              top:'0.8%'
             }}>
             {item.date}
           </Text>
@@ -77,8 +89,18 @@ const Item = ({item}) => {
             // backgroundColor: 'yellowgreen',
             bottom: 2,
           }}>
-          <View style={{top: 2}}>
-            <MCIcon name="cellphone" color={'#186cbd'} size={15} />
+          <View style={{top: 2,width:'6%',}}>
+            {/* <MCIcon name="cellphone" color={'#186cbd'} size={15} /> */}
+
+            <Image
+              source={ImagesAssets.mobileImage}
+              style={{
+               ...styles.mobileCss
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />
+
           </View>
           <Text
             style={{
@@ -134,7 +156,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     height: 120,
-    elevation: 1,
+    alignSelf:'center'
+    // elevation: 1,
     // borderColor:Colors.borderColor1
   },
   mciIconCss: {
@@ -158,4 +181,14 @@ const styles = StyleSheet.create({
   //   numericInputCss: {
   //     alignSelf: 'center',
   //   },
+  Calender:{
+    width:16,
+    height:25,
+    // backgroundColor:'red'
+  },
+  mobileCss:{
+    width:16,
+    height:19,
+    // backgroundColor:'red'
+  },
 });

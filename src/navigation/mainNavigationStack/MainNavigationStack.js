@@ -13,7 +13,7 @@ import DrawerNavigation from '../drawerNavigation/DrawerNavigation';
 
 import Login from '../../screens/Login.js/Login';
 import OtpInput from '../../screens/otpInput/OtpInput';
-import Visits from '../../screens/Visits/Visits';
+import Visits from '../../screens/visits/Visits';
 
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
