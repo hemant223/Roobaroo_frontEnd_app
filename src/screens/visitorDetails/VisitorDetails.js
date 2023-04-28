@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     height: 120,
-    elevation: 1,
+    alignSelf:'center'
+    // elevation: 1,
     // borderColor:Colors.borderColor1
   },
   mciIconCss: {

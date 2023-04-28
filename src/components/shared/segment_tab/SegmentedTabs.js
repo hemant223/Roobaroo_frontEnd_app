@@ -39,12 +39,15 @@ const SegmentedTab = ({component1, component2, WIDTHSEG, values}) => {
 backgroundColor:'#fff',
 color:'#fff',
 borderColor:'#ffff',
-borderRadius:10
+// borderRadius:10
+
+
 
         }}
         activeTabStyle={{
             // backgroundColor: Colors.MRGREEN
-            backgroundColor:'#005db6'
+            backgroundColor:'#005db6',
+           
         }}
         tabsContainerStyle={{
           height: 45,

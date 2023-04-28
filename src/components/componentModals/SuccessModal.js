@@ -14,7 +14,7 @@ const SuccessModal = () => {
       <View style={{width:'100%'}}>
         <View style={{}}>
         <Video
-          source={ImagesAssets.OTP_Gif}
+          source={ImagesAssets.sucessful}
           // source={props.VideosURL}
           style={{height: 250}}
           muted={true}

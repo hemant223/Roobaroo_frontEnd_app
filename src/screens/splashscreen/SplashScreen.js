@@ -1,16 +1,20 @@
 import React from 'react'
-import {ImageBackground,Image} from 'react-native'
+import {ImageBackground,Image,View} from 'react-native'
+import { ImagesAssets } from '../../components/shared/ImageAssets'
 
 export default function SplashScreen({navigation}){
-    setTimeout(()=>{
-        navigation.replace('Second');
-    },2000);
+    // setTimeout(()=>{
+    //     navigation.replace('Second');
+    // },2000);
     return (
-        
-            <ImageBackground source={require('../../assets/images/Background.jpg')} style={{width: '100%', height: '100%', justifyContent:'center',alignItems:'center'}} >              
-                 <Image  source={require('../../assets/images/Logo.jpg')} style={{ width: 218, height: 180,}} />               
+        <View style={{flex:1,}}>
+            <ImageBackground source={ImagesAssets.splash_background} resizeMode='stretch' style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+                <View style={{bottom:'12%'}}>
+                    <Image source={ImagesAssets.logo}/>
+                    </View>
+                </ImageBackground>             
+            </View>   
             
-            </ImageBackground>
         
     )
 }
