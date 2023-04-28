@@ -123,3 +123,13 @@ SubHeader.defaultProps = {
 
   arrowtop: 14,
 };
+
+
+
+// <SubHeader  
+// MenuIcon
+// profile
+// rightText
+// rightContent='Tarun Bhadoriya'
+
+// />
