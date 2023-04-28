@@ -15,5 +15,6 @@ export const ImagesAssets = {
    hemu:require('../../assets/images/drawer_img/hemu.jpeg'),
    calander_blue:require('../../assets/images/drawer_img/calendar.png'),
    visit_black:require('../../assets/images/drawer_img/visit.png'),
+   visit_profile:require('../../assets/images/dashboard_img/visits.png'),
 
 };
