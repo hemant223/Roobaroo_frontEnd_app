@@ -9,7 +9,7 @@ import {
 import { goBackTwoScreen } from '../../navigation/NavigationDrw/NavigationServices'
 
 const Visits = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation()       
   return (
     <>
 
