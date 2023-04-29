@@ -5,6 +5,8 @@ import SingleBarChart from './src/components/shared/barChart/BarChart';
 import UserDetail from './src/screens/profile/UserDetail';
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
 import SuccessModal from './src/components/componentModals/SuccessModal';
+import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
+import RbeSheet from './src/components/shared/rbesheet/RbeSheet';
 
 
 const App = (props) => {
@@ -13,8 +15,9 @@ const App = (props) => {
   return (
     <>
     
-    <MainNavigationStack/>
+    {/* <MainNavigationStack/> */}
     {/* <SuccessModal/> */}
+<SelectLanguage/>
     </>
   )
 }
