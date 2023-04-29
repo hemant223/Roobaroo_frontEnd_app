@@ -3,7 +3,7 @@ import { View, Text, Button } from "react-native"
 import RBSheet from "react-native-raw-bottom-sheet";
 import { FontFamily } from "../../../assets/fonts/FontFamily";
 import RadioButton from "../buttons/RadioButton";
-import { CheckBox,Icon } from '@rneui/themed';
+// import { CheckBox,Icon } from '@rneui/themed';
 function RbeSheet() {
     const [check1, setCheck1] = React.useState(false);
     const [check2, setCheck2] = React.useState(false);
