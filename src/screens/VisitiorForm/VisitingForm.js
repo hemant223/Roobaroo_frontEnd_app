@@ -14,6 +14,10 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
+import SuccessModal from '../../components/componentModals/SuccessModal';
+import {
+  useNavigation,
+} from '@react-navigation/native';
 const data = [
   {type: 'Single', id: 1, color: false},
   {type: 'Group', id: 2, color: false},
@@ -25,10 +29,14 @@ const physicallyData = [
 ];
 
 const VisitingForm = () => {
+  const navigation = useNavigation()
+
   const [visitType, setVisitType] = React.useState(1);
   const [gender, setGender] = React.useState(1);
   const [physically, setPhysically] = React.useState(1);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   //   const [date1, setDate1] = useState(new Date());
   //   const [show, setShow] = useState(false);
 
@@ -197,10 +205,11 @@ const VisitingForm = () => {
             ...styles.Button_View_Css,
           }}>
           <View style={{alignSelf: 'center'}}>
-            <FullSizeButtons titleColor="#fff" />
+            <FullSizeButtons onPress={()=>{setShowModal(true)}} titleColor="#fff" />
           </View>
         </View>
       </ScrollView>
+      {<SuccessModal onPress={()=>{navigation.navigate('Visits')}} setShowModal={setShowModal} showModal={showModal}/>}
     </View>
   );
 };

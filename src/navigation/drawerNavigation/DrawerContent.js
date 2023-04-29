@@ -38,8 +38,39 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
     const [currentVersion, setCurrentVersion] = React.useState('');
     const [userData, setUserData] = useState({});
     const [modalVisible1, setModalVisible1] = React.useState(false);
-  
+    const [showHome, setShowHome] = useState(false)
+    const [showVisits, setShowVisits] = useState(false)
+    const [showLang, setShowLang] = useState(false)
+    const [showLogout, setShowLogout] = useState(false)
    
+    const handleHome=()=>{
+        navigation.navigate('home')
+        setShowHome(true)
+        setShowVisits(false)
+        setShowLang(false)
+        setShowLogout(false)
+    }
+    const handleVisit=()=>{
+        navigation.navigate('Visit')
+        setShowHome(false)
+        setShowVisits(true)
+        setShowLang(false)
+        setShowLogout(false)
+    }
+    const handleLang=()=>{
+        // navigation.navigate('home')
+        setShowHome(false)
+        setShowVisits(false)
+        setShowLang(true)
+        setShowLogout(false)
+    }
+    const handleLogout=()=>{
+        setShowHome(false)
+        setShowVisits(false)
+        setShowLang(false)
+        setShowLogout(true)
+        navigation.navigate('Login')
+    }
   
     return (
       <DrawerContentScrollView
@@ -60,11 +91,11 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
 
 
        <View style={{/* backgroundColor:'yellow' */}}>
-       <Image source={ImagesAssets.roobaroo_logo} resizeMode='contain' style={{ height: 50, width: 220,/* backgroundColor:'red', */alignSelf:'center',marginTop:30 }} />
+       <Image source={ImagesAssets.roobaroo_logo} resizeMode='contain' style={{ height: 50, width: 220,/* backgroundColor:'red', */alignSelf:'center',marginTop:15 }} />
        </View>
 
        <View  style={{marginTop:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
-       <View  style={{width:60,height:60,borderRadius:30,backgroundColor:'red',marginLeft:20}}>
+       <View  style={{width:60,height:60,borderRadius:30,backgroundColor:'red',marginLeft:25}}>
        <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />
        </View>
        <View>
@@ -74,21 +105,25 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
 
 
       
-     <TouchableOpacity onPress={()=>{navigation.navigate('home')}}  style={{marginTop:20,marginLeft:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
-     <Image source={ImagesAssets.home_colored}  style={{width:22,height:22}} />
-     <Text style={{color:'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Home</Text>
+     <TouchableOpacity onPress={()=>{handleHome()}}  style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+    { showHome?<Image source={ImagesAssets.home_sel}  style={{width:16,height:16}} />:
+     <Image source={ImagesAssets.home_un}  style={{width:16,height:16}} />}
+     <Text style={{color:showHome?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Home</Text>
       </TouchableOpacity>
-     <TouchableOpacity onPress={()=>{navigation.navigate('Visit')}} style={{marginTop:20,marginLeft:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
-     <Image source={ImagesAssets.visit_black}  style={{width:22,height:22}} />
-     <Text style={{color:'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Visits</Text>
+     <TouchableOpacity onPress={()=>{handleVisit()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+     {showVisits?<Image source={ImagesAssets.profile_sel}  style={{width:18,height:18}} />:
+     <Image source={ImagesAssets.profile_un}  style={{width:18,height:18}} />}
+     <Text style={{color:showVisits?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Visits</Text>
       </TouchableOpacity>
-     <TouchableOpacity  style={{marginTop:20,marginLeft:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
-     <Image source={ImagesAssets.calander_blue}  style={{width:22,height:22}} />
-     <Text style={{color:'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Change Language</Text>
+     <TouchableOpacity  onPress={()=>{handleLang()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+     {showLang?<Image source={ImagesAssets.lang_sel}  style={{width:17,height:15}} />:
+     <Image source={ImagesAssets.lang_un}  style={{width:17,height:15}} />}
+     <Text style={{color:showLang?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Change Language</Text>
       </TouchableOpacity>
-     <TouchableOpacity  style={{marginTop:20,marginLeft:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
-     <Image source={ImagesAssets.home_colored}  style={{width:22,height:22}} />
-     <Text style={{color:'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Logout</Text>
+     <TouchableOpacity  onPress={()=>{handleLogout()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+     {showLogout?<Image source={ImagesAssets.logout_sel}  style={{width:19,height:16}} />:
+     <Image source={ImagesAssets.logout_un}  style={{width:19,height:16}} />}
+     <Text style={{color:showLogout?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Logout</Text>
       </TouchableOpacity>
   
       </DrawerContentScrollView>

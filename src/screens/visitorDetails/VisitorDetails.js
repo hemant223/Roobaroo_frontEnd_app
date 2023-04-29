@@ -13,7 +13,9 @@ import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Colors} from '../../assets/config/Colors';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
-
+import {
+  useNavigation,
+} from '@react-navigation/native';
 const DATA = [
   {
     id: '1',
@@ -34,10 +36,10 @@ const DATA = [
   //   },
 ];
 
-const Item = ({item}) => {
+const Item = ({item,navigation}) => {
   return (
     <>
-      <View style={styles.mainContainer}>
+      <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{item})}}  style={styles.mainContainer}>
         <View
           style={{
             width: '100%',
@@ -112,12 +114,14 @@ const Item = ({item}) => {
             {item.mobile}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </>
   );
 };
 
 const VisitorDetails = props => {
+  const navigation = useNavigation()
+
   // let numColumns = 3;
   return (
     <>
@@ -125,7 +129,7 @@ const VisitorDetails = props => {
         <FlatList
           // numColumns={numColumns}
           data={props.VisitorDetailsData}
-          renderItem={({item, index}) => <Item item={item} indx={index} />}
+          renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
           scrollEnabled={true}

@@ -1,11 +1,18 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import ModalRoot from '../shared/modals/ModalRoot';
 import Ad from 'react-native-vector-icons/AntDesign';
 import {FontFamily} from '../../assets/fonts/FontFamily';
-const LocationModal = () => {
-  const [showModal, setShowModal] = useState(true);
-  const SelectLocationModal = () => {
+import { ImagesAssets } from '../shared/ImageAssets';
+import {
+  useNavigation,
+} from '@react-navigation/native';
+const LocationModal = (props) => {
+  const navigation = useNavigation()
+
+  // const [showModal, setShowModal] = useState(true);
+  const SelectLocationModal = ({navigation}) => {
+    // const [showModal, setShowModal] = useState(true)
     const data = [
       {
         id: '1',
@@ -13,6 +20,7 @@ const LocationModal = () => {
         title: 'Public meetings',
         color: '#3786eb',
         backgroundColor: '#ecf4fe',
+        img:ImagesAssets.Publicmeetings
       },
       {
         id: '2',
@@ -20,6 +28,7 @@ const LocationModal = () => {
         title: 'Field Visits',
         color: '#f9aa4b',
         backgroundColor: '#fff6ec',
+        img:ImagesAssets.FiledVisits
       },
     ];
     const data1 = [
@@ -29,6 +38,7 @@ const LocationModal = () => {
         title: 'Mantralaya',
         color: '#f3747f',
         backgroundColor: '#fcdee0',
+        img:ImagesAssets.Mantralaya
       },
       {
         id: '4',
@@ -36,6 +46,7 @@ const LocationModal = () => {
         title: 'Vidhyansaabh',
         color: '#18b797',
         backgroundColor: '#c5ede5',
+        img:ImagesAssets.Vidhansabha
       },
       {
         id: '5',
@@ -43,6 +54,7 @@ const LocationModal = () => {
         title: 'jasdham',
         color: '#d680e6',
         backgroundColor: '#f6d9ff',
+        img:ImagesAssets.jasdan
       },
       {
         id: '6',
@@ -50,6 +62,7 @@ const LocationModal = () => {
         title: 'residence',
         color: '#2fc2e1',
         backgroundColor: '#d5f3f9',
+        img:ImagesAssets.Residence
       },
     ];
 
@@ -74,7 +87,8 @@ const LocationModal = () => {
           }}>
           {data.map(item => {
             return (
-              <View
+              <TouchableOpacity
+              onPress={()=>{navigation.navigate('home',{location:item.title});props.setShowModal(false);}} 
                 key={item.id}
                 style={{
                   width: '45%',
@@ -95,7 +109,8 @@ const LocationModal = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Ad name="contacts" size={30} color={'#fff'} />
+                <Image source={item.img} resizeMode='contain' style={{width:40,height:40}} />
+
                 </View>
                 <Text
                   style={{
@@ -106,7 +121,7 @@ const LocationModal = () => {
                   }}>
                   {item.title}
                 </Text>
-              </View>
+              </TouchableOpacity>
             );
           })}
         </View>
@@ -128,7 +143,8 @@ const LocationModal = () => {
           }}>
           {data1.map(item => {
             return (
-              <View
+              <TouchableOpacity
+              onPress={()=>{navigation.navigate('home',{location:item?.title});props.setShowModal(false);}} 
                 key={item.id}
                 style={{
                   width: '45%',
@@ -149,7 +165,7 @@ const LocationModal = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>
-                  <Ad name="contacts" size={30} color={'#fff'} />
+                        <Image source={item.img} resizeMode='contain' style={{width:40,height:40}} />
                 </View>
                 <Text
                   style={{
@@ -160,7 +176,7 @@ const LocationModal = () => {
                   }}>
                   {item.title}
                 </Text>
-              </View>
+              </TouchableOpacity>
             );
           })}
         </View>
@@ -178,9 +194,9 @@ const LocationModal = () => {
       // width={'90%'}
       // height={'30%'}
       padding={15}
-      showModal={showModal}
-      setShowModal={setShowModal}
-      content={<SelectLocationModal />}
+      showModal={props.showModal}
+      setShowModal={props.setShowModal}
+      content={<SelectLocationModal navigation={navigation}  />}
     />
   );
 };

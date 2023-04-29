@@ -3,26 +3,25 @@ import React from 'react'
 import Header from '../../components/shared/header/Header'
 import SegmentedTab from '../../components/shared/segment_tab/SegmentedTabs'
 import VisitorDetails from '../visitorDetails/VisitorDetails'
+import {
+  useNavigation,
+} from '@react-navigation/native';
+import { goBackTwoScreen } from '../../navigation/NavigationDrw/NavigationServices'
 
 const Visits = () => {
+  const navigation = useNavigation()
   return (
     <>
 
     <View>
     <Header
+    BackonPress={()=>{navigation.goBack()}}
+    addonPress={()=>{navigation.navigate('VerifyNumber')}}
         add
-        height={67}
+        height={90}
         rightText
-        // stepText
-        // centerText
-        iconupdown
-        // stepBottom={21}
-        // verifyBottom={28}
-        addbottom={30}
-        DownBottom={18}
-        upBottom={51}
-        // updownPress={()=>{alert ('hii')}}
         backarrowIcon
+       
       />
     </View>
     <ScrollView>
