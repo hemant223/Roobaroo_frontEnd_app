@@ -25,7 +25,7 @@ export default function SingleBarChart(props) {
     <View
       style={{
         ...styles.container,
-        height: '25%',
+        height: 'auto',
         width: '95%',
         margin: 3,
         padding: 5,
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     borderColor: Colors.borderColor1,
-    elevation: 1,
+    // elevation: 1,
+    // height:'auto'
   },
 });

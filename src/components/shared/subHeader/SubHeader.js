@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   View,
   Image,
-  ScrollView 
+  ScrollView ,
+  KeyboardAvoidingView
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,7 +16,10 @@ import Ionicons from 'react-native-vector-icons/MaterialIcons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../ImageAssets';
 import SearchBar from '../searchbar/SearchBar';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 const SubHeader = props => {
+  const navigation = useNavigation();
+  const [locationshow, setLocationshow] = React.useState(props?.locationData)
   const styles = StyleSheet.create({
     container: {
       backgroundColor: props.backgroundColor,
@@ -32,11 +36,13 @@ const SubHeader = props => {
     <>
       <View style={{...styles.container}}>
         <TouchableOpacity
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           style={{
             top: props.arrowtop,
             flexDirection: 'row',
             width: '9%',
-            top: '9%',
+            top: '11%',
+            // backgroundColor:'red'
           }}>
           {props.MenuIcon && (
             <Image
@@ -52,8 +58,9 @@ const SubHeader = props => {
 
         <View
           style={{
+            top:11,
             // bottom: 20,
-            width: '30%',
+            width: '60%',
             left: 42,
             // backgroundColor: 'red',
             flexDirection: 'row',
@@ -82,10 +89,10 @@ const SubHeader = props => {
               <Text style={{fontWeight: 'bold', color: '#fff', left: '3%'}}>
                 {props.rightContent}{' '}
               </Text>
-              <View style={{width: '100%', left: '5%', flexDirection: 'row'}}>
+              <TouchableOpacity onPress={props.locationonPress} style={{width: '100%', left: '5%', flexDirection: 'row'}}>
                 <Text
                   style={{fontFamily: FontFamily.PopinsMedium, color: '#fff'}}>
-                  Office
+                 {props?.locationData?props?.locationData:'Select Location'}
                 </Text>
                 <Ionicons
                   onPress={props.arrowPress}
@@ -93,14 +100,14 @@ const SubHeader = props => {
                   color="#fff"
                   size={22}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           )}
         </View>
         <View
           style={{
             // backgroundColor:'yellowgreen',
-            bottom: '22%',
+            bottom: '15%',
           }}>
           <SearchBar />
         </View>
@@ -114,7 +121,7 @@ export default SubHeader;
 SubHeader.defaultProps = {
   backgroundColor: '#005db6',
 
-  height: '17%',
+  height: 150,
 
   iconarrow: 'keyboard-arrow-down',
 

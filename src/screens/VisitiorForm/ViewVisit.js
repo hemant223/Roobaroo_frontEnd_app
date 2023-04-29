@@ -24,7 +24,10 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
-const ViewVisit = () => {
+const ViewVisit = (props) => {
+  const  getData = props.route.params
+ alert(JSON.stringify(getData))
+
   const [visitType, setVisitType] = React.useState(1);
   const [gender, setGender] = React.useState(1);
   const [physically, setPhysically] = React.useState(1);

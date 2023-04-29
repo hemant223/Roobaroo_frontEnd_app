@@ -7,7 +7,7 @@ const ModalRoot = props => {
     <>
       {props.showModal && (
         <Modal
-          // statusBarTranslucent={true}
+          statusBarTranslucent={true}
           animationType="slide"
           transparent={true}  
           visible={true}
@@ -21,7 +21,7 @@ const ModalRoot = props => {
                 padding: props.padding,
                 width: props.width,
                 height: props.height,
-                maxHeight: '90%',
+                maxHeight: '100%',
                 overflow: 'hidden',
                 borderRadius: props.borderRadius,
               }}>

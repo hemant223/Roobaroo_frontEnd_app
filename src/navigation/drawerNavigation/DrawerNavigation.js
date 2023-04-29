@@ -5,6 +5,7 @@ import DrawerContent from './DrawerContent';
 import SplashScreen from '../../screens/splashscreen/SplashScreen';
 import Dashboard from '../../screens/dashboard/Dashboard';
 import Visits from '../../screens/visits/Visits';
+import UserDetail from '../../screens/profile/UserDetail';
 
 const DrawerNav = createDrawerNavigator();
 
@@ -36,6 +37,11 @@ export default function DrawerNavigation(props) {
       <DrawerNav.Screen
         name="Visit"
         component={Visits}
+        options={{headerShown: false}}
+      />
+      <DrawerNav.Screen
+        name="UserDetail"
+        component={UserDetail}
         options={{headerShown: false}}
       />
          </DrawerNav.Navigator>
