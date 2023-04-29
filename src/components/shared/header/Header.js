@@ -1,11 +1,18 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View,Image} from 'react-native';
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
-import { ImagesAssets } from '../ImageAssets';
+import {ImagesAssets} from '../ImageAssets';
 // import {Dimensions} from 'react-native';
 // const width = Dimensions.get('screen').width;
 // const height = Dimensions.get('screen').height;
@@ -20,8 +27,8 @@ const Header = props => {
     },
     addCss: {
       color: '#fff',
-      right: props.addright,
-      bottom: props.addbottom,
+      // right: props.addright,
+      // bottom: props.addbottom,
     },
 
     iconDownCss: {
@@ -38,21 +45,29 @@ const Header = props => {
       justifyContent: 'center',
       alignItems: 'center',
       alignSelf: 'center',
- 
 
       bottom: props.verifyBottom,
     },
-    leftArrow:{
-      width:30,
-      height:30,
-      left:6
-    }
+    leftArrow: {
+      width: 30,
+      height: 30,
+      left: 6,
+    },
   });
   return (
     <>
-      <View style={{...styles.container}}>
-        <TouchableOpacity style={{top: props.arrowtop, flexDirection: 'row', width: '9%'}}>
-        <Image
+      <View
+        style={{
+          ...styles.container,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center',marginTop:20}}>
+          <TouchableOpacity
+          onPress={props.BackonPress}
+            style={{width: '17%', /* backgroundColor: 'red',  */marginLeft: 10,bottom:props.bottom}}>
+            <Image
               source={ImagesAssets.arrowLeft}
               style={{
                 ...styles.leftArrow,
@@ -60,76 +75,49 @@ const Header = props => {
               }}
               resizeMode={'center'}
             />
-        </TouchableOpacity>
-        <View style={{bottom: 13, width: '30%', left: 32,}}>
-          {props.rightText && (
-            <View style={{justifyContent: 'center'}}>
-              <Text style={{fontWeight: 'bold', color: '#fff',left:'6%'}}>
-                {props.rightContent}{' '}
-              </Text>
-            </View>
-          )}
+          </TouchableOpacity>
+
+          <View style={{width: '50%', marginLeft: 10,/*  backgroundColor: 'red' */}}>
+            {props.rightText && (
+              <View style={{justifyContent: 'center'}}>
+                <Text style={{fontWeight: 'bold', color: '#fff'}}>
+                  {props.rightContent}{' '}
+                </Text>
+              </View>
+            )}
+          </View>
+        
         </View>
-        {props.stepText && (
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              alignSelf: 'center',
-              bottom: props.stepBottom,
-            }}>
-            <Text
-              style={{
-                color: '#fff',
-                fontSize: 14,
-                fontFamily: FontFamily.PopinsExtraLight,
-              }}>
-              {' '}
-              {props.stepContent}
-            </Text>
-          </View>
-        )}
-        {props.centerText && (
-          <View
-            style={{
-              ...styles.centerCss,
-            }}>
-            <Text style={{fontFamily:FontFamily.PopinsRegular, color: '#fff',fontSize:20}}>
-              {props.centerContent}
-            </Text>
-          </View>
-        )}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            bottom: 11,
-          }}>
-          {props.add && (
-            <Ionicons
-              onPress={props.addonPress}
-              name={props.iconAdd}
-              size={34}
-              style={{...styles.addCss}}
-            />
-          )}
 
-          {props.iconupdown && (
-            <TouchableOpacity style={{alignContent: 'space-between'}}>
-              <FontAwesome
-                name={props.iconDown}
-                size={22}
-                style={{...styles.iconDownCss}}
+        <View style={{flexDirection: 'row', alignItems: 'center',marginTop:20}}>
+          <View
+            style={
+              {
+                marginRight:10
+              }
+            }>
+            {props.add && (
+                <TouchableOpacity onPress={props.addonPress}>
+              <Ionicons
+                
+                name={props.iconAdd}
+                size={34}
+                style={{...styles.addCss}}
               />
+              </TouchableOpacity>
+            )}
+          </View>
+          <View>
+            {props.iconupdown && (
+              <TouchableOpacity style={{marginRight:15}}>
+                <FontAwesome
+                  name={props.iconDown}
+                  size={22}
+                />
 
-              <FontAwesome
-                onPress={props.updownPress}
-                name={props.iconUp}
-                size={22}
-                style={{...styles.upCss}}
-              />
-            </TouchableOpacity>
-          )}
+              </TouchableOpacity>
+            )}
+          </View>
         </View>
       </View>
     </>
@@ -141,7 +129,7 @@ export default Header;
 Header.defaultProps = {
   backgroundColor: '#005db6',
 
-  height: '9%',
+  height: 90,
   iconAdd: 'ios-add',
   iconDown: 'caret-down',
   iconarrow: 'arrow-back',
@@ -159,5 +147,5 @@ Header.defaultProps = {
   upBottom: 90,
   verifyBottom: 33,
   stepBottom: 33,
-  arrowtop:14
+  arrowtop: 35,
 };
