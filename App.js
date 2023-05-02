@@ -5,6 +5,8 @@ import SingleBarChart from './src/components/shared/barChart/BarChart';
 import UserDetail from './src/screens/profile/UserDetail';
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
 import SuccessModal from './src/components/componentModals/SuccessModal';
+import OtpInput from './src/screens/otpInput/OtpInput';
+import Dashboard from './src/screens/dashboard/Dashboard';
 
 
 const App = (props) => {
@@ -14,6 +16,7 @@ const App = (props) => {
     <>
     
     <MainNavigationStack/>
+    {/* <Dashboard/> */}
     {/* <SuccessModal/> */}
     </>
   )
