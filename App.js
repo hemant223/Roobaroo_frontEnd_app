@@ -6,7 +6,9 @@ import UserDetail from './src/screens/profile/UserDetail';
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
 import SuccessModal from './src/components/componentModals/SuccessModal';
 import VisitAndProfileButton from './src/components/visit_and_myProfile/VisitAndProfileButton';
-
+import VisitingForm from './src/screens/visitiorForm/VisitingForm';
+import TestComponent from './src/components/TestComponent';
+import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
 
 const App = (props) => {
   const [background, setBackGround] = useState(1);
@@ -18,6 +20,7 @@ const App = (props) => {
     
     <MainNavigationStack/>
     {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
+
     </>
   )
 }

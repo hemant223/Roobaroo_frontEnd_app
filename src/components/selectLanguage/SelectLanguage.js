@@ -61,15 +61,17 @@ const DATA = [
 
 const Item = ({item}) => {
   const [checked, setChecked] = useState('');
- 
-  const handleChech = (id) => {
-  //  alert (item.id)
-    setChecked(id);
-    
+  
 
-   
+ 
+  const handleChech = (item) => {
+  //  alert (id)
+    setChecked(item.id);
+    if(checked>=1){
+      setChecked('unchecked')
+    }
+
   };
- console.log('===================>',checked)
 
   return (
     <View
@@ -86,10 +88,10 @@ const Item = ({item}) => {
             top: 30,
           }}>
            <RadioButton
-              // value={item.id}
+              value={item.id}
               color={'#005db6'}
-              status={checked == item.id ? 'checked' : 'unchecked'}
-               onPress={() => handleChech(item.id)}
+              status={checked === item.id ? 'checked' : 'unchecked'}
+               onPress={() => handleChech(item)}
               />
             
         </View>
