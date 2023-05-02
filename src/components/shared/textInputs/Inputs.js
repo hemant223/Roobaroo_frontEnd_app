@@ -2,6 +2,7 @@ import React from 'react';
 import {View, TextInput, StyleSheet, Dimensions, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
+import {Colors} from '../../../assets/config/Colors';
 
 const Input = props => {
   const style = StyleSheet.create({
@@ -12,7 +13,7 @@ const Input = props => {
       borderWidth: props.borderWidth,
     },
   });
-
+  const [isFocused, setIsFocused] = React.useState(false);
   return (
     <View>
       {props.textLabel && (
@@ -35,9 +36,19 @@ const Input = props => {
             height: props.height,
             backgroundColor: props.backgroundColor,
             borderRadius: props.borderRadius,
-            borderColor: props.borderColor,
+            // borderColor: props.borderColor,
+            borderColor: props?.error
+              ? Colors.red
+              : isFocused
+              ? '#ddd'
+              : '#ddd',
+
             borderBottomWidth: props.borderBottomWidth,
-            borderBottomColor: props.borderBottomColor,
+            borderBottomColor: props?.error
+            ? Colors.red
+            : isFocused
+            ? '#ddd'
+            : '#ddd',
           },
         ]}>
         {props.icon ? (
@@ -67,9 +78,20 @@ const Input = props => {
             textAlignVertical={'top'}
             multiline={true}
             keyboardType={props.keyboardType}
+            onFocus={() => {
+              props.onFocus();
+              setIsFocused(true);
+            }}
+            onBlur={() => setIsFocused(false)}
+            value={props.value}
           />
         </View>
       </View>
+      {props.error && (
+        <Text style={{marginTop: 7, color: 'red', fontSize: 12}}>
+          {props.error}
+        </Text>
+      )}
     </View>
   );
 };
@@ -92,6 +114,8 @@ Input.defaultProps = {
   borderBottomWidth: 0.5,
   borderBottomColor: '#ddd',
   textfontSize: 11,
+  error: '',
+  onFocus : () => {},
 };
 
 export default Input;
