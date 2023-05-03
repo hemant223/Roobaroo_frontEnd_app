@@ -25,8 +25,17 @@ const physicallyData = [
 ];
 
 const ViewVisit = (props) => {
-  const  getData = props.route.params
- alert(JSON.stringify(getData))
+//   const  getData = props.route.params
+//  alert(JSON.stringify(getData))
+const [getUserData, setUserDataByAsync] = useState('');
+
+const getUserDataByAsyncStorage = async () => {
+  const userData = await getStoreData('VisitorsMobileNo');
+  setUserDataByAsync(userData);
+};
+useEffect(() => {
+  getUserDataByAsyncStorage();
+}, []);
 
   const [visitType, setVisitType] = React.useState(1);
   const [gender, setGender] = React.useState(1);
@@ -42,7 +51,6 @@ const ViewVisit = (props) => {
   //   };
   // const showDatepicker=()=>{
   //     setShow(true)
-
   // }
   return (
     <View style={{...styles.mainView}}>
