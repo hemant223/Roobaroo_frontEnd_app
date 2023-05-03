@@ -49,11 +49,17 @@ function MainNavigationStack(props) {
           component={SyncScreen}
           options={{headerShown: false}}
         /> */}
+         <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Login"
           component={Login}
           options={{headerShown: false}}
         />
+       
         <Stack.Screen
           name="OtpInput"
           component={OtpInput}
