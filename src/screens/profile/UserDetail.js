@@ -12,6 +12,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { getStoreData } from '../../helper/utils/AsyncStorageServices';
+import { ServerURL } from '../../fetchNodeServices';
 
 
 
@@ -19,7 +20,7 @@ import { getStoreData } from '../../helper/utils/AsyncStorageServices';
 const UserDetail = props => {
   const [usedata, setUsedata] = useState('')
   const navigation = useNavigation()
-  // alert(JSON.stringify(props?.route?.params?.userData))
+  // alert(JSON.stringify(props?.route?.params?.userData.picture))
   return (
     <View style={{ width: '100%', height: '100%', }}>
       <View style={{
@@ -31,7 +32,7 @@ const UserDetail = props => {
          BackonPress={()=>{navigation.goBack()}}
         bottom={70} backarrowIcon height={'100%'} />
         <View style={{ position: 'absolute', zIndex: 1, height: '100%', borderRadius: 0, alignSelf: 'center', justifyContent: 'center' }}>
-          <Image source={require("../../assets/images/User.png")} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />
+          <Image source={{uri:`${ServerURL}/images/avatar-04.jpg`}} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />
           <Text style={{ fontSize: 20, fontWeight: '500', color: '#fff', marginTop: 5, textAlign: 'center' }}>{props?.route?.params?.userData.firstname} {props?.route?.params?.userData.lastname}</Text>
         </View>
       </View>
