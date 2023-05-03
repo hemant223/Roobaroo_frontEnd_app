@@ -8,8 +8,12 @@ import {
 } from '@react-navigation/native';
 import { goBackTwoScreen } from '../../navigation/NavigationDrw/NavigationServices'
 
-const Visits = () => {
-  const navigation = useNavigation()       
+const Visits = (props) => {
+  const navigation = useNavigation()   
+  // alert(JSON.stringify(props?.route?.params?.userData)) 
+  console.log('====================================');
+  console.log('fulluserData on visitor page:',props?.route?.params?.userData);
+  console.log('====================================');   
   return (
     <>
 
@@ -30,7 +34,7 @@ const Visits = () => {
    <SegmentedTab/>
   </View>
 <View>
-  <VisitorDetails/>
+  <VisitorDetails data={props?.route?.params?.userData}/>
 </View>
 
     </ScrollView>

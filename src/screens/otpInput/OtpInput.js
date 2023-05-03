@@ -1,14 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Text, View, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import Modal from "react-native-modal";
 import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
 import { ImagesAssets } from "../../components/shared/ImageAssets";
+import { getStoreData, storeData } from "../../helper/utils/AsyncStorageServices";
 
 function OtpInput(props) {
     const [isModalVisible, setModalVisible] = useState(true);
-
+    // const { otp } = props.route.params;
+const [otp, setOtp] = useState('')
     const et1 = useRef()
     const et2 = useRef()
     const et3 = useRef()
@@ -23,6 +25,30 @@ function OtpInput(props) {
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
+    // alert(otp)
+    const generateOtp = () => {
+        var otpp = parseInt(Math.random() * 8999) + 10000
+        // alert(otpp)
+        setOtp(otpp)
+    }
+    useEffect(() => {
+        generateOtp()
+    }, [])
+
+      alert(otp)  
+    const handleSubmit=async()=>{
+        let userData = await getStoreData('userData')
+        if(otp==f1+f2+f3+f4+f5){
+              storeData(
+                'userData',
+                { ...userData, loggedIn: true },
+            );
+              props.navigation.navigate('Dashboard')
+        }  else{
+            alert('Enter correct Otp')
+        }
+           
+    }
 
     return (
         <View>
@@ -124,7 +150,7 @@ function OtpInput(props) {
                     </View>
                     <View style={{ marginTop: 5, padding: 10, width: '100%', }}>
                         <View style={{ alignSelf: 'center', width: '100%' }}>
-                            <FullSizeButtons onPress={()=>{props.navigation.navigate('Dashboard')}} titleColor='#fff' title='Send OTP' height={50} width={'100%'} />
+                            <FullSizeButtons onPress={()=>{handleSubmit()}} titleColor='#fff' title='Submit' height={50} width={'100%'} />
                         </View>
                     </View>
                 </View>

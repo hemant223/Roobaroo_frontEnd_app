@@ -28,6 +28,7 @@ import {
   import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { FontFamily } from '../../assets/fonts/FontFamily';
+import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
   
 
   
@@ -64,12 +65,19 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
         setShowLang(true)
         setShowLogout(false)
     }
-    const handleLogout=()=>{
+    const handleLogout=async()=>{
+        const userData = await getStoreData('userData');
         setShowHome(false)
         setShowVisits(false)
         setShowLang(false)
         setShowLogout(true)
-        navigation.navigate('Login')
+        if(userData){
+        storeData(
+            'userData',
+            ({ ...userData, loggedIn: false }),
+        );
+        navigation.navigate('SplashScreen')
+        }
     }
   
     return (
