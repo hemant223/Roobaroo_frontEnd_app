@@ -12,6 +12,7 @@ const RadioButton = props => {
 
   const handleRadio = (item, index) => {
     props.setId(item.id);
+    props.setRadioName(item.type)
     // alert(item.id)
   };
 
