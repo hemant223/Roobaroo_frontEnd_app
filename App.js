@@ -14,7 +14,7 @@ import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
 const App = (props) => {
   useEffect(() => {
-    LogBox.ignoreAllLogs()
+    LogBox.ignoreAllLogs();
   }, [])
   const [background, setBackGround] = useState(1);
   // const [showModal, setShowModal] = useState(true)

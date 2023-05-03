@@ -1,73 +1,119 @@
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Keyboard,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import Video from 'react-native-video';
 import Header from '../../components/shared/header/Header';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Input from '../../components/shared/textInputs/Inputs';
-import {
-  useNavigation,
-} from '@react-navigation/native';
-const VerifyOtp = () => {
-  const navigation = useNavigation()
+import {useNavigation} from '@react-navigation/native';
+import CenterHeader from '../../components/shared/header/CenterHeader';
+import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+const VerifyOtp = props => {
+  const navigation = useNavigation();
+  const [otp, setOtp] = useState('');
+  const [inputs, setInputs] = React.useState({
+    otp: '',
+  });
+  const [errors, setErrors] = React.useState({});
+  // alert(JSON.stringify(props?.route?.params?.mobileNo));
+  const generateOtp = () => {
+    var otpp = parseInt(Math.random() * 8999) + 10000;
+    alert(otpp)
+    setOtp(otpp);
+  };
+  useEffect(() => {
+    generateOtp();
+    // alert(otp);
+  }, []);
+  const handleOnchange = (text, input) => {
+    setInputs(prevState => ({...prevState, [input]: text}));
+  };
+
+  const handleError = (error, input) => {
+    setErrors(prevState => ({...prevState, [input]: error}));
+  };
+
+  const handleSubmit = () => {
+    let isValid = true;
+    Keyboard.dismiss();
+    if (!inputs.otp) {
+      handleError('Please Input Otp', 'otp');
+      isValid = false;
+    }
+
+    if (isValid) {
+      // alert(inputs.otp)
+      if (inputs.otp == otp) {
+        storeData('VisitorsMobileNo',props?.route?.params?.mobileNo)
+        navigation.navigate('VisitingForm');
+      } else {
+        handleError('Please Input Correct Otp', 'otp');
+      }
+    }
+  };
 
   return (
     <>
-      <Header
-        // add
-        // height={67}
-        stepText
+      <CenterHeader
         centerText
-        // iconupdown
-        stepBottom={21}
-        verifyBottom={28}
-        // addbottom={50}
-        // DownBottom={36}
-        // upBottom={70}
-        backarrowIcon
+        stepText
+        onPressBackArrow={() => {
+          navigation.goBack();
+        }}
       />
-       
 
       <View style={{...styles.mainView}}>
-        <ScrollView style={{marginTop:60}}>
-
-        <Video
-          source={ImagesAssets.OTP_Gif}
-          // source={props.VideosURL}
-          style={{height: 400}}
-          muted={true}
-          resizeMode={'contain'}
-          repeat={true}
-          rate={2.0}
-          ignoreSilentSwitch={'obey'}
+        <ScrollView style={{marginTop: 60}}>
+          <Video
+            source={ImagesAssets.OTP_Gif}
+            // source={props.VideosURL}
+            style={{height: 400}}
+            muted={true}
+            resizeMode={'contain'}
+            repeat={true}
+            rate={2.0}
+            ignoreSilentSwitch={'obey'}
           />
-          </ScrollView>
+        </ScrollView>
 
-          <View
-            style={{
-              ...styles.InputView,
-
-            }}>
-            <View style={{ alignItems: 'center',marginTop:30}}>
-              <Input
-                width="90%"
-                borderWidth={0}
-                borderBottomWidth={1.5}
-                borderRadius={5}
-                placeholder="Enter OTP sent on visitors phone"
-                placeholderColor="#b6b9bf"
-                textfontSize={16}
-                keyboardType='numeric'
-              />
-            </View>
+        <View
+          style={{
+            ...styles.InputView,
+          }}>
+          <View style={{alignItems: 'center', marginTop: 30}}>
+            <Input
+              onFocus={() => handleError(null, 'otp')}
+              error={errors.otp}
+              onChangeText={text => handleOnchange(text, 'otp')}
+              width="90%"
+              borderWidth={0}
+              borderBottomWidth={1.5}
+              borderRadius={5}
+              placeholder="Enter OTP sent on visitors phone"
+              placeholderColor="#b6b9bf"
+              textfontSize={16}
+              keyboardType="numeric"
+            />
           </View>
+        </View>
 
-          <View style={{alignSelf: 'center',bottom:'20%',marginTop:30}}>
-            <FullSizeButtons onPress={()=>{navigation.navigate("VisitingForm")}} titleColor="#fff" title="Verify" />
-          </View>
-
+        <View style={{alignSelf: 'center', bottom: '20%', marginTop: 30}}>
+          <FullSizeButtons
+            onPress={() => {
+              handleSubmit();
+            }}
+            titleColor="#fff"
+            title="Verify"
+          />
+        </View>
       </View>
-        
     </>
   );
 };

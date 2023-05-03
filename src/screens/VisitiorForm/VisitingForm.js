@@ -19,6 +19,9 @@ import {useNavigation} from '@react-navigation/native';
 import {postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
+import CenterHeader from '../../components/shared/header/CenterHeader';
+
+
 options = [
   {label: 'Gwalior VidhanSabha', value: 1},
   {label: 'East Gwalior ', value: 2},
@@ -29,6 +32,7 @@ options2 = [
   {label: 'Urja Mantri ', value: 2},
   {label: 'Krshi Mantri ', value: 3},
 ];
+
 const data = [
   {type: 'Single', id: 1, color: false},
   {type: 'Group', id: 2, color: false},
@@ -68,7 +72,7 @@ const VisitingForm = () => {
   const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
   //check the validation
- 
+
   const validate = async () => {
     let body = {
       firstname: inputs.firstName,
@@ -84,9 +88,9 @@ const VisitingForm = () => {
       gender: genderName.toLocaleLowerCase(),
       minister_id: '1',
       mobile_number: '8932011605',
-     time:  moment().format('h:mm a,Do MMMM YYYY')
+      time: moment().format('h:mm a,Do MMMM YYYY'),
     };
- 
+
     // let response = await postDataAxios(`visitor/addVisitor`, body);
 
     // // alert(response.status)
@@ -117,7 +121,9 @@ const VisitingForm = () => {
     if (isValid) {
       // alert(JSON.stringify(body));
       storeData('VisitorData', body);
-      alert ('okk')
+      {
+        setShowModal(true);
+      }
     }
   };
 
@@ -140,14 +146,14 @@ const VisitingForm = () => {
 
   return (
     <View style={{...styles.mainView}}>
-      <Header
-        height={85}
-        stepText
-        stepBottom={12}
+      <CenterHeader
         centerText
-        centerContent="Visiting Form"
-        verifyBottom={20}
-        backarrowIcon
+        stepContent='Step 02'
+        stepText
+        centerContent='Visiting Form'
+        onPressBackArrow={() => {
+          navigation.navigate('Dashboard');
+        }}
       />
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>

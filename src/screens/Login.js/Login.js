@@ -76,6 +76,7 @@ function Login(props) {
               }}
               placeholder="Mobile number"
               placeholderColor="grey"
+              keyboardType="numeric"
             />
           </View>
           <View style={{marginTop: 5, padding: 10, width: '100%'}}>
