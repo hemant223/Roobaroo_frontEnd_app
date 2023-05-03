@@ -16,9 +16,20 @@ import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import {useNavigation} from '@react-navigation/native';
-import { postDataAxios } from '../../fetchNodeServices';
+import {postDataAxios} from '../../fetchNodeServices';
 
+options = [
+  {label: 'Gwalior VidhanSabha', value: 1},
+  {label: 'East Gwalior ', value: 2},
+  {label: 'Morena ', value: 3},
 
+];
+options2 = [
+  {label: 'Shiksha Mantri', value: 1},
+  {label: 'Urja Mantri ', value: 2},
+  {label: 'Krshi Mantri ', value: 3},
+  
+];
 const data = [
   {type: 'Single', id: 1, color: false},
   {type: 'Group', id: 2, color: false},
@@ -44,45 +55,44 @@ const VisitingForm = () => {
     Reference: '',
   });
   const [errors, setErrors] = React.useState({});
-  const [firstName, setFirstName] = React.useState('Mohit');
-  const [LastName, setLastName] = React.useState('Jain');
-  const [date_of_Birth,setDate_of_Birth]=React.useState('2/03/1998')
-  const [vidhansabha,setVidhansabha]=React.useState('1')
-  const [mantralaya,setMantralaya]=React.useState('1')
-  const [reference,setReference]=React.useState('Normal')
-  const [rision_to_Visit,setRision_to_Visit]=React.useState('Normal')
-  const [picture,setPicture]=React.useState('')
-  const [disabled,setDisabled]=React.useState(1)
-  const [visitorType,setVisitorType]=React.useState(1)
-  const [userid,setUserId]=React.useState(1)
-  const [ministerId,setMinisterId]=React.useState(1)
+
+  const [date_of_Birth, setDate_of_Birth] = React.useState('');
+  const [vidhansabha, setVidhansabha] = React.useState('');
+  const [mantralaya, setMantralaya] = React.useState('');
+ 
+  const [picture, setPicture] = React.useState('');
+  const [disabled, setDisabled] = React.useState(1);
+ 
+  const [userid, setUserId] = React.useState(1);
 
   //check the validation
 
-  const validate = async() => {
+  const validate = async () => {
     let body = {
-      firstname: firstName,
-      lastname: LastName,
-      date_of_Birth:date_of_Birth,
-      vidhansabha:vidhansabha,
-      mantralaya:mantralaya,
-      reference:reference,
-      rision_to_Visit:rision_to_Visit,
-      physically_disabled:disabled,
-      visitor_type:visitorType,
-      user_id:userid,
-      minister_id:ministerId
-
+      firstname: inputs.firstName,
+      lastname: inputs.LastName,
+      date_of_birth: date_of_Birth,
+      vidhansabha_id: vidhansabha,
+      mantralya_id: mantralaya,
+      refernce: inputs.Reference,
+      reason_to_visit: inputs.Reasion,
+      physically_disabled: disabled,
+      user_id: userid,
+      visitor_type: visitType,
+      gender: gender,
+      minister_id:'1'
     };
-// alert(JSON.stringify(body))
 
-let response = await postDataAxios(`visitor/addVisitor`, body);
+    let response = await postDataAxios(`visitor/addVisitor`, body);
 
-if(response.status==true){
-alert('Done')
-}
+    alert(response.status)
 
-  
+    if(response.status){
+    alert('Done')
+    }else{
+      alert('Not Done')
+    }
+
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -103,11 +113,10 @@ alert('Done')
     if (isValid) {
       alert(JSON.stringify(body));
     }
-  }
+  };
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
-  setFirstName(text)
   };
 
   const handleError = (error, input) => {
@@ -215,7 +224,13 @@ alert('Done')
             //   backgroundColor: 'yellowgreen',
             ...styles.Vidhansabha_View_Css,
           }}>
-          <Dropdown label={'Vidhansabha'} labelLeft={10} borderRadius={12} />
+          <Dropdown
+            label={'Vidhansabha'}
+            labelLeft={10}
+            borderRadius={12}
+            options={options}
+            onSelect={setVidhansabha}
+          />
         </View>
 
         <View
@@ -223,7 +238,10 @@ alert('Done')
             //   backgroundColor: 'yellowgreen',
             ...styles.Mantralya_View_Css,
           }}>
-          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12} />
+          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12}  
+          onSelect={setMantralaya}
+          options={options2}
+          />
         </View>
 
         <View
@@ -241,7 +259,9 @@ alert('Done')
             borderBottomWidth={1}
             onFocus={() => handleError(null, 'Reference')}
             error={errors.Reference}
-            onChangeText={text => handleOnchange(text, 'Reference')}
+            onChangeText={text => {
+              handleOnchange(text, 'Reference');
+            }}
           />
         </View>
 

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-var ServerURL = 'http://localhost:6000';
+var ServerURL = 'http://192.168.29.194:6000';
 // var ServerURL = "http://campusshala.com:8888";
 
 const getDataAxios = async Url => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjEyOjU5OjIyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAyVDA3OjI5OjIyLjQxN1oiLCJpYXQiOjE2ODMwMTI1NjIsImV4cCI6MTY4MzAxOTc2Mn0.fZoDEswZgWQ49DsSlgEU0dZSVsgXobc5AYmKWMWosLo"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -41,7 +41,7 @@ const getDataAxios = async Url => {
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjEyOjU5OjIyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAyVDA3OjI5OjIyLjQxN1oiLCJpYXQiOjE2ODMwMTI1NjIsImV4cCI6MTY4MzAxOTc2Mn0.fZoDEswZgWQ49DsSlgEU0dZSVsgXobc5AYmKWMWosLo"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -75,7 +75,7 @@ const postDataAxios = async (Url, body) => {
 
 const putDataAxios = async (Url, body) => {
   var Token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjEyOjU5OjIyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAyVDA3OjI5OjIyLjQxN1oiLCJpYXQiOjE2ODMwMTI1NjIsImV4cCI6MTY4MzAxOTc2Mn0.fZoDEswZgWQ49DsSlgEU0dZSVsgXobc5AYmKWMWosLo';
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
   try {
     var url = `${ServerURL}/${Url}`;
     const config = {

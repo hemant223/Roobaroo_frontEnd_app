@@ -9,6 +9,7 @@ import VisitAndProfileButton from './src/components/visit_and_myProfile/VisitAnd
 import VisitingForm from './src/screens/visitiorForm/VisitingForm';
 import TestComponent from './src/components/TestComponent';
 import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
+import Attachment from './src/components/shared/attachment/Attachment';
 
 const App = (props) => {
   const [background, setBackGround] = useState(1);

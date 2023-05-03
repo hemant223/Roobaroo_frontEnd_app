@@ -87,7 +87,7 @@ const ViewVisit = (props) => {
               width="90%"
               height="44%"
               borderWidth={1}
-              borderBottomWidth={1}
+              // borderBottomWidth={1}
             />
           </View>
         </View>
