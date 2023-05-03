@@ -13,7 +13,12 @@ import DrawerNavigation from '../drawerNavigation/DrawerNavigation';
 
 import Login from '../../screens/Login.js/Login';
 import OtpInput from '../../screens/otpInput/OtpInput';
-import Visits from '../../screens/Visits/Visits';
+import Visits from '../../screens/visits/Visits';
+import LocationModal from '../../components/componentModals/LocationModal';
+import VerifyNumber from '../../screens/auth/VerifyNumber';
+import VerifyOtp from '../../screens/auth/VisitorOTP';
+import VisitingForm from '../../screens/visitiorForm/VisitingForm';
+import ViewVisit from '../../screens/visitiorForm/ViewVisit';
 
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
@@ -62,6 +67,26 @@ function MainNavigationStack(props) {
          <Stack.Screen
           name="Visits"
           component={Visits}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="VerifyNumber"
+          component={VerifyNumber}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="VerifyOtp"
+          component={VerifyOtp}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="VisitingForm"
+          component={VisitingForm}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="ViewVisit"
+          component={ViewVisit}
           options={{headerShown: false}}
         />
       

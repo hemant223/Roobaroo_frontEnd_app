@@ -12,7 +12,10 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Colors} from '../../assets/config/Colors';
-
+import { ImagesAssets } from '../../components/shared/ImageAssets';
+import {
+  useNavigation,
+} from '@react-navigation/native';
 const DATA = [
   {
     id: '1',
@@ -33,10 +36,10 @@ const DATA = [
   //   },
 ];
 
-const Item = ({item}) => {
+const Item = ({item,navigation}) => {
   return (
     <>
-      <View style={styles.mainContainer}>
+      <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{item})}}  style={styles.mainContainer}>
         <View
           style={{
             width: '100%',
@@ -55,8 +58,18 @@ const Item = ({item}) => {
             // backgroundColor: 'yellowgreen',
             bottom: 4,
           }}>
-          <View style={{top: 2}}>
-            <MCIcon name="calendar-month-outline" color={'#186cbd'} size={15} />
+          <View style={{top: 2,width:'6%',
+          // backgroundColor:'yellow'
+          }}>
+            {/* <MCIcon name="calendar-month-outline" color={'#186cbd'} size={15} /> */}
+            <Image
+              source={ImagesAssets.Calender}
+              style={{
+               ...styles.Calender
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />
           </View>
           <Text
             style={{
@@ -64,6 +77,7 @@ const Item = ({item}) => {
               fontFamily: FontFamily.PopinsRegular,
               // fontSize: FontSize.small,
               color: Colors.black,
+              top:'0.8%'
             }}>
             {item.date}
           </Text>
@@ -77,8 +91,18 @@ const Item = ({item}) => {
             // backgroundColor: 'yellowgreen',
             bottom: 2,
           }}>
-          <View style={{top: 2}}>
-            <MCIcon name="cellphone" color={'#186cbd'} size={15} />
+          <View style={{top: 2,width:'6%',}}>
+            {/* <MCIcon name="cellphone" color={'#186cbd'} size={15} /> */}
+
+            <Image
+              source={ImagesAssets.mobileImage}
+              style={{
+               ...styles.mobileCss
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              resizeMode={'center'}
+            />
+
           </View>
           <Text
             style={{
@@ -90,12 +114,14 @@ const Item = ({item}) => {
             {item.mobile}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </>
   );
 };
 
 const VisitorDetails = props => {
+  const navigation = useNavigation()
+
   // let numColumns = 3;
   return (
     <>
@@ -103,7 +129,7 @@ const VisitorDetails = props => {
         <FlatList
           // numColumns={numColumns}
           data={props.VisitorDetailsData}
-          renderItem={({item, index}) => <Item item={item} indx={index} />}
+          renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
           scrollEnabled={true}
@@ -134,7 +160,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     height: 120,
-    elevation: 1,
+    alignSelf:'center'
+    // elevation: 1,
     // borderColor:Colors.borderColor1
   },
   mciIconCss: {
@@ -158,4 +185,14 @@ const styles = StyleSheet.create({
   //   numericInputCss: {
   //     alignSelf: 'center',
   //   },
+  Calender:{
+    width:16,
+    height:25,
+    // backgroundColor:'red'
+  },
+  mobileCss:{
+    width:16,
+    height:19,
+    // backgroundColor:'red'
+  },
 });

@@ -24,7 +24,10 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
-const VisitingForm = () => {
+const ViewVisit = (props) => {
+  const  getData = props.route.params
+ alert(JSON.stringify(getData))
+
   const [visitType, setVisitType] = React.useState(1);
   const [gender, setGender] = React.useState(1);
   const [physically, setPhysically] = React.useState(1);
@@ -50,6 +53,7 @@ const VisitingForm = () => {
         centerContent="View Visit"
         verifyBottom={6}
         backarrowIcon
+        arrowPress={()=>{alert ('hiii')}}
       />
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
@@ -72,7 +76,7 @@ const VisitingForm = () => {
               label={'First name'}
               textLabel
               width="90%"
-              height="54%"
+              height="44%"
               borderWidth={1}
               borderBottomWidth={1}
             />
@@ -81,7 +85,7 @@ const VisitingForm = () => {
               label={'Last name'}
               textLabel
               width="90%"
-              height="54%"
+              height="44%"
               borderWidth={1}
               borderBottomWidth={1}
             />
@@ -209,7 +213,7 @@ const VisitingForm = () => {
   );
 };
 
-export default VisitingForm;
+export default ViewVisit;
 
 const styles = StyleSheet.create({
   mainView: {
@@ -227,53 +231,53 @@ const styles = StyleSheet.create({
     height: '20%',
   },
   genderCss: {
-    bottom: '10%',
+    bottom: '13%',
     padding: 3,
     margin: 5,
   },
   Date_of_Brith_Css: {
     padding: 3,
     margin: 5,
-    bottom: '10%',
+    bottom: '13%',
   },
   Disabled_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '10%',
+    bottom: '13%',
   },
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '10%',
+    bottom: '13%',
     zIndex: 2,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '10%',
+    bottom: '13%',
     zIndex: 1,
   },
   Reference_View_Css: {
-    bottom: '10%',
+    bottom: '13%',
     padding: 3,
     margin: 5,
   },
   Resion_View_Css: {
-    bottom: '10%',
+    bottom: '13%',
     padding: 3,
     margin: 5,
     height: 150,
   },
   Media_View_Css: {
     backgroundColor: '#ebebeb',
-    bottom: '9%',
+    bottom: '11%',
     width: '16%',
     borderRadius: 10,
     padding: 3,
     margin: 5,
   },
   Button_View_Css: {
-    bottom: '9%',
+    bottom: '11%',
     padding: 3,
     margin: 5,
 

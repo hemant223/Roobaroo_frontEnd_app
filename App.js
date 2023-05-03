@@ -1,23 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import SearchBar from './src/components/shared/searchbar/SearchBar';
 import SingleBarChart from './src/components/shared/barChart/BarChart';
 import UserDetail from './src/screens/profile/UserDetail';
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
 import SuccessModal from './src/components/componentModals/SuccessModal';
-import OtpInput from './src/screens/otpInput/OtpInput';
-import Dashboard from './src/screens/dashboard/Dashboard';
-
+import VisitAndProfileButton from './src/components/visit_and_myProfile/VisitAndProfileButton';
+import VisitingForm from './src/screens/visitiorForm/VisitingForm';
+import TestComponent from './src/components/TestComponent';
+import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
 
 const App = (props) => {
   const [background, setBackGround] = useState(1);
+  // const [showModal, setShowModal] = useState(true)
   // alert(background)
   return (
     <>
+{/* <StatusBar hidden={true} translucent backgroundColor="transparent" /> */}
     
     <MainNavigationStack/>
-    {/* <Dashboard/> */}
-    {/* <SuccessModal/> */}
+    {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
+
     </>
   )
 }

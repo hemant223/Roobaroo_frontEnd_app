@@ -25,7 +25,7 @@ export default function SingleBarChart(props) {
     <View
       style={{
         ...styles.container,
-        height: '25%',
+        height: 'auto',
         width: '95%',
         margin: 3,
         padding: 5,
@@ -37,10 +37,12 @@ export default function SingleBarChart(props) {
           zIndex: 1,
           //   backgroundColor: 'red',
           alignSelf: 'flex-start',
-          top: '6%',
-          left: 35,
+          top: '4%',
+          padding:1,
+          margin:5,
           flexDirection: 'row',
-          width: '93%',
+          width: '100%',
+        //   backgroundColor:'red'
         }}>
         <Text
           style={{
@@ -50,7 +52,11 @@ export default function SingleBarChart(props) {
           }}>
           Visitors trend
         </Text>
-        <View style={{justifyContent: 'flex-end', left: 145, top: 3}}>
+        <View style={{top: 3,
+        // backgroundColor:'yellowgreen',
+        width:'70%',
+        alignItems:'flex-end'
+        }}>
           <FilterDropdown />
         </View>
       </View>
@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     borderColor: Colors.borderColor1,
-    elevation: 1,
+    // elevation: 1,
+    // height:'auto'
   },
 });

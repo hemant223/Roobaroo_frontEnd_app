@@ -5,13 +5,17 @@ import Header from '../../components/shared/header/Header';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Input from '../../components/shared/textInputs/Inputs';
+import {
+  useNavigation,
+} from '@react-navigation/native';
+const VerifyOtp = () => {
+  const navigation = useNavigation()
 
-const VerifyNumber = () => {
   return (
     <>
       <Header
         // add
-        height={67}
+        // height={67}
         stepText
         centerText
         // iconupdown
@@ -25,7 +29,7 @@ const VerifyNumber = () => {
        
 
       <View style={{...styles.mainView}}>
-        <ScrollView>
+        <ScrollView style={{marginTop:60}}>
 
         <Video
           source={ImagesAssets.OTP_Gif}
@@ -44,7 +48,7 @@ const VerifyNumber = () => {
               ...styles.InputView,
 
             }}>
-            <View style={{ alignItems: 'center',}}>
+            <View style={{ alignItems: 'center',marginTop:30}}>
               <Input
                 width="90%"
                 borderWidth={0}
@@ -58,8 +62,8 @@ const VerifyNumber = () => {
             </View>
           </View>
 
-          <View style={{alignSelf: 'center',bottom:'20%'}}>
-            <FullSizeButtons titleColor="#fff" title="Verify" />
+          <View style={{alignSelf: 'center',bottom:'20%',marginTop:30}}>
+            <FullSizeButtons onPress={()=>{navigation.navigate("VisitingForm")}} titleColor="#fff" title="Verify" />
           </View>
 
       </View>
@@ -68,7 +72,7 @@ const VerifyNumber = () => {
   );
 };
 
-export default VerifyNumber;
+export default VerifyOtp;
 
 const styles = StyleSheet.create({
   mainView: {

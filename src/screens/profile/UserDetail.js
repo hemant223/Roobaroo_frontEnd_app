@@ -8,9 +8,12 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Header from '../../components/shared/header/Header';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
-
+import {
+  useNavigation,
+} from '@react-navigation/native';
 
 const UserDetail = props => {
+  const navigation = useNavigation()
 
   return (
 
@@ -20,7 +23,9 @@ const UserDetail = props => {
         // ,backgroundColor:'red'
         , height: '29%'
       }}>
-        <Header backarrowIcon height={'100%'} />
+        <Header
+         BackonPress={()=>{navigation.goBack()}}
+        bottom={70} backarrowIcon height={'100%'} />
         <View style={{ position: 'absolute', zIndex: 1, height: '100%', borderRadius: 0, alignSelf: 'center', justifyContent: 'center' }}>
           <Image source={require("../../assets/images/User.png")} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />
           <Text style={{ fontSize: 20, fontWeight: '500', color: '#fff', marginTop: 5, textAlign: 'center' }}>Ankit Mundra</Text>
@@ -36,7 +41,7 @@ const UserDetail = props => {
             <Text style={{ color: '#e67e22', marginLeft: 7 }}>Organization/Party</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold' }}>Republic Nation Of India</Text>
+            <Text style={{ fontWeight: 'bold' ,color:'#000'}}>Republic Nation Of India</Text>
           </View>
         </View>
 
@@ -47,7 +52,7 @@ const UserDetail = props => {
             <Text style={{ color: '#e67e22', marginLeft: 7 }}>Mobile Number</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold' }}>9638693123</Text>
+            <Text style={{ fontWeight: 'bold',color:'#000' }}>9638693123</Text>
           </View>
 
         </View>
@@ -58,7 +63,7 @@ const UserDetail = props => {
             <Text style={{ color: '#e67e22', marginLeft: 7 }}>Email</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold' }}>Ankit@plus91labs.com</Text>
+            <Text style={{ fontWeight: 'bold',color:'#000' }}>Ankit@plus91labs.com</Text>
           </View>
         </View>
 
@@ -71,7 +76,7 @@ const UserDetail = props => {
             <Text style={{ color: '#e67e22', marginLeft: 7 }}>Address</Text>
           </View>
           <View >
-            <Text style={{ fontWeight: 'bold', }}>01 Shitalnath,Vikas Gruh Rd,Paldi Ahemdabad,Gujrat 380007</Text>
+            <Text style={{ fontWeight: 'bold',color:'#000' }}>01 Shitalnath,Vikas Gruh Rd,Paldi Ahemdabad,Gujrat 380007</Text>
           </View>
 
         </View>
