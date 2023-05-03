@@ -17,9 +17,8 @@ import Visits from '../../screens/visits/Visits';
 import LocationModal from '../../components/componentModals/LocationModal';
 import VerifyNumber from '../../screens/auth/VerifyNumber';
 import VerifyOtp from '../../screens/auth/VisitorOTP';
-import VisitingForm from '../../screens/visitiorForm/VisitingForm';
-import ViewVisit from '../../screens/visitiorForm/ViewVisit';
-
+import VisitingForm from '../../screens/VisitiorForm/VisitingForm';
+import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
 

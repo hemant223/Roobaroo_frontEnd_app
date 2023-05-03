@@ -21,6 +21,10 @@ const [otp, setOtp] = useState('')
     const [f3, setF3] = useState('')
     const [f4, setF4] = useState('')
     const [f5, setF5] = useState('')
+    var [time,setTime]=useState(30)
+const [minutes, setMinutes] = useState(1);
+const [seconds, setSeconds] = useState(true);
+var [refresh,setRefresh]=useState(false)
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -33,9 +37,13 @@ const [otp, setOtp] = useState('')
     }
     useEffect(() => {
         generateOtp()
+        myTimer();
     }, [])
 
-      alert(otp)  
+    
+
+
+    //   alert(otp)  
     const handleSubmit=async()=>{
         let userData = await getStoreData('userData')
         if(otp==f1+f2+f3+f4+f5){
@@ -49,6 +57,38 @@ const [otp, setOtp] = useState('')
         }
            
     }
+
+  
+
+
+
+
+        
+          
+      
+           const myTimer=()=>{
+           if(seconds)
+           {var t=time 
+             interval=setInterval(()=>{
+              
+              
+              if(t>=1)
+              {  t=t-1
+               
+               setTime(t)
+              }
+              else
+              { clearInterval(interval)
+                setSeconds(false)
+              }
+              
+      
+      
+             },1000)
+            setRefresh(!refresh)
+           }
+          
+           }
 
     return (
         <View>
@@ -149,9 +189,12 @@ const [otp, setOtp] = useState('')
                         />
                     </View>
                     <View style={{ marginTop: 5, padding: 10, width: '100%', }}>
-                        <View style={{ alignSelf: 'center', width: '100%' }}>
+                        <View style={{ alignSelf: 'center', width: '100%', }}>
                             <FullSizeButtons onPress={()=>{handleSubmit()}} titleColor='#fff' title='Submit' height={50} width={'100%'} />
                         </View>
+                        <View style={{marginTop:3,width:'100%',justifyContent:'center',flexDirection:'row'}}>
+                            <Text style={{marginRight:3}}>Didn't recieved OTP?</Text>{seconds?<Text style={{fontWeight:'bold',color:'#f47216',marginLeft:3}}>{time}</Text>:<Text style={{}} onPress={()=>alert(otp)}>Resend Otp</Text>}
+                            </View>
                     </View>
                 </View>
             </Modal>
@@ -178,7 +221,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: "#fff",
         position: 'absolute',
-        height: 300,
+        height: 320,
         bottom: 0,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
