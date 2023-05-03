@@ -16,6 +16,7 @@ import { ImagesAssets } from '../../components/shared/ImageAssets';
 import {
   useNavigation,
 } from '@react-navigation/native';
+import { getDataAxios } from '../../fetchNodeServices';
 const DATA = [
   {
     id: '1',
@@ -121,6 +122,23 @@ const Item = ({item,navigation}) => {
 
 const VisitorDetails = props => {
   const navigation = useNavigation()
+  // const [visitorData, setVisitorData] = useState([])
+  // console.log('====================================');
+  // console.log('data on VisitorDetailss page:',props.data);
+  // console.log('====================================');
+
+  // const getVisitorData=async()=>{
+  //   var response = await getDataAxios(`visitors/displayVisitors/${props.data.MinisterId}`)
+  //   setVisitorData(response.result)
+  //   console.log('====================================');
+  //   console.log('respone data of visitor:',response.result);
+  //   console.log('====================================');
+  // }
+
+  // useEffect(() => {
+  //  getVisitorData()
+  // }, [])
+  
 
   // let numColumns = 3;
   return (

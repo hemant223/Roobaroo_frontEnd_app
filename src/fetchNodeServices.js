@@ -5,7 +5,7 @@ var ServerURL = 'http://192.168.29.194:6000';
 
 const getDataAxios = async Url => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjExOjQ3OjMyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA2OjE3OjMyLjQyOFoiLCJpYXQiOjE2ODMwOTQ2NTIsImV4cCI6MTY4MzEwMTg1Mn0.NNDpPChFKXEROL39flp1ZXTUcwBNbcS-aGsQBnIb8Rk"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -16,6 +16,7 @@ const getDataAxios = async Url => {
     };
 
     var response = await axios.get(url, config);
+    // console.log("respnse", response);
     var result = response.data;
     return result;
   } catch (error) {
@@ -41,7 +42,7 @@ const getDataAxios = async Url => {
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjExOjQ3OjMyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA2OjE3OjMyLjQyOFoiLCJpYXQiOjE2ODMwOTQ2NTIsImV4cCI6MTY4MzEwMTg1Mn0.NNDpPChFKXEROL39flp1ZXTUcwBNbcS-aGsQBnIb8Rk"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -75,7 +76,7 @@ const postDataAxios = async (Url, body) => {
 
 const putDataAxios = async (Url, body) => {
   var Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA5OjM2OjQxIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA0OjA2OjQxLjExM1oiLCJpYXQiOjE2ODMwODY4MDEsImV4cCI6MTY4MzA5NDAwMX0.X9LmrY6ujbrlbfcL62Vd-5l191VWplBvoJbfVTi9fVQ"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjExOjQ3OjMyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDA2OjE3OjMyLjQyOFoiLCJpYXQiOjE2ODMwOTQ2NTIsImV4cCI6MTY4MzEwMTg1Mn0.NNDpPChFKXEROL39flp1ZXTUcwBNbcS-aGsQBnIb8Rk"
   try {
     var url = `${ServerURL}/${Url}`;
     const config = {

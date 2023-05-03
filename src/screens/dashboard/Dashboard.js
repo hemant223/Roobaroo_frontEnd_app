@@ -7,22 +7,33 @@ import VisitAndProfileButton from '../../components/visit_and_myProfile/VisitAnd
 import SubHeader from '../../components/shared/subHeader/SubHeader';
 import LocationModal from '../../components/componentModals/LocationModal';
 import {useNavigation} from '@react-navigation/native';
+import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 const Dashboard = props => {
-//   const {location} = props.route.params;
-
+  //   const {location} = props.route.params;
 
   // var dataa = Object.keys(getData)
-//   alert(JSON.stringify(location));
+  //   alert(JSON.stringify(location));
   // var titledata=JSON.stringify(title)
   // console.log('getData',Object.values(getData));
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
+
+  const handleProfile = async () => {
+    let userData = await getStoreData('userData');
+    //   alert(JSON?.stringify(userData))
+    navigation.navigate('UserDetail', {userData: userData});
+    //   setUsedata(userData)
+  };
+  const handleVisits = async () => {
+    let userData = await getStoreData('userData');
+    navigation.navigate('Visit', {userData: userData});
+  };
   return (
     <View style={{backgroundColor: '#fff', height: '100%'}}>
       <StatusBar hidden={false} translucent backgroundColor="transparent" />
 
       <SubHeader
-         locationData={props?.route?.params?.location}
+        locationData={props?.route?.params?.location}
         locationonPress={() => {
           setShowModal(true);
         }}
@@ -74,8 +85,8 @@ const Dashboard = props => {
           backgroundColor: '#fff',
         }}>
         <VisitAndProfileButton
-          onPress={() => {
-            navigation.navigate('Visit');
+        onPress={() => {
+            handleVisits();
           }}
         />
       </View>
@@ -88,7 +99,7 @@ const Dashboard = props => {
         }}>
         <VisitAndProfileButton
           onPress={() => {
-            navigation.navigate('UserDetail');
+            handleProfile();
           }}
           heading="My Profile"
           circleColor={'#f9aa4b'}

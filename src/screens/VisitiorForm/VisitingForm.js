@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
@@ -17,18 +17,17 @@ import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import {useNavigation} from '@react-navigation/native';
 import {postDataAxios} from '../../fetchNodeServices';
-
+import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+import moment from 'moment';
 options = [
   {label: 'Gwalior VidhanSabha', value: 1},
   {label: 'East Gwalior ', value: 2},
   {label: 'Morena ', value: 3},
-
 ];
 options2 = [
   {label: 'Shiksha Mantri', value: 1},
   {label: 'Urja Mantri ', value: 2},
   {label: 'Krshi Mantri ', value: 3},
-  
 ];
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -59,14 +58,17 @@ const VisitingForm = () => {
   const [date_of_Birth, setDate_of_Birth] = React.useState('');
   const [vidhansabha, setVidhansabha] = React.useState('');
   const [mantralaya, setMantralaya] = React.useState('');
- 
+
   const [picture, setPicture] = React.useState('');
   const [disabled, setDisabled] = React.useState(1);
- 
+
   const [userid, setUserId] = React.useState(1);
-
+  const [visitorname, setVisitorName] = useState('Single');
+  const [genderName, setGenderName] = useState('Male');
+  const [physically_disabled_Name, setPhysically_disabled_Name] =
+    useState('Yes');
   //check the validation
-
+ 
   const validate = async () => {
     let body = {
       firstname: inputs.firstName,
@@ -76,22 +78,24 @@ const VisitingForm = () => {
       mantralya_id: mantralaya,
       refernce: inputs.Reference,
       reason_to_visit: inputs.Reasion,
-      physically_disabled: disabled,
+      physically_disabled: physically_disabled_Name.toLocaleLowerCase(),
       user_id: userid,
-      visitor_type: visitType,
-      gender: gender,
-      minister_id:'1'
+      visitor_type: visitorname.toLocaleLowerCase(),
+      gender: genderName.toLocaleLowerCase(),
+      minister_id: '1',
+      mobile_number: '8932011605',
+     time:  moment().format('h:mm a,Do MMMM YYYY')
     };
+ 
+    // let response = await postDataAxios(`visitor/addVisitor`, body);
 
-    let response = await postDataAxios(`visitor/addVisitor`, body);
+    // // alert(response.status)
 
-    alert(response.status)
-
-    if(response.status){
-    alert('Done')
-    }else{
-      alert('Not Done')
-    }
+    // if (response.status) {
+    //   alert('Done');
+    // } else {
+    //   alert('Not Done');
+    // }
 
     let isValid = true;
     if (!inputs.firstName) {
@@ -111,9 +115,20 @@ const VisitingForm = () => {
       isValid = false;
     }
     if (isValid) {
-      alert(JSON.stringify(body));
+      // alert(JSON.stringify(body));
+      storeData('VisitorData', body);
+      alert ('okk')
     }
   };
+
+  const visitor = async () => {
+    var visitors = await getStoreData('VisitorData');
+    console.log('fffffffff', JSON.stringify(visitors));
+  };
+
+  useEffect(() => {
+    visitor();
+  }, []);
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
@@ -139,6 +154,7 @@ const VisitingForm = () => {
           <RadioButton
             label="Visit type"
             data={data}
+            setRadioName={setVisitorName}
             setId={setVisitType}
             getId={visitType}
             labelLeft={10}
@@ -194,6 +210,7 @@ const VisitingForm = () => {
             label="Gender"
             setId={setGender}
             getId={gender}
+            setRadioName={setGenderName}
           />
         </View>
 
@@ -215,6 +232,7 @@ const VisitingForm = () => {
             data={physicallyData}
             getId={physically}
             setId={setPhysically}
+            setRadioName={setPhysically_disabled_Name}
             labelLeft={10}
           />
         </View>
@@ -238,9 +256,12 @@ const VisitingForm = () => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Mantralya_View_Css,
           }}>
-          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12}  
-          onSelect={setMantralaya}
-          options={options2}
+          <Dropdown
+            label={'Mantralaya'}
+            labelLeft={10}
+            borderRadius={12}
+            onSelect={setMantralaya}
+            options={options2}
           />
         </View>
 
