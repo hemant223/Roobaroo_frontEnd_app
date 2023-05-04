@@ -4,8 +4,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
@@ -14,6 +15,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
+import moment from 'moment';
 const data = [
   {type: 'Single', id: 1, color: false},
   {type: 'Group', id: 2, color: false},
@@ -37,21 +39,17 @@ useEffect(() => {
   getUserDataByAsyncStorage();
 }, []);
 
+
+
+
+
+
+
   const [visitType, setVisitType] = React.useState(1);
   const [gender, setGender] = React.useState(1);
   const [physically, setPhysically] = React.useState(1);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  //   const [date1, setDate1] = useState(new Date());
-  //   const [show, setShow] = useState(false);
-
-  //   const onChange = (event, selectedDate) => {
-  //     const currentDate = selectedDate || date1;
-  //     setDate1(currentDate);
-  //   console.log (currentDate)
-  //   };
-  // const showDatepicker=()=>{
-  //     setShow(true)
-  // }
+ 
   return (
     <View style={{...styles.mainView}}>
       <Header
@@ -212,6 +210,7 @@ useEffect(() => {
               title="Mark as completed"
               rightIcon={'checkbox-marked-circle'}
               rightsize={16}
+            
               
             />
           </View>
