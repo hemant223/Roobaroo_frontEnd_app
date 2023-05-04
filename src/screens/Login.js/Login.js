@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
+  Keyboard
 } from 'react-native';
 import Modal from 'react-native-modal';
 import Input from '../../components/shared/textInputs/Inputs';
@@ -18,31 +19,53 @@ import {storeData} from '../../helper/utils/AsyncStorageServices';
 
 function Login(props) {
   const [isModalVisible, setModalVisible] = useState(true);
-  const [mobNumber, setMobNumber] = useState('');
+  const [inputs, setInputs] = React.useState({
+    mobileNumber: '',
+  });
+  const [errors, setErrors] = React.useState({});
+  const handleOnchange = (text, input) => {
+    setInputs(prevState => ({...prevState, [input]: text}));
+  };
+
+  const handleError = (error, input) => {
+    setErrors(prevState => ({...prevState, [input]: error}));
+  };
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
   // alert(opt)
-//   const generateOtp = () => {
-//     var otpp = parseInt(Math.random() * 8999) + 1000;
-    //   alert(otpp);
-    // setOpt(otpp);
-//   };
-//   useEffect(() => {
-//     generateOtp;
-//   }, []);
+  //   const generateOtp = () => {
+  //     var otpp = parseInt(Math.random() * 8999) + 1000;
+  //   alert(otpp);
+  // setOpt(otpp);
+  //   };
+  //   useEffect(() => {
+  //     generateOtp;
+  //   }, []);
 
   const handleSubmit = async () => {
-    body = {mobile: mobNumber};
-    var response = await postDataAxios('users/authenticate', body);
-    if (response.status) {
-     storeData('userData', response.data)
+   
+    let isValid = true;
+    Keyboard.dismiss();
+    if (!inputs.mobileNumber) {
+      handleError('Please Input Mobile No. ', 'mobileNumber');
+      isValid = false;
+    }
+    if (!inputs.mobileNumber.match(/\d{10}/)) {
+      handleError('Please Input  Mobile No.', 'mobileNumber');
+      isValid = false;
+    }
 
-      props.navigation.navigate('OtpInput');
-
-    } else {
-      alert('Enter Correct mobbile no.');
+    if (isValid) {
+      var body = {mobile: inputs.mobileNumber};
+      var response = await postDataAxios('users/authenticate', body);
+      if (response.status) {
+        storeData('userData', response.data);
+        props.navigation.navigate('OtpInput');
+      } else {
+        handleError('This User is not exists', 'mobileNumber');
+      }
     }
   };
   // alert(mobNumber)
@@ -71,15 +94,15 @@ function Login(props) {
               borderWidth={0}
               borderBottomWidth={1}
               borderRadius={5}
-              onChangeText={text => {
-                setMobNumber(text);
-              }}
+              onFocus={() => handleError(null, 'mobileNumber')}
+              error={errors.mobileNumber}
+              onChangeText={text => handleOnchange(text, 'mobileNumber')}
               placeholder="Mobile number"
               placeholderColor="grey"
               keyboardType="numeric"
             />
           </View>
-          <View style={{marginTop: 5, padding: 10, width: '100%'}}>
+          <View style={{marginTop:5, padding: 10, width: '100%'}}>
             <View style={{alignSelf: 'center', width: '100%'}}>
               <FullSizeButtons
                 onPress={() => {

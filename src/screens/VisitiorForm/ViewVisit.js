@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
 
@@ -14,6 +15,9 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
+import {getStoreData} from '../../helper/utils/AsyncStorageServices';
+import {useNavigation} from '@react-navigation/native';
+
 const data = [
   {type: 'Single', id: 1, color: false},
   {type: 'Group', id: 2, color: false},
@@ -23,23 +27,21 @@ const physicallyData = [
   {type: 'Yes', id: 1, color: false},
   {type: 'No', id: 2, color: false},
 ];
+const genderData = [
+  {type: 'Male', id: 1, color: false},
+  {type: 'Female', id: 2, color: false},
+  {type: 'Others', id: 2, color: false},
+];
 
-const ViewVisit = (props) => {
-//   const  getData = props.route.params
-//  alert(JSON.stringify(getData))
-const [getUserData, setUserDataByAsync] = useState('');
+const ViewVisit = props => {
+  const navigation = useNavigation();
 
-const getUserDataByAsyncStorage = async () => {
-  const userData = await getStoreData('VisitorsMobileNo');
-  setUserDataByAsync(userData);
-};
-useEffect(() => {
-  getUserDataByAsyncStorage();
-}, []);
+  //   const  getData = props.route.params
+  alert(JSON.stringify(props.route.params.visitordata));
 
-  const [visitType, setVisitType] = React.useState(1);
-  const [gender, setGender] = React.useState(1);
-  const [physically, setPhysically] = React.useState(1);
+  const [visitortype, setVisitorType] = React.useState(props.route.params.visitordata.visitor_type);
+  const [gender, setGender] = React.useState(props.route.params.visitordata.gender);
+  const [physically, setPhysically] = React.useState(props.route.params.visitordata.physically_disabled);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   //   const [date1, setDate1] = useState(new Date());
   //   const [show, setShow] = useState(false);
@@ -52,24 +54,30 @@ useEffect(() => {
   // const showDatepicker=()=>{
   //     setShow(true)
   // }
+
   return (
     <View style={{...styles.mainView}}>
       <Header
+       BackonPress={() => {
+        navigation.goBack();
+      }}
         height={85}
         arrowtop={25}
         centerText
         centerContent="View Visit"
         verifyBottom={6}
         backarrowIcon
-        arrowPress={()=>{alert ('hiii')}}
+        arrowPress={() => {
+          alert('hiii');
+        }}
       />
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
             label="Visit type"
             data={data}
-            setId={setVisitType}
-            getId={visitType}
+            setType={setVisitorType}
+            getType={visitortype}
             labelLeft={10}
           />
         </View>
@@ -80,6 +88,7 @@ useEffect(() => {
           }}>
           <View style={{width: '59%', flexDirection: 'row'}}>
             <Input
+              value={props.route.params.visitordata.firstname}
               placeholder=""
               label={'First name'}
               textLabel
@@ -95,7 +104,7 @@ useEffect(() => {
               width="90%"
               height="44%"
               borderWidth={1}
-              // borderBottomWidth={1}
+              value={props.route.params.visitordata.lastname}
             />
           </View>
         </View>
@@ -107,8 +116,9 @@ useEffect(() => {
           <RadioButton
             labelLeft={10}
             label="Gender"
-            setId={setGender}
-            getId={gender}
+            data={genderData}
+            setType={setGender}
+            getType={gender}
           />
         </View>
 
@@ -143,8 +153,8 @@ useEffect(() => {
           <RadioButton
             label="Physicaly Disabled"
             data={physicallyData}
-            getId={physically}
-            setId={setPhysically}
+            setType={setPhysically}
+            getType={physically}
             labelLeft={10}
           />
         </View>
@@ -170,6 +180,7 @@ useEffect(() => {
           <Input
             placeholder="Enter reference name if any "
             label={'Reference'}
+            value={props.route.params.visitordata.refernce}
             textLabel
             width={'100%'}
             textfontSize={15}
@@ -185,6 +196,7 @@ useEffect(() => {
           <Input
             placeholder=" "
             label={'Reasion to visit'}
+            value={props.route.params.visitordata.reason_to_visit}
             textLabel
             width={'100%'}
             borderWidth={1}
@@ -212,7 +224,6 @@ useEffect(() => {
               title="Mark as completed"
               rightIcon={'checkbox-marked-circle'}
               rightsize={16}
-              
             />
           </View>
         </View>
