@@ -85,6 +85,7 @@ const Input = props => {
             }}
             onBlur={() => setIsFocused(false)}
             value={props.value}
+           
           />
         </View>
       </View>

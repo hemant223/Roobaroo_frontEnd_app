@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
@@ -39,9 +39,9 @@ const ViewVisit = props => {
   //   const  getData = props.route.params
   alert(JSON.stringify(props.route.params.visitordata));
 
-  const [visitortype, setVisitorType] = React.useState(props.route.params.visitordata.visitor_type);
-  const [gender, setGender] = React.useState(props.route.params.visitordata.gender);
-  const [physically, setPhysically] = React.useState(props.route.params.visitordata.physically_disabled);
+  const [visitortype, setVisitorType] = React.useState(props?.route?.params?.visitordata?.visitor_type);
+  const [gender, setGender] = React.useState(props?.route?.params?.visitordata?.gender);
+  const [physically, setPhysically] = React.useState(props?.route?.params?.visitordata?.physically_disabled);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   //   const [date1, setDate1] = useState(new Date());
   //   const [show, setShow] = useState(false);

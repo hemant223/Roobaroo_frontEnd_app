@@ -10,7 +10,7 @@ import React, {useEffect, useState} from 'react';
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
 import Input from '../../components/shared/textInputs/Inputs';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
@@ -20,7 +20,8 @@ import {postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
-
+import { Colors } from '../../assets/config/Colors';
+import DateTimePicker from '../../components/shared/date/DateTimePicker';
 
 options = [
   {label: 'Gwalior VidhanSabha', value: 1},
@@ -76,6 +77,7 @@ const VisitingForm = () => {
   const [gender, setGender] = React.useState('Male');
   const [physically_disabled_Name, setPhysically_disabled_Name]=
     useState('Yes');
+
   //check the validation
   const [getUserData, setUserDataByAsync] = useState([])
 
@@ -173,9 +175,9 @@ const VisitingForm = () => {
     <View style={{...styles.mainView}}>
       <CenterHeader
         centerText
-        stepContent='Step 02'
+        stepContent="Step 02"
         stepText
-        centerContent='Visiting Form'
+        centerContent="Visiting Form"
         onPressBackArrow={() => {
           navigation.navigate('Dashboard');
         }}
@@ -205,7 +207,7 @@ const VisitingForm = () => {
               label={'First name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'firstName')}
@@ -220,7 +222,7 @@ const VisitingForm = () => {
               label={'Last name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'LastName')}
@@ -249,7 +251,13 @@ const VisitingForm = () => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          <Input label="Date of Brith" textLabel />
+          
+          <DateTimePicker
+            borderRadius={30}
+            backgroundColor={Colors.Textinputbg}
+            height={40}
+            label="Date of Brith"
+          />
         </View>
 
         <View
@@ -304,14 +312,16 @@ const VisitingForm = () => {
             label={'Reference'}
             textLabel
             width={'100%'}
-            textfontSize={15}
+            textfontSize={14}
             borderWidth={1}
             borderBottomWidth={1}
             onFocus={() => handleError(null, 'Reference')}
             error={errors.Reference}
             onChangeText={text => {
               handleOnchange(text, 'Reference');
+             
             }}
+            
           />
         </View>
 
@@ -332,6 +342,7 @@ const VisitingForm = () => {
             onFocus={() => handleError(null, 'Reasion')}
             error={errors.Reasion}
             onChangeText={text => handleOnchange(text, 'Reasion')}
+            textfontSize={14}
           />
         </View>
 
