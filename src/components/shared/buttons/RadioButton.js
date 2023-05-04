@@ -11,8 +11,7 @@ const RadioButton = props => {
   //   ];
 
   const handleRadio = (item, index) => {
-    props.setId(item.id);
-    props.setRadioName(item.type)
+    props.setType(item.type);
     // alert(item.id)
   };
 
@@ -32,7 +31,7 @@ const RadioButton = props => {
       </View>
       <View style={{flexDirection: 'row'}}>
         {props?.data?.map((item, index) => {
-          const myTouch = props.getId === item.id;
+          const myTouch = props.getType === item.type;
           return (
             <TouchableOpacity
               key={item.id}

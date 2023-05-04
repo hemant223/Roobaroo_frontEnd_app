@@ -1,4 +1,11 @@
-import {SafeAreaView, ScrollView, StyleSheet, Text, View,Keyboard} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Keyboard,
+} from 'react-native';
 import React from 'react';
 import Video from 'react-native-video';
 import Header from '../../components/shared/header/Header';
@@ -7,11 +14,11 @@ import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Input from '../../components/shared/textInputs/Inputs';
 import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
-import { storeData } from '../../helper/utils/AsyncStorageServices';
+import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 const VerifyNumber = () => {
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
-    mobileNumber:''
+    mobileNumber: '',
   });
   const [errors, setErrors] = React.useState({});
   const handleOnchange = (text, input) => {
@@ -22,23 +29,27 @@ const VerifyNumber = () => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
 
-
-  const handleMobileNumber=()=>{
+  const handleMobileNumber = async () => {
     let isValid = true;
-    Keyboard.dismiss()
+    Keyboard.dismiss();
     if (!inputs.mobileNumber) {
       handleError('Please Input Mobile No. ', 'mobileNumber');
       isValid = false;
     }
-    // if (!inputs.mobileNumber.match(/\d{10}/)) {
-    //   handleError('Please Input Correct Mobile No.', 'mobileNumber');
-    //   isValid = false;
-    // }
-    if (isValid) {
-      // storeData('VisitorsMobileNo',inputs.mobileNumber)
-       navigation.navigate('VerifyOtp',{mobileNo:inputs.mobileNumber});
+    if (!inputs.mobileNumber.match(/\d{10}/)) {
+      handleError('Please Input  Mobile No.', 'mobileNumber');
+      isValid = false;
     }
-  }
+    if (isValid) {
+      var visitorMob = await getStoreData('VisitorsMobileNo');
+      if (visitorMob == inputs.mobileNumber) {
+        handleError('This Mobile No. is already exists', 'mobileNumber');
+      } else {
+        // storeData('VisitorsMobileNo',inputs.mobileNumber)
+        navigation.navigate('VerifyOtp',{mobileNo: inputs.mobileNumber});
+      }
+    }
+  };
   return (
     <>
       {/* <Header
@@ -58,7 +69,7 @@ const VerifyNumber = () => {
         centerText
         stepText
         onPressBackArrow={() => {
-          navigation.goBack()
+          navigation.goBack();
         }}
       />
 
@@ -101,7 +112,7 @@ const VerifyNumber = () => {
           <FullSizeButtons
             onPress={() => {
               // navigation.navigate('VerifyOtp');
-              handleMobileNumber()
+              handleMobileNumber();
             }}
             titleColor="#fff"
             title="Verify"

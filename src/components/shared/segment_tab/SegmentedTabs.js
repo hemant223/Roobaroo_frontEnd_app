@@ -9,7 +9,7 @@ const SegmentedTab = ({component1, component2, WIDTHSEG, values}) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [index, setIndex] = useState(0);
 
-  const [container, setContainer] = useState(<></>);
+  const [container, setContainer] = useState(<>{component1}</>);
   const handleSingleIndexSelect = index => {
     setSelectedIndex(index);
     if (index == 1) {

@@ -116,7 +116,7 @@ export default CenterHeader;
 
 CenterHeader.defaultProps = {
   backgroundColor: '#005db6',
-  height: '15%',
+  height: 90,
 
   borderBottomLeftRadius: 15,
   borderBottomRightRadius: 15,

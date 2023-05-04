@@ -16,7 +16,7 @@ const data = [
   {x: 'Tue', y: 20},
   {x: 'Wed', y: 10},
   {x: 'Thu', y: 5},
-  {x: 'Fri', y: 15},
+  {x: 'Fri', y: 15},   
   {x: 'Sat', y: 2},
 ];
 

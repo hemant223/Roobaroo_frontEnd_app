@@ -44,12 +44,17 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
+const genderdata= [
+  {type: 'Male', id: 1, color: false},
+  {type: 'Female', id: 2, color: false},
+  {type: 'Others', id: 3, color: false},
+]
 const VisitingForm = () => {
   const navigation = useNavigation();
 
-  const [visitType, setVisitType] = React.useState(1);
-  const [gender, setGender] = React.useState(1);
-  const [physically, setPhysically] = React.useState(1);
+ 
+ 
+  
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
@@ -69,13 +74,26 @@ const VisitingForm = () => {
 
   const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
-  const [genderName, setGenderName] = useState('Male');
-  const [physically_disabled_Name, setPhysically_disabled_Name] =
+  const [gender, setGender] = React.useState('Male');
+  const [physically_disabled_Name, setPhysically_disabled_Name]=
     useState('Yes');
 
   //check the validation
+  const [getUserData, setUserDataByAsync] = useState([])
+
+  const getUserDataByAsyncStorage=async()=>{
+    const userData = await getStoreData('userData');
+    setUserDataByAsync(userData)
+  }
+  useEffect(() => {
+    getUserDataByAsyncStorage()
+  }, [])
+  // alert(JSON.stringify(getUserData))
+
 
   const validate = async () => {
+    const visitorMob = await getStoreData('VisitorsMobileNo');
+       
     let body = {
       firstname: inputs.firstName,
       lastname: inputs.LastName,
@@ -84,13 +102,13 @@ const VisitingForm = () => {
       mantralya_id: mantralaya,
       refernce: inputs.Reference,
       reason_to_visit: inputs.Reasion,
-      physically_disabled: physically_disabled_Name.toLocaleLowerCase(),
+      physically_disabled: physically_disabled_Name,
       user_id: userid,
-      visitor_type: visitorname.toLocaleLowerCase(),
-      gender: genderName.toLocaleLowerCase(),
+      visitor_type: visitorname,
+      gender: gender,
       minister_id: '1',
-      mobile_number: '8932011605',
-      time: moment().format('h:mm a,Do MMMM YYYY'),
+      time: moment().format('h:mm a, Do MMMM YYYY'),
+      VisitorMobile: visitorMob,
     };
 
     // let response = await postDataAxios(`visitor/addVisitor`, body);
@@ -121,8 +139,15 @@ const VisitingForm = () => {
       isValid = false;
     }
     if (isValid) {
+      // const oldDataVisitor = await getStoreData('VisitorData');
+      // if(!oldDataVisitor){
+      //   storeData('VisitorData',[body]);
+      // }
+      // else{
+      //   oldDataVisitor.push(body)
+      //   await storeData('VisitorData', oldDataVisitor);
+      // }
       // alert(JSON.stringify(body));
-      storeData('VisitorData', body);
       {
         setShowModal(true);
       }
@@ -131,7 +156,7 @@ const VisitingForm = () => {
 
   const visitor = async () => {
     var visitors = await getStoreData('VisitorData');
-    console.log('fffffffff', JSON.stringify(visitors));
+    // console.log('fffffffff', JSON.stringify(visitors));
   };
 
   useEffect(() => {
@@ -162,9 +187,8 @@ const VisitingForm = () => {
           <RadioButton
             label="Visit type"
             data={data}
-            setRadioName={setVisitorName}
-            setId={setVisitType}
-            getId={visitType}
+            setType={setVisitorName}
+            getType={visitorname}
             labelLeft={10}
           />
         </View>
@@ -183,7 +207,7 @@ const VisitingForm = () => {
               label={'First name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'firstName')}
@@ -198,7 +222,7 @@ const VisitingForm = () => {
               label={'Last name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'LastName')}
@@ -216,9 +240,9 @@ const VisitingForm = () => {
           <RadioButton
             labelLeft={10}
             label="Gender"
-            setId={setGender}
-            getId={gender}
-            setRadioName={setGenderName}
+            data={genderdata}
+            setType={setGender}
+            getType={gender}
           />
         </View>
 
@@ -244,9 +268,8 @@ const VisitingForm = () => {
           <RadioButton
             label="Physicaly Disabled"
             data={physicallyData}
-            getId={physically}
-            setId={setPhysically}
-            setRadioName={setPhysically_disabled_Name}
+            getType={physically_disabled_Name}
+            setType={setPhysically_disabled_Name}
             labelLeft={10}
           />
         </View>
@@ -289,14 +312,16 @@ const VisitingForm = () => {
             label={'Reference'}
             textLabel
             width={'100%'}
-            textfontSize={15}
+            textfontSize={14}
             borderWidth={1}
             borderBottomWidth={1}
             onFocus={() => handleError(null, 'Reference')}
             error={errors.Reference}
             onChangeText={text => {
               handleOnchange(text, 'Reference');
+             
             }}
+            
           />
         </View>
 
@@ -317,6 +342,7 @@ const VisitingForm = () => {
             onFocus={() => handleError(null, 'Reasion')}
             error={errors.Reasion}
             onChangeText={text => handleOnchange(text, 'Reasion')}
+            textfontSize={14}
           />
         </View>
 

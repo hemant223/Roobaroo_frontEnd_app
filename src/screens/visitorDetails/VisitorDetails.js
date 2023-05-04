@@ -40,7 +40,7 @@ const DATA = [
 const Item = ({item,navigation}) => {
   return (
     <>
-      <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{item})}}  style={styles.mainContainer}>
+      <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
         <View
           style={{
             width: '100%',
@@ -48,7 +48,7 @@ const Item = ({item,navigation}) => {
             // backgroundColor: 'skyblue',
             bottom: 4,
           }}>
-          <Text style={styles.textCss}>{item.name}</Text>
+          <Text style={styles.textCss}>{item.firstname} {item.lastname}</Text>
         </View>
 
         <View
@@ -80,7 +80,7 @@ const Item = ({item,navigation}) => {
               color: Colors.black,
               top:'0.8%'
             }}>
-            {item.date}
+            {item.time}
           </Text>
         </View>
 
@@ -112,7 +112,7 @@ const Item = ({item,navigation}) => {
               // fontSize: FontSize.small,
               color: Colors.black,
             }}>
-            {item.mobile}
+            {item.VisitorMobile}
           </Text>
         </View>
       </TouchableOpacity>
@@ -134,7 +134,7 @@ const VisitorDetails = props => {
   //   console.log('respone data of visitor:',response.result);
   //   console.log('====================================');
   // }
-
+// alert(JSON.stringify(props.data))
   // useEffect(() => {
   //  getVisitorData()
   // }, [])
@@ -146,7 +146,7 @@ const VisitorDetails = props => {
       <View>
         <FlatList
           // numColumns={numColumns}
-          data={props.VisitorDetailsData}
+          data={props.data}
           renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
@@ -166,7 +166,7 @@ VisitorDetails.defaultProps = {
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#fff',
-    width: '95%',
+    width: '100%',
     borderRadius: 16,
     // marginLeft: 10,
     borderWidth: 1,

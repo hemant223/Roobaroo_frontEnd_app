@@ -1,11 +1,11 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-var ServerURL = 'http://192.168.29.194:6000';
+var ServerURL = 'http://192.168.196.160:9292';
 // var ServerURL = "http://campusshala.com:8888";
 
 const getDataAxios = async Url => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjE2OjA5OjA3IiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDEwOjM5OjA3Ljc4NloiLCJpYXQiOjE2ODMxMTAzNDcsImV4cCI6MTY4MzExNzU0N30.x0lP0jr189NOc3KnOWYM2u0XVgG7M5bp_C2bUC-7kg0"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA2OjQ3OjEyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTA0VDAxOjE3OjEyLjM3M1oiLCJpYXQiOjE2ODMxNjMwMzIsImV4cCI6MTY4MzE3MDIzMn0.ujffPD3OI1G5qhJZqE7nVXVi9kYZ7jIVqLtLUUVQTAA"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -42,7 +42,7 @@ const getDataAxios = async Url => {
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
   let Token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjE2OjA5OjA3IiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTAzVDEwOjM5OjA3Ljc4NloiLCJpYXQiOjE2ODMxMTAzNDcsImV4cCI6MTY4MzExNzU0N30.x0lP0jr189NOc3KnOWYM2u0XVgG7M5bp_C2bUC-7kg0"
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjA2OjQ3OjEyIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTA0VDAxOjE3OjEyLjM3M1oiLCJpYXQiOjE2ODMxNjMwMzIsImV4cCI6MTY4MzE3MDIzMn0.ujffPD3OI1G5qhJZqE7nVXVi9kYZ7jIVqLtLUUVQTAA"
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {

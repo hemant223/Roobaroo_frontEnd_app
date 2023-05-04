@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, StatusBar} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../components/shared/header/Header';
 import SpeedoMeter from './speedometer/SpeedoMeter';
 import SingleBarChart from '../../components/shared/barChart/BarChart';
@@ -7,7 +7,8 @@ import VisitAndProfileButton from '../../components/visit_and_myProfile/VisitAnd
 import SubHeader from '../../components/shared/subHeader/SubHeader';
 import LocationModal from '../../components/componentModals/LocationModal';
 import {useNavigation} from '@react-navigation/native';
-import {getStoreData} from '../../helper/utils/AsyncStorageServices';
+import {getStoreData, removeStoreData} from '../../helper/utils/AsyncStorageServices';
+removeStoreData
 const Dashboard = props => {
   //   const {location} = props.route.params;
 
@@ -17,8 +18,7 @@ const Dashboard = props => {
   // console.log('getData',Object.values(getData));
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
-  
-
+ 
   const handleProfile = async () => {
     let userData = await getStoreData('userData');
     //   alert(JSON?.stringify(userData))
