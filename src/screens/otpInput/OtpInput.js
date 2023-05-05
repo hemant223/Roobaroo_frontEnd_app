@@ -6,11 +6,12 @@ import FullSizeButtons from "../../components/shared/buttons/FullSizeButtons";
 import { FontFamily } from "../../assets/fonts/FontFamily";
 import { ImagesAssets } from "../../components/shared/ImageAssets";
 import { getStoreData, storeData } from "../../helper/utils/AsyncStorageServices";
+import OTPInputView from '@twotalltotems/react-native-otp-input'
 
 function OtpInput(props) {
     const [isModalVisible, setModalVisible] = useState(true);
     // const { otp } = props.route.params;
-const [otp, setOtp] = useState('')
+    //const [otp, setOtp] = useState('')
     const et1 = useRef()
     const et2 = useRef()
     const et3 = useRef()
@@ -21,77 +22,84 @@ const [otp, setOtp] = useState('')
     const [f3, setF3] = useState('')
     const [f4, setF4] = useState('')
     const [f5, setF5] = useState('')
-    var [time,setTime]=useState(30)
-const [minutes, setMinutes] = useState(1);
-const [seconds, setSeconds] = useState(true);
-var [refresh,setRefresh]=useState(false)
+    var [time, setTime] = useState(30)
+    //const [minutes, setMinutes] = useState('00');
+    //const [seconds, setSeconds] = useState(true);
+    var [refresh, setRefresh] = useState(true)
+    const [show, setShow] = useState(false)
+
+
+    const [otp, setOtp] = useState("");
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(30);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
-    alert(otp)
+     alert(otp)
     const generateOtp = () => {
         var otpp = parseInt(Math.random() * 8999) + 10000
-        // alert(otpp)
+         alert(otpp)
         setOtp(otpp)
     }
-    useEffect(() => {
-        generateOtp()
-        // alert(otp)  
-    }, [])
+   
 
-     
-    const handleSubmit=async()=>{
+
+    const handleSubmit = async () => {
         let userData = await getStoreData('userData')
-        var getOtp = f1+f2+f3+f4+f5
-        if(otp==getOtp){
-              storeData(
+        var getOtp = f1 + f2 + f3 + f4 + f5
+        if (otp == getOtp) {
+            storeData(
                 'userData',
                 { ...userData, loggedIn: true },
             );
-              props.navigation.navigate('Dashboard')
-        }  else{
+            props.navigation.navigate('Dashboard')
+        } else {
             alert('Enter correct Otp')
         }
-           
+
     }
 
-  
 
 
 
 
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (seconds > 0) {
+              setSeconds(seconds - 1);
+            }
         
-          
-      
-           const myTimer=()=>{
-           if(seconds)
-           {var t=time 
-             interval=setInterval(()=>{
-              
-              
-              if(t>=1)
-              {  t=t-1
-               
-               setTime(t)
+            if (seconds === 0) {
+              if (minutes === 0) {
+                clearInterval(interval);
+              } else {
+                setSeconds(59);
+                setMinutes(minutes - 1);
               }
-              else
-              { clearInterval(interval)
-                setSeconds(false)
-              }
-              
-      
-      
-             },1000)
-            setRefresh(!refresh)
-           }
-          
-           }
+            }
+          }, 1000);
+        
+          return () => {
+            clearInterval(interval);
+          };
+    }, [seconds])
+
+
+
+    const handleClick = () => {
+       setMinutes(0);
+  setSeconds(30);
+  generateOtp();
+    }
+
+   
 
     return (
         <View>
-            <View style={{height:'100%',width:'100%'}}>
-            <ImageBackground source={ImagesAssets.login_background} resizeMode='cover' style={{width:'100%',height:'80%'}} />
+            <View style={{ height: '100%', width: '100%' }}>
+                <ImageBackground source={ImagesAssets.login_background} resizeMode='cover' style={{ width: '100%', height: '80%' }} />
             </View>
             <Button title="Show modal" onPress={toggleModal} />
             <Modal isVisible={isModalVisible} style={styles.modal}   >
@@ -105,94 +113,26 @@ var [refresh,setRefresh]=useState(false)
                     </View>
                     <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-evenly' }} >
 
-                        <TextInput
-                            ref={et1}
-                            maxLength={1}
-                            textAlign={'center'}
-                            
-                            style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500'}}
-                            keyboardType={'number-pad'}
-                            onChangeText={txt => {
-                                setF1(txt)
-                                if (txt.length >= 1) {
-                                    et2.current.focus()
-                                } else if (txt.length < 1) {
-                                    et1.current.focus()
-                                }
-                            }}
-                        />
 
-
-                        <TextInput
-                            ref={et2}
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-
-                            style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
-                            onChangeText={txt => {
-                                setF2(txt)
-                                if (txt.length >= 1) {
-                                    et3.current.focus()
-                                } else if (txt.length < 1) {
-                                    et1.current.focus()
-                                }
-                            }}
-                        />
-
-
-                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
-                            ref={et3}
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            onChangeText={txt => {
-                                setF3(txt)
-                                if (txt.length >= 1) {
-                                    et4.current.focus()
-                                } else if (txt.length < 1) {
-                                    et2.current.focus()
-                                }
-                            }}
-                        />
-
-
-                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
-                            ref={et4}
-                            maxLength={1}
-                            textAlign={'center'}
-                            keyboardType={'number-pad'}
-                            onChangeText={txt => {
-                                setF4(txt)
-                                if (txt.length >= 1) {
-                                    et5.current.focus()
-                                } else if (txt.length < 1) {
-                                    et3.current.focus()
-                                }
-                            }}
-                        />
-                        <TextInput style={{ borderBottomWidth: 1,width:'12%',fontSize:18,fontWeight:'500', }}
-                            ref={et5}
-                            maxLength={1}
-                            textAlign={'center'}  
-                            keyboardType={'number-pad'}
-                            onChangeText={txt => {
-                                setF5(txt)
-                                if (txt.length >= 1) {
-                                    et5.current.focus()
-                                } else if (txt.length < 1) {
-                                    et4.current.focus()
-                                }
-                            }}
+                        <OTPInputView style={{ width: '80%', height: '5%', marginTop: 15, fontSize: 18 }} pinCount={5}
+                            autoFocusOnLoad
+                            codeInputFieldStyle={styles.underlineStyleBase}
+                            codeInputHighlightStyle={styles.underlineStyleHighLighted}
+                        //  onCodeFilled = {(code => {
+                        //      console.log(`Code is ${code}, you are good to go!`)
+                        //  })}
                         />
                     </View>
+
                     <View style={{ marginTop: 5, padding: 10, width: '100%', }}>
                         <View style={{ alignSelf: 'center', width: '100%', }}>
-                            <FullSizeButtons onPress={()=>{handleSubmit()}} titleColor='#fff' title='Submit' height={50} width={'100%'} />
+                            <FullSizeButtons onPress={() => { handleSubmit() }} titleColor='#fff' title='Submit' height={50} width={'100%'} />
                         </View>
-                        <View style={{marginTop:3,width:'100%',justifyContent:'center',flexDirection:'row'}}>
-                            <Text style={{marginRight:3}}>Didn't recieved OTP?</Text>{seconds?<Text style={{fontWeight:'bold',color:'#f47216',marginLeft:3}}>{time}</Text>:<Text style={{}} onPress={()=>alert(otp)}>Resend Otp</Text>}
-                            </View>
+                        <View style={{ marginTop: 3, width: '100%', justifyContent: 'center', flexDirection: 'row' }}>
+                            <Text style={{ marginRight: 3 }}>Didn't recieved OTP?</Text>
+                            {minutes>0 || seconds>0 ?( <Text style={{ fontWeight: 'bold', color: '#f47216', marginLeft: 3 }}>{minutes < 10 ? `0${minutes}` : minutes}:
+          {seconds < 10 ? `0${seconds}` : seconds}</Text>) : (<Text style={{fontWeight: 'bold', color: '#f47216', marginLeft: 3}} onPress={handleClick}>Resend Otp</Text>)}
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -219,7 +159,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: "#fff",
         position: 'absolute',
-        height: 320,
+        height: 300,
         bottom: 0,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
@@ -238,6 +178,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         color: '#858585'
+    },
+
+    underlineStyleBase: {
+        width: 35,
+        height: 50,
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        fontSize: 22,
+        color: '#000',
+        borderColor: '#000'
+    },
+
+    underlineStyleHighLighted: {
+        borderColor: "#03DAC6",
+        borderBottomWidth: 1
     },
 
 });
