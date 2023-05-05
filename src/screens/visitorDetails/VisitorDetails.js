@@ -40,12 +40,12 @@ const DATA = [
 
 const Item = ({item,navigation}) => {
   var time1 =moment(item.created_at).format('h:mm a, Do MMM YYYY')
-  console.log('====================================');
-  console.log(item);
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log(item);
+  // console.log('====================================');
   return (
     <>
-     { item?.visitor_status=='ongoing' && <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
+     { item?.visitor_status=='ongoing' && <TouchableOpacity onPress={()=>{navigation.push('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
        <View
           style={{
             width: '100%',

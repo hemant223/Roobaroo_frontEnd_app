@@ -18,7 +18,6 @@ const Visits = props => {
   // console.log('fulluserData on visitor page:',props?.route?.params?.complete);
   // console.log('====================================');
   const [getVisitorData, setVisitorData] = useState([]);
-  const [index, setIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState(
     props?.route?.params?.complete ? 1 : 0,
   );
