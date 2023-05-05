@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {Colors} from '../../../assets/config/Colors';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
+import { getDataAxios } from '../../../fetchNodeServices';
 
 const Dropdown = props => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -21,6 +22,31 @@ const Dropdown = props => {
       console.log('In Catch in DropdownComponent Line 16', e);
     }
   };
+ 
+
+
+const fetchVidhansbha = async () => {
+  try {
+    var response = await getDataAxios(`vidhansabha/displayVidhansabha/${1}`)
+    // console.log('RESPONSE', response);
+    // alert(JSON.stringify(response));
+    console.log(
+      '33 Line in Dropdown===========>',
+      response
+    );
+  
+   
+  } catch (err) {
+    console.error('Catch Error ', err);
+   
+  }
+};
+// alert(data);
+useEffect(() => {
+  
+  fetchVidhansbha();
+});
+
 
   return (
     <View
