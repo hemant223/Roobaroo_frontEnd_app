@@ -70,6 +70,11 @@ function MainNavigationStack(props) {
           options={{headerShown: false}}
         />
          <Stack.Screen
+          name="dashboard"
+          component={Dashboard}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
           name="Visits"
           component={Visits}
           options={{headerShown: false}}

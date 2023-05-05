@@ -43,7 +43,17 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
     const [showVisits, setShowVisits] = useState(false)
     const [showLang, setShowLang] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
-   
+    const [getUserData, setUserDataByAsync] = useState([])
+
+      const getUserDataByAsyncStorage=async()=>{
+        const userData = await getStoreData('userData');
+        setUserDataByAsync(userData)
+      }
+      useEffect(() => {
+        getUserDataByAsyncStorage()
+      }, [])
+      
+
     const handleHome=()=>{
         navigation.navigate('home')
         setShowHome(true)
@@ -76,7 +86,7 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
             'userData',
             ({ ...userData, loggedIn: false }),
         );
-        navigation.navigate('SplashScreen')
+        navigation.navigate('Login')
         }
     }
   
@@ -107,7 +117,7 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
        <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />
        </View>
        <View>
-        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>Hemu Singh</Text>
+        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{getUserData.firstname} {getUserData.lastname}</Text>
        </View>
        </View>
 

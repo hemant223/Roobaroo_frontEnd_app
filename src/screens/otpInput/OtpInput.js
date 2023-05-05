@@ -29,7 +29,7 @@ var [refresh,setRefresh]=useState(false)
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
-    // alert(otp)
+    alert(otp)
     const generateOtp = () => {
         var otpp = parseInt(Math.random() * 8999) + 10000
         // alert(otpp)
@@ -37,16 +37,14 @@ var [refresh,setRefresh]=useState(false)
     }
     useEffect(() => {
         generateOtp()
-        myTimer();
+        // alert(otp)  
     }, [])
 
-    
-
-
-    //   alert(otp)  
+     
     const handleSubmit=async()=>{
         let userData = await getStoreData('userData')
-        if(otp==f1+f2+f3+f4+f5){
+        var getOtp = f1+f2+f3+f4+f5
+        if(otp==getOtp){
               storeData(
                 'userData',
                 { ...userData, loggedIn: true },

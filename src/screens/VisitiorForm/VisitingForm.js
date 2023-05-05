@@ -5,19 +5,34 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
 import Input from '../../components/shared/textInputs/Inputs';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import {useNavigation} from '@react-navigation/native';
-import { postDataAxios } from '../../fetchNodeServices';
+import {postDataAxios} from '../../fetchNodeServices';
+import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+import moment from 'moment';
+import CenterHeader from '../../components/shared/header/CenterHeader';
+import {Colors} from '../../assets/config/Colors';
+import DateTimePicker from '../../components/shared/date/DateTimePicker';
 
+options = [
+  {label: 'Gwalior VidhanSabha', value: 1},
+  {label: 'East Gwalior ', value: 2},
+  {label: 'Morena ', value: 3},
+];
+options2 = [
+  {label: 'Shiksha Mantri', value: 1},
+  {label: 'Urja Mantri ', value: 2},
+  {label: 'Krshi Mantri ', value: 3},
+];
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -29,12 +44,14 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
-const VisitingForm = () => {
+const genderdata = [
+  {type: 'Male', id: 1, color: false},
+  {type: 'Female', id: 2, color: false},
+  {type: 'Others', id: 3, color: false},
+];
+const VisitingForm = props => {
   const navigation = useNavigation();
 
-  const [visitType, setVisitType] = React.useState(1);
-  const [gender, setGender] = React.useState(1);
-  const [physically, setPhysically] = React.useState(1);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
@@ -44,45 +61,38 @@ const VisitingForm = () => {
     Reference: '',
   });
   const [errors, setErrors] = React.useState({});
-  const [firstName, setFirstName] = React.useState('Mohit');
-  const [LastName, setLastName] = React.useState('Jain');
-  const [date_of_Birth,setDate_of_Birth]=React.useState('2/03/1998')
-  const [vidhansabha,setVidhansabha]=React.useState('1')
-  const [mantralaya,setMantralaya]=React.useState('1')
-  const [reference,setReference]=React.useState('Normal')
-  const [rision_to_Visit,setRision_to_Visit]=React.useState('Normal')
-  const [picture,setPicture]=React.useState('')
-  const [disabled,setDisabled]=React.useState(1)
-  const [visitorType,setVisitorType]=React.useState(1)
-  const [userid,setUserId]=React.useState(1)
-  const [ministerId,setMinisterId]=React.useState(1)
+
+  const [date_of_Birth, setDate_of_Birth] = React.useState('');
+  const [vidhansabha, setVidhansabha] = React.useState('');
+  const [mantralaya, setMantralaya] = React.useState('');
+  const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
+  const [picture, setPicture] = React.useState('');
+  const [disabled, setDisabled] = React.useState(1);
+
+  // const [userid, setUserId] = React.useState(1);
+  const [visitorname, setVisitorName] = useState('Single');
+  const [gender, setGender] = React.useState('Male');
+  const [physically_disabled_Name, setPhysically_disabled_Name] =
+    useState('Yes');
 
   //check the validation
+  const [getUserData, setUserDataByAsync] = useState([]);
 
-  const validate = async() => {
-    let body = {
-      firstname: firstName,
-      lastname: LastName,
-      date_of_Birth:date_of_Birth,
-      vidhansabha:vidhansabha,
-      mantralaya:mantralaya,
-      reference:reference,
-      rision_to_Visit:rision_to_Visit,
-      physically_disabled:disabled,
-      visitor_type:visitorType,
-      user_id:userid,
-      minister_id:ministerId
+  const getUserDataByAsyncStorage = async () => {
+    const userData = await getStoreData('userData');
+    setUserDataByAsync(userData);
+  };
+  useEffect(() => {
+    getUserDataByAsyncStorage();
+  }, []);
+  // alert(JSON.stringify(getUserData));
 
-    };
-// alert(JSON.stringify(body))
+  // alert(dob)
+  const validate = async () => {
+    // const visitorMob = await getStoreData('VisitorsMobileNo');
 
-let response = await postDataAxios(`visitor/addVisitor`, body);
+    // // alert(response.status)
 
-if(response.status==true){
-alert('Done')
-}
-
-  
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -101,13 +111,57 @@ alert('Done')
       isValid = false;
     }
     if (isValid) {
-      alert(JSON.stringify(body));
+      let body = {
+        firstname: inputs.firstName,
+        lastname: inputs.LastName,
+        mobile_number: props?.route?.params?.mobileNo,
+        gender: gender,
+        physically_disabled: physically_disabled_Name,
+        date_of_birth: dob,
+        visitor_type: visitorname,
+        vidhansabha_id: vidhansabha,
+        mantralya_id: mantralaya,
+        refernce: inputs.Reference,
+        reason_to_visit: inputs.Reasion,
+        picture: '',
+        user_id: getUserData.id,
+        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        minister_id: getUserData.MinisterId,
+        group_member: 'hemu raju',
+        visitor_status: 'ongoing',
+      };
+
+      let response = await postDataAxios(`visitors/addVisitor`, body);
+// alert(response.status)
+      if (response.status) {
+        setShowModal(true);
+      } else {
+        alert('Error in data Submissin');
+      }
+
+      // const oldDataVisitor = await getStoreData('VisitorData');
+      // if(!oldDataVisitor){
+      //   storeData('VisitorData',[body]);
+      // }
+      // else{
+      //   oldDataVisitor.push(body)
+      //   await storeData('VisitorData', oldDataVisitor);
+      // }
+      // alert(JSON.stringify(body));
     }
-  }
+  };
+
+  const visitor = async () => {
+    var visitors = await getStoreData('VisitorData');
+    // console.log('fffffffff', JSON.stringify(visitors));
+  };
+
+  useEffect(() => {
+    visitor();
+  }, []);
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
-  setFirstName(text)
   };
 
   const handleError = (error, input) => {
@@ -116,22 +170,22 @@ alert('Done')
 
   return (
     <View style={{...styles.mainView}}>
-      <Header
-        height={85}
-        stepText
-        stepBottom={12}
+      <CenterHeader
         centerText
+        stepContent="Step 02"
+        stepText
         centerContent="Visiting Form"
-        verifyBottom={20}
-        backarrowIcon
+        onPressBackArrow={() => {
+          navigation.push('Dashboard');
+        }}
       />
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
             label="Visit type"
             data={data}
-            setId={setVisitType}
-            getId={visitType}
+            setType={setVisitorName}
+            getType={visitorname}
             labelLeft={10}
           />
         </View>
@@ -150,7 +204,7 @@ alert('Done')
               label={'First name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'firstName')}
@@ -165,7 +219,7 @@ alert('Done')
               label={'Last name'}
               textLabel
               width="100%"
-              height={60}
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               onFocus={() => handleError(null, 'LastName')}
@@ -183,8 +237,9 @@ alert('Done')
           <RadioButton
             labelLeft={10}
             label="Gender"
-            setId={setGender}
-            getId={gender}
+            data={genderdata}
+            setType={setGender}
+            getType={gender}
           />
         </View>
 
@@ -193,7 +248,13 @@ alert('Done')
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          <Input label="Date of Brith" textLabel />
+          <DateTimePicker
+            borderRadius={30}
+            backgroundColor={Colors.Textinputbg}
+            height={40}
+            setDate={setDob}
+            label="Date of Brith"
+          />
         </View>
 
         <View
@@ -204,8 +265,8 @@ alert('Done')
           <RadioButton
             label="Physicaly Disabled"
             data={physicallyData}
-            getId={physically}
-            setId={setPhysically}
+            getType={physically_disabled_Name}
+            setType={setPhysically_disabled_Name}
             labelLeft={10}
           />
         </View>
@@ -215,7 +276,13 @@ alert('Done')
             //   backgroundColor: 'yellowgreen',
             ...styles.Vidhansabha_View_Css,
           }}>
-          <Dropdown label={'Vidhansabha'} labelLeft={10} borderRadius={12} />
+          <Dropdown
+            label={'Vidhansabha'}
+            labelLeft={10}
+            borderRadius={12}
+            options={options}
+            onSelect={setVidhansabha}
+          />
         </View>
 
         <View
@@ -223,7 +290,13 @@ alert('Done')
             //   backgroundColor: 'yellowgreen',
             ...styles.Mantralya_View_Css,
           }}>
-          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12} />
+          <Dropdown
+            label={'Mantralaya'}
+            labelLeft={10}
+            borderRadius={12}
+            onSelect={setMantralaya}
+            options={options2}
+          />
         </View>
 
         <View
@@ -236,12 +309,14 @@ alert('Done')
             label={'Reference'}
             textLabel
             width={'100%'}
-            textfontSize={15}
+            textfontSize={14}
             borderWidth={1}
             borderBottomWidth={1}
             onFocus={() => handleError(null, 'Reference')}
             error={errors.Reference}
-            onChangeText={text => handleOnchange(text, 'Reference')}
+            onChangeText={text => {
+              handleOnchange(text, 'Reference');
+            }}
           />
         </View>
 
@@ -262,6 +337,7 @@ alert('Done')
             onFocus={() => handleError(null, 'Reasion')}
             error={errors.Reasion}
             onChangeText={text => handleOnchange(text, 'Reasion')}
+            textfontSize={14}
           />
         </View>
 
@@ -287,8 +363,9 @@ alert('Done')
       </ScrollView>
       {
         <SuccessModal
+          title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
-            navigation.navigate('Visits');
+            navigation.push('Visits');
           }}
           setShowModal={setShowModal}
           showModal={showModal}

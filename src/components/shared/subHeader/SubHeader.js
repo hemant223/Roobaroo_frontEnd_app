@@ -8,7 +8,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,8 +18,10 @@ import {FontFamily} from '../../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../ImageAssets';
 import SearchBar from '../searchbar/SearchBar';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
+import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
 const SubHeader = props => {
   const navigation = useNavigation();
+  const [getuserData, setuserData] = React.useState([])
   const [locationshow, setLocationshow] = React.useState(props?.locationData);
   const styles = StyleSheet.create({
     container: {
@@ -34,6 +36,15 @@ const SubHeader = props => {
     Menu: {width: 32, height: 32, left: 8},
     profile: {width: 34, height: 34, borderRadius: 30, left: '6%'},
   });
+  const getUserDataByAsyncStorage=async()=>{
+    const userData = await getStoreData('userData');
+    setuserData(userData)
+  }
+  useEffect(() => {
+    getUserDataByAsyncStorage()
+  }, [])
+
+
   return (
     <>
       <View style={{...styles.container}}>
@@ -106,9 +117,8 @@ const SubHeader = props => {
                       marginLeft:10
                     }}>
                     <Text style={{fontWeight: 'bold', color: '#fff'}}>
-                      {props.rightContent}{' '}
+                     {getuserData.firstname} {getuserData.lastname}
                     </Text>
-
                     <TouchableOpacity
                       onPress={props.locationonPress}
                       style={{width: '100%', flexDirection: 'row'}}>

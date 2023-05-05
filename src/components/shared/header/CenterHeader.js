@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
   Image,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,7 +14,7 @@ import MaIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../ImageAssets';
-import { transparent } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
+import {transparent} from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 // import {Dimensions} from 'react-native';
 // const width = Dimensions.get('screen').width;
 // const height = Dimensions.get('screen').height;
@@ -26,7 +26,7 @@ const CenterHeader = props => {
       height: props.height,
       borderBottomLeftRadius: props.borderBottomLeftRadius,
       borderBottomRightRadius: props.borderBottomRightRadius,
-      justifyContent:'center'
+      justifyContent: 'center',
     },
 
     centerCss: {
@@ -43,7 +43,7 @@ const CenterHeader = props => {
   });
   return (
     <>
-    {/* <StatusBar hidden={false} translucent backgroundColor='transparent'/> */}
+      {/* <StatusBar hidden={false} translucent backgroundColor='transparent'/> */}
       <View style={{...styles.container}}>
         <View
           style={{
@@ -52,20 +52,18 @@ const CenterHeader = props => {
             flexDirection: 'row',
             // alignItems: 'center',
             // justifyContent:'center'
-            marginTop:45
+            marginTop: 45,
           }}>
           <View
             style={{
-              width: '45%',
-                // backgroundColor: 'yellow',
+              width: '44%',
+              // backgroundColor: 'yellow',
             }}>
             <TouchableOpacity
               style={{
                 width: '25%',
               }}
-              onPress={props.onPressBackArrow}
-           
-              >
+              onPress={props.onPressBackArrow}>
               <Image
                 source={ImagesAssets.arrowLeft}
                 style={{
@@ -96,8 +94,8 @@ const CenterHeader = props => {
           <View
             style={{
               ...styles.centerCss,
-            //   backgroundColor: 'red',
-              bottom:12
+              //   backgroundColor: 'red',
+              bottom: 12,
             }}>
             <Text
               style={{
@@ -118,21 +116,20 @@ export default CenterHeader;
 
 CenterHeader.defaultProps = {
   backgroundColor: '#005db6',
-  height: '15%',
+  height: 90,
 
   borderBottomLeftRadius: 15,
   borderBottomRightRadius: 15,
   stepContent: 'Step01',
   centerContent: 'Verify Number',
- 
 };
 
-
-
-{/* <CenterHeader
+{
+  /* <CenterHeader
 centerText
 stepText
 onPressBackArrow={() => {
   alert('hii');
 }}
-/> */}
+/> */
+}

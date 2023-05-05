@@ -39,13 +39,10 @@ const DATA = [
 ];
 
 const Item = ({item,navigation}) => {
-  var time1 =moment(item.created_at).format('h:mm a, Do MMM YYYY')
-  // console.log('====================================');
-  // console.log(item);
-  // console.log('====================================');
+    var time =moment(item.updated_at).format('h:mm a, Do MMM YYYY')
   return (
     <>
-     { item?.visitor_status=='ongoing' && <TouchableOpacity onPress={()=>{navigation.push('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
+     { item.visitor_status=='completed' && <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
        <View
           style={{
             width: '100%',
@@ -85,7 +82,7 @@ const Item = ({item,navigation}) => {
               color: Colors.black,
               top:'0.8%'
             }}>
-            {time1}
+            {time}
           </Text>
         </View>
 
@@ -126,7 +123,7 @@ const Item = ({item,navigation}) => {
   );
 };
 
-const VisitorDetails = props => {
+const VisitorDetailsShow = props => {
   const navigation = useNavigation()
   // const [visitorData, setVisitorData] = useState([])
   // console.log('====================================');
@@ -145,18 +142,14 @@ const VisitorDetails = props => {
   //  getVisitorData()
   // }, [])
   
-  // let numColumns = 3;
-// useEffect(() => {
-  
-// }, [props.data])
 
-  // alert(JSON.stringify(props.data))
+  // let numColumns = 3;
   return (
     <>
       <View>
         <FlatList
           // numColumns={numColumns}
-          data={props?.data}
+          data={props.data}
           renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
@@ -167,9 +160,9 @@ const VisitorDetails = props => {
   );
 };
 
-export default VisitorDetails;
+export default VisitorDetailsShow;
 
-VisitorDetails.defaultProps = {
+VisitorDetailsShow.defaultProps = {
   VisitorDetailsData: DATA,
 };
 
@@ -224,3 +217,4 @@ const styles = StyleSheet.create({
     // backgroundColor:'red'
   },
 });
+

@@ -73,6 +73,7 @@ const Input = props => {
             placeholder={props.placeholder}
             placeholderTextColor={props.placeholderColor}
             onChangeText={props.onChangeText}
+            
             numberOfLines={5}
             label={'Full Name'}
             textAlignVertical={'top'}
@@ -84,6 +85,7 @@ const Input = props => {
             }}
             onBlur={() => setIsFocused(false)}
             value={props.value}
+           
           />
         </View>
       </View>

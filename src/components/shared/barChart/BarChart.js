@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {
   VictoryBar,
@@ -9,18 +9,45 @@ import {
 import {Colors} from '../../../assets/config/Colors';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import FilterDropdown from '../dropdowns/FilterDropdown';
+import {getDataAxios} from '../../../fetchNodeServices';
 
 const data = [
-  {x: 'Sun', y: 60},
-  {x: 'Mon', y: 30},
-  {x: 'Tue', y: 20},
-  {x: 'Wed', y: 10},
-  {x: 'Thu', y: 5},
-  {x: 'Fri', y: 15},
+  {x: 'Sun', y: 5},
+  {x: 'Mon', y: 4},
+  {x: 'Tue', y: 3},
+  {x: 'Wed', y: 2},
+  {x: 'Thu', y: 1},
+  {x: 'Fri', y: 3},
   {x: 'Sat', y: 2},
 ];
 
 export default function SingleBarChart(props) {
+  const [weekly_Count, setWeekly_Count] = useState();
+
+  // alert (weekly_Count);
+
+  const fetchVisitor = async () => {
+    let body = {
+      startDate: '2023-05-01',
+      endDate: '2023-05-08',
+    };
+    var response = await getDataAxios(`visitors/todayVisitor/${37}`, body);
+console.log(response)
+    console.log(
+      'BarChart Component mein 30 Line==========>',
+      (response.obj.datasets[0].data),
+    );
+
+    var aa = response.obj.datasets[0].data;
+    const count=aa.length
+    console.log(count)
+    setWeekly_Count(count);
+  };
+
+
+ 
+    fetchVisitor();
+  
   return (
     <View
       style={{
@@ -38,11 +65,11 @@ export default function SingleBarChart(props) {
           //   backgroundColor: 'red',
           alignSelf: 'flex-start',
           top: '4%',
-          padding:1,
-          margin:5,
+          padding: 1,
+          margin: 5,
           flexDirection: 'row',
           width: '100%',
-        //   backgroundColor:'red'
+          //   backgroundColor:'red'
         }}>
         <Text
           style={{
@@ -52,11 +79,13 @@ export default function SingleBarChart(props) {
           }}>
           Visitors trend
         </Text>
-        <View style={{top: 3,
-        // backgroundColor:'yellowgreen',
-        width:'70%',
-        alignItems:'flex-end'
-        }}>
+        <View
+          style={{
+            top: 3,
+            // backgroundColor:'yellowgreen',
+            width: '70%',
+            alignItems: 'flex-end',
+          }}>
           <FilterDropdown />
         </View>
       </View>

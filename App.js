@@ -12,19 +12,16 @@ import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
 import { getDataAxios } from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
-import OtpInput from './src/screens/otpInput/OtpInput';
+// import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
   useEffect(() => {
-    LogBox.ignoreAllLogs()
+    LogBox.ignoreAllLogs();
+    // removeStoreData('VisitorData')
   }, [])
-  const [background, setBackGround] = useState(1);
+
   // const [showModal, setShowModal] = useState(true)
   // alert(background)
-const handleClick=async()=>{
-  // alert('hi');
-var response = await getDataAxios('visitor/displayVisitors/1')
-// alert(JSON.stringify(response.sta))
-}
+
 
   return (
     <>

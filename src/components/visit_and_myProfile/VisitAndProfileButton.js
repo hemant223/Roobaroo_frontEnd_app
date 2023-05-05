@@ -25,7 +25,7 @@ const VisitAndProfileButton = (props) => {
 export default VisitAndProfileButton
 VisitAndProfileButton.defaultProps = {
 heading:'Visits',
-data:'data kfjvh fjh fkj kshfk skfjh ksfuh srktyuh',
+data:'Add Visitor to here ',
 backgroundColor:'#d1e4fb',
 circleColor:'#3786eb'
 }
