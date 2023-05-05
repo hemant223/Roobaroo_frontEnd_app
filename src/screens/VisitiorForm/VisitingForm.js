@@ -20,7 +20,7 @@ import {postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
-import { Colors } from '../../assets/config/Colors';
+import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
 
 options = [
@@ -44,17 +44,14 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
-const genderdata= [
+const genderdata = [
   {type: 'Male', id: 1, color: false},
   {type: 'Female', id: 2, color: false},
   {type: 'Others', id: 3, color: false},
-]
-const VisitingForm = () => {
+];
+const VisitingForm = props => {
   const navigation = useNavigation();
 
- 
- 
-  
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
@@ -68,58 +65,33 @@ const VisitingForm = () => {
   const [date_of_Birth, setDate_of_Birth] = React.useState('');
   const [vidhansabha, setVidhansabha] = React.useState('');
   const [mantralaya, setMantralaya] = React.useState('');
-
+  const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
   const [picture, setPicture] = React.useState('');
   const [disabled, setDisabled] = React.useState(1);
 
-  const [userid, setUserId] = React.useState(1);
+  // const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
   const [gender, setGender] = React.useState('Male');
-  const [physically_disabled_Name, setPhysically_disabled_Name]=
+  const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
 
   //check the validation
-  const [getUserData, setUserDataByAsync] = useState([])
+  const [getUserData, setUserDataByAsync] = useState([]);
 
-  const getUserDataByAsyncStorage=async()=>{
+  const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-    setUserDataByAsync(userData)
-  }
+    setUserDataByAsync(userData);
+  };
   useEffect(() => {
-    getUserDataByAsyncStorage()
-  }, [])
-  // alert(JSON.stringify(getUserData))
+    getUserDataByAsyncStorage();
+  }, []);
+  // alert(JSON.stringify(getUserData));
 
-
+  // alert(dob)
   const validate = async () => {
-    const visitorMob = await getStoreData('VisitorsMobileNo');
-       
-    let body = {
-      firstname: inputs.firstName,
-      lastname: inputs.LastName,
-      date_of_birth: date_of_Birth,
-      vidhansabha_id: vidhansabha,
-      mantralya_id: mantralaya,
-      refernce: inputs.Reference,
-      reason_to_visit: inputs.Reasion,
-      physically_disabled: physically_disabled_Name,
-      user_id: userid,
-      visitor_type: visitorname,
-      gender: gender,
-      minister_id: '1',
-      time: moment().format('h:mm a, Do MMMM YYYY'),
-      VisitorMobile: visitorMob,
-    };
-
-    // let response = await postDataAxios(`visitor/addVisitor`, body);
+    // const visitorMob = await getStoreData('VisitorsMobileNo');
 
     // // alert(response.status)
-
-    // if (response.status) {
-    //   alert('Done');
-    // } else {
-    //   alert('Not Done');
-    // }
 
     let isValid = true;
     if (!inputs.firstName) {
@@ -139,6 +111,34 @@ const VisitingForm = () => {
       isValid = false;
     }
     if (isValid) {
+      let body = {
+        firstname: inputs.firstName,
+        lastname: inputs.LastName,
+        mobile_number: props?.route?.params?.mobileNo,
+        gender: gender,
+        physically_disabled: physically_disabled_Name,
+        date_of_birth: dob,
+        visitor_type: visitorname,
+        vidhansabha_id: vidhansabha,
+        mantralya_id: mantralaya,
+        refernce: inputs.Reference,
+        reason_to_visit: inputs.Reasion,
+        picture: '',
+        user_id: getUserData.id,
+        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        minister_id: getUserData.MinisterId,
+        group_member: 'hemu raju',
+        visitor_status: 'ongoing',
+      };
+
+      let response = await postDataAxios(`visitors/addVisitor`, body);
+// alert(response.status)
+      if (response.status) {
+        setShowModal(true);
+      } else {
+        alert('Error in data Submissin');
+      }
+
       // const oldDataVisitor = await getStoreData('VisitorData');
       // if(!oldDataVisitor){
       //   storeData('VisitorData',[body]);
@@ -148,9 +148,6 @@ const VisitingForm = () => {
       //   await storeData('VisitorData', oldDataVisitor);
       // }
       // alert(JSON.stringify(body));
-      {
-        setShowModal(true);
-      }
     }
   };
 
@@ -179,7 +176,7 @@ const VisitingForm = () => {
         stepText
         centerContent="Visiting Form"
         onPressBackArrow={() => {
-          navigation.navigate('Dashboard');
+          navigation.push('Dashboard');
         }}
       />
       <ScrollView>
@@ -251,11 +248,11 @@ const VisitingForm = () => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          
           <DateTimePicker
             borderRadius={30}
             backgroundColor={Colors.Textinputbg}
             height={40}
+            setDate={setDob}
             label="Date of Brith"
           />
         </View>
@@ -319,9 +316,7 @@ const VisitingForm = () => {
             error={errors.Reference}
             onChangeText={text => {
               handleOnchange(text, 'Reference');
-             
             }}
-            
           />
         </View>
 
@@ -368,8 +363,9 @@ const VisitingForm = () => {
       </ScrollView>
       {
         <SuccessModal
+          title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
-            navigation.navigate('Visits');
+            navigation.push('Visits');
           }}
           setShowModal={setShowModal}
           showModal={showModal}

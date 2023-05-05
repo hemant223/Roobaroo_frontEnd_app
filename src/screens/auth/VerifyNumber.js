@@ -45,8 +45,8 @@ const VerifyNumber = () => {
       if (visitorMob == inputs.mobileNumber) {
         handleError('This Mobile No. is already exists', 'mobileNumber');
       } else {
-        // storeData('VisitorsMobileNo',inputs.mobileNumber)
-        navigation.navigate('VerifyOtp',{mobileNo: inputs.mobileNumber});
+        storeData('VisitorsMobileNo',inputs.mobileNumber)
+        navigation.push('VerifyOtp',{mobileNo: inputs.mobileNumber});
       }
     }
   };

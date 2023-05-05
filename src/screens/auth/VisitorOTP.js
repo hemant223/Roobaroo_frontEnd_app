@@ -51,8 +51,8 @@ const VerifyOtp = props => {
     if (isValid) {
       // alert(inputs.otp)
       if (inputs.otp == otp) {
-        storeData('VisitorsMobileNo',props?.route?.params?.mobileNo)
-        navigation.navigate('VisitingForm');
+        // storeData('VisitorsMobileNo',props?.route?.params?.mobileNo)
+        navigation.navigate('VisitingForm',{mobileNo:props?.route?.params?.mobileNo});
       } else {
         handleError('Please Input Correct Otp', 'otp');
       }
