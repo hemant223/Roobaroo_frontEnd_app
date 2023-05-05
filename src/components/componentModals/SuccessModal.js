@@ -30,7 +30,7 @@ const SuccessModal = props => {
               fontFamily: FontFamily.Popinssemibold,
               fontSize: 15,
             }}>
-            Your Visiting record request has been Successfully Submitted
+            {props.title}
           </Text>
         </View>
 

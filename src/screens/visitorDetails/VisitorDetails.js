@@ -17,6 +17,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import { getDataAxios } from '../../fetchNodeServices';
+import moment from 'moment';
 const DATA = [
   {
     id: '1',
@@ -38,10 +39,14 @@ const DATA = [
 ];
 
 const Item = ({item,navigation}) => {
+  var time1 =moment(item.created_at).format('h:mm a, Do MMM YYYY')
+  console.log('====================================');
+  console.log(item);
+  console.log('====================================');
   return (
     <>
-      <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
-        <View
+     { item?.visitor_status=='ongoing' && <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
+       <View
           style={{
             width: '100%',
             // height: 30,
@@ -51,7 +56,7 @@ const Item = ({item,navigation}) => {
           <Text style={styles.textCss}>{item.firstname} {item.lastname}</Text>
         </View>
 
-        <View
+       <View
           style={{
             flexDirection: 'row',
             width: '100%',
@@ -80,7 +85,7 @@ const Item = ({item,navigation}) => {
               color: Colors.black,
               top:'0.8%'
             }}>
-            {item.time}
+            {time1}
           </Text>
         </View>
 
@@ -112,10 +117,11 @@ const Item = ({item,navigation}) => {
               // fontSize: FontSize.small,
               color: Colors.black,
             }}>
-            {item.VisitorMobile}
+            {item.mobile_number}
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity>}
+     
     </>
   );
 };
@@ -139,14 +145,18 @@ const VisitorDetails = props => {
   //  getVisitorData()
   // }, [])
   
-
   // let numColumns = 3;
+// useEffect(() => {
+  
+// }, [props.data])
+
+  // alert(JSON.stringify(props.data))
   return (
     <>
       <View>
         <FlatList
           // numColumns={numColumns}
-          data={props.data}
+          data={props?.data}
           renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}

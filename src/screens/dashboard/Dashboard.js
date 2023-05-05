@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import {StyleSheet, Text, View, StatusBar,BackHandler} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/shared/header/Header';
 import SpeedoMeter from './speedometer/SpeedoMeter';
@@ -29,6 +29,23 @@ const Dashboard = props => {
     let userData = await getStoreData('userData');
     navigation.navigate('Visit', {userData: userData});
   };
+
+
+//   useEffect(() => {
+//     const backAction = () => {
+//        BackHandler.exitApp()
+//     };
+
+//     const backHandler = BackHandler.addEventListener(
+//       'hardwareBackPress',
+//       backAction,
+//     );
+
+//     return () => backHandler.remove();
+//   }, []);
+
+
+
   return (
     <View style={{backgroundColor: '#fff', height: '100%'}}>
       <StatusBar hidden={false} translucent backgroundColor="transparent" />
@@ -99,6 +116,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
         }}>
         <VisitAndProfileButton
+        data='See Profile to here '
           onPress={() => {
             handleProfile();
           }}
