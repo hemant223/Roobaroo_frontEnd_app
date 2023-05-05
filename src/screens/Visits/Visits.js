@@ -19,7 +19,9 @@ const Visits = props => {
   // console.log('====================================');
   const [getVisitorData, setVisitorData] = useState([]);
   const [index, setIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState(props?.route?.params?.complete?1:0);
+  const [selectedIndex, setSelectedIndex] = useState(
+    props?.route?.params?.complete ? 1 : 0,
+  );
 
   const [show, setShow] = useState(false);
   const [getUserData, setUserDataByAsync] = useState([]);
@@ -28,7 +30,7 @@ const Visits = props => {
     const userData = await getStoreData('userData');
     setUserDataByAsync(userData);
   };
-// alert(selectedIndex)
+  // alert(selectedIndex)
   // alert(JSON.stringify(getVisitorData));
   // const getUserDataByAsyncStorage = async () => {
   //   const visitorrData = await getStoreData('VisitorData');
@@ -60,11 +62,8 @@ const Visits = props => {
   useEffect(() => {
     getUserDataByAsyncStorage();
     fetchAllVisitorData();
-  }, [show,selectedIndex]);
-  useEffect(() => {
-  
-  }, [show]);
- 
+  }, [show, selectedIndex]);
+  useEffect(() => {}, [show]);
 
   const handleSingleIndexSelect = index => {
     setSelectedIndex(index);
@@ -87,54 +86,60 @@ const Visits = props => {
           backarrowIcon
         />
       </View>
-      <ScrollView>
-        <View style={{margin: 15, top: 10}}>
-          {/* {show && (
+
+      <View style={{margin: 15, top: 10}}>
+        {/* {show && (
             <SegmentedTab
               component1={<VisitorDetails data={getVisitorData} />}
               component2={<VisitorDetailsShow data={getVisitorData} />}
             />
           )} */}
-          <SegmentedControlTab
-            values={['On Going', 'Completed']}
-            selectedIndex={selectedIndex}
-            tabStyle={{
-              //   backgroundColor: Colors.white,
-              //   color: Colors.white,
-              //   borderColor: Colors.MRGREEN,
-              backgroundColor: '#fff',
-              color: '#fff',
-              borderColor: '#ffff',
-              // borderRadius:10
-            }}
-            activeTabStyle={{
-              // backgroundColor: Colors.MRGREEN
-              backgroundColor: '#005db6',
-            }}
-            tabsContainerStyle={{
-              height: 45,
-              // width: WIDTHSEG,
-              alignSelf: 'center',
-            }}
-            tabTextStyle={{
-              //  fontFamily: FontFamily.PopinsMedium,
+        <SegmentedControlTab
+          values={['Ongoing', 'Completed']}
+          selectedIndex={selectedIndex}
+          tabStyle={{
+            //   backgroundColor: Colors.white,
+            //   color: Colors.white,
+            //   borderColor: Colors.MRGREEN,
+            backgroundColor: '#fff',
+            color: '#fff',
+            borderColor: '#ffff',
+            // borderRadius:10
+          }}
+          activeTabStyle={{
+            // backgroundColor: Colors.MRGREEN
+            backgroundColor: '#005db6',
+          }}
+          tabsContainerStyle={{
+            height: 45,
+            // width: WIDTHSEG,
+            alignSelf: 'center',
+          }}
+          tabTextStyle={{
+            //  fontFamily: FontFamily.PopinsMedium,
 
-              fontSize: 14,
-              //   color: Colors.grey,
-              color: 'grey',
-            }}
-            activeTabTextStyle={{color: '#FFF', fontSize: 14}}
-            onTabPress={index => handleSingleIndexSelect(index)}
-          />
-          {selectedIndex==0&&<View>
-            <VisitorDetails data={getVisitorData} />
-          </View>}
-         {selectedIndex==1&& <View>
-            <VisitorDetailsShow data={getVisitorData} />
-          </View>}
-        </View>
-        <View></View>
-      </ScrollView>
+            fontSize: 14,
+            //   color: Colors.grey,
+            color: 'grey',
+          }}
+          activeTabTextStyle={{color: '#FFF', fontSize: 14}}
+          onTabPress={index => handleSingleIndexSelect(index)}
+        />
+        <ScrollView style={{marginBottom:135,marginTop:7}}>
+          <View>
+          {selectedIndex == 0 && (
+            <View>
+              <VisitorDetails data={getVisitorData} />
+            </View>
+          )}
+          {selectedIndex == 1 && (
+            <View>
+              <VisitorDetailsShow data={getVisitorData} />
+            </View>
+          )}
+          </View>
+        </ScrollView>
+      </View>
     </>
   );
 };

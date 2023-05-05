@@ -20,6 +20,7 @@ import {useNavigation} from '@react-navigation/native';
 import {getDataAxios, postDataAxios, putDataAxios} from '../../fetchNodeServices';
 import moment from 'moment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
+import CenterHeader from '../../components/shared/header/CenterHeader';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -100,20 +101,27 @@ const ViewVisit = props => {
   };
   return (
     <View style={{...styles.mainView}}>
-      <Header
-        BackonPress={() => {
-          navigation.goBack();
-        }}
-        height={85}
-        arrowtop={25}
+     {   props.route.params.visitordata.visitor_status=='ongoing'?
+          
+      <CenterHeader
         centerText
-        centerContent="View Visit"
-        verifyBottom={6}
-        backarrowIcon
-        arrowPress={() => {
-          alert('hiii');
+        stepContent="Step 02"
+        stepText
+        centerContent="Visiting Form"
+        onPressBackArrow={() => {
+          navigation.push('Dashboard');
         }}
       />
+      :
+      <CenterHeader
+        centerText
+        stepContent="Step 02"
+        stepText
+        centerContent="Visiting Form"
+        onPressBackArrow={() => {
+          navigation.push('Dashboard');
+        }}
+      />}
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
