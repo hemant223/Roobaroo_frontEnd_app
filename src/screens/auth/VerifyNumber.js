@@ -6,7 +6,7 @@ import {
   View,
   Keyboard,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Video from 'react-native-video';
 import Header from '../../components/shared/header/Header';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
@@ -15,6 +15,7 @@ import Input from '../../components/shared/textInputs/Inputs';
 import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+import { getDataAxios } from '../../fetchNodeServices';
 const VerifyNumber = () => {
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
@@ -28,6 +29,30 @@ const VerifyNumber = () => {
   const handleError = (error, input) => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
+
+  // const [getVisitorData, setVisitorData] = useState([]);
+  // const [getUserData, setUserDataByAsync] = useState([]);
+
+  // const getUserDataByAsyncStorage = async () => {
+  //   const userData = await getStoreData('userData');
+  //   setUserDataByAsync(userData);
+  // };
+  // const fetchAllVisitorData = async () => {
+  //   var data = await getDataAxios(
+  //     `visitors/displayVisitors/${getUserData?.minister_id}`,
+  //   );
+  //   if (data.status) {
+  //     setVisitorData(data.result);
+  //   } else {
+  //     alert('data fetch error');
+  //   }
+   
+  // };
+  // useEffect(() => {
+  //   getUserDataByAsyncStorage();
+  //   fetchAllVisitorData();
+  // }, []);
+//  alert(JSON.stringify(getVisitorData))
 
   const handleMobileNumber = async () => {
     let isValid = true;
@@ -98,6 +123,7 @@ const VerifyNumber = () => {
               onChangeText={text => handleOnchange(text, 'mobileNumber')}
               width="90%"
               borderWidth={0}
+              maxLength={10}
               borderBottomWidth={1.5}
               borderRadius={5}
               placeholder="Enter Visitors mobile"

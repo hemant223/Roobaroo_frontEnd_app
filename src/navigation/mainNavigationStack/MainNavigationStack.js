@@ -19,6 +19,7 @@ import VerifyNumber from '../../screens/auth/VerifyNumber';
 import VerifyOtp from '../../screens/auth/VisitorOTP';
 import VisitingForm from '../../screens/visitiorForm/VisitingForm';
 import ViewVisit from '../../screens/visitiorForm/ViewVisit';
+import SearchScreen from '../../screens/search/SearchScreen';
 
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
@@ -88,6 +89,11 @@ function MainNavigationStack(props) {
          <Stack.Screen
           name="VerifyOtp"
           component={VerifyOtp}
+          options={{headerShown: false}}
+        />
+         <Stack.Screen
+          name="SearchScreen"
+          component={SearchScreen}
           options={{headerShown: false}}
         />
          <Stack.Screen

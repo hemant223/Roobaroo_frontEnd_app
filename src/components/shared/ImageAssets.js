@@ -36,4 +36,5 @@ export const ImagesAssets = {
    Residence:require('../../assets/images/location_modal_img/Residence.png'),
    Vidhansabha:require('../../assets/images/location_modal_img/Vidhansabha.png'),
    Product:require('../../assets/images/otpvideo/product.mp4'),
+   addressbook:require('../../assets/images/VisitorImages/addressbook.png'),
 };

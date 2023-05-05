@@ -194,7 +194,9 @@ const ViewVisit = props => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          <Input label="Date of Brith" textLabel />
+          <Input
+          value={moment(props.route.params.visitordata.date_of_birth).format('h:mm a, Do MMM YYYY')}
+          label="Date of Brith" textLabel />
         </View>
         <View
           style={{
@@ -209,19 +211,39 @@ const ViewVisit = props => {
             labelLeft={10}
           />
         </View>
+       
         <View
           style={{
-            //   backgroundColor: 'yellowgreen',
-            ...styles.Vidhansabha_View_Css,
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
           }}>
-          <Dropdown label={'Vidhansabha'} labelLeft={10} borderRadius={12} />
+          <Input
+            placeholder="Enter reference name if any "
+            label={'Vidhansabha'}
+            value={props.route.params.visitordata.Vidhansabha}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
         </View>
+      
         <View
           style={{
-            //   backgroundColor: 'yellowgreen',
-            ...styles.Mantralya_View_Css,
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
           }}>
-          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12} />
+          <Input
+            placeholder="Enter reference name if any "
+            label={'Mantralaya'}
+            value={props.route.params.visitordata.MantralayName}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
         </View>
         <View
           style={{

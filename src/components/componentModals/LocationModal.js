@@ -7,6 +7,7 @@ import { ImagesAssets } from '../shared/ImageAssets';
 import {
   useNavigation,
 } from '@react-navigation/native';
+import { storeData } from '../../helper/utils/AsyncStorageServices';
 const LocationModal = (props) => {
   const navigation = useNavigation()
 
@@ -88,7 +89,8 @@ const LocationModal = (props) => {
           {data.map(item => {
             return (
               <TouchableOpacity
-              onPress={()=>{navigation.navigate('home',{location:item.title});props.setShowModal(false);}} 
+              onPress={()=>{navigation.navigate('home',{location:item.title});props.setShowModal(false); 
+              storeData('Location',{location:item.title});}} 
                 key={item.id}
                 style={{
                   width: '45%',
@@ -144,7 +146,8 @@ const LocationModal = (props) => {
           {data1.map(item => {
             return (
               <TouchableOpacity
-              onPress={()=>{navigation.navigate('home',{location:item?.title});props.setShowModal(false);}} 
+              onPress={()=>{navigation.navigate('home',{location:item?.title});props.setShowModal(false);
+              storeData('Location',{location:item.title});}} 
                 key={item.id}
                 style={{
                   width: '45%',

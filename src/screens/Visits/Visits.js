@@ -17,36 +17,24 @@ const Visits = props => {
   // console.log('fulluserData on visitor page:',props?.route?.params?.userData);
   // console.log('fulluserData on visitor page:',props?.route?.params?.complete);
   // console.log('====================================');
-  const [getVisitorData, setVisitorData] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(
     props?.route?.params?.complete ? 1 : 0,
-  );
-
-  const [show, setShow] = useState(false);
+    );
+    
+    const [show, setShow] = useState(false);
+    const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
     setUserDataByAsync(userData);
   };
-  // alert(selectedIndex)
-  // alert(JSON.stringify(getVisitorData));
-  // const getUserDataByAsyncStorage = async () => {
-  //   const visitorrData = await getStoreData('VisitorData');
-  //   setVisitorByAsync(visitorrData);
-  //   setShow(true)
-  // };
-  // useEffect(() => {
-  //   getUserDataByAsyncStorage();
-  // }, []);
-  // alert(getUserData?.minister_id)
   const fetchAllVisitorData = async () => {
     var data = await getDataAxios(
       `visitors/displayVisitors/${getUserData?.minister_id}`,
     );
     if (data.status) {
       setVisitorData(data?.result);
-      // alert(JSON.stringify(data?.result))
     } else {
       alert('data fetch error');
     }
@@ -56,8 +44,6 @@ const Visits = props => {
       }, 0);
     }
   };
-  // console.log(getVisitorData)
-  // alert(JSON.stringify(getUserData))
   useEffect(() => {
     getUserDataByAsyncStorage();
     fetchAllVisitorData();
@@ -68,7 +54,9 @@ const Visits = props => {
     setSelectedIndex(index);
   };
   // alert(selectedIndex)
-
+// console.log('====================================');
+// console.log('getVisitorDataaaaa',getVisitorData);
+// console.log('====================================');
   return (
     <>
       <View>

@@ -146,7 +146,8 @@ const SubHeader = props => {
 
          
 
-          <View style={{justifyContent:'center',
+          <TouchableOpacity onPress={props.searchPress} style={{justifyContent:'center',
+          
           // backgroundColor:'red',
           marginRight:10}}>
 
@@ -156,7 +157,7 @@ const SubHeader = props => {
               color="#fff"
               size={22}
             />
-          </View>
+          </TouchableOpacity>
 
 
 

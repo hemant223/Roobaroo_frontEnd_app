@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -15,7 +16,7 @@ import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
@@ -68,6 +69,7 @@ const VisitingForm = props => {
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
   const [picture, setPicture] = React.useState('');
   const [disabled, setDisabled] = React.useState(1);
+  const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
@@ -80,12 +82,15 @@ const VisitingForm = props => {
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
+    const locationn = await getStoreData('Location');
+    setLocation(locationn?.location);
     setUserDataByAsync(userData);
   };
   useEffect(() => {
     getUserDataByAsyncStorage();
   }, []);
   // alert(JSON.stringify(getUserData));
+  // alert(location)
 
   // alert(dob)
   const validate = async () => {
@@ -129,36 +134,38 @@ const VisitingForm = props => {
         minister_id: getUserData.MinisterId,
         group_member: 'hemu raju',
         visitor_status: 'ongoing',
+        location_type: location,
+        constituency_id:1
       };
 
       let response = await postDataAxios(`visitors/addVisitor`, body);
-// alert(response.status)
+      // alert(response.status)
       if (response.status) {
         setShowModal(true);
       } else {
         alert('Error in data Submissin');
       }
-
-      // const oldDataVisitor = await getStoreData('VisitorData');
-      // if(!oldDataVisitor){
-      //   storeData('VisitorData',[body]);
-      // }
-      // else{
-      //   oldDataVisitor.push(body)
-      //   await storeData('VisitorData', oldDataVisitor);
-      // }
-      // alert(JSON.stringify(body));
     }
   };
 
-  const visitor = async () => {
-    var visitors = await getStoreData('VisitorData');
-    // console.log('fffffffff', JSON.stringify(visitors));
-  };
+  useFocusEffect(
+    React.useCallback(() => {
+      function handleBackButtonClick() {
+        navigation.push('Dashboard');
+        return true;
+      }
 
-  useEffect(() => {
-    visitor();
-  }, []);
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+
+          handleBackButtonClick,
+        );
+      };
+    }, []),
+  );
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
@@ -317,6 +324,22 @@ const VisitingForm = props => {
             onChangeText={text => {
               handleOnchange(text, 'Reference');
             }}
+          />
+        </View>
+        <View
+          style={{
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
+          }}>
+          <Input
+            // placeholder="Enter reference name if any "
+            label={'Selected Location'}
+            textLabel
+            width={'100%'}
+            textfontSize={14}
+            borderWidth={1}
+            borderBottomWidth={1}
+            value={location}
           />
         </View>
 

@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, StatusBar,BackHandler} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, BackHandler} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/shared/header/Header';
 import SpeedoMeter from './speedometer/SpeedoMeter';
@@ -6,19 +6,30 @@ import SingleBarChart from '../../components/shared/barChart/BarChart';
 import VisitAndProfileButton from '../../components/visit_and_myProfile/VisitAndProfileButton';
 import SubHeader from '../../components/shared/subHeader/SubHeader';
 import LocationModal from '../../components/componentModals/LocationModal';
-import {useNavigation} from '@react-navigation/native';
-import {getStoreData, removeStoreData} from '../../helper/utils/AsyncStorageServices';
-removeStoreData
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {
+  getStoreData,
+  removeStoreData,
+} from '../../helper/utils/AsyncStorageServices';
+import {getDataAxios} from '../../fetchNodeServices';
+removeStoreData;
 const Dashboard = props => {
-  //   const {location} = props.route.params;
-
-  // var dataa = Object.keys(getData)
-  //   alert(JSON.stringify(location));
-  // var titledata=JSON.stringify(title)
-  // console.log('getData',Object.values(getData));
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
- 
+  const [location, setLocation] = useState('');
+
+  const getUserDataByAsyncStorage = async () => {
+    const userData = await getStoreData('userData');
+    var data = await getDataAxios(
+      `visitors/todayVisitor/${userData?.id}`,
+    )
+    alert(JSON.stringify(data))
+    const locationn = await getStoreData('Location');
+    setLocation(locationn?.location);
+  };
+  useEffect(() => {
+    getUserDataByAsyncStorage();
+  }, []);
   const handleProfile = async () => {
     let userData = await getStoreData('userData');
     //   alert(JSON?.stringify(userData))
@@ -30,21 +41,25 @@ const Dashboard = props => {
     navigation.navigate('Visit', {userData: userData});
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      function handleBackButtonClick() {
+        BackHandler.exitApp();
+        return true;
+      }
 
-//   useEffect(() => {
-//     const backAction = () => {
-//        BackHandler.exitApp()
-//     };
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
 
-//     const backHandler = BackHandler.addEventListener(
-//       'hardwareBackPress',
-//       backAction,
-//     );
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
 
-//     return () => backHandler.remove();
-//   }, []);
-
-
+          handleBackButtonClick,
+        );
+      };
+    }, []),
+  );
+  // alert(showModal)
 
   return (
     <View style={{backgroundColor: '#fff', height: '100%'}}>
@@ -59,6 +74,9 @@ const Dashboard = props => {
         profile
         rightText
         rightContent="Tarun Bhadoriya"
+        searchPress={() => {
+          navigation.navigate('SearchScreen');
+        }}
       />
 
       <View
@@ -103,7 +121,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
         }}>
         <VisitAndProfileButton
-        onPress={() => {
+          onPress={() => {
             handleVisits();
           }}
         />
@@ -116,7 +134,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
         }}>
         <VisitAndProfileButton
-        data='See Profile to here '
+          data="See Profile to here "
           onPress={() => {
             handleProfile();
           }}
