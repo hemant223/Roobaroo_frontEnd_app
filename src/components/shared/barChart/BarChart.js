@@ -32,15 +32,15 @@ export default function SingleBarChart(props) {
       endDate: '2023-05-08',
     };
     var response = await getDataAxios(`visitors/todayVisitor/${37}`, body);
-console.log(response)
-    console.log(
-      'BarChart Component mein 30 Line==========>',
-      (response.obj.datasets[0].data),
-    );
+// console.log(response)
+//     console.log(
+//       'BarChart Component mein 30 Line==========>',
+//       response.obj.label
+//     );
 
     var aa = response.obj.datasets[0].data;
     const count=aa.length
-    console.log(count)
+    // console.log(count)
     setWeekly_Count(count);
   };
 

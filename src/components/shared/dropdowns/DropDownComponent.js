@@ -10,11 +10,13 @@ const Dropdown = props => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSelectValue = item => {
+    
     try {
       setSelectedValue(item.label);
 
       setShowDropdown(false);
       props.onSelect(item.value);
+      props.setShowName(item.label);
       props.optionFunctionOnSelect(item.value);
       props.onPressfun(item.value);
       props.onPressfunforAgendaType(item.label);
@@ -25,27 +27,6 @@ const Dropdown = props => {
  
 
 
-const fetchVidhansbha = async () => {
-  try {
-    var response = await getDataAxios(`vidhansabha/displayVidhansabha/${1}`)
-    // console.log('RESPONSE', response);
-    // alert(JSON.stringify(response));
-    console.log(
-      '33 Line in Dropdown===========>',
-      response
-    );
-  
-   
-  } catch (err) {
-    console.error('Catch Error ', err);
-   
-  }
-};
-// alert(data);
-useEffect(() => {
-  
-  fetchVidhansbha();
-});
 
 
   return (
@@ -86,7 +67,7 @@ useEffect(() => {
             fontSize: 14,
             color: Colors.black,
           }}>
-          {selectedValue || props.placeholder}
+          { props.showName?   props.showName:'Select' }
         </Text>
         <Text
           style={{

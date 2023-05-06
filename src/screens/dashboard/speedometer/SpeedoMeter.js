@@ -2,22 +2,31 @@ import React, {useEffect, useState} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {RadialSlider} from 'react-native-radial-slider';
 import {getDataAxios} from '../../../fetchNodeServices';
+import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
 
 const SpeedoMeter = () => {
   const [data, setData] = useState(0);
   const [shimmer, setShimmer] = useState(true);
+  const [getUserData, setUserDataByAsync] = useState([])
 
-  // alert(data);
+  const getUserDataByAsyncStorage=async()=>{
+    const userData = await getStoreData('userData');
+    setUserDataByAsync(userData)
+  }
+  useEffect(() => {
+    getUserDataByAsyncStorage()
+  }, [])
+  // alert(JSON.stringify(getUserData));
 
   const fetchVisitor = async () => {
     try {
-      var response = await getDataAxios(`visitors/todayVisitor/${37}`);
+      var response = await getDataAxios(`visitors/todayVisitor/${getUserData.id}`);
       // console.log('RESPONSE', response);
       // alert(JSON.stringify(response));
-      console.log(
-        '12 Line in Speedometer===========>123',
-        response.todayVisitor[0].TodayVisitorCount,
-      );
+      // console.log(
+      //   '12 Line in Speedometer===========>123',
+      //   response.todayVisitor[0].TodayVisitorCount,
+      // );
       setData(response.todayVisitor[0].TodayVisitorCount);
       setShimmer(false);
     } catch (err) {

@@ -1,38 +1,20 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
-
 import RadioButton from '../../components/shared/buttons/RadioButton';
-import Header from '../../components/shared/header/Header';
 import Input from '../../components/shared/textInputs/Inputs';
-
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import {useNavigation} from '@react-navigation/native';
-import {postDataAxios} from '../../fetchNodeServices';
+import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
-import { Colors } from '../../assets/config/Colors';
+import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
 
-options = [
-  {label: 'Gwalior VidhanSabha', value: 1},
-  {label: 'East Gwalior ', value: 2},
-  {label: 'Morena ', value: 3},
-];
-options2 = [
-  {label: 'Shiksha Mantri', value: 1},
-  {label: 'Urja Mantri ', value: 2},
-  {label: 'Krshi Mantri ', value: 3},
-];
+
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -44,18 +26,13 @@ const physicallyData = [
   {type: 'No', id: 2, color: false},
 ];
 
-const genderdata= [
+const genderdata = [
   {type: 'Male', id: 1, color: false},
   {type: 'Female', id: 2, color: false},
   {type: 'Others', id: 3, color: false},
-]
-const VisitingForm = () => {
+];
+const VisitingForm = props => {
   const navigation = useNavigation();
-
- 
- 
-  
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
     firstName: '',
@@ -64,63 +41,122 @@ const VisitingForm = () => {
     Reference: '',
   });
   const [errors, setErrors] = React.useState({});
+  const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
 
-  const [date_of_Birth, setDate_of_Birth] = React.useState('');
-  const [vidhansabha, setVidhansabha] = React.useState('');
-  const [mantralaya, setMantralaya] = React.useState('');
-
-  const [picture, setPicture] = React.useState('');
-  const [disabled, setDisabled] = React.useState(1);
-
-  const [userid, setUserId] = React.useState(1);
+  // const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
   const [gender, setGender] = React.useState('Male');
-  const [physically_disabled_Name, setPhysically_disabled_Name]=
+  const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
 
-  //check the validation
-  const [getUserData, setUserDataByAsync] = useState([])
+  const [getUserData, setUserDataByAsync] = useState([]);
 
-  const getUserDataByAsyncStorage=async()=>{
+
+  // Vidhansabha DropDown State//
+  const [vidhansabhaName, setVidhansabhaName] = useState();
+  const [vidhansabha, setVidhansabha] = React.useState('');
+  const [vidhansabhaNamee, setVidhansabhaNamee] = useState('');
+  //Constituency DropDown State//
+  const [constituencyid, setContituencyid] = React.useState('');
+  const [constituency, setConstituency] = useState();
+  const [concetencyNamee, setConcetencyNamee] = useState('');
+  // Mantralay DropDown State//
+  const [mantralay, setMantralay] = useState();
+  const [mantralayId, setMantralayId] = useState();
+  const [showMantralayName,setMantralayName]=useState()
+
+// VidhanSbha DropDown
+const fetchVidhansbha = async () => {
+  try {
     const userData = await getStoreData('userData');
-    setUserDataByAsync(userData)
+    var StateId = userData.StateId;
+    // alert((StateId))
+    var response = await getDataAxios(
+      `vidhansabha/displayVidhansabha/${StateId}`,
+    );
+    //  console.log('RESPONSE', response.result);
+    // alert(JSON.stringify(response));
+    // console.log('33 Line in Dropdown===========>', response.result);
+    var aa = [];
+    for (var arrays of response.result) {
+      // console.log('53=========>',arrays)
+      aa.push({value: arrays.id, label: arrays.vidhansabha_name});
+    }
+    setVidhansabhaName(aa);
+    // console.log(aa)
+  } catch (err) {
+    console.error('Catch Error ', err);
   }
-  useEffect(() => {
-    getUserDataByAsyncStorage()
-  }, [])
-  // alert(JSON.stringify(getUserData))
+};
+// alert(JSON.stringify(props?.route?.params));
+useEffect(() => {
+  fetchVidhansbha();
+}, []);
 
+  //Constituency//
+  const fetchConstituency = async () => {
+    try {
+      // alert(vidhansabha)
+      setConcetencyNamee('');
+      var response = await getDataAxios(
+        `constituency/displayConstituency/${vidhansabha}`,
+      );
+      //  console.log('RESPONSE', response.result);
+      var constituency = [];
+      for (var con of response.result) {
+        // console.log('53=========>',con)
+        constituency.push({value: con.id, label: con.constituency_name});
+      }
+      setConstituency(constituency);
+    } catch (err) {
+      console.error('Catch Error ', err);
+    }
+  };
+  // alert(data);
+  useEffect(() => {
+    fetchConstituency();
+  }, [vidhansabha]);
+
+
+//Mantralaya//
+const fetchMantralya = async () => {
+  try {
+    // alert(vidhansabha)
+
+    var response = await getDataAxios(`mantralay/displayMantralay`);
+    console.log('RESPONSE', response.result);
+    var zz = [];
+    for (var man of response.result) {
+      // console.log('53=========>',man)
+      zz.push({value: man.id, label: man.mantralya_name});
+    }
+    setMantralay(zz);
+  } catch (err) {
+    console.error('Catch Error ', err);
+  }
+};
+
+useEffect(() => {
+  fetchMantralya();
+}, []);
+
+
+
+  const getUserDataByAsyncStorage = async () => {
+    const userData = await getStoreData('userData');
+    setUserDataByAsync(userData);
+  };
+  useEffect(() => {
+    getUserDataByAsyncStorage();
+  }, []);
+  // alert(JSON.stringify(getUserData));
+  // alert(JSON.stringify(constituency))
+
+  
 
   const validate = async () => {
-    const visitorMob = await getStoreData('VisitorsMobileNo');
-       
-    let body = {
-      firstname: inputs.firstName,
-      lastname: inputs.LastName,
-      date_of_birth: date_of_Birth,
-      vidhansabha_id: vidhansabha,
-      mantralya_id: mantralaya,
-      refernce: inputs.Reference,
-      reason_to_visit: inputs.Reasion,
-      physically_disabled: physically_disabled_Name,
-      user_id: userid,
-      visitor_type: visitorname,
-      gender: gender,
-      minister_id: '1',
-      time: moment().format('h:mm a, Do MMMM YYYY'),
-      VisitorMobile: visitorMob,
-    };
-
-    // let response = await postDataAxios(`visitor/addVisitor`, body);
-
+    // const visitorMob = await getStoreData('VisitorsMobileNo');
     // // alert(response.status)
-
-    // if (response.status) {
-    //   alert('Done');
-    // } else {
-    //   alert('Not Done');
-    // }
-
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -139,29 +175,36 @@ const VisitingForm = () => {
       isValid = false;
     }
     if (isValid) {
-      // const oldDataVisitor = await getStoreData('VisitorData');
-      // if(!oldDataVisitor){
-      //   storeData('VisitorData',[body]);
-      // }
-      // else{
-      //   oldDataVisitor.push(body)
-      //   await storeData('VisitorData', oldDataVisitor);
-      // }
-      // alert(JSON.stringify(body));
-      {
+      let body = {
+        firstname: inputs.firstName,
+        lastname: inputs.LastName,
+        mobile_number: props?.route?.params?.mobileNo,
+        gender: gender,
+        physically_disabled: physically_disabled_Name,
+        date_of_birth: dob,
+        visitor_type: visitorname,
+        vidhansabha_id: vidhansabha,
+        mantralya_id: mantralayId,
+        refernce: inputs.Reference,
+        reason_to_visit: inputs.Reasion,
+        picture: '',
+        user_id: getUserData.id,
+        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        minister_id: getUserData.MinisterId,
+        group_member: 'hemu raju',
+        visitor_status: 'ongoing',
+        constituency_id:constituencyid
+      };
+
+      let response = await postDataAxios(`visitors/addVisitor`, body);
+      // alert(response.status)
+      if (response.status) {
         setShowModal(true);
+      } else {
+        alert('Error in data Submissin');
       }
     }
   };
-
-  const visitor = async () => {
-    var visitors = await getStoreData('VisitorData');
-    // console.log('fffffffff', JSON.stringify(visitors));
-  };
-
-  useEffect(() => {
-    visitor();
-  }, []);
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
@@ -179,7 +222,7 @@ const VisitingForm = () => {
         stepText
         centerContent="Visiting Form"
         onPressBackArrow={() => {
-          navigation.navigate('Dashboard');
+          navigation.push('Dashboard');
         }}
       />
       <ScrollView>
@@ -251,11 +294,11 @@ const VisitingForm = () => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          
           <DateTimePicker
             borderRadius={30}
             backgroundColor={Colors.Textinputbg}
             height={40}
+            setDate={setDob}
             label="Date of Brith"
           />
         </View>
@@ -283,8 +326,26 @@ const VisitingForm = () => {
             label={'Vidhansabha'}
             labelLeft={10}
             borderRadius={12}
-            options={options}
+            options={vidhansabhaName}
             onSelect={setVidhansabha}
+            setShowName={setVidhansabhaNamee}
+            showName={vidhansabhaNamee}
+          />
+        </View>
+
+        <View
+          style={{
+            //   backgroundColor: 'yellowgreen',
+            ...styles.Constintuency_View_Css,
+          }}>
+          <Dropdown
+            label={'Constituency'}
+            labelLeft={10}
+            borderRadius={12}
+            options={constituency}
+            onSelect={setContituencyid}
+            setShowName={setConcetencyNamee}
+            showName={concetencyNamee}
           />
         </View>
 
@@ -297,8 +358,11 @@ const VisitingForm = () => {
             label={'Mantralaya'}
             labelLeft={10}
             borderRadius={12}
-            onSelect={setMantralaya}
-            options={options2}
+            options={mantralay}
+            onSelect={setMantralayId}
+            setShowName={setMantralayName}
+            showName={showMantralayName}
+            
           />
         </View>
 
@@ -319,9 +383,7 @@ const VisitingForm = () => {
             error={errors.Reference}
             onChangeText={text => {
               handleOnchange(text, 'Reference');
-             
             }}
-            
           />
         </View>
 
@@ -368,8 +430,9 @@ const VisitingForm = () => {
       </ScrollView>
       {
         <SuccessModal
+          title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
-            navigation.navigate('Visits');
+            navigation.push('Visits');
           }}
           setShowModal={setShowModal}
           showModal={showModal}
@@ -410,18 +473,22 @@ const styles = StyleSheet.create({
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-
-    zIndex: 2,
+    zIndex: 6,
+  },
+  Constintuency_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 5,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-
-    zIndex: 1,
+    zIndex: 4,
   },
   Reference_View_Css: {
     padding: 3,
     margin: 5,
+    zIndex: 1,
   },
   Resion_View_Css: {
     padding: 3,
