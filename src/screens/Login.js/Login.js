@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import Input from '../../components/shared/textInputs/Inputs';
@@ -45,7 +45,6 @@ function Login(props) {
   //   }, []);
 
   const handleSubmit = async () => {
-   
     let isValid = true;
     Keyboard.dismiss();
     if (!inputs.mobileNumber) {
@@ -90,6 +89,7 @@ function Login(props) {
           </View>
           <View style={{padding: 10}}>
             <Input
+              maxLength={10}
               width="100%"
               borderWidth={0}
               borderBottomWidth={1}
@@ -102,7 +102,7 @@ function Login(props) {
               keyboardType="numeric"
             />
           </View>
-          <View style={{marginTop:5, padding: 10, width: '100%'}}>
+          <View style={{marginTop: 5, padding: 10, width: '100%'}}>
             <View style={{alignSelf: 'center', width: '100%'}}>
               <FullSizeButtons
                 onPress={() => {

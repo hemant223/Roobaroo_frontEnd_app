@@ -14,10 +14,10 @@ const SpeedoMeter = () => {
       var response = await getDataAxios(`visitors/todayVisitor/${37}`);
       // console.log('RESPONSE', response);
       // alert(JSON.stringify(response));
-      console.log(
-        '12 Line in Speedometer===========>123',
-        response.todayVisitor[0].TodayVisitorCount,
-      );
+      // console.log(
+      //   '12 Line in Speedometer===========>123',
+      //   response.todayVisitor[0].TodayVisitorCount,
+      // );
       setData(response.todayVisitor[0].TodayVisitorCount);
       setShimmer(false);
     } catch (err) {

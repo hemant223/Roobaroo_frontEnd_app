@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Dimensions, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import En from 'react-native-vector-icons/Entypo';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import {Colors} from '../../../assets/config/Colors';
 
@@ -64,7 +65,7 @@ const Input = props => {
         <View style={{width: '100%', flexWrap: 'wrap'}}>
           <TextInput
             style={{
-              color: '#000',
+              color: props.txtColor,
               width: '100%',
               // fontFamily:FontFamily.PopinsMedium,
               fontSize: props.textfontSize,
@@ -73,7 +74,7 @@ const Input = props => {
             placeholder={props.placeholder}
             placeholderTextColor={props.placeholderColor}
             onChangeText={props.onChangeText}
-            
+            maxLength={props.maxLength}
             numberOfLines={5}
             label={'Full Name'}
             textAlignVertical={'top'}
@@ -88,6 +89,16 @@ const Input = props => {
            
           />
         </View>
+        {props.rightIcon ? (
+          <View style={{width: '12%', alignSelf: 'center'}}>
+            <En
+              name={props.rightIcon}
+              style={{color: '#000', fontSize: 22, marginRight: 10}}
+            />
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
       {props.error && (
         <Text style={{marginTop: 7, color: 'red', fontSize: 12}}>
@@ -103,6 +114,7 @@ Input.defaultProps = {
   width: '80%',
   height: 40,
   icon: false,
+  maxLength:1000,
   iconColor: 'white',
   borderRadius: 15,
   textColor: 'white',
@@ -117,6 +129,7 @@ Input.defaultProps = {
   borderBottomColor: '#ddd',
   textfontSize: 11,
   error: '',
+  txtColor:'#000',
   onFocus : () => {},
 };
 
