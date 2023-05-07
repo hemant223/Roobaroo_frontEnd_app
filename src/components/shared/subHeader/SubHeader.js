@@ -147,8 +147,9 @@ const SubHeader = props => {
          
 
           <TouchableOpacity onPress={props.searchPress} style={{justifyContent:'center',
-          
+          width:50,
           // backgroundColor:'red',
+          alignItems:'center',
           marginRight:10}}>
 
             <Ionicons
@@ -173,7 +174,7 @@ export default SubHeader;
 
 SubHeader.defaultProps = {
   backgroundColor: '#005db6',
-  height: 150,
+  height: '100%',
   borderBottomLeftRadius: 15,
   borderBottomRightRadius: 15,
 };

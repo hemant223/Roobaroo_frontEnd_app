@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, StatusBar, BackHandler} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  BackHandler,
+  Dimensions,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Header from '../../components/shared/header/Header';
 import SpeedoMeter from './speedometer/SpeedoMeter';
@@ -12,7 +19,8 @@ import {
   removeStoreData,
 } from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios} from '../../fetchNodeServices';
-removeStoreData;
+import moment from 'moment';
+const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
@@ -20,10 +28,10 @@ const Dashboard = props => {
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-    var data = await getDataAxios(
-      `visitors/todayVisitor/${userData?.id}`,
-    )
-    alert(JSON.stringify(data))
+    const Location = await getStoreData('Location');
+    // alert(JSON.stringify(Location.location))
+    var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
+    // alert(JSON.stringify(data))
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
   };
@@ -61,37 +69,49 @@ const Dashboard = props => {
   );
   // alert(showModal)
 
-  return (
-    <View style={{backgroundColor: '#fff', height: '100%'}}>
-      <StatusBar hidden={false} translucent backgroundColor="transparent" />
 
-      <SubHeader
-        locationData={props?.route?.params?.location}
-        locationonPress={() => {
-          setShowModal(true);
-        }}
-        MenuIcon
-        profile
-        rightText
-        rightContent="Tarun Bhadoriya"
-        searchPress={() => {
-          navigation.navigate('SearchScreen');
-        }}
-      />
+  return (
+    <View
+      style={{
+        backgroundColor: '#fff',
+        height: height * 1,
+        width: width * 1,
+      }}>
+      <StatusBar hidden={false} translucent backgroundColor="transparent" />
+      <View
+        style={{
+          height: height * 0.15,
+          backgroundColor: '#fff',
+          width: width * 1,
+        }}>
+        <SubHeader
+          locationData={props?.route?.params?.location}
+          locationonPress={() => {
+            setShowModal(true);
+          }}
+          MenuIcon
+          profile
+          rightText
+          rightContent="Tarun Bhadoriya"
+          searchPress={() => {
+            navigation.navigate('SearchScreen');
+          }}
+        />
+      </View>
 
       <View
         style={{
           backgroundColor: '#fff',
-          width: '100%',
-          height: '25%',
-          marginTop: 12,
+          width: width * 1,
+          height: height * 0.28,
+          marginTop: 7,
           alignItems: 'center',
         }}>
         <View
           style={{
             backgroundColor: '#fff',
             width: '95%',
-            height: '100%',
+            height:'100%',
             borderRadius: 12,
             borderWidth: 1,
             borderColor: '#e4e4e4',
@@ -105,20 +125,23 @@ const Dashboard = props => {
 
       <View
         style={{
-          width: '100%',
-          height: '30%',
+          width: width * 1,
+          height: height * 0.28,
           backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
+          marginTop:7
         }}>
         <SingleBarChart />
       </View>
+
       <View
         style={{
-          width: '100%',
-          height: '12%',
+          width: width * 1,
+          height: height * 0.12,
           alignItems: 'center',
           backgroundColor: '#fff',
+          marginTop:7
         }}>
         <VisitAndProfileButton
           onPress={() => {
@@ -126,12 +149,14 @@ const Dashboard = props => {
           }}
         />
       </View>
+
       <View
         style={{
-          width: '100%',
-          height: '12%',
+          width: width * 1,
+          height: height * 0.12,
           alignItems: 'center',
           backgroundColor: '#fff',
+          marginTop:7
         }}>
         <VisitAndProfileButton
           data="See Profile to here "
@@ -143,6 +168,7 @@ const Dashboard = props => {
           backgroundColor={'#fdead2'}
         />
       </View>
+
       <View>
         {<LocationModal setShowModal={setShowModal} showModal={showModal} />}
       </View>

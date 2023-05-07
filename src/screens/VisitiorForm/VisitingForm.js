@@ -17,7 +17,7 @@ import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
-import {postDataAxios} from '../../fetchNodeServices';
+import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
@@ -63,12 +63,10 @@ const VisitingForm = props => {
   });
   const [errors, setErrors] = React.useState({});
 
-  const [date_of_Birth, setDate_of_Birth] = React.useState('');
-  const [vidhansabha, setVidhansabha] = React.useState('');
-  const [mantralaya, setMantralaya] = React.useState('');
+  
+ 
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
-  const [picture, setPicture] = React.useState('');
-  const [disabled, setDisabled] = React.useState(1);
+  
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
@@ -76,6 +74,106 @@ const VisitingForm = props => {
   const [gender, setGender] = React.useState('Male');
   const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
+
+
+// Vidhansabha DropDown State//
+const [vidhansabhaName, setVidhansabhaName] = useState();
+const [vidhansabha, setVidhansabha] = React.useState('');
+const [vidhansabhaNamee, setVidhansabhaNamee] = useState('');
+//Constituency DropDown State//
+const [constituencyid, setContituencyid] = React.useState('');
+const [constituency, setConstituency] = useState();
+const [concetencyNamee, setConcetencyNamee] = useState('');
+// Mantralay DropDown State//
+const [mantralay, setMantralay] = useState();
+const [mantralayId, setMantralayId] = useState();
+const [showMantralayName,setMantralayName]=useState()
+
+// VidhanSbha DropDown
+const fetchVidhansbha = async () => {
+try {
+  const userData = await getStoreData('userData');
+  var StateId = userData.StateId;
+  // alert((StateId))
+  var response = await getDataAxios(
+    `vidhansabha/displayVidhansabha/${StateId}`,
+  );
+  //  console.log('RESPONSE', response.result);
+  // alert(JSON.stringify(response));
+  // console.log('33 Line in Dropdown===========>', response.result);
+  var aa = [];
+  for (var arrays of response.result) {
+    // console.log('53=========>',arrays)
+    aa.push({value: arrays.id, label: arrays.vidhansabha_name});
+  }
+  setVidhansabhaName(aa);
+  // console.log(aa)
+} catch (err) {
+  console.error('Catch Error ', err);
+}
+};
+// alert(JSON.stringify(props?.route?.params));
+useEffect(() => {
+fetchVidhansbha();
+}, []);
+
+//Constituency//
+const fetchConstituency = async () => {
+  try {
+    // alert(vidhansabha)
+    setConcetencyNamee('');
+    var response = await getDataAxios(
+      `constituency/displayConstituency/${vidhansabha}`,
+    );
+    //  console.log('RESPONSE', response.result);
+    var constituency = [];
+    for (var con of response.result) {
+      // console.log('53=========>',con)
+      constituency.push({value: con.id, label: con.constituency_name});
+    }
+    setConstituency(constituency);
+  } catch (err) {
+    console.error('Catch Error ', err);
+  }
+};
+// alert(data);
+useEffect(() => {
+  fetchConstituency();
+}, [vidhansabha]);
+
+
+//Mantralaya//
+const fetchMantralya = async () => {
+try {
+  // alert(vidhansabha)
+
+  var response = await getDataAxios(`mantralay/displayMantralay`);
+  console.log('RESPONSE', response.result);
+  // alert(response.result)
+  alert
+  var zz = [];
+  for (var man of response.result) {
+    // console.log('53=========>',man)
+    zz.push({value: man.id, label: man.mantralya_name});
+  }
+  setMantralay(zz);
+} catch (err) {
+  console.error('Catch Error ', err);
+}
+};
+
+useEffect(() => {
+fetchMantralya();
+}, []);
+
+
+
+
+
+
+
+
+
 
   //check the validation
   const [getUserData, setUserDataByAsync] = useState([]);
@@ -85,6 +183,7 @@ const VisitingForm = props => {
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
     setUserDataByAsync(userData);
+    // alert(JSON.stringify(userData))
   };
   useEffect(() => {
     getUserDataByAsyncStorage();
@@ -96,8 +195,9 @@ const VisitingForm = props => {
   const validate = async () => {
     // const visitorMob = await getStoreData('VisitorsMobileNo');
 
+    // alert(JSON.stringify(getUserData))
     // // alert(response.status)
-
+    // alert(getUserData.MinisterId);
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -125,17 +225,17 @@ const VisitingForm = props => {
         date_of_birth: dob,
         visitor_type: visitorname,
         vidhansabha_id: vidhansabha,
-        mantralya_id: mantralaya,
+        mantralya_id: mantralayId,
         refernce: inputs.Reference,
         reason_to_visit: inputs.Reasion,
         picture: '',
         user_id: getUserData.id,
         created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        minister_id: getUserData.MinisterId,
+        minister_id: getUserData.minister_id,
         group_member: 'hemu raju',
         visitor_status: 'ongoing',
         location_type: location,
-        constituency_id:1
+        constituency_id: constituencyid,
       };
 
       let response = await postDataAxios(`visitors/addVisitor`, body);
@@ -283,12 +383,29 @@ const VisitingForm = props => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Vidhansabha_View_Css,
           }}>
-          <Dropdown
+         <Dropdown
             label={'Vidhansabha'}
             labelLeft={10}
             borderRadius={12}
-            options={options}
+            options={vidhansabhaName}
             onSelect={setVidhansabha}
+            setShowName={setVidhansabhaNamee}
+            showName={vidhansabhaNamee}
+          />
+        </View>
+        <View
+          style={{
+            //   backgroundColor: 'yellowgreen',
+            ...styles.Constintuency_View_Css,
+          }}>
+          <Dropdown
+            label={'Constituency'}
+            labelLeft={10}
+            borderRadius={12}
+            options={constituency}
+            onSelect={setContituencyid}
+            setShowName={setConcetencyNamee}
+            showName={concetencyNamee}
           />
         </View>
 
@@ -297,12 +414,15 @@ const VisitingForm = props => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Mantralya_View_Css,
           }}>
-          <Dropdown
+         <Dropdown
             label={'Mantralaya'}
             labelLeft={10}
             borderRadius={12}
-            onSelect={setMantralaya}
-            options={options2}
+            options={mantralay}
+            onSelect={setMantralayId}
+            setShowName={setMantralayName}
+            showName={showMantralayName}
+            
           />
         </View>
 
@@ -429,14 +549,17 @@ const styles = StyleSheet.create({
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-
-    zIndex: 2,
+    zIndex: 6,
+  },
+  Constintuency_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 5,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-
-    zIndex: 1,
+    zIndex: 4,
   },
   Reference_View_Css: {
     padding: 3,

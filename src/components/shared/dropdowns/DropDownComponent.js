@@ -1,19 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {Colors} from '../../../assets/config/Colors';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
+import { getDataAxios } from '../../../fetchNodeServices';
 
 const Dropdown = props => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleSelectValue = item => {
+    
     try {
       setSelectedValue(item.label);
 
       setShowDropdown(false);
       props.onSelect(item.value);
+      props.setShowName(item.label);
       props.optionFunctionOnSelect(item.value);
       props.onPressfun(item.value);
       props.onPressfunforAgendaType(item.label);
@@ -21,6 +24,10 @@ const Dropdown = props => {
       console.log('In Catch in DropdownComponent Line 16', e);
     }
   };
+ 
+
+
+
 
   return (
     <View
@@ -60,7 +67,7 @@ const Dropdown = props => {
             fontSize: 14,
             color: Colors.black,
           }}>
-          {selectedValue || props.placeholder}
+          { props.showName?   props.showName:'Select' }
         </Text>
         <Text
           style={{
@@ -146,12 +153,12 @@ const styles = StyleSheet.create({
 export default Dropdown;
 Dropdown.defaultProps = {
   options: [
-    {label: 'value one', value: 1},
-    {label: 'value two', value: 2},
-    {label: 'value three', value: 3},
-    {label: 'value three', value: 4},
-    {label: 'value three', value: 5},
-    {label: 'value three', value: 6},
+    // {label: 'value one', value: 1},
+    // {label: 'value two', value: 2},
+    // {label: 'value three', value: 3},
+    // {label: 'value three', value: 4},
+    // {label: 'value three', value: 5},
+    // {label: 'value three', value: 6},
   ],
   onSelect: () => {},
   placeholder: 'select',
