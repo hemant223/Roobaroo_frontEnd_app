@@ -42,7 +42,7 @@ const Item = ({item,navigation}) => {
     var time =moment(item.updated_at).format('h:mm a, Do MMM YYYY')
   return (
     <>
-     { item.visitor_status=='completed' && <TouchableOpacity onPress={()=>{navigation.navigate('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
+     { item.visitor_status=='completed' && <TouchableOpacity onPress={()=>{navigation.push('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
        <View
           style={{
             width: '100%',

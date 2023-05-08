@@ -153,12 +153,12 @@ const styles = StyleSheet.create({
 export default Dropdown;
 Dropdown.defaultProps = {
   options: [
-    {label: 'value one', value: 1},
-    {label: 'value two', value: 2},
-    {label: 'value three', value: 3},
-    {label: 'value three', value: 4},
-    {label: 'value three', value: 5},
-    {label: 'value three', value: 6},
+    // {label: 'value one', value: 1},
+    // {label: 'value two', value: 2},
+    // {label: 'value three', value: 3},
+    // {label: 'value three', value: 4},
+    // {label: 'value three', value: 5},
+    // {label: 'value three', value: 6},
   ],
   onSelect: () => {},
   placeholder: 'select',

@@ -1,4 +1,12 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  BackHandler,
+  Image,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Input from '../../components/shared/textInputs/Inputs';
@@ -6,15 +14,14 @@ import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -41,7 +48,10 @@ const VisitingForm = props => {
     Reference: '',
   });
   const [errors, setErrors] = React.useState({});
+
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
+
+  const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
@@ -49,8 +59,8 @@ const VisitingForm = props => {
   const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
 
+  const [image, setImage] = React.useState('');
   const [getUserData, setUserDataByAsync] = useState([]);
-
 
   // Vidhansabha DropDown State//
   const [vidhansabhaName, setVidhansabhaName] = useState();
@@ -63,35 +73,37 @@ const VisitingForm = props => {
   // Mantralay DropDown State//
   const [mantralay, setMantralay] = useState();
   const [mantralayId, setMantralayId] = useState();
-  const [showMantralayName,setMantralayName]=useState()
+  const [showMantralayName, setMantralayName] = useState();
 
-// VidhanSbha DropDown
-const fetchVidhansbha = async () => {
-  try {
-    const userData = await getStoreData('userData');
-    var StateId = userData.StateId;
-    // alert((StateId))
-    var response = await getDataAxios(
-      `vidhansabha/displayVidhansabha/${StateId}`,
-    );
-    //  console.log('RESPONSE', response.result);
-    // alert(JSON.stringify(response));
-    // console.log('33 Line in Dropdown===========>', response.result);
-    var aa = [];
-    for (var arrays of response.result) {
-      // console.log('53=========>',arrays)
-      aa.push({value: arrays.id, label: arrays.vidhansabha_name});
+  // VidhanSbha DropDown
+  const fetchVidhansbha = async () => {
+    try {
+      const userData = await getStoreData('userData');
+
+      // alert(JSON.stringify(userData))
+      var StateId = userData.StateId;
+      // alert((StateId))
+      var response = await getDataAxios(
+        `vidhansabha/displayVidhansabha/${StateId}`,
+      );
+      //  console.log('RESPONSE', response.result);
+      // alert(JSON.stringify(response));
+      // console.log('33 Line in Dropdown===========>', response.result);
+      var aa = [];
+      for (var arrays of response.result) {
+        // console.log('53=========>',arrays)
+        aa.push({value: arrays.id, label: arrays.vidhansabha_name});
+      }
+      setVidhansabhaName(aa);
+      // console.log(aa)
+    } catch (err) {
+      console.error('Catch Error ', err);
     }
-    setVidhansabhaName(aa);
-    // console.log(aa)
-  } catch (err) {
-    console.error('Catch Error ', err);
-  }
-};
-// alert(JSON.stringify(props?.route?.params));
-useEffect(() => {
-  fetchVidhansbha();
-}, []);
+  };
+  // alert(JSON.stringify(props?.route?.params));
+  useEffect(() => {
+    fetchVidhansbha();
+  }, []);
 
   //Constituency//
   const fetchConstituency = async () => {
@@ -117,46 +129,43 @@ useEffect(() => {
     fetchConstituency();
   }, [vidhansabha]);
 
+  //Mantralaya//
+  const fetchMantralya = async () => {
+    try {
+      // alert(vidhansabha)
 
-//Mantralaya//
-const fetchMantralya = async () => {
-  try {
-    // alert(vidhansabha)
-
-    var response = await getDataAxios(`mantralay/displayMantralay`);
-    console.log('RESPONSE', response.result);
-    var zz = [];
-    for (var man of response.result) {
-      // console.log('53=========>',man)
-      zz.push({value: man.id, label: man.mantralya_name});
+      var response = await getDataAxios(`mantralay/displayMantralay`);
+      console.log('RESPONSE', response.result);
+      var zz = [];
+      for (var man of response.result) {
+        // console.log('53=========>',man)
+        zz.push({value: man.id, label: man.mantralya_name});
+      }
+      setMantralay(zz);
+    } catch (err) {
+      console.error('Catch Error ', err);
     }
-    setMantralay(zz);
-  } catch (err) {
-    console.error('Catch Error ', err);
-  }
-};
+  };
 
-useEffect(() => {
-  fetchMantralya();
-}, []);
-
-
+  useEffect(() => {
+    fetchMantralya();
+  }, []);
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
+
+    const locationn = await getStoreData('Location');
+    setLocation(locationn?.location);
     setUserDataByAsync(userData);
+    // alert(JSON.stringify(userData))
   };
   useEffect(() => {
     getUserDataByAsyncStorage();
   }, []);
   // alert(JSON.stringify(getUserData));
-  // alert(JSON.stringify(constituency))
-
-  
+  // alert(location)
 
   const validate = async () => {
-    // const visitorMob = await getStoreData('VisitorsMobileNo');
-    // // alert(response.status)
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -187,17 +196,18 @@ useEffect(() => {
         mantralya_id: mantralayId,
         refernce: inputs.Reference,
         reason_to_visit: inputs.Reasion,
-        picture: '',
+        picture: image,
         user_id: getUserData.id,
         created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        minister_id: getUserData.MinisterId,
+        minister_id: getUserData.minister_id,
         group_member: 'hemu raju',
         visitor_status: 'ongoing',
-        constituency_id:constituencyid
+        location_type: location,
+        constituency_id: constituencyid,
       };
 
       let response = await postDataAxios(`visitors/addVisitor`, body);
-      // alert(response.status)
+      // alert(response.status);
       if (response.status) {
         setShowModal(true);
       } else {
@@ -205,6 +215,25 @@ useEffect(() => {
       }
     }
   };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      function handleBackButtonClick() {
+        navigation.push('Dashboard');
+        return true;
+      }
+
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+
+          handleBackButtonClick,
+        );
+      };
+    }, []),
+  );
 
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
@@ -332,7 +361,6 @@ useEffect(() => {
             showName={vidhansabhaNamee}
           />
         </View>
-
         <View
           style={{
             //   backgroundColor: 'yellowgreen',
@@ -362,7 +390,6 @@ useEffect(() => {
             onSelect={setMantralayId}
             setShowName={setMantralayName}
             showName={showMantralayName}
-            
           />
         </View>
 
@@ -384,6 +411,22 @@ useEffect(() => {
             onChangeText={text => {
               handleOnchange(text, 'Reference');
             }}
+          />
+        </View>
+        <View
+          style={{
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
+          }}>
+          <Input
+            // placeholder="Enter reference name if any "
+            label={'Selected Location'}
+            textLabel
+            width={'100%'}
+            textfontSize={14}
+            borderWidth={1}
+            borderBottomWidth={1}
+            value={location}
           />
         </View>
 
@@ -412,7 +455,14 @@ useEffect(() => {
           style={{
             ...styles.Media_View_Css,
           }}>
-          <Attachment />
+          <Attachment size={30} setImage={setImage} />
+        </View>
+
+        <View style={{padding: 5}}>
+          <Image
+            source={{uri: `data:image/png;base64,${image}`}}
+            style={{height: 100, width: 100}}
+          />
         </View>
 
         <View

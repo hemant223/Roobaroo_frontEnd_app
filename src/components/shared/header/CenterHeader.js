@@ -51,12 +51,12 @@ const CenterHeader = props => {
             // height: '50%',
             flexDirection: 'row',
             // alignItems: 'center',
-            // justifyContent:'center'
+            // justifyContent:'center',
             marginTop: 45,
           }}>
           <View
             style={{
-              width: '44%',
+              width: '43%',
               // backgroundColor: 'yellow',
             }}>
             <TouchableOpacity
@@ -73,7 +73,7 @@ const CenterHeader = props => {
               />
             </TouchableOpacity>
           </View>
-
+         
           <View>
             {props.stepText && (
               <View style={{}}>
@@ -86,8 +86,30 @@ const CenterHeader = props => {
                   {' '}
                   {props.stepContent}
                 </Text>
+                
               </View>
             )}
+
+
+{props.ViewVisit&&(<View
+            style={{
+              ...styles.centerCss,
+                // backgroundColor: 'red',
+                right:15,
+              bottom: 12,
+            }}>
+            <Text
+              style={{
+                fontFamily: FontFamily.PopinsRegular,
+                color: '#fff',
+                fontSize: 20,
+               
+              }}>
+              {props.viewText}
+            </Text>
+          </View>)}
+
+
           </View>
         </View>
         {props.centerText && (
@@ -95,7 +117,7 @@ const CenterHeader = props => {
             style={{
               ...styles.centerCss,
               //   backgroundColor: 'red',
-              bottom: 12,
+              bottom: 19,
             }}>
             <Text
               style={{
@@ -105,6 +127,12 @@ const CenterHeader = props => {
               }}>
               {props.centerContent}
             </Text>
+
+            
+
+
+
+
           </View>
         )}
       </View>
@@ -122,6 +150,7 @@ CenterHeader.defaultProps = {
   borderBottomRightRadius: 15,
   stepContent: 'Step01',
   centerContent: 'Verify Number',
+  
 };
 
 {
