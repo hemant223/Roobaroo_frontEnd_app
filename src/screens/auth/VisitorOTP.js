@@ -98,7 +98,7 @@ const VerifyOtp = props => {
               borderRadius={5}
               placeholder="Enter OTP sent on visitors phone"
               placeholderColor="#b6b9bf"
-              textfontSize={16}
+              textfontSize={13}
               keyboardType="numeric"
             />
           </View>

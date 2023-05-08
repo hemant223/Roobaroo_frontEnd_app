@@ -5,13 +5,11 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  Image,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-
 import RadioButton from '../../components/shared/buttons/RadioButton';
-import Header from '../../components/shared/header/Header';
 import Input from '../../components/shared/textInputs/Inputs';
-
 import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
@@ -23,17 +21,7 @@ import moment from 'moment';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
-
-options = [
-  {label: 'Gwalior VidhanSabha', value: 1},
-  {label: 'East Gwalior ', value: 2},
-  {label: 'Morena ', value: 3},
-];
-options2 = [
-  {label: 'Shiksha Mantri', value: 1},
-  {label: 'Urja Mantri ', value: 2},
-  {label: 'Krshi Mantri ', value: 3},
-];
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -52,8 +40,6 @@ const genderdata = [
 ];
 const VisitingForm = props => {
   const navigation = useNavigation();
-
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
     firstName: '',
@@ -63,10 +49,8 @@ const VisitingForm = props => {
   });
   const [errors, setErrors] = React.useState({});
 
-  
- 
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
-  
+
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
@@ -75,111 +59,101 @@ const VisitingForm = props => {
   const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
 
-
-// Vidhansabha DropDown State//
-const [vidhansabhaName, setVidhansabhaName] = useState();
-const [vidhansabha, setVidhansabha] = React.useState('');
-const [vidhansabhaNamee, setVidhansabhaNamee] = useState('');
-//Constituency DropDown State//
-const [constituencyid, setContituencyid] = React.useState('');
-const [constituency, setConstituency] = useState();
-const [concetencyNamee, setConcetencyNamee] = useState('');
-// Mantralay DropDown State//
-const [mantralay, setMantralay] = useState();
-const [mantralayId, setMantralayId] = useState();
-const [showMantralayName,setMantralayName]=useState()
-
-// VidhanSbha DropDown
-const fetchVidhansbha = async () => {
-try {
-  const userData = await getStoreData('userData');
-  var StateId = userData.StateId;
-  // alert((StateId))
-  var response = await getDataAxios(
-    `vidhansabha/displayVidhansabha/${StateId}`,
-  );
-  //  console.log('RESPONSE', response.result);
-  // alert(JSON.stringify(response));
-  // console.log('33 Line in Dropdown===========>', response.result);
-  var aa = [];
-  for (var arrays of response.result) {
-    // console.log('53=========>',arrays)
-    aa.push({value: arrays.id, label: arrays.vidhansabha_name});
-  }
-  setVidhansabhaName(aa);
-  // console.log(aa)
-} catch (err) {
-  console.error('Catch Error ', err);
-}
-};
-// alert(JSON.stringify(props?.route?.params));
-useEffect(() => {
-fetchVidhansbha();
-}, []);
-
-//Constituency//
-const fetchConstituency = async () => {
-  try {
-    // alert(vidhansabha)
-    setConcetencyNamee('');
-    var response = await getDataAxios(
-      `constituency/displayConstituency/${vidhansabha}`,
-    );
-    //  console.log('RESPONSE', response.result);
-    var constituency = [];
-    for (var con of response.result) {
-      // console.log('53=========>',con)
-      constituency.push({value: con.id, label: con.constituency_name});
-    }
-    setConstituency(constituency);
-  } catch (err) {
-    console.error('Catch Error ', err);
-  }
-};
-// alert(data);
-useEffect(() => {
-  fetchConstituency();
-}, [vidhansabha]);
-
-
-//Mantralaya//
-const fetchMantralya = async () => {
-try {
-  // alert(vidhansabha)
-
-  var response = await getDataAxios(`mantralay/displayMantralay`);
-  console.log('RESPONSE', response.result);
-  // alert(response.result)
-  alert
-  var zz = [];
-  for (var man of response.result) {
-    // console.log('53=========>',man)
-    zz.push({value: man.id, label: man.mantralya_name});
-  }
-  setMantralay(zz);
-} catch (err) {
-  console.error('Catch Error ', err);
-}
-};
-
-useEffect(() => {
-fetchMantralya();
-}, []);
-
-
-
-
-
-
-
-
-
-
-  //check the validation
+  const [image, setImage] = React.useState('');
   const [getUserData, setUserDataByAsync] = useState([]);
+
+  // Vidhansabha DropDown State//
+  const [vidhansabhaName, setVidhansabhaName] = useState();
+  const [vidhansabha, setVidhansabha] = React.useState('');
+  const [vidhansabhaNamee, setVidhansabhaNamee] = useState('');
+  //Constituency DropDown State//
+  const [constituencyid, setContituencyid] = React.useState('');
+  const [constituency, setConstituency] = useState();
+  const [concetencyNamee, setConcetencyNamee] = useState('');
+  // Mantralay DropDown State//
+  const [mantralay, setMantralay] = useState();
+  const [mantralayId, setMantralayId] = useState();
+  const [showMantralayName, setMantralayName] = useState();
+
+  // VidhanSbha DropDown
+  const fetchVidhansbha = async () => {
+    try {
+      const userData = await getStoreData('userData');
+
+      // alert(JSON.stringify(userData))
+      var StateId = userData.StateId;
+      // alert((StateId))
+      var response = await getDataAxios(
+        `vidhansabha/displayVidhansabha/${StateId}`,
+      );
+      //  console.log('RESPONSE', response.result);
+      // alert(JSON.stringify(response));
+      // console.log('33 Line in Dropdown===========>', response.result);
+      var aa = [];
+      for (var arrays of response.result) {
+        // console.log('53=========>',arrays)
+        aa.push({value: arrays.id, label: arrays.vidhansabha_name});
+      }
+      setVidhansabhaName(aa);
+      // console.log(aa)
+    } catch (err) {
+      console.error('Catch Error ', err);
+    }
+  };
+  // alert(JSON.stringify(props?.route?.params));
+  useEffect(() => {
+    fetchVidhansbha();
+  }, []);
+
+  //Constituency//
+  const fetchConstituency = async () => {
+    try {
+      // alert(vidhansabha)
+      setConcetencyNamee('');
+      var response = await getDataAxios(
+        `constituency/displayConstituency/${vidhansabha}`,
+      );
+      //  console.log('RESPONSE', response.result);
+      var constituency = [];
+      for (var con of response.result) {
+        // console.log('53=========>',con)
+        constituency.push({value: con.id, label: con.constituency_name});
+      }
+      setConstituency(constituency);
+    } catch (err) {
+      console.error('Catch Error ', err);
+    }
+  };
+  // alert(data);
+  useEffect(() => {
+    fetchConstituency();
+  }, [vidhansabha]);
+
+  //Mantralaya//
+  const fetchMantralya = async () => {
+    try {
+      // alert(vidhansabha)
+
+      var response = await getDataAxios(`mantralay/displayMantralay`);
+      console.log('RESPONSE', response.result);
+      var zz = [];
+      for (var man of response.result) {
+        // console.log('53=========>',man)
+        zz.push({value: man.id, label: man.mantralya_name});
+      }
+      setMantralay(zz);
+    } catch (err) {
+      console.error('Catch Error ', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchMantralya();
+  }, []);
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
+
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
     setUserDataByAsync(userData);
@@ -191,13 +165,7 @@ fetchMantralya();
   // alert(JSON.stringify(getUserData));
   // alert(location)
 
-  // alert(dob)
   const validate = async () => {
-    // const visitorMob = await getStoreData('VisitorsMobileNo');
-
-    // alert(JSON.stringify(getUserData))
-    // // alert(response.status)
-    // alert(getUserData.MinisterId);
     let isValid = true;
     if (!inputs.firstName) {
       handleError('Please input First Name ', 'firstName');
@@ -228,7 +196,7 @@ fetchMantralya();
         mantralya_id: mantralayId,
         refernce: inputs.Reference,
         reason_to_visit: inputs.Reasion,
-        picture: '',
+        picture: image,
         user_id: getUserData.id,
         created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
         minister_id: getUserData.minister_id,
@@ -239,7 +207,7 @@ fetchMantralya();
       };
 
       let response = await postDataAxios(`visitors/addVisitor`, body);
-      // alert(response.status)
+      // alert(response.status);
       if (response.status) {
         setShowModal(true);
       } else {
@@ -383,7 +351,7 @@ fetchMantralya();
             //   backgroundColor: 'yellowgreen',
             ...styles.Vidhansabha_View_Css,
           }}>
-         <Dropdown
+          <Dropdown
             label={'Vidhansabha'}
             labelLeft={10}
             borderRadius={12}
@@ -414,7 +382,7 @@ fetchMantralya();
             //   backgroundColor: 'yellowgreen',
             ...styles.Mantralya_View_Css,
           }}>
-         <Dropdown
+          <Dropdown
             label={'Mantralaya'}
             labelLeft={10}
             borderRadius={12}
@@ -422,7 +390,6 @@ fetchMantralya();
             onSelect={setMantralayId}
             setShowName={setMantralayName}
             showName={showMantralayName}
-            
           />
         </View>
 
@@ -488,7 +455,14 @@ fetchMantralya();
           style={{
             ...styles.Media_View_Css,
           }}>
-          <Attachment />
+          <Attachment size={30} setImage={setImage} />
+        </View>
+
+        <View style={{padding: 5}}>
+          <Image
+            source={{uri: `data:image/png;base64,${image}`}}
+            style={{height: 100, width: 100}}
+          />
         </View>
 
         <View
@@ -564,6 +538,7 @@ const styles = StyleSheet.create({
   Reference_View_Css: {
     padding: 3,
     margin: 5,
+    zIndex: 1,
   },
   Resion_View_Css: {
     padding: 3,
