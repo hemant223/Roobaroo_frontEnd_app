@@ -10,7 +10,7 @@ const getDataAxios = async Url => {
   const Token = await getStoreData('token');
   // alert(Token)
   
-  // console.log("token==================>", Token);
+  console.log("token==================>", Token);
   // alert(Token)
   try {
     var url = `${ServerURL}/${Url}`;

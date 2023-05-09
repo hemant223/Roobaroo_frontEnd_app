@@ -30,9 +30,13 @@ const Visits = props => {
     setUserDataByAsync(userData);
   };
   const fetchAllVisitorData = async () => {
+    
+  
+    setVisitorData([])
     var data = await getDataAxios(
       `visitors/displayVisitors/${getUserData?.minister_id}`,
     );
+    console.error("visitor list respoonse",data)
     if (data.status) {
       setVisitorData(data?.result);
     } else {
@@ -47,8 +51,8 @@ const Visits = props => {
   useEffect(() => {
     getUserDataByAsyncStorage();
     fetchAllVisitorData();
-  }, [show, selectedIndex]);
-  useEffect(() => {}, [show]);
+  }, [show]);
+  // useEffect(() => {}, [show]);
 
   const handleSingleIndexSelect = index => {
     setSelectedIndex(index);
