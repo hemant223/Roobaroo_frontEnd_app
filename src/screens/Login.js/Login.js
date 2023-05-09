@@ -59,7 +59,7 @@ function Login(props) {
     if (isValid) {
       var body = {mobile: inputs.mobileNumber};
       var response = await postDataAxiosWithoutToken('users/authenticate', body);
-      // alert(response.token)e
+    
       if (response.status) {
         storeData('userData', response.data);
         storeData('token', response.token);
