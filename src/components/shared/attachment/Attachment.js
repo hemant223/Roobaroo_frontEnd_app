@@ -6,7 +6,7 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import FA from 'react-native-vector-icons/FontAwesome';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 export default function Attachment(props) {
-  console.log('props---------->>>>>>>9', props)
+  // console.log('props---------->>>>>>>9', props)
   const [filePath, setFilePath] = React.useState('');
 //   const[image,setImage]=React.useState('')
 // console.log('image',image)

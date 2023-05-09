@@ -70,10 +70,17 @@ const VisitingForm = props => {
   const [constituencyid, setContituencyid] = React.useState('');
   const [constituency, setConstituency] = useState();
   const [concetencyNamee, setConcetencyNamee] = useState('');
+  // alert(constituencyid)
   // Mantralay DropDown State//
   const [mantralay, setMantralay] = useState();
   const [mantralayId, setMantralayId] = useState();
   const [showMantralayName, setMantralayName] = useState();
+
+  // Minister DropDown State.//
+  const [ministarid, setMinisterid] = React.useState('');
+  // alert(ministarid)
+  const [minister, setMinister] = useState();
+  const [ministerName, setMinisterName] = useState('');
 
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
@@ -129,13 +136,40 @@ const VisitingForm = props => {
     fetchConstituency();
   }, [vidhansabha]);
 
+//Minister//
+const fetchMinister = async () => {
+  try {
+    // alert(vidhansabha)
+    setMinisterName('');
+    var response = await getDataAxios(
+      `minister/displayMinister/${constituencyid}`,
+    );
+    //  console.log('RESPONSE_Minister_Data', response.result[0].firstname);
+    //  console.log('RESPONSE_Minister_DataLastName',response.result[0].lastname);
+    var minister = [];
+    for (var mini of response.result) {
+      // console.log('150=========>',mini)
+      minister.push({value: mini.constituency_id, label: mini.firstname+' '+mini.lastname});
+      // console.log('152 Line Visiting Form ==========>',minister)
+    }
+    setMinister(minister);
+  } catch (err) {
+    console.error('Catch Error ', err);
+  }
+};
+// alert(data);
+useEffect(() => {
+  fetchMinister();
+}, [constituencyid]);
+
+
   //Mantralaya//
   const fetchMantralya = async () => {
     try {
       // alert(vidhansabha)
 
       var response = await getDataAxios(`mantralay/displayMantralay`);
-      console.log('RESPONSE', response.result);
+      // console.log('RESPONSE', response.result);
       var zz = [];
       for (var man of response.result) {
         // console.log('53=========>',man)
@@ -199,16 +233,16 @@ const VisitingForm = props => {
         picture: image,
         user_id: getUserData.id,
         created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        minister_id: getUserData.minister_id,
         group_member: 'hemu raju',
         visitor_status: 'ongoing',
         location_type: location,
         constituency_id: constituencyid,
+        minister_id:ministarid,
       };
 
       let response = await postDataAxios(`visitors/addVisitor`, body);
       // alert(response.status);
-      if (response.status) {
+      if (response.status==true) {
         setShowModal(true);
       } else {
         alert('Error in data Submissin');
@@ -376,6 +410,21 @@ const VisitingForm = props => {
             showName={concetencyNamee}
           />
         </View>
+        <View
+          style={{
+            //   backgroundColor: 'yellowgreen',
+            ...styles.Minister_View_Css,
+          }}>
+          <Dropdown
+            label={'Ministers'}
+            labelLeft={10}
+            borderRadius={12}
+            options={minister}
+            onSelect={setMinisterid}
+            setShowName={setMinisterName}
+            showName={ministerName}
+          />
+        </View>
 
         <View
           style={{
@@ -383,7 +432,7 @@ const VisitingForm = props => {
             ...styles.Mantralya_View_Css,
           }}>
           <Dropdown
-            label={'Mantralaya'}
+            label={'Mantraalay'}
             labelLeft={10}
             borderRadius={12}
             options={mantralay}
@@ -438,7 +487,7 @@ const VisitingForm = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reasion to visit'}
+            label={'Reason to visit'}
             textLabel
             width={'100%'}
             borderWidth={1}
@@ -523,17 +572,22 @@ const styles = StyleSheet.create({
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-    zIndex: 6,
+    zIndex: 12,
   },
   Constintuency_View_Css: {
     padding: 3,
     margin: 5,
-    zIndex: 5,
+    zIndex: 11,
+  },
+  Minister_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 9,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-    zIndex: 4,
+    zIndex: 8,
   },
   Reference_View_Css: {
     padding: 3,

@@ -10,7 +10,8 @@ const getDataAxios = async Url => {
   const Token = await getStoreData('token');
   // alert(Token)
   
-  console.log("token==================>", Token);
+  // console.log("token==================>", Token);
+  // alert(Token)
   try {
     var url = `${ServerURL}/${Url}`;
     // alert(url)
@@ -48,6 +49,7 @@ const getDataAxios = async Url => {
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
   const Token = await getStoreData('token');
+  // alert(JSON.stringify(body))
   try {
     var url = `${ServerURL}/${Url}`;
     var config = {
@@ -61,7 +63,7 @@ const postDataAxios = async (Url, body) => {
     return result;
   } catch (error) {
     if (error.response.status === 401) {
-      // alert("Session Expired");
+      alert("Session Expired");
       Swal.fire({
         position: 'top-end',
         icon: 'info',

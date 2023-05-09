@@ -311,7 +311,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder="Enter reference name if any "
-            label={'Mantralaya'}
+            label={'Mantraalay'}
             value={props.route.params.visitordata.MantralayName}
             textLabel
             width={'100%'}
@@ -343,7 +343,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reasion to visit'}
+            label={'Reason to visit'}
             value={props.route.params.visitordata.reason_to_visit}
             textLabel
             width={'100%'}
