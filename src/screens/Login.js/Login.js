@@ -7,14 +7,14 @@ import {
   TouchableOpacity,
   StyleSheet,
   ImageBackground,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
-import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
+import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
 import {storeData} from '../../helper/utils/AsyncStorageServices';
 
 function Login(props) {
@@ -45,7 +45,6 @@ function Login(props) {
   //   }, []);
 
   const handleSubmit = async () => {
-   
     let isValid = true;
     Keyboard.dismiss();
     if (!inputs.mobileNumber) {
@@ -59,9 +58,11 @@ function Login(props) {
 
     if (isValid) {
       var body = {mobile: inputs.mobileNumber};
-      var response = await postDataAxios('users/authenticate', body);
+      var response = await postDataAxiosWithoutToken('users/authenticate', body);
+    
       if (response.status) {
         storeData('userData', response.data);
+        storeData('token', response.token);
         props.navigation.navigate('OtpInput');
       } else {
         handleError('This User is not exists', 'mobileNumber');
@@ -90,6 +91,7 @@ function Login(props) {
           </View>
           <View style={{padding: 10}}>
             <Input
+              maxLength={10}
               width="100%"
               borderWidth={0}
               borderBottomWidth={1}
@@ -102,7 +104,7 @@ function Login(props) {
               keyboardType="numeric"
             />
           </View>
-          <View style={{marginTop:5, padding: 10, width: '100%'}}>
+          <View style={{marginTop: 5, padding: 10, width: '100%'}}>
             <View style={{alignSelf: 'center', width: '100%'}}>
               <FullSizeButtons
                 onPress={() => {

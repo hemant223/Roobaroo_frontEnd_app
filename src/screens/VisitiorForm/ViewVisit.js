@@ -5,6 +5,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Keyboard,
+  Image,
+  BackHandler
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -16,8 +18,12 @@ import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import {getStoreData} from '../../helper/utils/AsyncStorageServices';
-import {useNavigation} from '@react-navigation/native';
-import {getDataAxios, postDataAxios, putDataAxios} from '../../fetchNodeServices';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
+import {
+  getDataAxios,
+  postDataAxios,
+  putDataAxios,
+} from '../../fetchNodeServices';
 import moment from 'moment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import CenterHeader from '../../components/shared/header/CenterHeader';
@@ -42,7 +48,6 @@ const ViewVisit = props => {
   const [showModal, setShowModal] = useState(false);
 
   //   const  getData = props.route.params
-  
 
   const [visitortype, setVisitorType] = React.useState(
     props?.route?.params?.visitordata?.visitor_type,
@@ -65,9 +70,56 @@ const ViewVisit = props => {
   // const showDatepicker=()=>{
   //     setShow(true)
   // }
-// alert(JSON.stringify(props.route.params.visitordata));
-  const handleSubmit = async() => {
-    
+  // alert(JSON.stringify(props.route.params.visitordata.created_at));
+  //  Engade Time//
+  // const handleClick = () => {
+  // let startTimee = moment().format(props.route.params.visitordata.created_at);
+  // var startTime = moment(startTimee, 'HH:mm:ss');
+  //   var startTime = moment(props.route.params.visitordata.created_at, 'HH:mm:ss');
+  //   var endTime = moment('21:12:07', 'HH:mm:ss');
+  //   var mins = moment
+  //     .utc(moment(endTime, 'HH:mm:ss').diff(moment(startTime, 'HH:mm:ss')))
+  //     .format('hh:mm:ss');
+  //   alert(mins);
+  // };
+  // useEffect(() => {
+  //   handleClick();
+  // }, []);
+
+ 
+   // Engade Time//
+  //  const handleEng=()=>{
+  //  let startTime =moment().format(props.route.params.visitordata.created_at);
+
+  //  var endTime = moment().format('hh:mm:ss'); // alert(endTime)
+  //  let aa = moment
+  //    .utc(moment(endTime, 'hh:mm:ss').diff(moment(startTime, 'hh:mm:ss')))
+  //    .format('hh:mm:ss');
+  //     props.setEngadeTime(aa)
+  //  }
+  useFocusEffect(
+    React.useCallback(() => {
+      function handleBackButtonClick() {
+        navigation.push('Dashboard');
+        return true;
+      }
+
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+
+          handleBackButtonClick,
+        );
+      };
+    }, []),
+  );
+   
+
+  const handleSubmit = async () => {
+    // handleEng()
+    // alert('ggg')
     let body = {
       firstname: props.route.params.visitordata.firstname,
       lastname: props.route.params.visitordata.lastname,
@@ -88,40 +140,43 @@ const ViewVisit = props => {
       group_member: 'reaju hemu',
       visitor_status: 'completed',
     };
-   
+
     // console.log((body));
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
       body,
     );
     if (response.status) {
+      // handlClick()
+      
       setShowModal(true);
-
     }
   };
   return (
     <View style={{...styles.mainView}}>
-     {   props.route.params.visitordata.visitor_status=='ongoing'?
-          
-      <CenterHeader
-        centerText
-        stepContent="Step 02"
-        stepText
-        centerContent="Visiting Form"
-        onPressBackArrow={() => {
-          navigation.push('Dashboard');
-        }}
-      />
-      :
-      <CenterHeader
-        centerText
-        stepContent="Step 02"
-        stepText
-        centerContent="Visiting Form"
-        onPressBackArrow={() => {
-          navigation.push('Dashboard');
-        }}
-      />}
+      {props.route.params.visitordata.visitor_status == 'ongoing' ? (
+        <CenterHeader
+          centerText
+          stepContent=""
+          stepText
+          centerContent=""
+          ViewVisit
+          viewText="View Visit"
+          onPressBackArrow={() => {
+            navigation.push('Dashboard');
+          }}
+        />
+      ) : (
+        <CenterHeader
+          centerText
+          stepContent="Step 02"
+          stepText
+          centerContent="Visiting Form"
+          onPressBackArrow={() => {
+            navigation.push('Dashboard');
+          }}
+        />
+      )}
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
@@ -194,7 +249,13 @@ const ViewVisit = props => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
-          <Input label="Date of Brith" textLabel />
+          <Input
+            value={moment(props.route.params.visitordata.date_of_birth).format(
+              'h:mm a, Do MMM YYYY',
+            )}
+            label="Date of Brith"
+            textLabel
+          />
         </View>
         <View
           style={{
@@ -209,19 +270,55 @@ const ViewVisit = props => {
             labelLeft={10}
           />
         </View>
+
         <View
           style={{
-            //   backgroundColor: 'yellowgreen',
-            ...styles.Vidhansabha_View_Css,
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
           }}>
-          <Dropdown label={'Vidhansabha'} labelLeft={10} borderRadius={12} />
+          <Input
+            placeholder="Enter reference name if any "
+            label={'Vidhansabha'}
+            value={props.route.params.visitordata.Vidhansabha}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
         </View>
         <View
           style={{
-            //   backgroundColor: 'yellowgreen',
-            ...styles.Mantralya_View_Css,
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
           }}>
-          <Dropdown label={'Mantralaya'} labelLeft={10} borderRadius={12} />
+          <Input
+            placeholder="Enter reference name if any "
+            label={'Constituency'}
+            value={props.route.params.visitordata.ConstituencyName}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
+        </View>
+
+        <View
+          style={{
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
+          }}>
+          <Input
+            placeholder="Enter reference name if any "
+            label={'Mantraalay'}
+            value={props.route.params.visitordata.MantralayName}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
         </View>
         <View
           style={{
@@ -246,7 +343,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reasion to visit'}
+            label={'Reason to visit'}
             value={props.route.params.visitordata.reason_to_visit}
             textLabel
             width={'100%'}
@@ -260,7 +357,12 @@ const ViewVisit = props => {
           style={{
             ...styles.Media_View_Css,
           }}>
-          <Attachment />
+          <Image
+            source={{
+              uri: `data:image/png;base64,${props.route.params.visitordata.picture}`,
+            }}
+            style={{height: 100, width: 100}}
+          />
         </View>
 
         <View
@@ -268,25 +370,25 @@ const ViewVisit = props => {
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
           }}>
-          {   props.route.params.visitordata.visitor_status=='ongoing'
-          &&
-         <View style={{alignSelf: 'center'}}>
-            <FullSizeButtons
-              onPress={handleSubmit}
-              titleColor="#fff"
-              backgroundColor={'#18ae3b'}
-              title="Mark as completed"
-              rightIcon={'checkbox-marked-circle'}
-              rightsize={16}
-            />
-          </View>}
+          {props.route.params.visitordata.visitor_status == 'ongoing' && (
+            <View style={{alignSelf: 'center'}}>
+              <FullSizeButtons
+                onPress={handleSubmit}
+                titleColor="#fff"
+                backgroundColor={'#18ae3b'}
+                title="Mark as completed"
+                rightIcon={'checkbox-marked-circle'}
+                rightsize={16}
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
       {
         <SuccessModal
-        title="Your Visiting record request has been Successfully Updated"
+          title="Your Visiting record request has been Successfully Updated"
           onPress={() => {
-            navigation.push('Visits',{complete:'update'});
+            navigation.push('Visits', {complete: 'update'});
           }}
           setShowModal={setShowModal}
           showModal={showModal}
@@ -352,11 +454,9 @@ const styles = StyleSheet.create({
     height: 150,
   },
   Media_View_Css: {
-    backgroundColor: '#ebebeb',
     bottom: '11%',
-    width: '16%',
-    borderRadius: 10,
-    padding: 3,
+
+    padding: 5,
     margin: 5,
   },
   Button_View_Css: {

@@ -12,7 +12,7 @@ import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
 import { getDataAxios } from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
-import OtpInput from './src/screens/otpInput/OtpInput';
+import SearchScreen from './src/screens/search/SearchScreen';
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
   useEffect(() => {
@@ -27,8 +27,8 @@ const App = (props) => {
   return (
     <>
 {/* <StatusBar hidden={true} translucent backgroundColor="transparent" /> */}
-    
-    <OtpInput/>
+    {/* <SearchScreen/> */}
+    <MainNavigationStack/>
     {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
    {/* <FullSizeButtons onPress={()=>{handleClick()}} /> */}
     
