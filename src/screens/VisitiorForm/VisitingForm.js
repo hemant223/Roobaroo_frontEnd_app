@@ -136,32 +136,34 @@ const VisitingForm = props => {
     fetchConstituency();
   }, [vidhansabha]);
 
-//Minister//
-const fetchMinister = async () => {
-  try {
-    // alert(vidhansabha)
-    setMinisterName('');
-    var response = await getDataAxios(
-      `minister/displayMinister/${constituencyid}`,
-    );
-    //  console.log('RESPONSE_Minister_Data', response.result[0].firstname);
-    //  console.log('RESPONSE_Minister_DataLastName',response.result[0].lastname);
-    var minister = [];
-    for (var mini of response.result) {
-      // console.log('150=========>',mini)
-      minister.push({value: mini.constituency_id, label: mini.firstname+' '+mini.lastname});
-      // console.log('152 Line Visiting Form ==========>',minister)
+  //Minister//
+  const fetchMinister = async () => {
+    try {
+      // alert(vidhansabha)
+      setMinisterName('');
+      var response = await getDataAxios(
+        `minister/displayMinister/${constituencyid}`,
+      );
+      //  console.log('RESPONSE_Minister_Data', response.result[0].firstname);
+      //  console.log('RESPONSE_Minister_DataLastName',response.result[0].lastname);
+      var minister = [];
+      for (var mini of response.result) {
+        // console.log('150=========>',mini)
+        minister.push({
+          value: mini.constituency_id,
+          label: mini.firstname + ' ' + mini.lastname,
+        });
+        // console.log('152 Line Visiting Form ==========>',minister)
+      }
+      setMinister(minister);
+    } catch (err) {
+      console.error('Catch Error ', err);
     }
-    setMinister(minister);
-  } catch (err) {
-    console.error('Catch Error ', err);
-  }
-};
-// alert(data);
-useEffect(() => {
-  fetchMinister();
-}, [constituencyid]);
-
+  };
+  // alert(data);
+  useEffect(() => {
+    fetchMinister();
+  }, [constituencyid]);
 
   //Mantralaya//
   const fetchMantralya = async () => {
@@ -200,53 +202,61 @@ useEffect(() => {
   // alert(location)
 
   const validate = async () => {
-    let isValid = true;
-    if (!inputs.firstName) {
-      handleError('Please input First Name ', 'firstName');
-      isValid = false;
-    }
-    if (!inputs.LastName) {
-      handleError('Please input Last Name', 'LastName');
-      isValid = false;
-    }
-    if (!inputs.Reasion) {
-      handleError('Please input Resasion to Visit', 'Reasion');
-      isValid = false;
-    }
-    if (!inputs.Reference) {
-      handleError('Please input Reference', 'Reference');
-      isValid = false;
-    }
-    if (isValid) {
-      let body = {
-        firstname: inputs.firstName,
-        lastname: inputs.LastName,
-        mobile_number: props?.route?.params?.mobileNo,
-        gender: gender,
-        physically_disabled: physically_disabled_Name,
-        date_of_birth: dob,
-        visitor_type: visitorname,
-        vidhansabha_id: vidhansabha,
-        mantralya_id: mantralayId,
-        refernce: inputs.Reference,
-        reason_to_visit: inputs.Reasion,
-        picture: image,
-        user_id: getUserData.id,
-        created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-        group_member: 'hemu raju',
-        visitor_status: 'ongoing',
-        location_type: location,
-        constituency_id: constituencyid,
-        minister_id:ministarid,
-      };
-
-      let response = await postDataAxios(`visitors/addVisitor`, body);
-      // alert(response.status);
-      if (response.status==true) {
-        setShowModal(true);
-      } else {
-        alert('Error in data Submissin');
+    try {
+      let i = 0;
+      let isValid = true;
+      if (!inputs.firstName) {
+        handleError('Please input First Name ', 'firstName');
+        isValid = false;
       }
+      if (!inputs.LastName) {
+        handleError('Please input Last Name', 'LastName');
+        isValid = false;
+      }
+      if (!inputs.Reasion) {
+        handleError('Please input Resasion to Visit', 'Reasion');
+        isValid = false;
+      }
+      if (!inputs.Reference) {
+        handleError('Please input Reference', 'Reference');
+        isValid = false;
+      }
+      if (isValid) {
+        let body = {
+          firstname: inputs.firstName,
+          lastname: inputs.LastName,
+          mobile_number: props?.route?.params?.mobileNo,
+          gender: gender,
+          physically_disabled: physically_disabled_Name,
+          date_of_birth: dob,
+          visitor_type: visitorname,
+          vidhansabha_id: vidhansabha,
+          mantralya_id: mantralayId,
+          refernce: inputs.Reference,
+          reason_to_visit: inputs.Reasion,
+          picture: image,
+          user_id: getUserData.id,
+          created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+          group_member: 'hemu raju',
+          visitor_status: 'ongoing',
+          location_type: location,
+          constituency_id: constituencyid,
+          minister_id: ministarid,
+        };
+
+        // console.log(bo)
+        // alert(++i);
+        let response = await postDataAxios(`visitors/addVisitor`, body);
+        console.log('response', response);
+        // alert(response.status);
+        if (response.status == true) {
+          setShowModal(true);
+        } else {
+          alert('Error in data Submissin');
+        }
+      }
+    } catch (err) {
+      console.log("Catch Error: line 257 visitor",err)
     }
   };
 
@@ -522,7 +532,7 @@ useEffect(() => {
             // bottom:19
           }}>
           <FullSizeButtons
-            /* onPress={()=>{setShowModal(true)}} */ onPress={validate}
+            /* onPress={()=>{setShowModal(true)}} */ onPress={() => validate()}
             titleColor="#fff"
           />
         </View>

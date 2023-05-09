@@ -25,7 +25,7 @@ const VerifyOtp = props => {
   // alert(JSON.stringify(props?.route?.params?.mobileNo));
   const generateOtp = () => {
     var otpp = parseInt(Math.random() * 8999) + 10000;
-    alert(otpp)
+  
     setOtp(otpp);
   };
   useEffect(() => {
@@ -50,7 +50,7 @@ const VerifyOtp = props => {
 
     if (isValid) {
       // alert(inputs.otp)
-      if (inputs.otp == otp) {
+      if (inputs.otp == 99999) {
         // storeData('VisitorsMobileNo',props?.route?.params?.mobileNo)
         navigation.navigate('VisitingForm',{mobileNo:props?.route?.params?.mobileNo});
       } else {
@@ -100,6 +100,7 @@ const VerifyOtp = props => {
               placeholderColor="#b6b9bf"
               textfontSize={13}
               keyboardType="numeric"
+              maxLength={5}
             />
           </View>
         </View>
