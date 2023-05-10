@@ -12,7 +12,7 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import RadioButtonRN from 'radio-buttons-react-native';
 import {Colors} from '../../assets/config/Colors';
 import {RadioButton} from 'react-native-paper';
-
+const language =() => {
 const DATA = [
   {
     id: '1',
@@ -91,7 +91,7 @@ const Item = ({item}) => {
               value={item.id}
               color={'#005db6'}
               status={checked === item.id ? 'checked' : 'unchecked'}
-               onPress={() => handleChech(item)}
+               onPress={() => alert('hello',item.id)}
               />
             
         </View>
@@ -127,11 +127,11 @@ const Item = ({item}) => {
             {item.locallanguage}
           </Text>
         </View>
-        <View></View>
       </View>
     </View>
   );
 };
+}
 
 const SelectLanguage = props => {
   let numColumns = 2;

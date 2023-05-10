@@ -93,7 +93,7 @@ const VisitingForm = props => {
       var response = await getDataAxios(
         `vidhansabha/displayVidhansabha/${StateId}`,
       );
-      //  console.log('RESPONSE', response.result);
+       console.log('RESPONSE', response.result);
       // alert(JSON.stringify(response));
       // console.log('33 Line in Dropdown===========>', response.result);
       var aa = [];

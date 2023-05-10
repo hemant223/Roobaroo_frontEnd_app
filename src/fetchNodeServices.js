@@ -2,12 +2,12 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { getStoreData, removeStoreData } from './helper/utils/AsyncStorageServices';
 // import {useNavigation, useFocusEffect} from '@react-navigation/native';
-
-// var ServerURL = 'http://192.168.29.194:9392';
-var ServerURL = "http://campusshala.com:9292";
+var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjE0OjU5OjMwIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTEwVDA5OjI5OjMwLjc3N1oiLCJpYXQiOjE2ODM3MTA5NzAsImV4cCI6MTY4MzcxODE3MH0.wNqKjevV9obrPbw6IrT_qEQrzu4NVyXVaLd15l2Mb98";
+var ServerURL = 'http://10.0.2.2:9292';
+// var ServerURL = "http://campusshala.com:9292";
 // const navigation=useNavigation()
 const getDataAxios = async Url => {
-  const Token = await getStoreData('token');
+  const Token = token
   // alert(Token)
   
   console.log("token==================>", Token);
@@ -48,7 +48,7 @@ const getDataAxios = async Url => {
 
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
-  const Token = await getStoreData('token');
+  const Token = token
   // alert(JSON.stringify(body))
   try {
     var url = `${ServerURL}/${Url}`;
@@ -82,7 +82,7 @@ const postDataAxios = async (Url, body) => {
 
 const putDataAxios = async (Url, body) => {
  
-  const Token = await AsyncStorage.getItem('token');
+  const Token = token
 
   try {
     var url = `${ServerURL}/${Url}`;
@@ -182,18 +182,18 @@ const putDataAxios = async (Url, body) => {
 //   }
 // };
 
-const postDataAxiosWithoutToken = async (Url, body, config) => {
-  const Token = await getStoreData('token');
-  try {
-    var url = `${ServerURL}/${Url}`;
-    config = { "content-type": "application/json;charset=utf-8" };
-    const response = await axios.post(url, body, config);
-    var result = response.data;
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const postDataAxiosWithoutToken = async (Url, body, config) => {
+//   const Token = await getStoreData('token');
+//   try {
+//     var url = `${ServerURL}/${Url}`;
+//     config = { "content-type": "application/json;charset=utf-8" };
+//     const response = await axios.post(url, body, config);
+//     var result = response.data;
+//     return result;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export {
   ServerURL,
@@ -202,5 +202,5 @@ export {
   putDataAxios,
   // postDataAndImageAxios,
   // putDataAndImageAxios,
-   postDataAxiosWithoutToken,
+  //  postDataAxiosWithoutToken,
 };

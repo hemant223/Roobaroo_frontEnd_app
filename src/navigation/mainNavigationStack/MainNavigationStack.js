@@ -20,6 +20,7 @@ import VerifyOtp from '../../screens/auth/VisitorOTP';
 import VisitingForm from '../../screens/VisitiorForm/VisitingForm';
 import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 import SearchScreen from '../../screens/search/SearchScreen';
+import SelectLanguage from '../../components/selectLanguage/SelectLanguage';
 
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
@@ -44,7 +45,7 @@ function MainNavigationStack(props) {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator /* screenOptions={horizontalAnimation} */ headerShown={false}>
+      <Stack.Navigator /* screenOptions={horizontalAnimation} */  headerShown={false}>
         {/* <Stack.Screen
           name="SyncScreen"
           component={SyncScreen}
@@ -104,6 +105,12 @@ function MainNavigationStack(props) {
          <Stack.Screen
           name="ViewVisit"
           component={ViewVisit}
+          options={{headerShown: false}}
+        />
+
+<Stack.Screen
+          name="language"
+          component={SelectLanguage}
           options={{headerShown: false}}
         />
       
