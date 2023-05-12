@@ -549,7 +549,7 @@ const VisitingForm = props => {
           title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
             navigation.push('Visits');
-           /*  setShowModal=(false) */
+            setShowModal(false) 
           }}
           setShowModal={setShowModal}
           showModal={showModal}

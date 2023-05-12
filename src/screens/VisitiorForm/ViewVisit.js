@@ -7,7 +7,7 @@ import {
   Keyboard,
   Image,
   BackHandler,
-  Alert
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -47,9 +47,10 @@ const genderData = [
 const ViewVisit = props => {
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
-
+  const [engageTime, setEngagetime] = useState('');
+  const [showengageTime, showsetEngagetime] = useState('');
   //   const  getData = props.route.params
-
+  // alert(engageTime)
   const [visitortype, setVisitorType] = React.useState(
     props?.route?.params?.visitordata?.visitor_type,
   );
@@ -87,17 +88,35 @@ const ViewVisit = props => {
   //   handleClick();
   // }, []);
 
- 
-   // Engade Time//
-  //  const handleEng=()=>{
-  //  let startTime =moment().format(props.route.params.visitordata.created_at);
+  // Engade Time//
+  const handleEng = () => {
+    let  startTime = moment(props.route.params.visitordata.created_at).format('HH:mm:ss');
+    var hms1 = startTime;
+    var a1 = hms1.split(':');
+    var seconds1 = a1[0] * 60 * 60 + +a1[1] * 60 + +a1[2];
+    var endTime = moment().format('HH:mm:ss');
+    var hms2 = endTime;
+    var a2 = hms2.split(':');
+    var seconds2 = a2[0] * 60 * 60 + +a2[1] * 60 + +a2[2];
+    var engagetime = seconds2 - seconds1;
+    setEngagetime(engagetime)
+    // alert(engagetime)
+    let d = Number(engagetime);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor((d % 3600) / 60);
+    var s = Math.floor((d % 3600) % 60);
+    var hDisplay = h > 0 ? h + (h == 1 ? ' hour: ' : ' hours: ') : '';
+    var mDisplay = m > 0 ? m + (m == 1 ? ' minute: ' : ' minutes: ') : '';
+    var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : '';
+    var aa = hDisplay + mDisplay + sDisplay;
+    // alert(aa)
+    showsetEngagetime(aa);
+  };
 
-  //  var endTime = moment().format('hh:mm:ss'); // alert(endTime)
-  //  let aa = moment
-  //    .utc(moment(endTime, 'hh:mm:ss').diff(moment(startTime, 'hh:mm:ss')))
-  //    .format('hh:mm:ss');
-  //     props.setEngadeTime(aa)
-  //  }
+  // useEffect(() => {
+  //   handleEng();
+  // }, []);
+
   useFocusEffect(
     React.useCallback(() => {
       function handleBackButtonClick() {
@@ -116,11 +135,24 @@ const ViewVisit = props => {
       };
     }, []),
   );
-   
-// alert( JSON.stringify(props.route.params.visitordata))
+
+  // alert( JSON.stringify(props.route.params.visitordata))
   const handleSubmit = async () => {
+    handleEng()
+    // alert(props.route.params.visitordata.date_of_birth)
     // handleEng()
     // alert('ggg')
+
+    // let startTime = moment().format(props.route.params.visitordata.created_at);
+    // var hms = startTime;
+    // var a = hms.split(':');
+    // var seconds1 = 24 * a[0] * 60 * 60 + +a[1] * 60 + +a[2];
+    // var endTime = moment().format('HH:mm:ss');
+    // var hms = endTime;
+    // var a = hms.split(':');
+    // var seconds2 = 24 * a[0] * 60 * 60 + +a[1] * 60 + +a[2];
+    // var engagetime = seconds2 - seconds1;
+    // setEngagetime(engagetime);
     let body = {
       firstname: props.route.params.visitordata.firstname,
       lastname: props.route.params.visitordata.lastname,
@@ -149,7 +181,7 @@ const ViewVisit = props => {
     );
     if (response.status) {
       // handlClick()
-      
+
       setShowModal(true);
     }
   };
@@ -252,7 +284,7 @@ const ViewVisit = props => {
           }}>
           <Input
             value={moment(props.route.params.visitordata.date_of_birth).format(
-              'YYYY-MM-DD'
+              'YYYY-MM-DD',
             )}
             label="Date of Brith"
             textLabel
@@ -387,8 +419,9 @@ const ViewVisit = props => {
       </ScrollView>
       {
         <SuccessModal
-          title="Your Visiting record request has been Successfully Updated"
+          title={`Your Visiting record request has been ${showengageTime} Successfully Updated`}
           onPress={() => {
+            setShowModal(false);
             navigation.push('Visits', {complete: 'update'});
           }}
           setShowModal={setShowModal}
