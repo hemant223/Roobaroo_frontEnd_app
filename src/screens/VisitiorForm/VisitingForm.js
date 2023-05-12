@@ -50,7 +50,7 @@ const VisitingForm = props => {
   const [errors, setErrors] = React.useState({});
 
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
-
+// console.log('============<DOB======>>',dob)
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
@@ -78,10 +78,10 @@ const VisitingForm = props => {
 
   // Minister DropDown State.//
   const [ministarid, setMinisterid] = React.useState('');
-  // alert(ministarid)
+  // alert(dob)
   const [minister, setMinister] = useState();
   const [ministerName, setMinisterName] = useState('');
-
+ 
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
     try {
@@ -287,11 +287,11 @@ const VisitingForm = props => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
 
-  const handleDatePicker=(value,valuetwo)=>{
-    console.log("VALUEEEEEEEEEEE",value);
-    console.log("VALUE TWOOOOOOOOOO",valuetwo);
-    setDob(valuetwo)
-  }
+  // const handleDatePicker=(value,valuetwo)=>{
+  //   // console.log("VALUEEEEEEEEEEE",value);
+  //   // console.log("VALUE TWOOOOOOOOOO",valuetwo);
+  //   setDob(valuetwo)
+  // }
 
   return (
     <View style={{...styles.mainView}}>
@@ -379,7 +379,7 @@ const VisitingForm = props => {
             height={40}
             // setDate={setDob}
             label="Date of Brith"
-            onPress={(value,valuetwo)=>handleDatePicker(value,valuetwo)}
+            setDate={setDob}
           />
         </View>
 

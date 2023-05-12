@@ -117,7 +117,7 @@ const ViewVisit = props => {
     }, []),
   );
    
-// alert( JSON.stringify(props.route.params.visitordata))
+// alert( JSON.stringify( props.route.params.visitordata.constituency_id))
   const handleSubmit = async () => {
     // handleEng()
     // alert('ggg')
@@ -127,22 +127,24 @@ const ViewVisit = props => {
       mobile_number: props.route.params.visitordata.mobile_number,
       gender: props?.route.params.visitordata.gender,
       physically_disabled: props.route.params.visitordata.physically_disabled,
-      date_of_birth: props.route.params.visitordata.date_of_birth,
+      date_of_birth:(moment(props.route.params.visitordata.date_of_birth).format('YYYY-MM-DD ')),
       visitor_type: props.route.params.visitordata.visitor_type,
       vidhansabha_id: props.route.params.visitordata.vidhansabha_id,
       mantralya_id: props.route.params.visitordata.mantralya_id,
       refernce: props.route.params.visitordata.refernce,
       reason_to_visit: props.route.params.visitordata.reason_to_visit,
-      // picture: '',
+      picture: props.route.params.visitordata.picture,
+      constituency_id: props.route.params.visitordata.constituency_id,
       user_id: props.route.params.visitordata.user_id,
-      created_at: props.route.params.visitordata.created_at,
+      created_at: (moment(props.route.params.visitordata.created_at).format('YYYY-MM-DD HH:mm:ss')),
       updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       minister_id: props.route.params.visitordata.minister_id,
       group_member: 'reaju hemu',
       visitor_status: 'completed',
     };
 
-    // console.log((body));
+    // alert(JSON.stringify(body));
+    
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
       body,
