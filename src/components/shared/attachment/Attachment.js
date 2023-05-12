@@ -23,7 +23,7 @@ export default function Attachment(props) {
         // If CAMERA Permission is granted
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
-        console.warn(err);
+        console.error('Error In Catch-->>',err);
         return false;
       }
     } else return true;

@@ -4,7 +4,7 @@ import {RadialSlider} from 'react-native-radial-slider';
 import {getDataAxios} from '../../../fetchNodeServices';
 import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
 import { useFocusEffect } from '@react-navigation/native';
-
+import SpeedoMetterShimmerTwo from '../../../components/shared/shimmer/SpeedoMeterShimmerTwo';
 const SpeedoMeter = () => {
   const [data, setData] = useState(0);
   const [shimmer, setShimmer] = useState(true);
@@ -24,7 +24,7 @@ const SpeedoMeter = () => {
     setShimmer(true)
     try {
 
-      var response = await getDataAxios(`visitors/todayVisitor/${id}`);
+      var response = await getDataAxios(`visitors/todayVisitor/${id}/2020-05-09/2020-05-09`);
       // console.log('RESPONSE', response);
       // alert(JSON.stringify(response));
       // console.log(
@@ -37,7 +37,7 @@ const SpeedoMeter = () => {
       setShimmer(false);
     } catch (err) {
       console.error('Catch Error ', err);
-      setShimmer(false);
+      setShimmer(true);
     }
   };
   // alert(data);
@@ -50,7 +50,7 @@ const SpeedoMeter = () => {
   return (
     <View style={styles.container}>
       {shimmer ? (
-        <><Text>loading...</Text></>
+        <><SpeedoMetterShimmerTwo/></>
       ) : (
         <RadialSlider
           value={data}
