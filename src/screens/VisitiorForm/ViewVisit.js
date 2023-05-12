@@ -5,6 +5,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Keyboard,
+  Image,
+  BackHandler,
+  Alert
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -16,7 +19,7 @@ import Dropdown from '../../components/shared/dropdowns/DropDownComponent';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import Attachment from '../../components/shared/attachment/Attachment';
 import {getStoreData} from '../../helper/utils/AsyncStorageServices';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {
   getDataAxios,
   postDataAxios,
@@ -69,11 +72,11 @@ const ViewVisit = props => {
   //     setShow(true)
   // }
   // alert(JSON.stringify(props.route.params.visitordata.created_at));
-  // Engade Time//
+  //  Engade Time//
   // const handleClick = () => {
-  //   let startTimee = moment().format(props.route.params.visitordata.created_at);
-  //   var startTime = moment(startTimee, 'HH:mm:ss');
-  //   // var startTime = moment(props.route.params.visitordata.created_at, 'HH:mm:ss');
+  // let startTimee = moment().format(props.route.params.visitordata.created_at);
+  // var startTime = moment(startTimee, 'HH:mm:ss');
+  //   var startTime = moment(props.route.params.visitordata.created_at, 'HH:mm:ss');
   //   var endTime = moment('21:12:07', 'HH:mm:ss');
   //   var mins = moment
   //     .utc(moment(endTime, 'HH:mm:ss').diff(moment(startTime, 'HH:mm:ss')))
@@ -84,7 +87,40 @@ const ViewVisit = props => {
   //   handleClick();
   // }, []);
 
+ 
+   // Engade Time//
+  //  const handleEng=()=>{
+  //  let startTime =moment().format(props.route.params.visitordata.created_at);
+
+  //  var endTime = moment().format('hh:mm:ss'); // alert(endTime)
+  //  let aa = moment
+  //    .utc(moment(endTime, 'hh:mm:ss').diff(moment(startTime, 'hh:mm:ss')))
+  //    .format('hh:mm:ss');
+  //     props.setEngadeTime(aa)
+  //  }
+  useFocusEffect(
+    React.useCallback(() => {
+      function handleBackButtonClick() {
+        navigation.push('Dashboard');
+        return true;
+      }
+
+      BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+
+      return () => {
+        BackHandler.removeEventListener(
+          'hardwareBackPress',
+
+          handleBackButtonClick,
+        );
+      };
+    }, []),
+  );
+   
+// alert( JSON.stringify(props.route.params.visitordata))
   const handleSubmit = async () => {
+    // handleEng()
+    // alert('ggg')
     let body = {
       firstname: props.route.params.visitordata.firstname,
       lastname: props.route.params.visitordata.lastname,
@@ -113,6 +149,7 @@ const ViewVisit = props => {
     );
     if (response.status) {
       // handlClick()
+      
       setShowModal(true);
     }
   };
@@ -121,9 +158,11 @@ const ViewVisit = props => {
       {props.route.params.visitordata.visitor_status == 'ongoing' ? (
         <CenterHeader
           centerText
-          stepContent="Step 02"
+          stepContent=""
           stepText
-          centerContent="Visiting Form"
+          centerContent=""
+          ViewVisit
+          viewText="View Visit"
           onPressBackArrow={() => {
             navigation.push('Dashboard');
           }}
@@ -213,7 +252,7 @@ const ViewVisit = props => {
           }}>
           <Input
             value={moment(props.route.params.visitordata.date_of_birth).format(
-              'h:mm a, Do MMM YYYY',
+              'YYYY-MM-DD'
             )}
             label="Date of Brith"
             textLabel
@@ -273,7 +312,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder="Enter reference name if any "
-            label={'Mantralaya'}
+            label={'Mantraalay'}
             value={props.route.params.visitordata.MantralayName}
             textLabel
             width={'100%'}
@@ -305,7 +344,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reasion to visit'}
+            label={'Reason to visit'}
             value={props.route.params.visitordata.reason_to_visit}
             textLabel
             width={'100%'}
@@ -319,7 +358,12 @@ const ViewVisit = props => {
           style={{
             ...styles.Media_View_Css,
           }}>
-          <Attachment />
+          <Image
+            source={{
+              uri: `data:image/png;base64,${props.route.params.visitordata.picture}`,
+            }}
+            style={{height: 100, width: 100}}
+          />
         </View>
 
         <View
@@ -411,11 +455,9 @@ const styles = StyleSheet.create({
     height: 150,
   },
   Media_View_Css: {
-    backgroundColor: '#ebebeb',
     bottom: '11%',
-    width: '16%',
-    borderRadius: 10,
-    padding: 3,
+
+    padding: 5,
     margin: 5,
   },
   Button_View_Css: {

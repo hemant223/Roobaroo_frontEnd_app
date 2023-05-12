@@ -7,7 +7,10 @@ import FullSizeButtons from '../shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 
 const SuccessModal = props => {
+  const [engadeTime,setEngadeTime]=useState()
+  // alert (engadeTime)
   const SuccessModalShow = ({onpress}) => {
+    
     return (
       <View style={{width: '100%'}}>
         {/* <View style={{}}> */}
@@ -40,6 +43,7 @@ const SuccessModal = props => {
             titleColor={'#fff'}
             title={'Thank You'}
             width={100}
+            
           />
         </View>
       </View>
@@ -64,7 +68,8 @@ const SuccessModal = props => {
         padding={15}
         showModal={props.showModal}
         setShowModal={props.setShowModal}
-        content={<SuccessModalShow onpress={props.onPress} />}
+        content={<SuccessModalShow onpress={props.onPress}
+         />}
       />
     </>
   );

@@ -40,8 +40,8 @@ const Dashboard = props => {
   }, []);
   const handleProfile = async () => {
     let userData = await getStoreData('userData');
-    //   alert(JSON?.stringify(userData))
     navigation.navigate('UserDetail', {userData: userData});
+   
     //   setUsedata(userData)
   };
   const handleVisits = async () => {

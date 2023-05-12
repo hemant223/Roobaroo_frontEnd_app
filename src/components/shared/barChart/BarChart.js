@@ -10,44 +10,59 @@ import {Colors} from '../../../assets/config/Colors';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import FilterDropdown from '../dropdowns/FilterDropdown';
 import {getDataAxios} from '../../../fetchNodeServices';
+import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
+import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
 
 const data = [
-  {x: 'Sun', y: 5},
-  {x: 'Mon', y: 4},
-  {x: 'Tue', y: 3},
-  {x: 'Wed', y: 2},
-  {x: 'Thu', y: 1},
-  {x: 'Fri', y: 3},
-  {x: 'Sat', y: 2},
+  // {x: 'Sun', y: 5},
+  // {x: 'Mon', y: 4},
+  // {x: 'Tue', y: 3},
+  // {x: 'Wed', y: 2},
+  // {x: 'Thu', y: 1},
+  // {x: 'Fri', y: 3},
+  // {x: 'Sat', y: 2},
 ];
 
 export default function SingleBarChart(props) {
   const [weekly_Count, setWeekly_Count] = useState();
+  const [getUserData, setUserDataByAsync] = useState([]);
+  const [shimmer, setShimmer] = useState(true);
 
-  // alert (weekly_Count);
+  // const getUserDataByAsyncStorage=async()=>{
+  //   const userData = await getStoreData('userData');
+  //   fetchVisitor(userData.id)
+  //   setUserDataByAsync(userData)
+  // }
+  // useEffect(() => {
+  //   getUserDataByAsyncStorage()
+  // }, [])
+  // alert(JSON.stringify(getUserData.id));
+
+  // alert (JSON.stringify(weekly_Count));
 
   const fetchVisitor = async () => {
-    let body = {
-      startDate: '2023-05-01',
-      endDate: '2023-05-08',
-    };
-    var response = await getDataAxios(`visitors/todayVisitor/${37}`, body);
-console.log(response)
-    console.log(
-      'BarChart Component mein 30 Line==========>',
-      (response.obj.datasets[0].data),
+    const userData = await getStoreData('userData');
+   
+ let startDate= '2023-05-07';
+    let  endDate= '2023-05-13';
+   
+
+    var response = await getDataAxios(
+      `visitors/todayVisitor/${userData.id}/${startDate}/${endDate}`,
+     
     );
 
-    var aa = response.obj.datasets[0].data;
-    const count=aa.length
-    console.log(count)
-    setWeekly_Count(count);
+    var aa = response.data;
+
+    console.log(aa);
+    setWeekly_Count(aa);
+    setShimmer(false);
   };
 
-
- 
+  useEffect(() => {
     fetchVisitor();
-  
+  }, []);
+
   return (
     <View
       style={{
@@ -71,6 +86,7 @@ console.log(response)
           width: '100%',
           //   backgroundColor:'red'
         }}>
+          
         <Text
           style={{
             color: '#000',
@@ -89,25 +105,29 @@ console.log(response)
           <FilterDropdown />
         </View>
       </View>
-      <VictoryChart
-        width={props.width}
-        height={props.height}
-        theme={VictoryTheme.material}
-        domainPadding={20}>
-        <VictoryBar
-          data={props.data}
-          x={props.x}
-          y={props.y}
-          style={{data: {fill: props.barColor}}}
-          animate={{
-            duration: 2000,
-            onLoad: {duration: 1500},
-          }}
-          labels={true}
-          labelComponent={<VictoryLabel text={({datum}) => [`${datum.y}`]} />}
-          // height={400}
-        />
-      </VictoryChart>
+      {shimmer ? (
+        <><SpeedoMetterShimmer/></>
+      ) : (
+        <VictoryChart
+          width={props.width}
+          height={props.height}
+          theme={VictoryTheme.material}
+          domainPadding={20}>
+          <VictoryBar
+            data={weekly_Count}
+            x={props.x}
+            y={props.y}
+            style={{data: {fill: props.barColor}}}
+            animate={{
+              duration: 2000,
+              onLoad: {duration: 1500},
+            }}
+            labels={true}
+            labelComponent={<VictoryLabel text={({datum}) => [`${datum.y}`]} />}
+            // height={400}
+          />
+        </VictoryChart>
+     )} 
     </View>
   );
 }
@@ -115,8 +135,8 @@ console.log(response)
 SingleBarChart.defaultProps = {
   barColor: '#fea90d',
   data: data,
-  x_key_name: 'x',
-  y_key_name: 'y',
+  // x_key_name: 'x',
+  // y_key_name: 'y',
   width: 350,
   height: 200,
 };

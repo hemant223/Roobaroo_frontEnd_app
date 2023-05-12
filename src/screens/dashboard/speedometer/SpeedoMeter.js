@@ -1,39 +1,56 @@
-import React, {useEffect, useState} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {RadialSlider} from 'react-native-radial-slider';
 import {getDataAxios} from '../../../fetchNodeServices';
-
+import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
+import { useFocusEffect } from '@react-navigation/native';
+import SpeedoMetterShimmerTwo from '../../../components/shared/shimmer/SpeedoMeterShimmerTwo';
 const SpeedoMeter = () => {
   const [data, setData] = useState(0);
   const [shimmer, setShimmer] = useState(true);
+  const [getUserData, setUserDataByAsync] = useState([])
+//  alert(JSON.stringify(data))
+  const getUserDataByAsyncStorage=async()=>{
+    const userData = await getStoreData('userData');
+    fetchVisitor(userData.id)
+    setUserDataByAsync(userData)
+  }
+  useEffect(() => {
+    getUserDataByAsyncStorage()
+  }, [])
+  // alert(JSON.stringify(getUserData));
 
-  // alert(data);
-
-  const fetchVisitor = async () => {
+  const fetchVisitor = async (id) => {
+    setShimmer(true)
     try {
-      var response = await getDataAxios(`visitors/todayVisitor/${37}`);
+
+      var response = await getDataAxios(`visitors/todayVisitor/${id}/2020-05-09/2020-05-09`);
       // console.log('RESPONSE', response);
       // alert(JSON.stringify(response));
       // console.log(
-      //   '12 Line in Speedometer===========>123',
+      //   '27 Line in Speedometer===========>',
       //   response.todayVisitor[0].TodayVisitorCount,
       // );
-      setData(response.todayVisitor[0].TodayVisitorCount);
+      // alert("response of speedo",JSON.stringify(response))
+      setData(response?.todayVisitor[0]?.TodayVisitorCount);
+      // alert(response.todayVisitor[0].TodayVisitorCount)
       setShimmer(false);
     } catch (err) {
       console.error('Catch Error ', err);
-      setShimmer(false);
+      setShimmer(true);
     }
   };
   // alert(data);
-  useEffect(() => {
-    fetchVisitor();
-  });
+  // useEffect(() => {
+  //   fetchVisitor();
+  // },[]);
+
+
 
   return (
     <View style={styles.container}>
       {shimmer ? (
-        <></>
+        <><SpeedoMetterShimmerTwo/></>
       ) : (
         <RadialSlider
           value={data}

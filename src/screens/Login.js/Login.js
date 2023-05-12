@@ -14,7 +14,7 @@ import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
-import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
+import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
 import {storeData} from '../../helper/utils/AsyncStorageServices';
 
 function Login(props) {
@@ -58,9 +58,13 @@ function Login(props) {
 
     if (isValid) {
       var body = {mobile: inputs.mobileNumber};
+      // var response = await postDataAxiosWithoutToken('users/authenticate', body);
       var response = await postDataAxios('users/authenticate', body);
+    
       if (response.status) {
         storeData('userData', response.data);
+        storeData('token', response.token);
+        setModalVisible(false)
         props.navigation.navigate('OtpInput');
       } else {
         handleError('This User is not exists', 'mobileNumber');

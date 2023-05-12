@@ -1,13 +1,15 @@
 import {View, Text, TouchableOpacity, PermissionsAndroid} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import ImgToBase64 from 'react-native-image-base64';
 
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import FA from 'react-native-vector-icons/FontAwesome';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
-export default function Attachment({mediaBY, size}, props) {
+export default function Attachment(props) {
+  // console.log('props---------->>>>>>>9', props)
   const [filePath, setFilePath] = React.useState('');
-
+//   const[image,setImage]=React.useState('')
+// console.log('image',image)
   const requestCameraPermission = async () => {
     if (Platform.OS === 'android') {
       try {
@@ -21,7 +23,7 @@ export default function Attachment({mediaBY, size}, props) {
         // If CAMERA Permission is granted
         return granted === PermissionsAndroid.RESULTS.GRANTED;
       } catch (err) {
-        console.warn(err);
+        console.error('Error In Catch-->>',err);
         return false;
       }
     } else return true;
@@ -81,29 +83,27 @@ export default function Attachment({mediaBY, size}, props) {
           alert(response.errorMessage);
           return;
         }
-        // console.log('base64 -> ', response.assets[0].base64);
-        console.log('uri -> ', response.assets[0].uri);
-        console.log('totoal medias', response.assets);
-        console.log('width -> ', response.assets[0].width);
-        console.log('height -> ', response.assets[0].height);
-        console.log('fileSize -> ', response.assets[0].fileSize);
-        console.log('type -> ', response.assets[0].type);
-        console.log('fileName -> ', response.assets[0].fileName);
-        console.log('response.assets[0]-> ', response.assets);
+        
+      //  console.log('base64 -> ', response.assets[0].base64);
+      //   console.log('uri -> ', response.assets[0].uri);
+      //   console.log('totoal medias', response.assets);
+      //   console.log('width -> ', response.assets[0].width);
+      //   console.log('height -> ', response.assets[0].height);
+      //   console.log('fileSize -> ', response.assets[0].fileSize);
+      //   console.log('type -> ', response.assets[0].type);
+      //   console.log('fileName -> ', response.assets[0].fileName);
+      //   console.log('response.assets[0]-> ', response.assets);
         setFilePath(response);
         response.assets.map(i => {
           ImgToBase64.getBase64String(`${i.uri}`).then(base64String => {
+            props.setImage(base64String)
             console.log('Base 64 String ....', base64String);
             let body = {
               imgurl: base64String,
               id: i.fileName,
             };
-            dispatch({
-              type: 'ADD_TICKET_IMAGES',
-              payload: [i.fileName, body],
-            });
-            setRefresh(!refresh);
-            setTemparr(temparr + response.assets.length);
+            // setRefresh(!refresh);
+            // setTemparr(temparr + response.assets.length);
           });
         });
       });

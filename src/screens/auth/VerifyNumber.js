@@ -6,7 +6,7 @@ import {
   View,
   Keyboard,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Video from 'react-native-video';
 import Header from '../../components/shared/header/Header';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
@@ -15,7 +15,7 @@ import Input from '../../components/shared/textInputs/Inputs';
 import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
-import { getDataAxios } from '../../fetchNodeServices';
+import {getDataAxios} from '../../fetchNodeServices';
 const VerifyNumber = () => {
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
@@ -46,13 +46,13 @@ const VerifyNumber = () => {
   //   } else {
   //     alert('data fetch error');
   //   }
-   
+
   // };
   // useEffect(() => {
   //   getUserDataByAsyncStorage();
   //   fetchAllVisitorData();
   // }, []);
-//  alert(JSON.stringify(getVisitorData))
+  //  alert(JSON.stringify(getVisitorData))
 
   const handleMobileNumber = async () => {
     let isValid = true;
@@ -70,8 +70,8 @@ const VerifyNumber = () => {
       if (visitorMob == inputs.mobileNumber) {
         handleError('This Mobile No. is already exists', 'mobileNumber');
       } else {
-        storeData('VisitorsMobileNo',inputs.mobileNumber)
-        navigation.push('VerifyOtp',{mobileNo: inputs.mobileNumber});
+        storeData('VisitorsMobileNo', inputs.mobileNumber);
+        navigation.push('VerifyOtp', {mobileNo: inputs.mobileNumber});
       }
     }
   };
@@ -99,7 +99,7 @@ const VerifyNumber = () => {
       />
 
       <View style={{...styles.mainView}}>
-        <ScrollView style={{marginTop: 60}}>
+        <ScrollView style={{}}>
           <Video
             source={ImagesAssets.OTP_Gif}
             // source={props.VideosURL}
@@ -116,7 +116,7 @@ const VerifyNumber = () => {
           style={{
             ...styles.InputView,
           }}>
-          <View style={{alignItems: 'center', marginTop: 30}}>
+          <View style={{alignItems: 'center', height: '10%'}}>
             <Input
               onFocus={() => handleError(null, 'mobileNumber')}
               error={errors.mobileNumber}
@@ -128,13 +128,13 @@ const VerifyNumber = () => {
               borderRadius={5}
               placeholder="Enter Visitors mobile"
               placeholderColor="#b6b9bf"
-              textfontSize={16}
+              textfontSize={13}
               keyboardType="numeric"
             />
           </View>
         </View>
 
-        <View style={{alignSelf: 'center', bottom: '27%', marginTop: 30}}>
+        <View style={{alignSelf: 'center', height: '24%', bottom: 14}}>
           <FullSizeButtons
             onPress={() => {
               // navigation.navigate('VerifyOtp');
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   InputView: {
     alignItems: 'center',
 
-    height: '35%',
+    // height: 'auto',
     width: '100%',
   },
 });
