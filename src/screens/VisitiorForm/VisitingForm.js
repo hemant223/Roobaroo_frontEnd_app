@@ -199,7 +199,7 @@ const VisitingForm = props => {
     getUserDataByAsyncStorage();
   }, []);
   // alert(JSON.stringify(getUserData));
-  // alert(location)
+  // alert(dob)
 
   const validate = async () => {
     try {
@@ -244,7 +244,7 @@ const VisitingForm = props => {
           minister_id: ministarid,
         };
 
-        // console.log(bo)
+        console.log(body)
         // alert(++i);
         let response = await postDataAxios(`visitors/addVisitor`, body);
         console.log('response', response);
@@ -286,6 +286,12 @@ const VisitingForm = props => {
   const handleError = (error, input) => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
+
+  const handleDatePicker=(value,valuetwo)=>{
+    console.log("VALUEEEEEEEEEEE",value);
+    console.log("VALUE TWOOOOOOOOOO",valuetwo);
+    setDob(valuetwo)
+  }
 
   return (
     <View style={{...styles.mainView}}>
@@ -371,8 +377,9 @@ const VisitingForm = props => {
             borderRadius={30}
             backgroundColor={Colors.Textinputbg}
             height={40}
-            setDate={setDob}
+            // setDate={setDob}
             label="Date of Brith"
+            onPress={(value,valuetwo)=>handleDatePicker(value,valuetwo)}
           />
         </View>
 
@@ -442,7 +449,7 @@ const VisitingForm = props => {
             ...styles.Mantralya_View_Css,
           }}>
           <Dropdown
-            label={'Mantraalay'}
+            label={'Mantralaya'}
             labelLeft={10}
             borderRadius={12}
             options={mantralay}
@@ -542,6 +549,7 @@ const VisitingForm = props => {
           title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
             navigation.push('Visits');
+           /*  setShowModal=(false) */
           }}
           setShowModal={setShowModal}
           showModal={showModal}

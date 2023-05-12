@@ -49,7 +49,9 @@ function OtpInput(props) {
     var getOtp = f1 + f2 + f3 + f4 + f5;
     if (99999 == getOtp) {  
       storeData('userData', {...userData, loggedIn: true});
+      setModalVisible(false)
       props.navigation.navigate('Dashboard');
+
     } else {
       alert('Enter correct Otp');
     }

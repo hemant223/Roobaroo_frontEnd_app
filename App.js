@@ -13,6 +13,8 @@ import { getDataAxios } from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
 import SearchScreen from './src/screens/search/SearchScreen';
+
+
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
   useEffect(() => {
@@ -31,7 +33,7 @@ const App = (props) => {
     <MainNavigationStack/>
     {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
    {/* <FullSizeButtons onPress={()=>{handleClick()}} /> */}
-    
+ {/* <TestComponent/> */}
     </>
   )
 }

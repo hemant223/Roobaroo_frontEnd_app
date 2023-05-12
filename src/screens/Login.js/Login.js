@@ -58,11 +58,13 @@ function Login(props) {
 
     if (isValid) {
       var body = {mobile: inputs.mobileNumber};
-      var response = await postDataAxiosWithoutToken('users/authenticate', body);
+      // var response = await postDataAxiosWithoutToken('users/authenticate', body);
+      var response = await postDataAxios('users/authenticate', body);
     
       if (response.status) {
         storeData('userData', response.data);
         storeData('token', response.token);
+        setModalVisible(false)
         props.navigation.navigate('OtpInput');
       } else {
         handleError('This User is not exists', 'mobileNumber');

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Keyboard,
   Image,
-  BackHandler
+  BackHandler,
+  Alert
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -116,7 +117,7 @@ const ViewVisit = props => {
     }, []),
   );
    
-
+// alert( JSON.stringify(props.route.params.visitordata))
   const handleSubmit = async () => {
     // handleEng()
     // alert('ggg')
@@ -251,7 +252,7 @@ const ViewVisit = props => {
           }}>
           <Input
             value={moment(props.route.params.visitordata.date_of_birth).format(
-              'h:mm a, Do MMM YYYY',
+              'YYYY-MM-DD'
             )}
             label="Date of Brith"
             textLabel
