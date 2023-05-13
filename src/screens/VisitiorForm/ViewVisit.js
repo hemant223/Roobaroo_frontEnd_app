@@ -7,7 +7,7 @@ import {
   Keyboard,
   Image,
   BackHandler,
-  Alert
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -47,9 +47,7 @@ const genderData = [
 const ViewVisit = props => {
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
-
-  //   const  getData = props.route.params
-
+  const [showengageTime, showsetEngagetime] = useState('');
   const [visitortype, setVisitorType] = React.useState(
     props?.route?.params?.visitordata?.visitor_type,
   );
@@ -59,45 +57,12 @@ const ViewVisit = props => {
   const [physically, setPhysically] = React.useState(
     props?.route?.params?.visitordata?.physically_disabled,
   );
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  //   const [date1, setDate1] = useState(new Date());
-  //   const [show, setShow] = useState(false);
-
-  //   const onChange = (event, selectedDate) => {
-  //     const currentDate = selectedDate || date1;
-  //     setDate1(currentDate);
-  //   console.log (currentDate)
-  //   };
-  // const showDatepicker=()=>{
-  //     setShow(true)
-  // }
-  // alert(JSON.stringify(props.route.params.visitordata.created_at));
-  //  Engade Time//
-  // const handleClick = () => {
-  // let startTimee = moment().format(props.route.params.visitordata.created_at);
-  // var startTime = moment(startTimee, 'HH:mm:ss');
-  //   var startTime = moment(props.route.params.visitordata.created_at, 'HH:mm:ss');
-  //   var endTime = moment('21:12:07', 'HH:mm:ss');
-  //   var mins = moment
-  //     .utc(moment(endTime, 'HH:mm:ss').diff(moment(startTime, 'HH:mm:ss')))
-  //     .format('hh:mm:ss');
-  //   alert(mins);
-  // };
-  // useEffect(() => {
-  //   handleClick();
-  // }, []);
-
  
-   // Engade Time//
-  //  const handleEng=()=>{
-  //  let startTime =moment().format(props.route.params.visitordata.created_at);
 
-  //  var endTime = moment().format('hh:mm:ss'); // alert(endTime)
-  //  let aa = moment
-  //    .utc(moment(endTime, 'hh:mm:ss').diff(moment(startTime, 'hh:mm:ss')))
-  //    .format('hh:mm:ss');
-  //     props.setEngadeTime(aa)
-  //  }
+  
+
+  
+
   useFocusEffect(
     React.useCallback(() => {
       function handleBackButtonClick() {
@@ -116,11 +81,29 @@ const ViewVisit = props => {
       };
     }, []),
   );
-   
-// alert( JSON.stringify( props.route.params.visitordata.constituency_id))
+
   const handleSubmit = async () => {
-    // handleEng()
-    // alert('ggg')
+    let  startTime = moment(props.route.params.visitordata.created_at).format('HH:mm:ss');
+    var hms1 = startTime;
+    var a1 = hms1.split(':');
+    var seconds1 = a1[0] * 60 * 60 + +a1[1] * 60 + +a1[2];
+    var endTime = moment().format('HH:mm:ss');
+    var hms2 = endTime;
+    var a2 = hms2.split(':');
+    var seconds2 = a2[0] * 60 * 60 + +a2[1] * 60 + +a2[2];
+    var engagetime = seconds2 - seconds1;
+    
+    let d = Number(engagetime);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor((d % 3600) / 60);
+    var s = Math.floor((d % 3600) % 60);
+    var hDisplay = h > 0 ? h + (h == 1 ? ' hour: ' : ' hours: ') : '';
+    var mDisplay = m > 0 ? m + (m == 1 ? ' minute: ' : ' minutes: ') : '';
+    var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : '';
+    var aa = hDisplay + mDisplay + sDisplay;
+    showsetEngagetime(aa);
+   
+
     let body = {
       firstname: props.route.params.visitordata.firstname,
       lastname: props.route.params.visitordata.lastname,
@@ -141,9 +124,10 @@ const ViewVisit = props => {
       minister_id: props.route.params.visitordata.minister_id,
       group_member: 'reaju hemu',
       visitor_status: 'completed',
+      engage_time:engagetime
     };
 
-    // alert(JSON.stringify(body));
+    
     
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
@@ -151,7 +135,7 @@ const ViewVisit = props => {
     );
     if (response.status) {
       // handlClick()
-      
+
       setShowModal(true);
     }
   };
@@ -254,7 +238,7 @@ const ViewVisit = props => {
           }}>
           <Input
             value={moment(props.route.params.visitordata.date_of_birth).format(
-              'YYYY-MM-DD'
+              'YYYY-MM-DD',
             )}
             label="Date of Brith"
             textLabel
@@ -389,8 +373,9 @@ const ViewVisit = props => {
       </ScrollView>
       {
         <SuccessModal
-          title="Your Visiting record request has been Successfully Updated"
+          title={`Your Visiting record request has been ${showengageTime} Successfully Updated`}
           onPress={() => {
+            setShowModal(false);
             navigation.push('Visits', {complete: 'update'});
           }}
           setShowModal={setShowModal}
