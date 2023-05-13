@@ -11,6 +11,7 @@ import {FontFamily} from '../../../assets/fonts/FontFamily';
 import FilterDropdown from '../dropdowns/FilterDropdown';
 import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
+import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
 
 const data = [
   // {x: 'Sun', y: 5},
@@ -41,14 +42,14 @@ export default function SingleBarChart(props) {
 
   const fetchVisitor = async () => {
     const userData = await getStoreData('userData');
-    let body = {
-      startDate: '2023-05-01',
-      endDate: '2023-05-07',
-    };
+   
+ let startDate= '2023-05-07';
+    let  endDate= '2023-05-13';
+   
 
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}`,
-      body,
+      `visitors/todayVisitor/${userData.id}/${startDate}/${endDate}`,
+     
     );
 
     var aa = response.data;
@@ -85,6 +86,7 @@ export default function SingleBarChart(props) {
           width: '100%',
           //   backgroundColor:'red'
         }}>
+          
         <Text
           style={{
             color: '#000',
@@ -104,7 +106,7 @@ export default function SingleBarChart(props) {
         </View>
       </View>
       {shimmer ? (
-        <></>
+        <><SpeedoMetterShimmer/></>
       ) : (
         <VictoryChart
           width={props.width}
@@ -125,7 +127,7 @@ export default function SingleBarChart(props) {
             // height={400}
           />
         </VictoryChart>
-      )}
+     )} 
     </View>
   );
 }

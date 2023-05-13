@@ -43,6 +43,7 @@ const SuccessModal = props => {
             titleColor={'#fff'}
             title={'Thank You'}
             width={100}
+            
           />
         </View>
       </View>
