@@ -15,7 +15,7 @@ import Input from '../../components/shared/textInputs/Inputs';
 import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
-import {getDataAxios} from '../../fetchNodeServices';
+import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
 const VerifyNumber = () => {
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
@@ -66,13 +66,35 @@ const VerifyNumber = () => {
       isValid = false;
     }
     if (isValid) {
-      var visitorMob = await getStoreData('VisitorsMobileNo');
-      if (visitorMob == inputs.mobileNumber) {
-        handleError('This Mobile No. is already exists', 'mobileNumber');
-      } else {
-        storeData('VisitorsMobileNo', inputs.mobileNumber);
-        navigation.push('VerifyOtp', {mobileNo: inputs.mobileNumber});
-      }
+      // navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber});
+
+      // var visitorMob = await getStoreData('VisitorsMobileNo');
+      // const userData = await getStoreData('userData');
+      var body = {mobile_number: inputs.mobileNumber};
+
+      // let response = await postDataAxios(`visitors/addVisitor`,body)
+      // alert(response.status)
+      // if (response.status == false) {
+      //   handleError('Mobile no already registerrrrr', 'mobileNumber');
+      // } else {
+      navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber});
+      // }
+      // //   // alert('hh'):
+      //  }
+      // alert(JSON.stringify(data.result[0]))
+      // {
+      // var rr=  data.result.map(item => {
+      //
+      //     return inputs.mobileNumber == item.mobile_number;
+      //  matchNo
+
+      // : // storeData('VisitorsMobileNo', inputs.mobileNumber);
+      //   navigation.push('VerifyOtp', {mobileNo: inputs.mobileNumber})
+
+      //   });
+      // }
+      // alert(rr)
+      // alert(matchNo)
     }
   };
   return (

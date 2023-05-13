@@ -69,7 +69,6 @@ const Dashboard = props => {
   );
   // alert(showModal)
 
-
   return (
     <View
       style={{
@@ -111,7 +110,7 @@ const Dashboard = props => {
           style={{
             backgroundColor: '#fff',
             width: '95%',
-            height:'100%',
+            height: '100%',
             borderRadius: 12,
             borderWidth: 1,
             borderColor: '#e4e4e4',
@@ -130,7 +129,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
-          marginTop:7
+          marginTop: 7,
         }}>
         <SingleBarChart />
       </View>
@@ -141,7 +140,7 @@ const Dashboard = props => {
           height: height * 0.12,
           alignItems: 'center',
           backgroundColor: '#fff',
-          marginTop:7
+          marginTop: 7,
         }}>
         <VisitAndProfileButton
           onPress={() => {
@@ -156,7 +155,7 @@ const Dashboard = props => {
           height: height * 0.12,
           alignItems: 'center',
           backgroundColor: '#fff',
-          marginTop:7
+          marginTop: 7,
         }}>
         <VisitAndProfileButton
           data="See Profile to here "

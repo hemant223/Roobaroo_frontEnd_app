@@ -8,6 +8,7 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 
 const SuccessModal = props => {
   const [engadeTime,setEngadeTime]=useState()
+ 
   // alert (engadeTime)
   const SuccessModalShow = ({onpress}) => {
     

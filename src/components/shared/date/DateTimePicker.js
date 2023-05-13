@@ -5,48 +5,38 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import DatePicker from '@react-native-community/datetimepicker';
 import { Colors } from '../../../assets/config/Colors';
 
-import {FontFamily} from '../../../assets/fonts/FontFamily';
-
+import { FontFamily } from '../../../assets/fonts/FontFamily';
 const {width} = Dimensions.get('window');
 
 // import moment from 'moment';
 
 function DateTimePicker(props) {
-  // console.log('mode',props.mode);
   //   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [date1, setDate1] = useState("");
-
+  const [show1, setShow1] = useState(false);
+  const [date1, setDate1] = useState(new Date());
+// alert(date1)
   const onChange = (event, selectedDate) => {
-    console.log('SELECTEDATE============>',selectedDate)
-    console.log('============>event',event.type)
-    props.onPress(event,selectedDate)
-    if(event.type=='dismissed'){
-      setShow(false)
-    }else{
-      setDate1(moment(selectedDate).format('DD-MM-YYYY'))
-      setShow(false)
-    }
-    // const currentDate = selectedDate || date1;
-    // setShow(Platform.OS === 'ios');
-    // // setDate(currentDate);
-    // console.log(`selectdDate===>${selectedDate}`);
-    // setDate1(currentDate);
-    // props.setDate(
-    //   moment(currentDate).format(
-    //     props.mode == 'time' ? 'hh:mm A' : 'YYYY-MM-DD',
-    //   ),
-    // );
+    setShow1(true)
+    const currentDate = selectedDate || date1;
+    setShow(Platform.OS === 'ios');
+    // setDate(currentDate);
+    console.log(`selectdDate===>${selectedDate}`);
+    setDate1(currentDate);
+    props.setDate(
+      moment(currentDate).format(
+        props.mode == 'time' ? 'hh:mm A' : 'YYYY-MM-DD',
+      ),
+    );
   };
 
   const showDatepicker = () => {
-    setShow(!show);
+    setShow(true);
   };
 
   return (
     <>
-    
-        <View style={{left: 8}}>
+     <View style={{left: 8}}>
           <Text
             style={{
               color: '#aeaeae',
@@ -56,9 +46,7 @@ function DateTimePicker(props) {
             {props.label}
           </Text>
         </View>
-      
-      <TouchableOpacity onPress={()=>setShow(!show)} style={{width: '100%'}}>
-      
+      <TouchableOpacity onPress={showDatepicker} style={{width: '100%'}}>
         <View
           style={{
             height: props.height,
@@ -72,30 +60,28 @@ function DateTimePicker(props) {
             backgroundColor:'#fff',
             height: props.height,
           }}>
-            
           <TextInput
             editable={false}
-            value={date1}
-            placeholder=' Select Date of Birth'
-            placeholderTextColor={'#000'}
-            aria-label="input"
-            textLabel
+            value={
+            
+              show1? date1?.toUTCString().substring(0, 16):'Select Date of Birth'
+            }
+            label="* Enter Date"
             style={{
               color: Colors.black,
               marginLeft: 15,
               fontFamily: FontFamily.PopinsMedium,
-            //   fontSize: FontSize.labelText,
+              // fontSize: FontSize.labelText,
               top: 2,
               width: '100%',
-            overflow:'hidden'
+            overflow:'hidden',
+         
+            
 
             }}
             underlineColor={'transparent'}
             labelStyle={{fontSize: 11, color: Colors.MRTEXTGREY}}
           />
-
-
-
           <View style={{position: 'absolute', right: 15}}>
             <Ionicons
               name="calendar-sharp"
@@ -108,13 +94,13 @@ function DateTimePicker(props) {
       {show && (
         <DatePicker
           {...props}
-          // testID="dateTimePicker"
-          value={new Date()}
-          mode={'date'}
+          testID="dateTimePicker"
+          value={date1}
+          mode={props.mode}
           is24Hour={false}
           display="default"
           onChange={onChange}
-         
+          maximumDate={new Date()}
         />
       )}
     </>
@@ -127,10 +113,8 @@ DateTimePicker.defaultProps = {
   borderColor: Colors.borderColor1,
   mode: 'date',
   borderRadius: 8,
-  backgroundColor: '#fff',
+  backgroundColor: 'white',
   height: 40,
-  label: 'label',
-
 };
 
 export default DateTimePicker;

@@ -92,8 +92,8 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('home', {location: item.title});
                   props.setShowModal(false);
+                  navigation.navigate('home', {location: item.title});
                   storeData('Location', {location: item.title});
                 }}
                 key={item.id}
@@ -155,8 +155,8 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate('home', {location: item?.title});
                   props.setShowModal(false);
+                  navigation.navigate('home', {location: item?.title});
                   storeData('Location', {location: item.title});
                 }}
                 key={item.id}
