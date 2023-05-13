@@ -69,7 +69,8 @@ const Input = props => {
               width: '100%',
               // fontFamily:FontFamily.PopinsMedium,
               fontSize: props.textfontSize,
-              top: 2,
+              // top: 2,
+              
             }}
             placeholder={props.placeholder}
             placeholderTextColor={props.placeholderColor}
@@ -112,7 +113,7 @@ const Input = props => {
 Input.defaultProps = {
   placeholder: 'Placeholder',
   width: '80%',
-  height: 40,
+  height: 43,
   icon: false,
   maxLength:1000,
   iconColor: 'white',
