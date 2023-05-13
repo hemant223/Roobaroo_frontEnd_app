@@ -12,56 +12,72 @@ import FilterDropdown from '../dropdowns/FilterDropdown';
 import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
 import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
-
+import moment from 'moment';
 const data = [
-  // {x: 'Sun', y: 5},
-  // {x: 'Mon', y: 4},
-  // {x: 'Tue', y: 3},
-  // {x: 'Wed', y: 2},
-  // {x: 'Thu', y: 1},
-  // {x: 'Fri', y: 3},
-  // {x: 'Sat', y: 2},
+
 ];
 
 export default function SingleBarChart(props) {
-  const [weekly_Count, setWeekly_Count] = useState();
   const [getUserData, setUserDataByAsync] = useState([]);
   const [shimmer, setShimmer] = useState(true);
-
-  // const getUserDataByAsyncStorage=async()=>{
-  //   const userData = await getStoreData('userData');
-  //   fetchVisitor(userData.id)
-  //   setUserDataByAsync(userData)
-  // }
-  // useEffect(() => {
-  //   getUserDataByAsyncStorage()
-  // }, [])
-  // alert(JSON.stringify(getUserData.id));
-
-  // alert (JSON.stringify(weekly_Count));
-
+  const [last_Week, setLast_Week] = useState();
+  const [filterSelected, setFilterSelected] = useState(1)
+ console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
+ 
+  const [current_Week,setCurrent_Week]=useState('')
+ 
+ 
   const fetchVisitor = async () => {
     const userData = await getStoreData('userData');
    
- let startDate= '2023-05-07';
-    let  endDate= '2023-05-13';
-   
+
+    const startof_Last_week=(moment().subtract(1, 'weeks').startOf('week').format('YYYY-MM-DD'));
+  const endof_Last_week =(moment().subtract(1, 'weeks').endOf('week').format('YYYY-MM-DD'));
+
 
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${startDate}/${endDate}`,
+      `visitors/todayVisitor/${userData.id}/${startof_Last_week}/${endof_Last_week}`,
+      
      
     );
 
     var aa = response.data;
 
-    console.log(aa);
-    setWeekly_Count(aa);
+  
+    setLast_Week(aa);
     setShimmer(false);
   };
 
   useEffect(() => {
     fetchVisitor();
   }, []);
+
+  const fetchVisitorCureent_Week = async () => {
+    const userData = await getStoreData('userData');
+   
+
+   
+  var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
+
+  var cureentDate = moment().format('YYYY-MM-DD');
+
+    var response = await getDataAxios(
+      `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}`,
+    
+     
+    );
+
+    var yy = response.data;
+
+    setCurrent_Week(yy);
+    setShimmer(false);
+  };
+
+  useEffect(() => {
+    fetchVisitorCureent_Week();
+  }, []);
+
+
 
   return (
     <View
@@ -102,7 +118,7 @@ export default function SingleBarChart(props) {
             width: '70%',
             alignItems: 'flex-end',
           }}>
-          <FilterDropdown />
+          <FilterDropdown onValueChange={(txt)=>{ setFilterSelected(txt.id)}} />
         </View>
       </View>
       {shimmer ? (
@@ -114,7 +130,7 @@ export default function SingleBarChart(props) {
           theme={VictoryTheme.material}
           domainPadding={20}>
           <VictoryBar
-            data={weekly_Count}
+            data={filterSelected==1?last_Week:current_Week}
             x={props.x}
             y={props.y}
             style={{data: {fill: props.barColor}}}
