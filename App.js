@@ -13,6 +13,7 @@ import { getDataAxios } from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
 import SearchScreen from './src/screens/search/SearchScreen';
+import ChangeLanguage from './src/components/ChangeLanguage/ChangeLanguage';
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
   useEffect(() => {
@@ -28,7 +29,8 @@ const App = (props) => {
     <>
 {/* <StatusBar hidden={true} translucent backgroundColor="transparent" /> */}
     {/* <SearchScreen/> */}
-    <MainNavigationStack/>
+    {/* <MainNavigationStack/> */}
+    <ChangeLanguage/>
     {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
    {/* <FullSizeButtons onPress={()=>{handleClick()}} /> */}
     

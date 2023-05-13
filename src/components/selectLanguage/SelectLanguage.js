@@ -12,7 +12,7 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import RadioButtonRN from 'radio-buttons-react-native';
 import {Colors} from '../../assets/config/Colors';
 import {RadioButton} from 'react-native-paper';
-const language =() => {
+const SelectLanguage =() => {
 const DATA = [
   {
     id: '1',
@@ -80,6 +80,8 @@ const Item = ({item}) => {
         // backgroundColor: 'yellowgreen',
         alignItems: 'center',
       }}>
+        {DATA.map(item =>{
+          return(
       <View style={{...styles.mainContainer}}>
         <View
           style={{
@@ -128,34 +130,37 @@ const Item = ({item}) => {
           </Text>
         </View>
       </View>
+      )
+      })
+      }
     </View>
   );
 };
 }
 
-const SelectLanguage = props => {
-  let numColumns = 2;
-  return (
-    <>
-      <View>
-        <FlatList
-          numColumns={numColumns}
-          data={props.VisitorDetailsData}
-          renderItem={({item, index}) => <Item item={item} indx={index} />}
-          keyExtractor={item => item.id}
-          // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
-          scrollEnabled={true}
-        />
-      </View>
-    </>
-  );
-};
+// const SelectLanguage = props => {
+//   let numColumns = 2;
+//   return (
+//     <>
+//       <View>
+//         <FlatList
+//           numColumns={numColumns}
+//           data={props.VisitorDetailsData}
+//           renderItem={({item, index}) => <Item item={item} indx={index} />}
+//           keyExtractor={item => item.id}
+//           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
+//           scrollEnabled={true}
+//         />
+//       </View>
+//     </>
+//   );
+// };
 
 export default SelectLanguage;
 
-SelectLanguage.defaultProps = {
-  VisitorDetailsData: DATA,
-};
+// SelectLanguage.defaultProps = {
+//   VisitorDetailsData: DATA,
+// };
 
 const styles = StyleSheet.create({
   mainContainer: {
