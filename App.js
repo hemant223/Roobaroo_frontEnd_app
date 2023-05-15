@@ -13,7 +13,7 @@ import { getDataAxios } from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
 import SearchScreen from './src/screens/search/SearchScreen';
-
+import MultipleTextField from './src/components/multiple_text_field/MultipleTextField';
 
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
@@ -24,10 +24,11 @@ const App = (props) => {
 
   // const [showModal, setShowModal] = useState(true)
   // alert(background)
-
-
+  const [textFields, setTextFields] = useState([{value: ''},{value: ''}]);
+// alert(JSON.stringify(textFields))
   return (
     <>
+    {/* <MultipleTextField setTextFields={setTextFields} textFields={textFields}/> */}
 {/* <StatusBar hidden={true} translucent backgroundColor="transparent" /> */}
     {/* <SearchScreen/> */}
     <MainNavigationStack/>
