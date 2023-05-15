@@ -152,7 +152,7 @@ const Dashboard = props => {
       <View
         style={{
           width: width * 1,
-          height: height * 0.16,
+          height: height * 0.20,
           alignItems: 'center',
           backgroundColor: '#fff',
           marginTop: 10,
