@@ -78,7 +78,9 @@ const data = [
 ];
 
 function Item({item, props, checked, setChecked}) {
-  const [g, s] = React.useState({});
+
+
+  const [g, s] = React.useState({});      
   const handleRadioBox = (id, name) => {
     console.log('Event>>>>', id, name);
     s(prev => ({...prev, [id]: name}));
@@ -94,7 +96,7 @@ function Item({item, props, checked, setChecked}) {
           <RadioButton
             value={answr}
             color={'#005db6'}
-            uncheckedColor={'#005db6'}
+            uncheckedColor={'grey'}
             status={checked == answr ? 'checked' : 'unchecked'}
             onPress={() => handleRadioBox(item.id, item.name)}
           />
@@ -118,6 +120,17 @@ function Item({item, props, checked, setChecked}) {
 const StatusBarHeight = StatusBar.currentHeight;
 export default function ChangeLanguage(props) {
   const [checked, setChecked] = React.useState('English');
+  const onSelect=(index)=>{
+    const temp=checked;
+    temp.map((item,ind)=>{
+      if(index==ind){
+        if (item.checked==true){
+          
+        }
+      }
+    })
+    }
+    
   return (
     <View style={{flex: 1, backgroundColor: '#FFF'}}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -177,7 +190,7 @@ export default function ChangeLanguage(props) {
         />
       </View>
       <View style={styles.Fbottom}>
-        <TouchableOpacity activeOpacity={1} onPress={() => props.navigation.navigate('DoctorList')}>
+        <TouchableOpacity activeOpacity={1} onPress={() => props.navigation.navigate('NewFile')}>
           <LinearGradient
             colors={['#005db6', '#005db6']}
             start={{x: 1, y: 1}}

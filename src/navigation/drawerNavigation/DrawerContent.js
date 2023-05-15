@@ -69,7 +69,7 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
         setShowLogout(false)
     }
     const handleLang=()=>{
-        // navigation.navigate('home')
+         navigation.navigate('language')
         setShowHome(false)
         setShowVisits(false)
         setShowLang(true)

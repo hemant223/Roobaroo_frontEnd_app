@@ -5,27 +5,15 @@ import {
   removeStoreData,
 } from './helper/utils/AsyncStorageServices';
 // import {useNavigation, useFocusEffect} from '@react-navigation/native';
-<<<<<<< HEAD
-var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJEZXZpY2VJZCI6Ik90aGVyIDAuMC4wIC8gT3RoZXIgMC4wLjAiLCJDcmVhdGVkVGltZSI6IjE0OjU5OjMwIiwiQ3JlYXRlZERhdGUiOiIyMDIzLTA1LTEwVDA5OjI5OjMwLjc3N1oiLCJpYXQiOjE2ODM3MTA5NzAsImV4cCI6MTY4MzcxODE3MH0.wNqKjevV9obrPbw6IrT_qEQrzu4NVyXVaLd15l2Mb98";
-var ServerURL = 'http://10.0.2.2:9292';
-=======
 
-var ServerURL = 'http://192.168.29.194:9292';
->>>>>>> 5fef2986de15ab32b03df12e45160912817bdf05
+var ServerURL = 'http://192.168.29.174:9292';
 // var ServerURL = "http://campusshala.com:9292";
 // const navigation=useNavigation()
 var token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjEsIkRldmljZUlkIjoiT3RoZXIgMC4wLjAgLyBPdGhlciAwLjAuMCIsIkNyZWF0ZWRUaW1lIjoiMDk6NTQ6MDciLCJDcmVhdGVkRGF0ZSI6IjIwMjMtMDUtMTJUMDQ6MjQ6MDcuMjU0WiIsImlhdCI6MTY4Mzg2NTQ0NywiZXhwIjoxNjgzODcyNjQ3fQ.9rTyQqAdwV_rSAy8y80kVHxlt7jMx4pCDC4_kXMC9s0';
 const getDataAxios = async Url => {
-<<<<<<< HEAD
-  const Token = token
-  // alert(Token)
-  
-  console.log("token==================>", Token);
-=======
-  // const Token = await getStoreData('token');
-  const Token = token;
->>>>>>> 5fef2986de15ab32b03df12e45160912817bdf05
+  const Token = await getStoreData('token');
+  // const Token = token;
   // alert(Token)
 
   // console.log("token==================>", Token);
@@ -66,12 +54,8 @@ const getDataAxios = async Url => {
 
 // To Send Data In Node
 const postDataAxios = async (Url, body) => {
-<<<<<<< HEAD
-  const Token = token
-=======
-  // const Token = await getStoreData('token');
-  const Token = token;
->>>>>>> 5fef2986de15ab32b03df12e45160912817bdf05
+  const Token = await getStoreData('token');
+  // const Token = token;
   // alert(JSON.stringify(body))
   try {
     var url = `${ServerURL}/${Url}`;
@@ -104,13 +88,8 @@ const postDataAxios = async (Url, body) => {
 };
 
 const putDataAxios = async (Url, body) => {
-<<<<<<< HEAD
- 
-  const Token = token
-=======
   // const Token = await AsyncStorage.getItem('token');
   const Token = token;
->>>>>>> 5fef2986de15ab32b03df12e45160912817bdf05
 
   try {
     var url = `${ServerURL}/${Url}`;
