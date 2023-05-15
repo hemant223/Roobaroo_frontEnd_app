@@ -44,7 +44,7 @@ function MainNavigationStack(props) {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator /* screenOptions={horizontalAnimation} */    headerShown={false}>
+      <Stack.Navigator /* screenOptions={horizontalAnimation} */      headerShown={false}>
         {/* <Stack.Screen
           name="SyncScreen"
           component={SyncScreen}

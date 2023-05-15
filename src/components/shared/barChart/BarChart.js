@@ -31,8 +31,8 @@ export default function SingleBarChart(props) {
     const userData = await getStoreData('userData');
    
 
-    const startof_Last_week=(moment().subtract(1, 'weeks').startOf('week').format('YYYY-MM-DD'));
-  const endof_Last_week =(moment().subtract(1, 'weeks').endOf('week').format('YYYY-MM-DD'));
+    const startof_Last_week=(moment().subtract(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
+  const endof_Last_week =(moment().subtract(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
 
 
     var response = await getDataAxios(
@@ -45,6 +45,7 @@ export default function SingleBarChart(props) {
 
   
     setLast_Week(aa);
+   
     setShimmer(false);
   };
 
@@ -70,6 +71,7 @@ export default function SingleBarChart(props) {
     var yy = response.data;
 
     setCurrent_Week(yy);
+    // console.log(yy)
     setShimmer(false);
   };
 

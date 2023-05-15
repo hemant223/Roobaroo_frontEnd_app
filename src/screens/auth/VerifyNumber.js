@@ -120,7 +120,7 @@ const VerifyNumber = () => {
         }}
       />
 
-      <View style={{...styles.mainView}}>
+      <View style={{...styles.mainView,}}>
         <ScrollView style={{}}>
           <Video
             source={ImagesAssets.OTP_Gif}
@@ -156,7 +156,7 @@ const VerifyNumber = () => {
           </View>
         </View>
 
-        <View style={{alignSelf: 'center', height: '24%', bottom: 14}}>
+        <View style={{alignSelf: 'center', height: '24%', bottom: 0}}>
           <FullSizeButtons
             onPress={() => {
               // navigation.navigate('VerifyOtp');
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   mainView: {
     backgroundColor: '#fff',
     width: '100%',
-    height: '100%',
+    height: '94%',
   },
   InputView: {
     alignItems: 'center',
