@@ -57,11 +57,6 @@ const ViewVisit = props => {
   const [physically, setPhysically] = React.useState(
     props?.route?.params?.visitordata?.physically_disabled,
   );
- 
-
-  
-
-  
 
   useFocusEffect(
     React.useCallback(() => {
@@ -81,9 +76,11 @@ const ViewVisit = props => {
       };
     }, []),
   );
-
+  // alert(JSON.stringify(props.route.params.visitordata))
   const handleSubmit = async () => {
-    let  startTime = moment(props.route.params.visitordata.created_at).format('HH:mm:ss');
+    let startTime = moment(props.route.params.visitordata.created_at).format(
+      'HH:mm:ss',
+    );
     var hms1 = startTime;
     var a1 = hms1.split(':');
     var seconds1 = a1[0] * 60 * 60 + +a1[1] * 60 + +a1[2];
@@ -92,7 +89,7 @@ const ViewVisit = props => {
     var a2 = hms2.split(':');
     var seconds2 = a2[0] * 60 * 60 + +a2[1] * 60 + +a2[2];
     var engagetime = seconds2 - seconds1;
-    
+
     let d = Number(engagetime);
     var h = Math.floor(d / 3600);
     var m = Math.floor((d % 3600) / 60);
@@ -102,7 +99,6 @@ const ViewVisit = props => {
     var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' seconds') : '';
     var aa = hDisplay + mDisplay + sDisplay;
     showsetEngagetime(aa);
-   
 
     let body = {
       firstname: props.route.params.visitordata.firstname,
@@ -110,7 +106,9 @@ const ViewVisit = props => {
       mobile_number: props.route.params.visitordata.mobile_number,
       gender: props?.route.params.visitordata.gender,
       physically_disabled: props.route.params.visitordata.physically_disabled,
-      date_of_birth:(moment(props.route.params.visitordata.date_of_birth).format('YYYY-MM-DD ')),
+      date_of_birth: moment(
+        props.route.params.visitordata.date_of_birth,
+      ).format('YYYY-MM-DD '),
       visitor_type: props.route.params.visitordata.visitor_type,
       vidhansabha_id: props.route.params.visitordata.vidhansabha_id,
       mantralya_id: props.route.params.visitordata.mantralya_id,
@@ -119,16 +117,16 @@ const ViewVisit = props => {
       picture: props.route.params.visitordata.picture,
       constituency_id: props.route.params.visitordata.constituency_id,
       user_id: props.route.params.visitordata.user_id,
-      created_at: (moment(props.route.params.visitordata.created_at).format('YYYY-MM-DD HH:mm:ss')),
+      created_at: moment(props.route.params.visitordata.created_at).format(
+        'YYYY-MM-DD HH:mm:ss',
+      ),
       updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       minister_id: props.route.params.visitordata.minister_id,
-      group_member: 'reaju hemu',
+      group_member:  props.route.params.visitordata.group_member,
       visitor_status: 'completed',
-      engage_time:engagetime
+      engage_time: engagetime,
     };
 
-    
-    
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
       body,
@@ -200,6 +198,22 @@ const ViewVisit = props => {
               value={props.route.params.visitordata.lastname}
             />
           </View>
+        </View>
+        <View
+          style={{
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
+          }}>
+          <Input
+            placeholder=""
+            label={'Group Member'}
+            value={props.route.params.visitordata.group_member}
+            textLabel
+            width={'100%'}
+            textfontSize={12}
+            borderWidth={1}
+            borderBottomWidth={1}
+          />
         </View>
         <View
           style={{

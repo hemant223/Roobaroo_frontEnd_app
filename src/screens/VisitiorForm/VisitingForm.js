@@ -22,6 +22,7 @@ import CenterHeader from '../../components/shared/header/CenterHeader';
 import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MultipleTextField from '../../components/multiple_text_field/MultipleTextField';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -50,7 +51,7 @@ const VisitingForm = props => {
   const [errors, setErrors] = React.useState({});
 
   const [dob, setDob] = useState(moment().format('YYYY-MM-DD'));
-// console.log('============<DOB======>>',dob)
+  // console.log('============<DOB======>>',dob)
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
@@ -81,7 +82,9 @@ const VisitingForm = props => {
   // alert(dob)
   const [minister, setMinister] = useState();
   const [ministerName, setMinisterName] = useState('');
- 
+
+  const [textFields, setTextFields] = useState([{value: ''}]);
+  // alert(  JSON.stringify(textFields[0]))
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
     try {
@@ -202,16 +205,26 @@ const VisitingForm = props => {
   // alert(dob)
 
   const validate = async () => {
+    var arr_group = [];
+    {
+      textFields.map(item => {
+        arr_group.push(item.value)
+      });
+    }
+    // alert(arr);
+
     try {
       let i = 0;
       let isValid = true;
       if (!inputs.firstName) {
-        handleError('Please input First Name ', 'firstName');
-        isValid = false;
+         handleError('Please input First Name ', 'firstName');
+          isValid = false;
+        
       }
       if (!inputs.LastName) {
-        handleError('Please input Last Name', 'LastName');
-        isValid = false;
+         handleError('Please input Last Name', 'LastName');
+          isValid = false;
+        
       }
       if (!inputs.Reasion) {
         handleError('Please input Resasion to Visit', 'Reasion');
@@ -237,14 +250,14 @@ const VisitingForm = props => {
           picture: image,
           user_id: getUserData.id,
           created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-          group_member: 'hemu raju',
+          group_member: arr_group,
           visitor_status: 'ongoing',
           location_type: location,
           constituency_id: constituencyid,
           minister_id: ministarid,
         };
 
-        console.log(body)
+        console.log(body);
         // alert(++i);
         let response = await postDataAxios(`visitors/addVisitor`, body);
         console.log('response', response);
@@ -256,7 +269,7 @@ const VisitingForm = props => {
         }
       }
     } catch (err) {
-      console.log("Catch Error: line 257 visitor",err)
+      console.log('Catch Error: line 257 visitor', err);
     }
   };
 
@@ -315,45 +328,53 @@ const VisitingForm = props => {
           />
         </View>
 
-        <View
-          style={{
-            ...styles.NameViewCss,
-            // width: '100%',
-            flexDirection: 'row',
-            // backgroundColor:'red',
-            alignSelf: 'center',
-          }}>
-          <View style={{width: '49%', marginRight: 5}}>
-            <Input
-              placeholder=""
-              label={'First name'}
-              textLabel
-              width="100%"
-              height={45}
-              borderWidth={1}
-              borderBottomWidth={1}
-              onFocus={() => handleError(null, 'firstName')}
-              error={errors.firstName}
-              onChangeText={text => handleOnchange(text, 'firstName')}
-              // value={firstName}
-            />
+       
+          <View
+            style={{
+              ...styles.NameViewCss,
+              // width: '100%',
+              flexDirection: 'row',
+              // backgroundColor:'red',
+              alignSelf: 'center',
+            }}>
+            <View style={{width: '49%', marginRight: 5}}>
+              <Input
+                placeholder=""
+                label={'First name'}
+                textLabel
+                width="100%"
+                height={45}
+                borderWidth={1}
+                borderBottomWidth={1}
+                onFocus={() => handleError(null, 'firstName')}
+                error={errors.firstName}
+                onChangeText={text => handleOnchange(text, 'firstName')}
+                // value={firstName}
+              />
+            </View>
+            <View style={{width: '49%', marginRight: 5}}>
+              <Input
+                placeholder=""
+                label={'Last name'}
+                textLabel
+                width="100%"
+                height={45}
+                borderWidth={1}
+                borderBottomWidth={1}
+                onFocus={() => handleError(null, 'LastName')}
+                error={errors.LastName}
+                onChangeText={text => handleOnchange(text, 'LastName')}
+              />
+            </View>
           </View>
-          <View style={{width: '49%', marginRight: 5}}>
-            <Input
-              placeholder=""
-              label={'Last name'}
-              textLabel
-              width="100%"
-              height={45}
-              borderWidth={1}
-              borderBottomWidth={1}
-              onFocus={() => handleError(null, 'LastName')}
-              error={errors.LastName}
-              onChangeText={text => handleOnchange(text, 'LastName')}
+        
+         {visitorname=="Group" && <View style={{width: '97%', alignSelf: 'center'}}>
+            <MultipleTextField
+              setTextFields={setTextFields}
+              textFields={textFields}
             />
-          </View>
-        </View>
-
+          </View>}
+       
         <View
           style={{
             // backgroundColor: 'yellowgreen',
@@ -549,7 +570,7 @@ const VisitingForm = props => {
           title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
             navigation.push('Visits');
-            setShowModal(false) 
+            setShowModal(false);
           }}
           setShowModal={setShowModal}
           showModal={showModal}
