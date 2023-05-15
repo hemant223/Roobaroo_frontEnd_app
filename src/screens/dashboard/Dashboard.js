@@ -103,7 +103,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           width: width * 1,
           height: height * 0.28,
-          marginTop: 7,
+          marginTop: 10,
           alignItems: 'center',
         }}>
         <View
@@ -129,7 +129,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
-          marginTop: 7,
+          marginTop: 10,
         }}>
         <SingleBarChart />
       </View>
@@ -140,7 +140,7 @@ const Dashboard = props => {
           height: height * 0.12,
           alignItems: 'center',
           backgroundColor: '#fff',
-          marginTop: 7,
+          marginTop: 10,
         }}>
         <VisitAndProfileButton
           onPress={() => {
@@ -152,10 +152,10 @@ const Dashboard = props => {
       <View
         style={{
           width: width * 1,
-          height: height * 0.12,
+          height: height * 0.20,
           alignItems: 'center',
           backgroundColor: '#fff',
-          marginTop: 7,
+          marginTop: 10,
         }}>
         <VisitAndProfileButton
           data="See Profile to here "
