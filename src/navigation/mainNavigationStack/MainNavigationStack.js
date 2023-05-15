@@ -22,7 +22,7 @@ import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 import SearchScreen from '../../screens/search/SearchScreen';
 import language from '../../components/selectLanguage/NewModal';
 import ChangeLanguage from '../../components/ChangeLanguage/ChangeLanguage';
-import NewFile from '../../screens/NewFile/NewFile';
+
 
 
 
@@ -49,7 +49,7 @@ function MainNavigationStack(props) {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator /* screenOptions={horizontalAnimation} *//*  initialRouteName='language' */ headerShown={false}>
+      <Stack.Navigator /* screenOptions={horizontalAnimation} */    headerShown={false}>
         {/* <Stack.Screen
           name="SyncScreen"
           component={SyncScreen}
@@ -117,11 +117,7 @@ function MainNavigationStack(props) {
           component={ChangeLanguage}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="NewFile"
-          component={NewFile}
-          options={{ headerShown: false }}
-        />
+        
         
 
       </Stack.Navigator>

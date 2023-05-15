@@ -24,7 +24,7 @@ const Visits = props => {
     const [show, setShow] = useState(false);
     const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
-
+  //  alert(JSON.stringify(getVisitorData))
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
     setUserDataByAsync(userData);
