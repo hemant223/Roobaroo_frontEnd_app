@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,StatusBar } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useRef} from 'react'
 import SearchBar from './src/components/shared/searchbar/SearchBar';
 import SingleBarChart from './src/components/shared/barChart/BarChart';
 import UserDetail from './src/screens/profile/UserDetail';
@@ -14,6 +14,7 @@ import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import { LogBox } from 'react-native';
 import SearchScreen from './src/screens/search/SearchScreen';
 import MultipleTextField from './src/components/multiple_text_field/MultipleTextField';
+import RbeSheet from './src/components/shared/rbesheet/RbeSheet';
 
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = (props) => {
@@ -26,12 +27,16 @@ const App = (props) => {
   // alert(background)
   const [textFields, setTextFields] = useState([{value: ''},{value: ''}]);
 // alert(JSON.stringify(textFields))
+const [name, setName] = useState('')
+// alert(name)
+
   return (
     <>
     {/* <MultipleTextField setTextFields={setTextFields} textFields={textFields}/> */}
 {/* <StatusBar hidden={true} translucent backgroundColor="transparent" /> */}
     {/* <SearchScreen/> */}
     <MainNavigationStack/>
+    {/* <RbeSheet open={false} setName={setName}/> */}
     {/* <SuccessModal setShowModal={setShowModal} showModal={showModal}/> */}
    {/* <FullSizeButtons onPress={()=>{handleClick()}} /> */}
  {/* <TestComponent/> */}

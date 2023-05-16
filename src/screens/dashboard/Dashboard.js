@@ -28,12 +28,12 @@ const Dashboard = props => {
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-    const Location = await getStoreData('Location');
     // alert(JSON.stringify(Location.location))
     var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
     // alert(JSON.stringify(data))
     const locationn = await getStoreData('Location');
-    setLocation(locationn?.location);
+    // alert(JSON.stringify(locationn))
+    // setLocation(locationn?.location);
   };
   useEffect(() => {
     getUserDataByAsyncStorage();
