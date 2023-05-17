@@ -63,10 +63,15 @@ const Header = props => {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center',marginTop:20}}>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
           <TouchableOpacity
-          onPress={props.BackonPress}
-            style={{width: '17%', /* backgroundColor: 'red',  */marginLeft: 10,bottom:props.bottom}}>
+            onPress={props.BackonPress}
+            style={{
+              width: '17%',
+              /* backgroundColor: 'red',  */ marginLeft: 10,
+              bottom: props.bottom,
+            }}>
             <Image
               source={ImagesAssets.arrowLeft}
               style={{
@@ -77,7 +82,11 @@ const Header = props => {
             />
           </TouchableOpacity>
 
-          <View style={{width: '50%', marginLeft: 10,/*  backgroundColor: 'red' */}}>
+          <View
+            style={{
+              width: '50%',
+              marginLeft: 10 /*  backgroundColor: 'red' */,
+            }}>
             {props.rightText && (
               <View style={{justifyContent: 'center'}}>
                 <Text style={{fontWeight: 'bold', color: '#fff'}}>
@@ -86,38 +95,46 @@ const Header = props => {
               </View>
             )}
           </View>
-        
         </View>
 
-        <View style={{flexDirection: 'row', alignItems: 'center',marginTop:20}}>
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
           <View
-            style={
-              {
-                marginRight:10
-              }
-            }>
+            style={{
+              marginRight: 10,
+            }}>
             {props.add && (
-                <TouchableOpacity onPress={props.addonPress}>
-              <Ionicons
-                
-                name={props.iconAdd}
-                size={34}
-                style={{...styles.addCss}}
-              />
-              </TouchableOpacity>
-            )}
-          </View>
-          <View>
-            {props.iconupdown && (
-              <TouchableOpacity style={{marginRight:15}}>
-                <FontAwesome
-                  name={props.iconDown}
-                  size={22}
+              <TouchableOpacity onPress={props.addonPress}>
+                <Ionicons
+                  name={props.iconAdd}
+                  size={34}
+                  style={{...styles.addCss}}
                 />
-
               </TouchableOpacity>
             )}
           </View>
+
+         {props.sort && <View
+            style={{
+              marginRight: 10,
+            }}>
+              <TouchableOpacity
+            onPress={props.sortonPress}
+           >
+            <Image
+              source={ImagesAssets.sort}
+              style={{
+                width:16,
+                height:22
+                // ...styles.leftArrow,
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              // resizeMode={'center'}
+            />
+          </TouchableOpacity>
+
+          </View>}
+
         </View>
       </View>
     </>

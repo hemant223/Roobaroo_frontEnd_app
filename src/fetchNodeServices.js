@@ -115,7 +115,7 @@ const putDataAxios = async (Url, body) => {
       });
       removeStoreData('userData');
       removeStoreData('token');
-      // setTimeout(() => navigation.navigate('Login'), 2000);
+      navigation.navigate('Login'), 2000
     } else {
       console.log(error);
     }

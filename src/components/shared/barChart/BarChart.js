@@ -22,7 +22,7 @@ export default function SingleBarChart(props) {
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
   const [filterSelected, setFilterSelected] = useState(1)
- console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
+//  console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
  
   const [current_Week,setCurrent_Week]=useState('')
  

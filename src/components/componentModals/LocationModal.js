@@ -6,8 +6,11 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {storeData} from '../../helper/utils/AsyncStorageServices';
+import {useDispatch} from 'react-redux';
+import { locationFun } from '../../helper/utils/redux/slices/locationSlice';
 const LocationModal = props => {
   const navigation = useNavigation();
+  var dispatch = useDispatch();
 
   // const [showModal, setShowModal] = useState(true);
   const SelectLocationModal = ({navigation}) => {
@@ -95,6 +98,7 @@ const LocationModal = props => {
                   props.setShowModal(false);
                   navigation.navigate('home', {location: item.title});
                   storeData('Location', {location: item.title});
+                  dispatch(locationFun(item.title));
                 }}
                 key={item.id}
                 style={{
@@ -102,7 +106,6 @@ const LocationModal = props => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   backgroundColor: item.backgroundColor,
-                  //   height: '60%',
                   borderRadius: 10,
                   margin: 5,
                   padding: 10,
@@ -158,6 +161,7 @@ const LocationModal = props => {
                   props.setShowModal(false);
                   navigation.navigate('home', {location: item?.title});
                   storeData('Location', {location: item.title});
+                  dispatch(locationFun(item.title));
                 }}
                 key={item.id}
                 style={{

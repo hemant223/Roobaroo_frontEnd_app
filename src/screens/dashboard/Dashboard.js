@@ -19,29 +19,33 @@ import {
   removeStoreData,
 } from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios} from '../../fetchNodeServices';
+import {useSelector} from 'react-redux';
+
 import moment from 'moment';
 const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
-  const [location, setLocation] = useState('');
+  // const [location, setLocation] = useState('');
+  var location = useSelector(state => state.locationReducer.location);
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-    const Location = await getStoreData('Location');
     // alert(JSON.stringify(Location.location))
     var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
     // alert(JSON.stringify(data))
     const locationn = await getStoreData('Location');
-    setLocation(locationn?.location);
+    // alert(JSON.stringify(locationn))
+    // setLocation(locationn?.location);
   };
+
   useEffect(() => {
     getUserDataByAsyncStorage();
   }, []);
   const handleProfile = async () => {
     let userData = await getStoreData('userData');
     navigation.navigate('UserDetail', {userData: userData});
-   
+
     //   setUsedata(userData)
   };
   const handleVisits = async () => {
@@ -84,7 +88,7 @@ const Dashboard = props => {
           width: width * 1,
         }}>
         <SubHeader
-          locationData={props?.route?.params?.location}
+          locationData={location}
           locationonPress={() => {
             setShowModal(true);
           }}
@@ -152,7 +156,7 @@ const Dashboard = props => {
       <View
         style={{
           width: width * 1,
-          height: height * 0.20,
+          height: height * 0.25,
           alignItems: 'center',
           backgroundColor: '#fff',
           marginTop: 10,

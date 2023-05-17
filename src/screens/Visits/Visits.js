@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Header from '../../components/shared/header/Header';
 import SegmentedTab from '../../components/shared/segment_tab/SegmentedTabs';
 import VisitorDetails from '../visitorDetails/VisitorDetails';
@@ -9,6 +9,7 @@ import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 import VisitorDetailsShow from '../visitorDetails/VisitorDetailsShow';
 import {getDataAxios} from '../../fetchNodeServices';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import RbeSheet from '../../components/shared/rbesheet/RbeSheet';
 
 const Visits = props => {
   const navigation = useNavigation();
@@ -19,11 +20,14 @@ const Visits = props => {
   // console.log('====================================');
   const [selectedIndex, setSelectedIndex] = useState(
     props?.route?.params?.complete ? 1 : 0,
-    );
-    
-    const [show, setShow] = useState(false);
-    const [getVisitorData, setVisitorData] = useState([]);
+  );
+  const refRBSheet = useRef();
+  const [show, setShow] = useState(false);
+  const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
+
+  const [name, setName] = useState('');
+
   //  alert(JSON.stringify(getVisitorData))
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
@@ -54,9 +58,10 @@ const Visits = props => {
     setSelectedIndex(index);
   };
   // alert(selectedIndex)
-// console.log('====================================');
-// console.log('getVisitorDataaaaa',getVisitorData);
-// console.log('====================================');
+  // console.log('====================================');
+  // console.log('getVisitorDataaaaa',getVisitorData);
+  // console.log('====================================');
+
   return (
     <>
       <View>
@@ -71,6 +76,10 @@ const Visits = props => {
           height={90}
           rightText
           backarrowIcon
+          sort
+          sortonPress={() => {
+            refRBSheet.current.open();
+          }}
         />
       </View>
 
@@ -112,21 +121,22 @@ const Visits = props => {
           activeTabTextStyle={{color: '#FFF', fontSize: 14}}
           onTabPress={index => handleSingleIndexSelect(index)}
         />
-        <ScrollView style={{marginBottom:135,marginTop:7}}>
+        <ScrollView style={{marginBottom: 135, marginTop: 7}}>
           <View>
-          {selectedIndex == 0 && (
-            <View>
-              <VisitorDetails data={getVisitorData} />
-            </View>
-          )}
-          {selectedIndex == 1 && (
-            <View>
-              <VisitorDetailsShow data={getVisitorData} />
-            </View>
-          )}
+            {selectedIndex == 0 && (
+              <View>
+                <VisitorDetails data={getVisitorData} />
+              </View>
+            )}
+            {selectedIndex == 1 && (
+              <View>
+                <VisitorDetailsShow data={getVisitorData} />
+              </View>
+            )}
           </View>
         </ScrollView>
       </View>
+      <>{<RbeSheet refRBSheet={refRBSheet} setName={setName} />}</>
     </>
   );
 };

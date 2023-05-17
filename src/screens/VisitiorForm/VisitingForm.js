@@ -327,7 +327,7 @@ const VisitingForm = props => {
             data={data}
             setType={setVisitorName}
             getType={visitorname}
-            labelLeft={10}
+            // labelLeft={10}
           />
         </View>
 
@@ -384,7 +384,7 @@ const VisitingForm = props => {
             ...styles.genderCss,
           }}>
           <RadioButton
-            labelLeft={10}
+            // labelLeft={10}
             label="Gender"
             data={genderdata}
             setType={setGender}
@@ -417,7 +417,7 @@ const VisitingForm = props => {
             data={physicallyData}
             getType={physically_disabled_Name}
             setType={setPhysically_disabled_Name}
-            labelLeft={10}
+            // labelLeft={10}
           />
         </View>
 
@@ -596,7 +596,7 @@ const styles = StyleSheet.create({
 
   visitTypeViewCss: {
     padding: 3,
-    margin: 4,
+    // margin: 4,
   },
   NameViewCss: {
     padding: 3,
@@ -604,7 +604,7 @@ const styles = StyleSheet.create({
   },
   genderCss: {
     padding: 3,
-    margin: 5,
+    // margin: 5,
   },
   Date_of_Brith_Css: {
     padding: 3,
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
   },
   Disabled_View_Css: {
     padding: 3,
-    margin: 5,
+    // margin: 5,
   },
   Vidhansabha_View_Css: {
     padding: 3,
