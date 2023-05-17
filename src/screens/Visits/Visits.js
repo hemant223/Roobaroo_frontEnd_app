@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState,useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Header from '../../components/shared/header/Header';
 import SegmentedTab from '../../components/shared/segment_tab/SegmentedTabs';
 import VisitorDetails from '../visitorDetails/VisitorDetails';
@@ -25,7 +25,9 @@ const Visits = props => {
   const [show, setShow] = useState(false);
   const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
-  const [RBOpen, setRBOpen] = useState(false)
+
+  const [name, setName] = useState('');
+
   //  alert(JSON.stringify(getVisitorData))
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
@@ -59,8 +61,7 @@ const Visits = props => {
   // console.log('====================================');
   // console.log('getVisitorDataaaaa',getVisitorData);
   // console.log('====================================');
-  
-  
+
   return (
     <>
       <View>
@@ -76,7 +77,9 @@ const Visits = props => {
           rightText
           backarrowIcon
           sort
-          sortonPress={() => {refRBSheet.current.open()}}
+          sortonPress={() => {
+            refRBSheet.current.open();
+          }}
         />
       </View>
 
@@ -133,9 +136,7 @@ const Visits = props => {
           </View>
         </ScrollView>
       </View>
-      <>
-      {<RbeSheet refRBSheet={refRBSheet} />}
-      </>
+      <>{<RbeSheet refRBSheet={refRBSheet} setName={setName} />}</>
     </>
   );
 };
