@@ -67,6 +67,7 @@ const VisitingForm = props => {
   const [vidhansabhaName, setVidhansabhaName] = useState();
   const [vidhansabha, setVidhansabha] = React.useState('');
   const [vidhansabhaNamee, setVidhansabhaNamee] = useState('');
+  // alert(JSON.stringify(vidhansabhaNamee))
   //Constituency DropDown State//
   const [constituencyid, setContituencyid] = React.useState('');
   const [constituency, setConstituency] = useState();
@@ -84,7 +85,9 @@ const VisitingForm = props => {
   const [ministerName, setMinisterName] = useState('');
 
   const [textFields, setTextFields] = useState([{value: ''}]);
-  // alert(  JSON.stringify(textFields[0]))
+  const [imageShow, setImageShow] = useState(false)
+
+
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
     try {
@@ -399,7 +402,7 @@ const VisitingForm = props => {
             backgroundColor={Colors.Textinputbg}
             height={40}
             // setDate={setDob}
-            label="Date of Brith"
+            label="Date of Birth"
             setDate={setDob}
           />
         </View>
@@ -410,7 +413,7 @@ const VisitingForm = props => {
             ...styles.Disabled_View_Css,
           }}>
           <RadioButton
-            label="Physicaly Disabled"
+            label="Physically Disabled"
             data={physicallyData}
             getType={physically_disabled_Name}
             setType={setPhysically_disabled_Name}
@@ -430,7 +433,9 @@ const VisitingForm = props => {
             options={vidhansabhaName}
             onSelect={setVidhansabha}
             setShowName={setVidhansabhaNamee}
-            showName={vidhansabhaNamee}
+            
+            showName={vidhansabhaNamee?vidhansabhaNamee:'Select Vidhansabha'}
+            
           />
         </View>
         <View
@@ -445,7 +450,7 @@ const VisitingForm = props => {
             options={constituency}
             onSelect={setContituencyid}
             setShowName={setConcetencyNamee}
-            showName={concetencyNamee}
+            showName={concetencyNamee?concetencyNamee:'Select Constituency'}
           />
         </View>
         <View
@@ -460,7 +465,7 @@ const VisitingForm = props => {
             options={minister}
             onSelect={setMinisterid}
             setShowName={setMinisterName}
-            showName={ministerName}
+            showName={ministerName?ministerName:'Select Ministers'}
           />
         </View>
 
@@ -476,7 +481,7 @@ const VisitingForm = props => {
             options={mantralay}
             onSelect={setMantralayId}
             setShowName={setMantralayName}
-            showName={showMantralayName}
+            showName={showMantralayName?showMantralayName:'Select Mantralaya'}
           />
         </View>
 
@@ -545,17 +550,18 @@ const VisitingForm = props => {
           <Attachment size={30} setImage={setImage} />
         </View>
 
-        <View style={{padding: 5}}>
-          <Image
+      
+          {image&&(<Image
             source={{uri: `data:image/png;base64,${image}`}}
-            style={{height: 100, width: 100}}
-          />
-        </View>
+            style={{height: 100, width: 100,margin:5}}
+          />)}
+        
 
         <View
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
+            alignSelf:'center',
             alignItems: 'center',
             // bottom:19
           }}>
@@ -648,7 +654,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   Button_View_Css: {
-    padding: 3,
+    padding: 5,
     margin: 5,
 
     width: '100%',
