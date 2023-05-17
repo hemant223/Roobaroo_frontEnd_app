@@ -199,7 +199,7 @@ const ViewVisit = props => {
             />
           </View>
         </View>
-        <View
+        {props.route.params.visitordata.group_member&&<View
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Reference_View_Css,
@@ -214,7 +214,7 @@ const ViewVisit = props => {
             borderWidth={1}
             borderBottomWidth={1}
           />
-        </View>
+        </View>}
         <View
           style={{
             // backgroundColor: 'yellowgreen',

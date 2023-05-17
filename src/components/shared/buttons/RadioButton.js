@@ -20,16 +20,16 @@ const RadioButton = props => {
       <View style={{marginTop: 5, marginBottom: 5, marginLeft: props.labelLeft}}>
         <Text
           style={{
-            color: '#aeaeae',
+            color: props.labelColor,
             fontFamily: FontFamily.Popinssemibold,
-            fontSize: 15,
+            fontSize: props.labelFontSize,
             left:props.left,
             right:props.right,
           }}>
           {props.label}
         </Text>
       </View>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row',flexWrap:'wrap'}}>
         {props?.data?.map((item, index) => {
           const myTouch = props.getType === item.type;
           return (
@@ -48,6 +48,7 @@ const RadioButton = props => {
                   paddingRight: 15,
                   borderRadius: 15,
                   marginLeft: 15,
+                  marginVertical:props.marginVertical
                 }}>
                 <Text style={{color: myTouch ? '#fff' : '#c9c9c9'}}>
                   {item.type}
@@ -71,7 +72,10 @@ RadioButton.defaultProps = {
     {type: 'Others', id: 3, color: false},
   ],
   label: 'Label',
+  labelColor: '#aeaeae',
+  labelFontSize: 15,
   left:0,
   labelLeft:22,
+  marginVertical:0
 
 };

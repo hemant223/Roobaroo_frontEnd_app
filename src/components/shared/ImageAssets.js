@@ -6,6 +6,7 @@ export const ImagesAssets = {
    Calender:require('../../assets/images/VisitorImages/calendar.png'),
    mobileImage:require('../../assets/images/VisitorImages/mobiles.png'),
    arrowLeft:require('../../assets/images/HeaderImages/arrow-left.png'),
+   sort:require('../../assets/images/HeaderImages/sort.png'),
    Modi:require('../../assets/images/HeaderImages/Modi.jpg'),
    splash_background:require('../../assets/images/splashScreen/bg.png'),
    logo:require('../../assets/images/RoobarooLogo/logo.png'),
