@@ -43,7 +43,6 @@ export default function SingleBarChart(props) {
 
     var aa = response.data;
 
-  
     setLast_Week(aa);
    
     setShimmer(false);
@@ -78,8 +77,6 @@ export default function SingleBarChart(props) {
   useEffect(() => {
     fetchVisitorCureent_Week();
   }, []);
-
-
 
   return (
     <View

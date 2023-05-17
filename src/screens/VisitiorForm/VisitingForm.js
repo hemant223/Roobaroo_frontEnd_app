@@ -561,6 +561,7 @@ const VisitingForm = props => {
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
+            alignSelf:'center',
             alignItems: 'center',
             // bottom:19
           }}>
@@ -653,7 +654,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   Button_View_Css: {
-    padding: 3,
+    padding: 5,
     margin: 5,
 
     width: '100%',
