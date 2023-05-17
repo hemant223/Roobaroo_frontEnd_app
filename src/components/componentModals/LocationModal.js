@@ -42,7 +42,7 @@ const LocationModal = props => {
       {
         id: '4',
         iconName: '',
-        title: 'Vidhyansaabh',
+        title: 'Vidhansabha',
         color: '#18b797',
         backgroundColor: '#c5ede5',
         img: ImagesAssets.Vidhansabha,
@@ -50,7 +50,7 @@ const LocationModal = props => {
       {
         id: '5',
         iconName: '',
-        title: 'jasdham',
+        title: 'Jasdan',
         color: '#d680e6',
         backgroundColor: '#f6d9ff',
         img: ImagesAssets.jasdan,
@@ -58,7 +58,7 @@ const LocationModal = props => {
       {
         id: '6',
         iconName: '',
-        title: 'residence',
+        title: 'Residence',
         color: '#2fc2e1',
         backgroundColor: '#d5f3f9',
         img: ImagesAssets.Residence,
