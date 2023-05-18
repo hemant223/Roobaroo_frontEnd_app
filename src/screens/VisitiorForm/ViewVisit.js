@@ -8,6 +8,7 @@ import {
   Image,
   BackHandler,
   Alert,
+  TextArea
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -28,6 +29,8 @@ import {
 import moment from 'moment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import CenterHeader from '../../components/shared/header/CenterHeader';
+import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import { FontFamily } from '../../assets/fonts/FontFamily';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -187,6 +190,7 @@ const ViewVisit = props => {
               height="44%"
               borderWidth={1}
               borderBottomWidth={1}
+              top={2}
             />
             <Input
               placeholder=""
@@ -196,6 +200,7 @@ const ViewVisit = props => {
               height="44%"
               borderWidth={1}
               value={props.route.params.visitordata.lastname}
+              top={2}
             />
           </View>
         </View>
@@ -203,16 +208,28 @@ const ViewVisit = props => {
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Reference_View_Css,
+           
           }}>
-          <Input
-            placeholder=""
-            label={'Group Member'}
+            <Text
+            style={{
+              color: '#aeaeae',
+              fontSize: 15,
+              fontFamily: FontFamily.Popinssemibold,
+            }}>
+            Group Member
+          </Text>
+          <AutoGrowingTextInput
+           
+            
             value={props.route.params.visitordata.group_member}
-            textLabel
+           
             width={'100%'}
             textfontSize={12}
             borderWidth={1}
             borderBottomWidth={1}
+           borderRadius={15}
+           borderColor= {'#ddd'}
+      
           />
         </View>}
         <View
@@ -254,7 +271,7 @@ const ViewVisit = props => {
             value={moment(props.route.params.visitordata.date_of_birth).format(
               'YYYY-MM-DD',
             )}
-            label="Date of Brith"
+            label="Date of Birth"
             textLabel
           />
         </View>
@@ -264,7 +281,7 @@ const ViewVisit = props => {
             ...styles.Disabled_View_Css,
           }}>
           <RadioButton
-            label="Physicaly Disabled"
+            label="Physically Disabled"
             data={physicallyData}
             setType={setPhysically}
             getType={physically}
@@ -312,7 +329,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder="Enter reference name if any "
-            label={'Mantraalay'}
+            label={'Mantralaya'}
             value={props.route.params.visitordata.MantralayName}
             textLabel
             width={'100%'}
@@ -448,6 +465,8 @@ const styles = StyleSheet.create({
     bottom: '13%',
     padding: 3,
     margin: 5,
+   
+  
   },
   Resion_View_Css: {
     bottom: '13%',

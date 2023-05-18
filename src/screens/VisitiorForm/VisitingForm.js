@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   BackHandler,
   Image,
+  
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import RadioButton from '../../components/shared/buttons/RadioButton';
@@ -353,6 +354,7 @@ const VisitingForm = props => {
                 error={errors.firstName}
                 onChangeText={text => handleOnchange(text, 'firstName')}
                 // value={firstName}
+                top={2}
               />
             </View>
             <View style={{width: '49%', marginRight: 5}}>
@@ -367,6 +369,7 @@ const VisitingForm = props => {
                 onFocus={() => handleError(null, 'LastName')}
                 error={errors.LastName}
                 onChangeText={text => handleOnchange(text, 'LastName')}
+                top={2}
               />
             </View>
           </View>
@@ -541,6 +544,8 @@ const VisitingForm = props => {
             onChangeText={text => handleOnchange(text, 'Reasion')}
             textfontSize={14}
           />
+          
+   
         </View>
 
         <View
