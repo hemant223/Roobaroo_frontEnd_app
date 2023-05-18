@@ -178,36 +178,48 @@ const ViewVisit = props => {
         <View
           style={{
             ...styles.NameViewCss,
-            // backgroundColor:'yellowgreen'
+            // backgroundColor:'yellowgreen',
+            flexDirection: 'row',
+            // backgroundColor:'red',
+            alignSelf: 'center',
           }}>
-          <View style={{width: '59%', flexDirection: 'row'}}>
+           <View style={{width: '49%', marginRight: 5}}>
             <Input
               value={props.route.params.visitordata.firstname}
               placeholder=""
               label={'First name'}
               textLabel
-              width="90%"
-              height="44%"
+              width="100%"
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
               top={2}
             />
+             </View>
+            <View style={{width: '49%', marginRight: 5}}>
             <Input
               placeholder=""
               label={'Last name'}
               textLabel
-              width="90%"
-              height="44%"
+              width="100%"
+                height={45}
               borderWidth={1}
               value={props.route.params.visitordata.lastname}
               top={2}
             />
-          </View>
+            </View>
+         
         </View>
+
+
         {props.route.params.visitordata.group_member&&<View
           style={{
             // backgroundColor: 'yellowgreen',
-            ...styles.Reference_View_Css,
+            
+            // bottom: '13%',
+            padding: 3,
+            margin: 5,
+           
            
           }}>
             <Text
@@ -246,8 +258,8 @@ const ViewVisit = props => {
           />
         </View>
 
-        {/* 
-  <TouchableOpacity style={{backgroundColor:'red'}}>
+        
+  {/* <TouchableOpacity style={{backgroundColor:'red'}}>
   <Text>lkjld</Text>
   </TouchableOpacity> */}
 
@@ -367,7 +379,7 @@ const ViewVisit = props => {
             width={'100%'}
             borderWidth={1}
             borderBottomWidth={1}
-            height={'90%'}
+            height={100}
           />
         </View>
 
@@ -387,9 +399,11 @@ const ViewVisit = props => {
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
+            alignSelf:'center',
+            alignItems: 'center',
           }}>
           {props.route.params.visitordata.visitor_status == 'ongoing' && (
-            <View style={{alignSelf: 'center'}}>
+           
               <FullSizeButtons
                 onPress={handleSubmit}
                 titleColor="#fff"
@@ -398,7 +412,7 @@ const ViewVisit = props => {
                 rightIcon={'checkbox-marked-circle'}
                 rightsize={16}
               />
-            </View>
+            
           )}
         </View>
       </ScrollView>
@@ -427,62 +441,65 @@ const styles = StyleSheet.create({
 
   visitTypeViewCss: {
     padding: 3,
-    margin: 4,
+    // margin: 4,
   },
   NameViewCss: {
     padding: 3,
     margin: 5,
-    height: '20%',
   },
   genderCss: {
-    bottom: '13%',
     padding: 3,
-    margin: 5,
+    // margin: 5,
   },
   Date_of_Brith_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
   },
   Disabled_View_Css: {
     padding: 3,
-    margin: 5,
-    bottom: '13%',
+    // margin: 5,
   },
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
-    zIndex: 2,
+    zIndex: 12,
+  },
+  Constintuency_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 11,
+  },
+  Minister_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 9,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
-    zIndex: 1,
+    zIndex: 8,
   },
   Reference_View_Css: {
-    bottom: '13%',
     padding: 3,
     margin: 5,
-   
-  
+    zIndex: 1,
   },
   Resion_View_Css: {
-    bottom: '13%',
     padding: 3,
     margin: 5,
-    height: 150,
   },
   Media_View_Css: {
-    bottom: '11%',
+    backgroundColor: '#ebebeb',
 
-    padding: 5,
+    width: '16%',
+    borderRadius: 10,
+    padding: 3,
     margin: 5,
+
+    // backgroundColor: 'red',
   },
   Button_View_Css: {
-    bottom: '11%',
-    padding: 3,
+    padding: 5,
     margin: 5,
 
     width: '100%',
