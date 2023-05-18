@@ -67,9 +67,10 @@ const Input = props => {
             style={{
               color: props.txtColor,
               width: '100%',
-              // fontFamily:FontFamily.PopinsMedium,
+              fontFamily:FontFamily.PopinsMedium,
               fontSize: props.textfontSize,
-              // top: 2,
+            // backgroundColor:'red',
+            
               
             }}
             placeholder={props.placeholder}

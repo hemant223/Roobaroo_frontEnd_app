@@ -110,6 +110,7 @@ function DateTimePicker(props) {
           display="default"
           onChange={onChange}
           maximumDate={new Date()}
+          format={'YYYY'}
         />
       )}
     </>

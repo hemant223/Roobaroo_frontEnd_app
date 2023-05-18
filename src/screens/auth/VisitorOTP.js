@@ -70,7 +70,7 @@ const VerifyOtp = props => {
       />
 
       <View style={{...styles.mainView}}>
-        <ScrollView style={{marginTop: 60}}>
+        <ScrollView style={{}}>
           <Video
             source={ImagesAssets.OTP_Gif}
             // source={props.VideosURL}
@@ -87,7 +87,7 @@ const VerifyOtp = props => {
           style={{
             ...styles.InputView,
           }}>
-          <View style={{alignItems: 'center', marginTop: 30}}>
+       <View style={{alignItems: 'center', height: '10%'}}>
             <Input
               onFocus={() => handleError(null, 'otp')}
               error={errors.otp}
@@ -105,7 +105,7 @@ const VerifyOtp = props => {
           </View>
         </View>
 
-        <View style={{alignSelf: 'center', bottom: '20%', marginTop: 30}}>
+        <View style={{alignSelf: 'center', height: '24%', bottom: 0}}>
           <FullSizeButtons
             onPress={() => {
               handleSubmit();
@@ -125,12 +125,12 @@ const styles = StyleSheet.create({
   mainView: {
     backgroundColor: '#fff',
     width: '100%',
-    height: '100%',
+    height: '94%',
   },
   InputView: {
     alignItems: 'center',
 
-    height: '28%',
+    // height: 'auto',
     width: '100%',
   },
 });
