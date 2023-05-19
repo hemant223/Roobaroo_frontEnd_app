@@ -28,9 +28,9 @@ import {
   import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { FontFamily } from '../../assets/fonts/FontFamily';
-import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
+import { getStoreData, removeStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
   
-
+import {useSelector} from 'react-redux';
   
   export default function DrawerContent(props) {
    
@@ -44,7 +44,10 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
     const [showLang, setShowLang] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
     const [getUserData, setUserDataByAsync] = useState([])
-
+    var user__Data = useSelector(state => state.userDataReducer.user_data);
+    
+    // console.log('userData_DrawerConent_async>>>>>',getUserData);
+    // console.log('====================================');
       const getUserDataByAsyncStorage=async()=>{
         const userData = await getStoreData('userData');
         setUserDataByAsync(userData)
@@ -86,6 +89,8 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
             'userData',
             ({ ...userData, loggedIn: false }),
         );
+        removeStoreData('Location')
+        removeStoreData('userData')
         navigation.navigate('Login')
         }
     }
@@ -117,7 +122,8 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
        <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />
        </View>
        <View>
-        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{getUserData.firstname} {getUserData.lastname}</Text>
+       {user__Data!=''? <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{user__Data.firstname} {user__Data.lastname}</Text>:
+        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{getUserData.firstname} {getUserData.lastname}</Text>}
        </View>
        </View>
 

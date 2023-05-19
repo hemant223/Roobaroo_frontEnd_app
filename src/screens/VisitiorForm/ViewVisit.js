@@ -41,7 +41,7 @@ const physicallyData = [
 const genderData = [
   {type: 'Male', id: 1, color: false},
   {type: 'Female', id: 2, color: false},
-  {type: 'Others', id: 2, color: false},
+  {type: 'Other', id: 2, color: false},
 ];
 
 const ViewVisit = props => {
@@ -387,7 +387,7 @@ const ViewVisit = props => {
       </ScrollView>
       {
         <SuccessModal
-          title={`Your Visiting record request has been ${showengageTime} Successfully Updated`}
+          title={`Visits has been ended succesfully Engagement time was ${showengageTime}`}
           onPress={() => {
             setShowModal(false);
             navigation.push('Visits', {complete: 'update'});

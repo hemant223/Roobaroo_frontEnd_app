@@ -26,25 +26,32 @@ const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
-  // const [location, setLocation] = useState('');
+  const [locationnn, setLocation] = useState('');
+  const [asyncUserData, setAsyncUserData] = useState('');
   var location = useSelector(state => state.locationReducer.location);
-
+  var user__Data = useSelector(state => state.userDataReducer.user_data);
+  // console.log('redux_userData>>>>>>',user__Data);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
+    setAsyncUserData(userData);
     // alert(JSON.stringify(Location.location))
+    // console.log('local_userData>>>>>>',userData);
     var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
     // alert(JSON.stringify(data))
     const locationn = await getStoreData('Location');
+    setLocation(locationn?.location);
     // alert(JSON.stringify(locationn))
-    // setLocation(locationn?.location);
   };
+  // alert(location)
 
   useEffect(() => {
     getUserDataByAsyncStorage();
   }, []);
   const handleProfile = async () => {
     let userData = await getStoreData('userData');
-    navigation.navigate('UserDetail', {userData: userData});
+    navigation.navigate('UserDetail', {
+      userData: user__Data != '' ? user__Data : userData,
+    });
 
     //   setUsedata(userData)
   };
@@ -88,7 +95,8 @@ const Dashboard = props => {
           width: width * 1,
         }}>
         <SubHeader
-          locationData={location}
+          userData={user__Data!=''?user__Data:asyncUserData}
+          locationData={location != '' ? location : locationnn}
           locationonPress={() => {
             setShowModal(true);
           }}

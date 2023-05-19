@@ -12,7 +12,10 @@ const RadioButton = props => {
 
   const handleRadio = (item, index) => {
     props.setType(item.type);
-    // alert(item.id)
+    // alert(item.endDate)
+    {props.startDate &&props.startDate(item.startDate)}
+    {props.endDate && props.endDate(item.endDate)}
+
   };
 
   return (

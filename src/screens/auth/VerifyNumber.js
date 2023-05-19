@@ -66,10 +66,7 @@ const VerifyNumber = () => {
       isValid = false;
     }
     if (isValid) {
-      // navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber});
 
-      // var visitorMob = await getStoreData('VisitorsMobileNo');
-      // const userData = await getStoreData('userData');
       var body = {mobile_number: inputs.mobileNumber};
 
       // let response = await postDataAxios(`visitors/addVisitor`,body)
@@ -120,7 +117,7 @@ const VerifyNumber = () => {
         }}
       />
 
-      <View style={{...styles.mainView,}}>
+      <View style={{...styles.mainView}}>
         <ScrollView style={{}}>
           <Video
             source={ImagesAssets.OTP_Gif}

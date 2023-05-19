@@ -37,7 +37,7 @@ const physicallyData = [
 const genderdata = [
   {type: 'Male', id: 1, color: false},
   {type: 'Female', id: 2, color: false},
-  {type: 'Others', id: 3, color: false},
+  {type: 'Other', id: 3, color: false},
 ];
 const VisitingForm = props => {
   const navigation = useNavigation();
@@ -85,8 +85,7 @@ const VisitingForm = props => {
   const [ministerName, setMinisterName] = useState('');
 
   const [textFields, setTextFields] = useState([{value: ''}]);
-  const [imageShow, setImageShow] = useState(false)
-
+  const [imageShow, setImageShow] = useState(false);
 
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
@@ -211,7 +210,7 @@ const VisitingForm = props => {
     var arr_group = [];
     {
       textFields.map(item => {
-        arr_group.push(item.value)
+        arr_group.push(item.value);
       });
     }
     // alert(arr);
@@ -220,14 +219,12 @@ const VisitingForm = props => {
       let i = 0;
       let isValid = true;
       if (!inputs.firstName) {
-         handleError('Please input First Name ', 'firstName');
-          isValid = false;
-        
+        handleError('Please input First Name ', 'firstName');
+        isValid = false;
       }
       if (!inputs.LastName) {
-         handleError('Please input Last Name', 'LastName');
-          isValid = false;
-        
+        handleError('Please input Last Name', 'LastName');
+        isValid = false;
       }
       if (!inputs.Reasion) {
         handleError('Please input Resasion to Visit', 'Reasion');
@@ -331,53 +328,54 @@ const VisitingForm = props => {
           />
         </View>
 
-       
-          <View
-            style={{
-              ...styles.NameViewCss,
-              // width: '100%',
-              flexDirection: 'row',
-              // backgroundColor:'red',
-              alignSelf: 'center',
-            }}>
-            <View style={{width: '49%', marginRight: 5}}>
-              <Input
-                placeholder=""
-                label={'First name'}
-                textLabel
-                width="100%"
-                height={45}
-                borderWidth={1}
-                borderBottomWidth={1}
-                onFocus={() => handleError(null, 'firstName')}
-                error={errors.firstName}
-                onChangeText={text => handleOnchange(text, 'firstName')}
-                // value={firstName}
-              />
-            </View>
-            <View style={{width: '49%', marginRight: 5}}>
-              <Input
-                placeholder=""
-                label={'Last name'}
-                textLabel
-                width="100%"
-                height={45}
-                borderWidth={1}
-                borderBottomWidth={1}
-                onFocus={() => handleError(null, 'LastName')}
-                error={errors.LastName}
-                onChangeText={text => handleOnchange(text, 'LastName')}
-              />
-            </View>
+        <View
+          style={{
+            ...styles.NameViewCss,
+            // width: '100%',
+            flexDirection: 'row',
+            // backgroundColor:'red',
+            alignSelf: 'center',
+          }}>
+          <View style={{width: '49%', marginRight: 5}}>
+            <Input
+              placeholder=""
+              label={'First name'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              onFocus={() => handleError(null, 'firstName')}
+              error={errors.firstName}
+              onChangeText={text => handleOnchange(text, 'firstName')}
+              // value={firstName}
+            />
           </View>
-        
-         {visitorname=="Group" && <View style={{width: '97%', alignSelf: 'center'}}>
+          <View style={{width: '49%', marginRight: 5}}>
+            <Input
+              placeholder=""
+              label={'Last name'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              onFocus={() => handleError(null, 'LastName')}
+              error={errors.LastName}
+              onChangeText={text => handleOnchange(text, 'LastName')}
+            />
+          </View>
+        </View>
+
+        {visitorname == 'Group' && (
+          <View style={{width: '97%', alignSelf: 'center'}}>
             <MultipleTextField
               setTextFields={setTextFields}
               textFields={textFields}
             />
-          </View>}
-       
+          </View>
+        )}
+
         <View
           style={{
             // backgroundColor: 'yellowgreen',
@@ -433,9 +431,9 @@ const VisitingForm = props => {
             options={vidhansabhaName}
             onSelect={setVidhansabha}
             setShowName={setVidhansabhaNamee}
-            
-            showName={vidhansabhaNamee?vidhansabhaNamee:'Select Vidhansabha'}
-            
+            showName={
+              vidhansabhaNamee ? vidhansabhaNamee : 'Select Vidhansabha'
+            }
           />
         </View>
         <View
@@ -450,7 +448,7 @@ const VisitingForm = props => {
             options={constituency}
             onSelect={setContituencyid}
             setShowName={setConcetencyNamee}
-            showName={concetencyNamee?concetencyNamee:'Select Constituency'}
+            showName={concetencyNamee ? concetencyNamee : 'Select Constituency'}
           />
         </View>
         <View
@@ -465,7 +463,7 @@ const VisitingForm = props => {
             options={minister}
             onSelect={setMinisterid}
             setShowName={setMinisterName}
-            showName={ministerName?ministerName:'Select Ministers'}
+            showName={ministerName ? ministerName : 'Select Ministers'}
           />
         </View>
 
@@ -481,7 +479,9 @@ const VisitingForm = props => {
             options={mantralay}
             onSelect={setMantralayId}
             setShowName={setMantralayName}
-            showName={showMantralayName?showMantralayName:'Select Mantralaya'}
+            showName={
+              showMantralayName ? showMantralayName : 'Select Mantralaya'
+            }
           />
         </View>
 
@@ -550,18 +550,18 @@ const VisitingForm = props => {
           <Attachment size={30} setImage={setImage} />
         </View>
 
-      
-          {image&&(<Image
+        {image && (
+          <Image
             source={{uri: `data:image/png;base64,${image}`}}
-            style={{height: 100, width: 100,margin:5}}
-          />)}
-        
+            style={{height: 100, width: 100, margin: 5}}
+          />
+        )}
 
         <View
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
-            alignSelf:'center',
+            alignSelf: 'center',
             alignItems: 'center',
             // bottom:19
           }}>

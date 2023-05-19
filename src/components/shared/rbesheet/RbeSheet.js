@@ -13,26 +13,33 @@ function RbeSheet(props) {
   const [check1, setCheck1] = React.useState(false);
   const [check2, setCheck2] = React.useState(false);
   const [check3, setCheck3] = React.useState(false);
-  const [month, setMonth] = React.useState('January');
+  const [month, setMonth] = React.useState('');
   const [from, setFrom] = useState(moment().format('YYYY-MM-DD'));
   const [to, setTo] = useState(moment().format('YYYY-MM-DD'));
   const refRBSheet = useRef();
   //   const [month, setMonth] = React.useState('Male');
   const currentDate = moment().format('MMMM D, YYYY');
   const threeMonthsAgo = moment().subtract(3, 'months').format('MMMM');
+  const threeMonthAgoLastDate=moment().subtract(3, 'months').endOf('month').format('YYYY-MM-DD')
+  const threeMonthAgoFirstDate=moment().subtract(3, 'months').startOf('month').format('YYYY-MM-DD')
   const twoMonthsAgo = moment().subtract(2, 'months').format('MMMM');
+  const twoMonthAgoLastDate=moment().subtract(2, 'months').endOf('month').format('YYYY-MM-DD')
+  const twoMonthAgoFirstDate=moment().subtract(2, 'months').startOf('month').format('YYYY-MM-DD')
   const oneMonthAgo = moment().subtract(1, 'months').format('MMMM');
+  const oneMonthAgoLastDate=moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD')
+  const oneMonthAgoFirstDate=moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD')
   const [checked, setChecked] = React.useState();
+  
   const radioData = [
-    {type: `${threeMonthsAgo}`, id: 1, color: false},
-    {type: `${twoMonthsAgo}`, id: 2, color: false},
-    {type: `${oneMonthAgo}`, id: 3, color: false},
+    {type: `${threeMonthsAgo}`, id: 1, color: false,startDate:`${threeMonthAgoFirstDate}`,endDate:`${threeMonthAgoLastDate}`},
+    {type: `${twoMonthsAgo}`, id: 2, color: false,startDate:`${twoMonthAgoFirstDate}`,endDate:`${twoMonthAgoLastDate}`},
+    {type: `${oneMonthAgo}`, id: 3, color: false,startDate:`${oneMonthAgoFirstDate}`,endDate:`${oneMonthAgoLastDate}`},
   ];
 
   const filterData = [
     {id: 1, name: 'Alphabetically A to Z'},
-    {id: 2, name: 'Alphabetically a to z'},
-    {id: 3, name: 'Newely Added'},
+    {id: 2, name: 'Alphabetically Z to A'},
+    {id: 3, name: 'Newly Added'},
   ];
   //   alert(date)
 
@@ -77,11 +84,11 @@ function RbeSheet(props) {
               Set Filters
             </Text>
           </View>
-          <View>
+          <TouchableOpacity onPress={props.doneonPress}>
             <Text style={{fontSize: 18, fontWeight: '600', marginLeft: 10}}>
               Done
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View
@@ -111,7 +118,7 @@ function RbeSheet(props) {
               // setDate={setDob}
               placeholder="From Date"
               // label={'Hemu'}
-              setDate={setFrom}
+              setDate={props.setFrom}
             />
           </View>
           <View style={{width: '45%'}}>
@@ -121,7 +128,7 @@ function RbeSheet(props) {
               // height={40}
               // setDate={setDob}
               placeholder="End Date"
-              setDate={setTo}
+              setDate={props.setTo}
               // format={'YYYY'}
               // setDateFormate={setTo}
             />
@@ -170,8 +177,10 @@ function RbeSheet(props) {
             labelFontSize={17}
             marginVertical={5}
             data={radioData}
-            setType={setMonth}
-            getType={month}
+            setType={props.setMonth}
+            getType={props.month}
+            startDate={props.setStartDate}
+            endDate={props.setEndDate}
           />
         </View>
       </RBSheet>

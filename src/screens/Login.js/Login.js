@@ -16,8 +16,12 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
 import {storeData} from '../../helper/utils/AsyncStorageServices';
+import {useDispatch} from 'react-redux';
+import { userDataFun } from '../../helper/utils/redux/slices/userDataSlice';
 
 function Login(props) {
+  var dispatch = useDispatch();
+
   const [isModalVisible, setModalVisible] = useState(true);
   const [inputs, setInputs] = React.useState({
     mobileNumber: '',
@@ -64,6 +68,7 @@ function Login(props) {
       if (response.status) {
         storeData('userData', response.data);
         storeData('token', response.token);
+        dispatch(userDataFun(response.data));
         setModalVisible(false)
         props.navigation.navigate('OtpInput');
       } else {

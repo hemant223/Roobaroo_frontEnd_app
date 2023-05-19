@@ -149,7 +149,7 @@ const VisitorDetailsShow = props => {
       <View>
         <FlatList
           // numColumns={numColumns}
-          data={props.data}
+          data={props?.data}
           renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}

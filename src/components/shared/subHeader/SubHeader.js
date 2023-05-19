@@ -19,6 +19,8 @@ import {ImagesAssets} from '../ImageAssets';
 import SearchBar from '../searchbar/SearchBar';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
+
+
 const SubHeader = props => {
   const navigation = useNavigation();
   const [getuserData, setuserData] = React.useState([])
@@ -117,7 +119,7 @@ const SubHeader = props => {
                       marginLeft:10
                     }}>
                     <Text style={{fontWeight: 'bold', color: '#fff'}}>
-                     {getuserData.firstname} {getuserData.lastname}
+                     {props?.userData?.firstname} {props?.userData?.lastname}
                     </Text>
                     <TouchableOpacity
                       onPress={props.locationonPress}
