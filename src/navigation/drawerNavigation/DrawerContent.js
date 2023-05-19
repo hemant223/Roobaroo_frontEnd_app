@@ -24,6 +24,7 @@ import {
     DefaultTheme,
   } from '@react-navigation/native';
   // import {store} from '../../../App';
+import {useDispatch} from 'react-redux';
   
   import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
@@ -31,8 +32,11 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
 import { getStoreData, removeStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
   
 import {useSelector} from 'react-redux';
+import { ServerURL } from '../../fetchNodeServices';
+
   
   export default function DrawerContent(props) {
+  var dispatch = useDispatch();
    
     const navigation = useNavigation();
     const [refresh, setRefresh] = React.useState(false);
@@ -87,12 +91,16 @@ import {useSelector} from 'react-redux';
         if(userData){
         storeData(
             'userData',
-            ({ ...userData, loggedIn: false }),
+            ({...userData, loggedIn: false}),
         );
         removeStoreData('Location')
         removeStoreData('userData')
-        navigation.navigate('Login')
+        navigation.dispatch(DrawerActions.closeDrawer())
+        navigation.push('Login')
+        setShowLogout(false)
+
         }
+        
     }
   
     return (
@@ -119,7 +127,8 @@ import {useSelector} from 'react-redux';
 
        <View  style={{marginTop:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
        <View  style={{width:60,height:60,borderRadius:30,backgroundColor:'red',marginLeft:25}}>
-       <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />
+      {user__Data!=''? <Image source={{uri:`${ServerURL}/images/${user__Data.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />:
+       <Image source={{uri:`${ServerURL}/images/${getUserData.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />}
        </View>
        <View>
        {user__Data!=''? <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{user__Data.firstname} {user__Data.lastname}</Text>:

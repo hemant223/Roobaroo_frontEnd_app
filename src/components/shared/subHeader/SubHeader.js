@@ -19,6 +19,7 @@ import {ImagesAssets} from '../ImageAssets';
 import SearchBar from '../searchbar/SearchBar';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import { getStoreData } from '../../../helper/utils/AsyncStorageServices';
+import { ServerURL } from '../../../fetchNodeServices';
 
 
 const SubHeader = props => {
@@ -46,7 +47,7 @@ const SubHeader = props => {
     getUserDataByAsyncStorage()
   }, [])
 
-
+// alert(JSON.stringify(props?.userData))
   return (
     <>
       <View style={{...styles.container}}>
@@ -101,7 +102,7 @@ const SubHeader = props => {
                 }}>
                 {props.profile && (
                   <Image
-                    source={ImagesAssets.Modi}
+                  source={{uri:`${ServerURL}/images/${props?.userData?.picture}`}}
                     style={{
                       ...styles.profile,
                       // marginHorizontal: isLandscape ? 5 : 5,

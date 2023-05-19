@@ -89,7 +89,7 @@ const Header = props => {
             }}>
             {props.rightText && (
               <View style={{justifyContent: 'center'}}>
-                <Text style={{fontWeight: 'bold', color: '#fff'}}>
+                <Text style={{fontWeight: 'bold', fontSize:19, color: '#fff'}}>
                   {props.rightContent}{' '}
                 </Text>
               </View>

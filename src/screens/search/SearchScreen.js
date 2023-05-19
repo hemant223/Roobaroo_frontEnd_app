@@ -73,13 +73,15 @@ const SearchScreen = props => {
         />
       </View>
 
-      {show && (
-        <SearchList
-          searchPhrase={searchPhrase}
-          data={getVisitorData}
-          setClicked={setClicked}
-        />
-      )}
+      {
+        show? <SearchList
+        searchPhrase={searchPhrase}
+        data={getVisitorData}
+        setClicked={setClicked}
+      />:
+        <ActivityIndicator  color="#1e70bf" size="large"/>
+       
+      }
     </View>
   );
 };

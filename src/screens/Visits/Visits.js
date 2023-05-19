@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View, BackHandler} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, BackHandler,ActivityIndicator} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import Header from '../../components/shared/header/Header';
 import SegmentedTab from '../../components/shared/segment_tab/SegmentedTabs';
@@ -209,8 +209,10 @@ var filteringData = useSelector(state => state.filterReducer);
           <View>
             {selectedIndex == 0 && (
               <View>
-                {refresh &&
-                <VisitorDetails data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />}
+                {refresh?
+                <VisitorDetails data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />:
+                <ActivityIndicator  color="#1e70bf" size="large" />
+                }
                  {/* data={filterData!=""?filterData:getVisitorData}  */}
                 {/* {filteringData.filtering?.map((item,index)=>{
                   return <View>
@@ -221,8 +223,10 @@ var filteringData = useSelector(state => state.filterReducer);
              )}
             {selectedIndex == 1 && (
               <View>
-                {refresh &&
-                <VisitorDetailsShow data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />}
+                {refresh?
+                <VisitorDetailsShow data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />:
+                <ActivityIndicator  color="#1e70bf" size="large" />
+                }
               </View>
             )}
           </View>
@@ -237,7 +241,7 @@ var filteringData = useSelector(state => state.filterReducer);
             setName={setName}
             setFrom={setFrom}
             setTo={setTo}
-            doneonPress={()=>{FetchRBsheetFilterData()}}
+            doneonPress={()=>{FetchRBsheetFilterData();refRBSheet.current.close();}}
             setStartDate={setStartDate}
             setEndDate={setEndDate}
            
