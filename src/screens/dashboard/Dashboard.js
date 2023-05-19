@@ -24,6 +24,8 @@ import {useSelector} from 'react-redux';
 import moment from 'moment';
 const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
+  const [dasboard_data, setDashboard_Data] = useState(0);
+  // alert (dasboard_data)
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   // const [location, setLocation] = useState('');
@@ -122,7 +124,7 @@ const Dashboard = props => {
             alignContent: 'center',
             paddingVertical: 20,
           }}>
-          <SpeedoMeter />
+          <SpeedoMeter  setDashboard_Data={setDashboard_Data}/>
         </View>
       </View>
 

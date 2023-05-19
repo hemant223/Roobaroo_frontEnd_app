@@ -8,7 +8,8 @@ import {
   Image,
   BackHandler,
   Alert,
-  TextArea
+  TextArea,
+  TextInputBase,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -29,8 +30,9 @@ import {
 import moment from 'moment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import CenterHeader from '../../components/shared/header/CenterHeader';
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
-import { FontFamily } from '../../assets/fonts/FontFamily';
+
+import {FontFamily} from '../../assets/fonts/FontFamily';
+import { TextInput } from 'react-native-gesture-handler';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -125,7 +127,7 @@ const ViewVisit = props => {
       ),
       updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       minister_id: props.route.params.visitordata.minister_id,
-      group_member:  props.route.params.visitordata.group_member,
+      group_member: props.route.params.visitordata.group_member,
       visitor_status: 'completed',
       engage_time: engagetime,
     };
@@ -183,7 +185,7 @@ const ViewVisit = props => {
             // backgroundColor:'red',
             alignSelf: 'center',
           }}>
-           <View style={{width: '49%', marginRight: 5}}>
+          <View style={{width: '49%', marginRight: 5}}>
             <Input
               value={props.route.params.visitordata.firstname}
               placeholder=""
@@ -195,55 +197,51 @@ const ViewVisit = props => {
               borderBottomWidth={1}
               top={2}
             />
-             </View>
-            <View style={{width: '49%', marginRight: 5}}>
+          </View>
+          <View style={{width: '49%', marginRight: 5}}>
             <Input
               placeholder=""
               label={'Last name'}
               textLabel
               width="100%"
-                height={45}
+              height={45}
               borderWidth={1}
               value={props.route.params.visitordata.lastname}
               top={2}
             />
-            </View>
-         
+          </View>
         </View>
 
-
-        {props.route.params.visitordata.group_member&&<View
-          style={{
-            // backgroundColor: 'yellowgreen',
-            
-            // bottom: '13%',
-            padding: 3,
-            margin: 5,
-           
-           
-          }}>
-            <Text
+        {props.route.params.visitordata.group_member && (
+          <View
             style={{
-              color: '#aeaeae',
-              fontSize: 15,
-              fontFamily: FontFamily.Popinssemibold,
+              // backgroundColor: 'yellowgreen',
+
+              // bottom: '13%',
+              padding: 3,
+              margin: 5,
             }}>
-            Group Member
-          </Text>
-          <AutoGrowingTextInput
-           
-            
-            value={props.route.params.visitordata.group_member}
-           
-            width={'100%'}
-            textfontSize={12}
-            borderWidth={1}
-            borderBottomWidth={1}
-           borderRadius={15}
-           borderColor= {'#ddd'}
-      
-          />
-        </View>}
+            <Text
+              style={{
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+              }}>
+              Group Member
+            </Text>
+            <TextInput
+              value={props.route.params.visitordata.group_member}
+              width={'100%'}
+              textfontSize={12}
+              borderWidth={1}
+              borderBottomWidth={1}
+              borderRadius={15}
+              borderColor={'#ddd'}
+              multiline={true}
+              
+            />
+          </View>
+        )}
         <View
           style={{
             // backgroundColor: 'yellowgreen',
@@ -258,8 +256,7 @@ const ViewVisit = props => {
           />
         </View>
 
-        
-  {/* <TouchableOpacity style={{backgroundColor:'red'}}>
+        {/* <TouchableOpacity style={{backgroundColor:'red'}}>
   <Text>lkjld</Text>
   </TouchableOpacity> */}
 
@@ -399,20 +396,18 @@ const ViewVisit = props => {
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
-            alignSelf:'center',
+            alignSelf: 'center',
             alignItems: 'center',
           }}>
           {props.route.params.visitordata.visitor_status == 'ongoing' && (
-           
-              <FullSizeButtons
-                onPress={handleSubmit}
-                titleColor="#fff"
-                backgroundColor={'#18ae3b'}
-                title="Mark as completed"
-                rightIcon={'checkbox-marked-circle'}
-                rightsize={16}
-              />
-            
+            <FullSizeButtons
+              onPress={handleSubmit}
+              titleColor="#fff"
+              backgroundColor={'#18ae3b'}
+              title="Mark as completed"
+              rightIcon={'checkbox-marked-circle'}
+              rightsize={16}
+            />
           )}
         </View>
       </ScrollView>

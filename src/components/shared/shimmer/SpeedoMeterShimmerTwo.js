@@ -4,23 +4,17 @@ import React from 'react';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 const SpeedoMetterShimmerTwo = () => {
   return (
-    <View style={{ width:350,height:'100%'}}>
-       
-      <SkeletonPlaceholder borderRadius={4}  speed={600} >
+    
+      <SkeletonPlaceholder borderRadius={4} speed={600}>
         <View
           style={{
-            width:350,height:'100%'
-           
-      
-          }}>
-         
-        
-        </View>
-        
-
-              
+            width: 300,
+            padding: 5,
+            margin: 5,
+            height: '95%',
+          }}></View>
       </SkeletonPlaceholder>
-    </View>
+   
   );
 };
 
