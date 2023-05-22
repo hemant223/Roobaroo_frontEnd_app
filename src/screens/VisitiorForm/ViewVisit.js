@@ -390,7 +390,7 @@ const ViewVisit = props => {
           title={`Visits has been ended succesfully Engagement time was ${showengageTime}`}
           onPress={() => {
             setShowModal(false);
-            navigation.push('Visits', {complete: 'update'});
+            navigation.push('Visits', {complete:1});
           }}
           setShowModal={setShowModal}
           showModal={showModal}

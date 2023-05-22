@@ -26,7 +26,7 @@ const Visits = props => {
   // console.log('fulluserData on visitor page:',props?.route?.params?.complete);
   // console.log('====================================');
   const [selectedIndex, setSelectedIndex] = useState(
-    props?.route?.params?.complete ? 1 : 0,
+    props?.route?.params?.complete==1 ? 1 : 0,
   );
   const refRBSheet = useRef();
   const [show, setShow] = useState(false);
@@ -41,10 +41,13 @@ const Visits = props => {
   const [endDate, setEndDate] = useState('')
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-
+ 
+  // alert(  props?.route?.params?.complete)
 
 var filteringData = useSelector(state => state.filterReducer);
-
+//  console.log('====================================');
+//  console.log('filteringData>>>>>',filteringData?.filtering);
+//  console.log('====================================');
   const FetchRBsheetFilterData = async () => {
     var namme = '';
     if (name == 'Alphabetically A to Z') {
@@ -79,10 +82,9 @@ var filteringData = useSelector(state => state.filterReducer);
       `visitors/appVisitorFilter/${getUserData?.minister_id}`,body);
     // alert(JSON.stringify(response));
     if(response.status){
-      // console.log("DATA OF FILTER>>>>>>>>",response.result);
       dispatch(FilterFun(response.result));
-      setRefresh(true)
       setFilterData(response.result)
+      setRefresh(true)
     }else{
       alert('Error in Filtering')
     }
@@ -94,12 +96,23 @@ var filteringData = useSelector(state => state.filterReducer);
     const userData = await getStoreData('userData');
     setUserDataByAsync(userData);
   };
+  // console.log('====================================');
+  //     console.log('visitor_Data_outFun>>>>>',getVisitorData);
+  //     console.log('====================================');
   const fetchAllVisitorData = async () => {
+    const userData = await getStoreData('userData');
     var data = await getDataAxios(
-      `visitors/displayVisitors/${getUserData?.minister_id}`,
+      `visitors/displayVisitors/${userData?.minister_id}`,
     );
+    // console.log('====================================');
+    //   console.log('visitor_Data_inFun>>>>>',data?.result);
+    //   console.log('====================================');
     if (data.status) {
-      setVisitorData(data?.result);
+      // alert(data.status)
+      // console.log('visitor_Data_inFun>>>>>>>>>>',data?.result);
+      // alert(JSON.stringify(data.result))
+      setVisitorData(data.result);
+      // alert(JSON.stringify(data?.result));
       setRefresh(true)
     } else {
       alert('data fetch error');
@@ -112,9 +125,10 @@ var filteringData = useSelector(state => state.filterReducer);
   };
   useEffect(() => {
     getUserDataByAsyncStorage();
-    fetchAllVisitorData();
+    // fetchAllVisitorData();
   }, [show, selectedIndex]);
   useEffect(() => {}, [show]);
+  useEffect(() => {fetchAllVisitorData();}, []);
 
   const handleSingleIndexSelect = index => {
     setSelectedIndex(index);
@@ -210,21 +224,16 @@ var filteringData = useSelector(state => state.filterReducer);
             {selectedIndex == 0 && (
               <View>
                 {refresh?
-                <VisitorDetails data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />:
+                <VisitorDetails data={filterData!=""?filterData:getVisitorData} />:
                 <ActivityIndicator  color="#1e70bf" size="large" />
                 }
-                 {/* data={filterData!=""?filterData:getVisitorData}  */}
-                {/* {filteringData.filtering?.map((item,index)=>{
-                  return <View>
-                    <Text>{item.firstname} {item.lastname}</Text>
-                  </View>
-                })} */}
+               
               </View>
              )}
             {selectedIndex == 1 && (
               <View>
                 {refresh?
-                <VisitorDetailsShow data={filteringData?.filtering!=""?filteringData?.filtering:getVisitorData} />:
+                <VisitorDetailsShow data={filterData!=""?filterData:getVisitorData} />:
                 <ActivityIndicator  color="#1e70bf" size="large" />
                 }
               </View>

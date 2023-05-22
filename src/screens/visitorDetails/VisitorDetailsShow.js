@@ -39,11 +39,13 @@ const DATA = [
 ];
 
 const Item = ({item,navigation}) => {
+  // console.log('vist_show>>>>>complete>>',item);
     var time =moment(item.updated_at).format('h:mm a, Do MMM YYYY')
   return (
     <>
      { item.visitor_status=='completed' && <TouchableOpacity onPress={()=>{navigation.push('ViewVisit',{visitordata:item})}}  style={styles.mainContainer}>
        <View
+       key={item.id}
           style={{
             width: '100%',
             // height: 30,
@@ -147,14 +149,15 @@ const VisitorDetailsShow = props => {
   return (
     <>
       <View>
+      {props?.data=="No record found"?<Text>Record Not Found</Text>:
         <FlatList
           // numColumns={numColumns}
           data={props?.data}
-          renderItem={({item, index}) => <Item item={item} indx={index} navigation={navigation} />}
+          renderItem={({item, index}) => <Item item={item} index={index} navigation={navigation} />}
           keyExtractor={item => item.id}
           // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
           scrollEnabled={true}
-        />
+        />}
       </View>
     </>
   );

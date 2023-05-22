@@ -7,9 +7,9 @@ export const locationSlice = createSlice({
   },
   reducers: {
     locationFun: (state,action) => {
-        console.log('====================================');
-        console.log(action);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log(action);
+        // console.log('====================================');
         state.location=action.payload
     },
   }

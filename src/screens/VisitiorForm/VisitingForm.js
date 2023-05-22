@@ -257,10 +257,10 @@ const VisitingForm = props => {
           minister_id: ministarid,
         };
 
-        console.log(body);
+        // console.log(body);
         // alert(++i);
         let response = await postDataAxios(`visitors/addVisitor`, body);
-        console.log('response', response);
+        // console.log('response', response);
         // alert(response.status);
         if (response.status == true) {
           setShowModal(true);
@@ -575,7 +575,7 @@ const VisitingForm = props => {
         <SuccessModal
           title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
-            navigation.push('Visits');
+            navigation.push('Visits', {complete:0});
             setShowModal(false);
           }}
           setShowModal={setShowModal}

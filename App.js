@@ -19,6 +19,8 @@ import moment from 'moment';
 import {Provider} from 'react-redux';
 import store from './src/helper/utils/redux/store';
 import RootReducer from './src/helper/utils/redux/RootReducer';
+import {ToastProvider} from 'react-native-toast-notifications';
+
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = props => {
   useEffect(() => {
@@ -37,7 +39,9 @@ const App = props => {
 
   return (
     <Provider store={store}>
-      <MainNavigationStack />
+      <ToastProvider swipeEnabled={true} offsetTop={30}>
+        <MainNavigationStack />
+      </ToastProvider>
     </Provider>
   );
 };

@@ -27,7 +27,7 @@ function DateTimePicker(props) {
     const currentDate = selectedDate || date1;
     setShow(Platform.OS === 'ios');
     // setDate(currentDate);
-    console.log(`selectdDate===>${selectedDate}`);
+    // console.log(`selectdDate===>${selectedDate}`);
     setDate1(currentDate);
     props.setDate(
       moment(currentDate).format(

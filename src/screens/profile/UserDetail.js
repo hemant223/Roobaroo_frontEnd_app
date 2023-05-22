@@ -20,7 +20,7 @@ import { ServerURL } from '../../fetchNodeServices';
 const UserDetail = props => {
   const [usedata, setUsedata] = useState('')
   const navigation = useNavigation()
-  // alert(JSON.stringify(props?.route?.params?.userData))
+ 
   return (
     <View style={{ width: '100%', height: '100%', }}>
       <View style={{
@@ -32,7 +32,8 @@ const UserDetail = props => {
          BackonPress={()=>{navigation.goBack()}}
         bottom={70} backarrowIcon height={'100%'} />
         <View style={{ position: 'absolute', zIndex: 1, height: '100%', borderRadius: 0, alignSelf: 'center', justifyContent: 'center' }}>
-          <Image source={{uri:`${ServerURL}/images/${props?.route?.params?.userData.picture}`}} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />
+         {props?.route?.params?.userData.picture? <Image source={{uri:`${ServerURL}/images/${props?.route?.params?.userData.picture}`}} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />:
+          <Image source={ImagesAssets.hemu} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />}
           <Text style={{ fontSize: 20, fontWeight: '500', color: '#fff', marginTop: 5, textAlign: 'center' }}>{props?.route?.params?.userData.firstname} {props?.route?.params?.userData.lastname}</Text>
         </View>
       </View>
