@@ -70,7 +70,7 @@ const Input = props => {
               fontFamily:FontFamily.PopinsMedium,
               fontSize: props.textfontSize,
             // backgroundColor:'red',
-            
+            top:props.top,
               
             }}
             placeholder={props.placeholder}

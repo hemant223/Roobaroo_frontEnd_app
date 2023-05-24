@@ -8,6 +8,8 @@ import {
   Image,
   BackHandler,
   Alert,
+  TextArea,
+  TextInputBase,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 
@@ -28,6 +30,9 @@ import {
 import moment from 'moment';
 import SuccessModal from '../../components/componentModals/SuccessModal';
 import CenterHeader from '../../components/shared/header/CenterHeader';
+
+import {FontFamily} from '../../assets/fonts/FontFamily';
+import { TextInput } from 'react-native-gesture-handler';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -122,7 +127,7 @@ const ViewVisit = props => {
       ),
       updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
       minister_id: props.route.params.visitordata.minister_id,
-      group_member:  props.route.params.visitordata.group_member,
+      group_member: props.route.params.visitordata.group_member,
       visitor_status: 'completed',
       engage_time: engagetime,
     };
@@ -175,46 +180,68 @@ const ViewVisit = props => {
         <View
           style={{
             ...styles.NameViewCss,
-            // backgroundColor:'yellowgreen'
+            // backgroundColor:'yellowgreen',
+            flexDirection: 'row',
+            // backgroundColor:'red',
+            alignSelf: 'center',
           }}>
-          <View style={{width: '59%', flexDirection: 'row'}}>
+          <View style={{width: '49%', marginRight: 5}}>
             <Input
               value={props.route.params.visitordata.firstname}
               placeholder=""
               label={'First name'}
               textLabel
-              width="90%"
-              height="44%"
+              width="100%"
+              height={45}
               borderWidth={1}
               borderBottomWidth={1}
+              top={2}
             />
+          </View>
+          <View style={{width: '49%', marginRight: 5}}>
             <Input
               placeholder=""
               label={'Last name'}
               textLabel
-              width="90%"
-              height="44%"
+              width="100%"
+              height={45}
               borderWidth={1}
               value={props.route.params.visitordata.lastname}
+              top={2}
             />
           </View>
         </View>
-        {props.route.params.visitordata.group_member&&<View
-          style={{
-            // backgroundColor: 'yellowgreen',
-            ...styles.Reference_View_Css,
-          }}>
-          <Input
-            placeholder=""
-            label={'Group Member'}
-            value={props.route.params.visitordata.group_member}
-            textLabel
-            width={'100%'}
-            textfontSize={12}
-            borderWidth={1}
-            borderBottomWidth={1}
-          />
-        </View>}
+
+        {props.route.params.visitordata.group_member && (
+          <View
+            style={{
+              // backgroundColor: 'yellowgreen',
+
+              // bottom: '13%',
+              padding: 3,
+              margin: 5,
+            }}>
+            <Text
+              style={{
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+              }}>
+              Group Member
+            </Text>
+            <TextInput
+              value={props.route.params.visitordata.group_member}
+              width={'100%'}
+              textfontSize={12}
+              borderWidth={1}
+              borderBottomWidth={1}
+              borderRadius={15}
+              borderColor={'#ddd'}
+              multiline={true}
+              
+            />
+          </View>
+        )}
         <View
           style={{
             // backgroundColor: 'yellowgreen',
@@ -229,8 +256,7 @@ const ViewVisit = props => {
           />
         </View>
 
-        {/* 
-  <TouchableOpacity style={{backgroundColor:'red'}}>
+        {/* <TouchableOpacity style={{backgroundColor:'red'}}>
   <Text>lkjld</Text>
   </TouchableOpacity> */}
 
@@ -254,7 +280,7 @@ const ViewVisit = props => {
             value={moment(props.route.params.visitordata.date_of_birth).format(
               'YYYY-MM-DD',
             )}
-            label="Date of Brith"
+            label="Date of Birth"
             textLabel
           />
         </View>
@@ -264,7 +290,7 @@ const ViewVisit = props => {
             ...styles.Disabled_View_Css,
           }}>
           <RadioButton
-            label="Physicaly Disabled"
+            label="Physically Disabled"
             data={physicallyData}
             setType={setPhysically}
             getType={physically}
@@ -312,7 +338,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder="Enter reference name if any "
-            label={'Mantraalay'}
+            label={'Mantralaya'}
             value={props.route.params.visitordata.MantralayName}
             textLabel
             width={'100%'}
@@ -350,7 +376,7 @@ const ViewVisit = props => {
             width={'100%'}
             borderWidth={1}
             borderBottomWidth={1}
-            height={'90%'}
+            height={100}
           />
         </View>
 
@@ -370,18 +396,18 @@ const ViewVisit = props => {
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Button_View_Css,
+            alignSelf: 'center',
+            alignItems: 'center',
           }}>
           {props.route.params.visitordata.visitor_status == 'ongoing' && (
-            <View style={{alignSelf: 'center'}}>
-              <FullSizeButtons
-                onPress={handleSubmit}
-                titleColor="#fff"
-                backgroundColor={'#18ae3b'}
-                title="Mark as completed"
-                rightIcon={'checkbox-marked-circle'}
-                rightsize={16}
-              />
-            </View>
+            <FullSizeButtons
+              onPress={handleSubmit}
+              titleColor="#fff"
+              backgroundColor={'#18ae3b'}
+              title="Mark as completed"
+              rightIcon={'checkbox-marked-circle'}
+              rightsize={16}
+            />
           )}
         </View>
       </ScrollView>
@@ -410,60 +436,65 @@ const styles = StyleSheet.create({
 
   visitTypeViewCss: {
     padding: 3,
-    margin: 4,
+    // margin: 4,
   },
   NameViewCss: {
     padding: 3,
     margin: 5,
-    height: '20%',
   },
   genderCss: {
-    bottom: '13%',
     padding: 3,
-    margin: 5,
+    // margin: 5,
   },
   Date_of_Brith_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
   },
   Disabled_View_Css: {
     padding: 3,
-    margin: 5,
-    bottom: '13%',
+    // margin: 5,
   },
   Vidhansabha_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
-    zIndex: 2,
+    zIndex: 12,
+  },
+  Constintuency_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 11,
+  },
+  Minister_View_Css: {
+    padding: 3,
+    margin: 5,
+    zIndex: 9,
   },
   Mantralya_View_Css: {
     padding: 3,
     margin: 5,
-    bottom: '13%',
-    zIndex: 1,
+    zIndex: 8,
   },
   Reference_View_Css: {
-    bottom: '13%',
     padding: 3,
     margin: 5,
+    zIndex: 1,
   },
   Resion_View_Css: {
-    bottom: '13%',
     padding: 3,
     margin: 5,
-    height: 150,
   },
   Media_View_Css: {
-    bottom: '11%',
+    backgroundColor: '#ebebeb',
 
-    padding: 5,
+    width: '16%',
+    borderRadius: 10,
+    padding: 3,
     margin: 5,
+
+    // backgroundColor: 'red',
   },
   Button_View_Css: {
-    bottom: '11%',
-    padding: 3,
+    padding: 5,
     margin: 5,
 
     width: '100%',

@@ -50,9 +50,9 @@ const CenterHeader = props => {
             // backgroundColor: 'green',
             // height: '50%',
             flexDirection: 'row',
-            // alignItems: 'center',
+            alignItems: 'center',
             // justifyContent:'center',
-            marginTop: 45,
+            marginTop: 40,
           }}>
           <View
             style={{

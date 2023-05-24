@@ -47,7 +47,7 @@ const FilterDropdown = props => {
       style={{
         borderRadius: props.radius,
         overflow: 'hidden',
-        position: 'absolute',
+        // position: 'absolute',
         left: props.left,
         right: props.right,
         zIndex:9999,

@@ -6,7 +6,7 @@ import {
 } from './helper/utils/AsyncStorageServices';
 // import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
-// var ServerURL = 'http://192.168.29.136:9292';
+// var ServerURL = 'http://192.168.245.142:9292';
 var ServerURL = "http://campusshala.com:9292";
 // const navigation=useNavigation()
 // var token =

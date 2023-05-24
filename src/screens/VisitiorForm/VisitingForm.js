@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   BackHandler,
   Image,
+  
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import RadioButton from '../../components/shared/buttons/RadioButton';
@@ -329,44 +330,45 @@ const VisitingForm = props => {
         </View>
 
         <View
-          style={{
-            ...styles.NameViewCss,
-            // width: '100%',
-            flexDirection: 'row',
-            // backgroundColor:'red',
-            alignSelf: 'center',
-          }}>
-          <View style={{width: '49%', marginRight: 5}}>
-            <Input
-              placeholder=""
-              label={'First name'}
-              textLabel
-              width="100%"
-              height={45}
-              borderWidth={1}
-              borderBottomWidth={1}
-              onFocus={() => handleError(null, 'firstName')}
-              error={errors.firstName}
-              onChangeText={text => handleOnchange(text, 'firstName')}
-              // value={firstName}
-            />
-          </View>
-          <View style={{width: '49%', marginRight: 5}}>
-            <Input
-              placeholder=""
-              label={'Last name'}
-              textLabel
-              width="100%"
-              height={45}
-              borderWidth={1}
-              borderBottomWidth={1}
-              onFocus={() => handleError(null, 'LastName')}
-              error={errors.LastName}
-              onChangeText={text => handleOnchange(text, 'LastName')}
-            />
-          </View>
-        </View>
-
+            style={{
+              ...styles.NameViewCss,
+              // width: '100%',
+              flexDirection: 'row',
+              // backgroundColor:'red',
+              alignSelf: 'center',
+            }}>
+            <View style={{width: '49%', marginRight: 5}}>
+              <Input
+                placeholder=""
+                label={'First name'}
+                textLabel
+                width="100%"
+                height={45}
+                borderWidth={1}
+                borderBottomWidth={1}
+                onFocus={() => handleError(null, 'firstName')}
+                error={errors.firstName}
+                onChangeText={text => handleOnchange(text, 'firstName')}
+                // value={firstName}
+                top={2}
+              />
+            </View>
+            <View style={{width: '49%', marginRight: 5}}>
+              <Input
+                placeholder=""
+                label={'Last name'}
+                textLabel
+                width="100%"
+                height={45}
+                borderWidth={1}
+                borderBottomWidth={1}
+                onFocus={() => handleError(null, 'LastName')}
+                error={errors.LastName}
+                onChangeText={text => handleOnchange(text, 'LastName')}
+                top={2}
+              />
+            </View>
+</View>
         {visitorname == 'Group' && (
           <View style={{width: '97%', alignSelf: 'center'}}>
             <MultipleTextField
@@ -541,6 +543,8 @@ const VisitingForm = props => {
             onChangeText={text => handleOnchange(text, 'Reasion')}
             textfontSize={14}
           />
+          
+   
         </View>
 
         <View
