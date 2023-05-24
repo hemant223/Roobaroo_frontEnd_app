@@ -1,24 +1,14 @@
 import {StyleSheet, Text, View, StatusBar, FlatList,ActivityIndicator} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
-import SearchBar from './src/components/shared/searchbar/SearchBar';
-import SingleBarChart from './src/components/shared/barChart/BarChart';
-import UserDetail from './src/screens/profile/UserDetail';
+
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
-import SuccessModal from './src/components/componentModals/SuccessModal';
-import VisitAndProfileButton from './src/components/visit_and_myProfile/VisitAndProfileButton';
-import VisitingForm from './src/screens/visitiorForm/VisitingForm';
-import TestComponent from './src/components/TestComponent';
-import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
-import {getDataAxios} from './src/fetchNodeServices';
-import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
+
+
 import {LogBox} from 'react-native';
-import SearchScreen from './src/screens/search/SearchScreen';
-import MultipleTextField from './src/components/multiple_text_field/MultipleTextField';
-import RbeSheet from './src/components/shared/rbesheet/RbeSheet';
-import moment from 'moment';
+
 import {Provider} from 'react-redux';
 import store from './src/helper/utils/redux/store';
-import RootReducer from './src/helper/utils/redux/RootReducer';
+
 import {ToastProvider} from 'react-native-toast-notifications';
 
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';

@@ -13,14 +13,14 @@ import DrawerNavigation from '../drawerNavigation/DrawerNavigation';
 
 import Login from '../../screens/Login.js/Login';
 import OtpInput from '../../screens/otpInput/OtpInput';
-import Visits from '../../screens/visits/Visits';
+
 import LocationModal from '../../components/componentModals/LocationModal';
 import VerifyNumber from '../../screens/auth/VerifyNumber';
 import VerifyOtp from '../../screens/auth/VisitorOTP';
-import VisitingForm from '../../screens/visitiorForm/VisitingForm';
-import ViewVisit from '../../screens/visitiorForm/ViewVisit';
+import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 import SearchScreen from '../../screens/search/SearchScreen';
-
+import VisitingForm from '../../screens/VisitiorForm/VisitingForm'
+import Visits from '../../screens/visits/Visits';
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
 
