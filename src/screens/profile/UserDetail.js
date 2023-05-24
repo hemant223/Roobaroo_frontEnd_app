@@ -42,8 +42,7 @@ const UserDetail = props => {
       <View style={{ marginTop: 10 }}>
         <View style={{ padding: 15 }}>
           <View style={{ flexDirection: 'row' }}>
-            <Image source={ImagesAssets.profile_organistation} resizeMode='contain' style={{ height: 20, width: 20 }} />
-
+            <Image source={ImagesAssets.profile_organistation} resizeMode='contain' style={{ height: 20, width: 20 }} />            
             <Text style={{ color: '#e67e22', marginLeft: 7 }}>Organization/Party</Text>
           </View>
           <View>

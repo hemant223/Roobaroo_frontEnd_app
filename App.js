@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, FlatList,ActivityIndicator} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import SearchBar from './src/components/shared/searchbar/SearchBar';
 import SingleBarChart from './src/components/shared/barChart/BarChart';
@@ -33,9 +33,39 @@ const App = props => {
   const [textFields, setTextFields] = useState([{value: ''}, {value: ''}]);
   // alert(JSON.stringify(textFields))
   const [name, setName] = useState('');
-  // alert(name)
+    const [getdata1, setData1] = useState([]);
+  const [getdata, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
 
   // alert(threeMonthsAgo)
+
+//   const getData = async () => {
+//     var data = await getDataAxios(
+//       `visitors/displayAppVisitors/${1}/${5}/${offset}`,
+//     );
+
+// if(data.status){
+//   // data.result.map((item)=>{
+//   //   alert(item.id)
+//   // })
+    
+//    const combineArray=[...getdata,...data.result]
+//     setData(combineArray);
+//     setLoading(true)
+//   }
+//   else{
+//    setLoading(false)
+//   }
+//   }
+
+//   useEffect(() => {
+//     getData()
+//   }, [offset]);
+
+//  console.log('====================================');
+//  console.log('getDataaaaa>>>>>',getdata);
+//  console.log('====================================');
 
   return (
     <Provider store={store}>
@@ -43,6 +73,35 @@ const App = props => {
         <MainNavigationStack />
       </ToastProvider>
     </Provider>
+    // <FlatList
+    //   data={getdata}
+    //   keyExtractor={item => item.id}
+    //   onEndReached={() => {
+    //     setOffset(offset + 5);
+    //     // onEndReached
+    //   }}
+     
+    //   renderItem={({item}) => (
+    //     <View style={{height: 200, backgroundColor: 'yellow', margin: 10}}>
+    //       <Text style={{color: 'red'}}>{item.firstname}</Text>
+    //       <Text style={{color: 'red'}}>{item.id}</Text>
+    //     </View>
+    //   )}
+
+    //   ListFooterComponent={() => {
+    //     if (loading) {
+    //       return (
+    //         <ActivityIndicator
+    //           color={'red'}
+    //           style={{margin: 20}}
+    //         />
+    //       );
+    //     } else {
+    //       return null;
+    //     }
+    //   }}
+
+    // />
   );
 };
 

@@ -1,4 +1,11 @@
-import {ScrollView, StyleSheet, Text, View, BackHandler,ActivityIndicator} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  BackHandler,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 import Header from '../../components/shared/header/Header';
 import SegmentedTab from '../../components/shared/segment_tab/SegmentedTabs';
@@ -13,8 +20,7 @@ import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import moment from 'moment';
 import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
-import { FilterFun } from '../../helper/utils/redux/slices/filteringSlice';
-
+import {FilterFun} from '../../helper/utils/redux/slices/filteringSlice';
 
 const Visits = props => {
   const navigation = useNavigation();
@@ -26,71 +32,126 @@ const Visits = props => {
   // console.log('fulluserData on visitor page:',props?.route?.params?.complete);
   // console.log('====================================');
   const [selectedIndex, setSelectedIndex] = useState(
-    props?.route?.params?.complete==1 ? 1 : 0,
+    props?.route?.params?.complete == 1 ? 1 : 0,
   );
   const refRBSheet = useRef();
   const [show, setShow] = useState(false);
   const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
-  const [filterData, setFilterData] = useState([])
+  const [filterData, setFilterData] = useState([]);
   const [name, setName] = useState('');
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
   // alert(name)
   const [month, setMonth] = React.useState('');
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
- 
+  const [getdata, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [offset1, setOffset1] = useState(0);
   // alert(  props?.route?.params?.complete)
 
-var filteringData = useSelector(state => state.filterReducer);
-//  console.log('====================================');
-//  console.log('filteringData>>>>>',filteringData?.filtering);
-//  console.log('====================================');
+  var filteringData = useSelector(state => state.filterReducer);
+  //  console.log('====================================');
+  //  console.log('filteringData>>>>>',filteringData?.filtering);
+  //  console.log('====================================');
   const FetchRBsheetFilterData = async () => {
     var namme = '';
     if (name == 'Alphabetically A to Z') {
-      setRefresh(false)
+      setRefresh(false);
       var namme = 'asc';
     } else if (name == 'Alphabetically Z to A') {
-      setRefresh(false)
+      setRefresh(false);
       var namme = 'desc';
     } else if (name == 'Newly Added') {
-      setRefresh(false)
+      setRefresh(false);
       var namme = 'Newelly added';
     }
-   var startDatee=''
-   if(from!=''){
-    setRefresh(false)
-    startDatee=from
-   }else{
-    setRefresh(false)
-    startDatee=startDate
-   }
-   var endDatee=''
-   if(to!=''){
-    setRefresh(false)
-    endDatee=to
-   }else{
-    setRefresh(false)
-    endDatee=endDate
-   }
-
-   let body = {order: namme, startDate:startDatee,endDate:endDatee}
-    var response = await postDataAxios(
-      `visitors/appVisitorFilter/${getUserData?.minister_id}`,body);
-    // alert(JSON.stringify(response));
-    if(response.status){
-      dispatch(FilterFun(response.result));
-      setFilterData(response.result)
-      setRefresh(true)
-    }else{
-      alert('Error in Filtering')
+    var startDatee = '';
+    if (from != '') {
+      setRefresh(false);
+      startDatee = from;
+    } else {
+      setRefresh(false);
+      startDatee = startDate;
     }
-  
+    var endDatee = '';
+    if (to != '') {
+      setRefresh(false);
+      endDatee = to;
+    } else {
+      setRefresh(false);
+      endDatee = endDate;
+    }
+
+    let body = {order: namme, startDate: startDatee, endDate: endDatee};
+    var response = await postDataAxios(
+      `visitors/appVisitorFilter/${getUserData?.minister_id}`,
+      body,
+    );
+    // alert(JSON.stringify(response));
+    if (response.status) {
+      dispatch(FilterFun(response.result));
+      setFilterData(response.result);
+      setRefresh(true);
+    } else {
+      alert('Error in Filtering');
+    }
   };
- 
+
+
+  const FetchRBsheetFilterDataBYLazzyLoading = async () => {
+    var namme = '';
+    if (name == 'Alphabetically A to Z') {
+      setRefresh(false);
+      var namme = 'asc';
+    } else if (name == 'Alphabetically Z to A') {
+      setRefresh(false);
+      var namme = 'desc';
+    } else if (name == 'Newly Added') {
+      setRefresh(false);
+      var namme = 'Newelly added';
+    }
+    var startDatee = '';
+    if (from != '') {
+      setRefresh(false);
+      startDatee = from;
+    } else {
+      setRefresh(false);
+      startDatee = startDate;
+    }
+    var endDatee = '';
+    if (to != '') {
+      setRefresh(false);
+      endDatee = to;
+    } else {
+      setRefresh(false);
+      endDatee = endDate;
+    }
+
+    let body = {order: namme, startDate: startDatee, endDate: endDatee,limit:5,offset:offset1};
+    var response = await postDataAxios(
+      `visitors/appVisitorFilter/${getUserData?.minister_id}`,
+      body,
+    );
+    // alert(JSON.stringify(response));
+    if (response.status) {
+      const combineArray = [...filterData, ...response.result];
+     
+      // dispatch(FilterFun(response.result));
+      setFilterData(combineArray);
+      setRefresh(true);
+      setLoading(true)
+    } else {
+      alert('Error in Filtering');
+      setLoading(false)
+    }
+    // if(response.result==''||response.result==undefined||response.result==null){
+    //   setLoading(false)
+    // }
+  };
 
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
@@ -104,16 +165,12 @@ var filteringData = useSelector(state => state.filterReducer);
     var data = await getDataAxios(
       `visitors/displayVisitors/${userData?.minister_id}`,
     );
-    // console.log('====================================');
-    //   console.log('visitor_Data_inFun>>>>>',data?.result);
-    //   console.log('====================================');
+   
     if (data.status) {
-      // alert(data.status)
-      // console.log('visitor_Data_inFun>>>>>>>>>>',data?.result);
-      // alert(JSON.stringify(data.result))
+   
       setVisitorData(data.result);
       // alert(JSON.stringify(data?.result));
-      setRefresh(true)
+      setRefresh(true);
     } else {
       alert('data fetch error');
     }
@@ -128,7 +185,34 @@ var filteringData = useSelector(state => state.filterReducer);
     // fetchAllVisitorData();
   }, [show, selectedIndex]);
   useEffect(() => {}, [show]);
-  useEffect(() => {fetchAllVisitorData();}, []);
+  useEffect(() => {
+    fetchAllVisitorData();
+  }, []);
+
+  const getData = async () => {
+    const userData = await getStoreData('userData');
+    var data = await getDataAxios(
+      `visitors/displayAppVisitors/${userData?.minister_id}/${5}/${offset}`,
+    );
+  // console.log('====================================');
+  // console.log('>>>>>>>>>>>>>>>>>>>>>',data.result);
+  // console.log('====================================');
+    if (data.status) {
+      const combineArray = [...getdata, ...data.result];
+      setData(combineArray);
+      setRefresh(true);
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+    // if(data.result==''||data.result==undefined||data.result==null){
+    //   setLoading(false)
+    // }
+  };
+
+  useEffect(() => {
+    getData();
+  }, [offset, selectedIndex]);
 
   const handleSingleIndexSelect = index => {
     setSelectedIndex(index);
@@ -164,7 +248,6 @@ var filteringData = useSelector(state => state.filterReducer);
           BackonPress={() => {
             props.navigation.push('Dashboard');
             dispatch(FilterFun(''));
-
           }}
           addonPress={() => {
             props.navigation.navigate('VerifyNumber');
@@ -219,23 +302,38 @@ var filteringData = useSelector(state => state.filterReducer);
           activeTabTextStyle={{color: '#FFF', fontSize: 14}}
           onTabPress={index => handleSingleIndexSelect(index)}
         />
-        <ScrollView style={{marginBottom: 135, marginTop: 7}}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{marginBottom: 135, marginTop: 7}}>
           <View>
             {selectedIndex == 0 && (
               <View>
-                {refresh?
-                <VisitorDetails data={filterData!=""?filterData:getVisitorData} />:
-                <ActivityIndicator  color="#1e70bf" size="large" />
-                }
-               
+                {refresh ? (
+                  <VisitorDetails
+                    setLoading={setLoading}
+                    loading={loading}
+                    setOffset={filterData != '' ?setOffset1:setOffset}
+                    offset={filterData != '' ?offset1:offset}
+                    data={filterData != '' ? filterData : getdata}
+                  />
+                ) : (
+                  <ActivityIndicator color="#1e70bf" size="large" />
+                )}
               </View>
-             )}
+            )}
             {selectedIndex == 1 && (
               <View>
-                {refresh?
-                <VisitorDetailsShow data={filterData!=""?filterData:getVisitorData} />:
-                <ActivityIndicator  color="#1e70bf" size="large" />
-                }
+                {refresh ? (
+                  <VisitorDetailsShow
+                    setLoading={setLoading}
+                    loading={loading}
+                    setOffset={filterData != '' ?setOffset1:setOffset}
+                    offset={filterData != '' ?offset1:offset}
+                    data={filterData != '' ? filterData : getdata}
+                  />
+                ) : (
+                  <ActivityIndicator color="#1e70bf" size="large" />
+                )}
               </View>
             )}
           </View>
@@ -250,10 +348,12 @@ var filteringData = useSelector(state => state.filterReducer);
             setName={setName}
             setFrom={setFrom}
             setTo={setTo}
-            doneonPress={()=>{FetchRBsheetFilterData();refRBSheet.current.close();}}
+            doneonPress={() => {
+              FetchRBsheetFilterDataBYLazzyLoading();
+              refRBSheet.current.close();
+            }}
             setStartDate={setStartDate}
             setEndDate={setEndDate}
-           
           />
         }
       </>
