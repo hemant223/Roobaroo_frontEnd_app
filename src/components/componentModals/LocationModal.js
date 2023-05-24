@@ -7,7 +7,9 @@ import {ImagesAssets} from '../shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {storeData} from '../../helper/utils/AsyncStorageServices';
 import {useDispatch} from 'react-redux';
-import { locationFun } from '../../helper/utils/redux/slices/locationSlice';
+import {locationFun} from '../../helper/utils/redux/slices/locationSlice';
+import En from 'react-native-vector-icons/Entypo';
+
 const LocationModal = props => {
   const navigation = useNavigation();
   var dispatch = useDispatch();
@@ -72,19 +74,27 @@ const LocationModal = props => {
       <View
         style={
           {
-            /* backgroundColor: 'red' */
+            width:'100%',
+            alignItems:'center'
           }
         }>
-        <Text
-          style={{
-            color: '#3f85c8',
-            fontFamily: FontFamily.Popinssemibold,
-            fontSize: 22,
-            width: '100%',
-            marginLeft: 10,
-          }}>
-          On-Field
-        </Text>
+        <View style={{flexDirection: 'row',width:'95%',justifyContent:'space-between'}}>
+          <View>
+          <Text
+            style={{
+              color: '#3f85c8',
+              fontFamily: FontFamily.Popinssemibold,
+              fontSize: 22,
+              width: '100%',
+              marginLeft: 10,
+            }}>
+            On-Field
+          </Text>
+          </View>
+          <TouchableOpacity onPress={()=>{props.setShowModal(false)}}>
+          <En name={'cross'} style={{color: '#000', fontSize: 22}} />
+          </TouchableOpacity>
+        </View>
         <View
           style={{
             flexDirection: 'row',

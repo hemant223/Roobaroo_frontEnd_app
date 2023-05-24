@@ -24,15 +24,19 @@ import {
     DefaultTheme,
   } from '@react-navigation/native';
   // import {store} from '../../../App';
+import {useDispatch} from 'react-redux';
   
   import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { FontFamily } from '../../assets/fonts/FontFamily';
-import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
+import { getStoreData, removeStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
   
+import {useSelector} from 'react-redux';
+import { ServerURL } from '../../fetchNodeServices';
 
   
   export default function DrawerContent(props) {
+  var dispatch = useDispatch();
    
     const navigation = useNavigation();
     const [refresh, setRefresh] = React.useState(false);
@@ -44,7 +48,10 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
     const [showLang, setShowLang] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
     const [getUserData, setUserDataByAsync] = useState([])
-
+    var user__Data = useSelector(state => state.userDataReducer.user_data);
+    
+    // console.log('userData_DrawerConent_async>>>>>',getUserData);
+    // console.log('====================================');
       const getUserDataByAsyncStorage=async()=>{
         const userData = await getStoreData('userData');
         setUserDataByAsync(userData)
@@ -84,10 +91,16 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
         if(userData){
         storeData(
             'userData',
-            ({ ...userData, loggedIn: false }),
+            ({...userData, loggedIn: false}),
         );
-        navigation.navigate('Login')
+        removeStoreData('Location')
+        removeStoreData('userData')
+        navigation.dispatch(DrawerActions.closeDrawer())
+        navigation.push('Login')
+        setShowLogout(false)
+
         }
+        
     }
   
     return (
@@ -114,10 +127,12 @@ import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices
 
        <View  style={{marginTop:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
        <View  style={{width:60,height:60,borderRadius:30,backgroundColor:'red',marginLeft:25}}>
-       <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />
+      {user__Data!=''? <Image source={{uri:`${ServerURL}/images/${user__Data.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />:
+       <Image source={{uri:`${ServerURL}/images/${getUserData.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />}
        </View>
        <View>
-        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{getUserData.firstname} {getUserData.lastname}</Text>
+       {user__Data!=''? <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{user__Data.firstname} {user__Data.lastname}</Text>:
+        <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{getUserData.firstname} {getUserData.lastname}</Text>}
        </View>
        </View>
 

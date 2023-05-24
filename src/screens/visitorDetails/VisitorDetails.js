@@ -16,6 +16,7 @@ import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {getDataAxios} from '../../fetchNodeServices';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 const DATA = [
   {
     id: '1',
@@ -134,11 +135,15 @@ const Item = ({item, navigation}) => {
 };
 
 const VisitorDetails = props => {
-  const navigation = useNavigation();
+  console.log('====================================');
+  console.log("PROPS IN VISITOR DETAIL COMPONENET>>>>>>",props.data);
+  console.log('====================================');
+  const navigation = useNavigation()
   // const [visitorData, setVisitorData] = useState([])
   // console.log('====================================');
   // console.log('data on VisitorDetailss page:',props.data);
   // console.log('====================================');
+
 
   // const getVisitorData=async()=>{
   //   var response = await getDataAxios(`visitors/displayVisitors/${props.data.MinisterId}`)
@@ -147,7 +152,8 @@ const VisitorDetails = props => {
   //   console.log('respone data of visitor:',response.result);
   //   console.log('====================================');
   // }
-  // alert(JSON.stringify(props.data))
+  
+// alert(JSON.stringify(props.data))
   // useEffect(() => {
   //  getVisitorData()
   // }, [])
