@@ -33,9 +33,7 @@ export default function SingleBarChart(props) {
 
     const startof_Last_week=(moment().subtract(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
   const endof_Last_week =(moment().subtract(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
- var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
 
-  var cureentDate = moment().format('YYYY-MM-DD');
 
     var response = await getDataAxios(
       `visitors/todayVisitor/${userData.id}/${startof_Last_week}/${endof_Last_week}`,
@@ -44,7 +42,7 @@ export default function SingleBarChart(props) {
     );
 
     var aa = response.data;
-console.log('=======================>',aa)
+
     setLast_Week(aa);
    
     setShimmer(false);
@@ -88,61 +86,44 @@ console.log('=======================>',aa)
         width: '95%',
         margin: 3,
         padding: 5,
-        // position: 'relative',
+        position: 'relative',
       }}>
       <View
         style={{
-          // position: 'absolute',
-          // zIndex: 1,
-            // backgroundColor: 'red',
-          // justifyContent: 'flex-start',
-          // top: '4%',
-          marginTop:10,
-          padding: 0,
-          paddingHorizontal:10,
+          position: 'absolute',
+          zIndex: 1,
+          //   backgroundColor: 'red',
+          alignSelf: 'flex-start',
+          top: '4%',
+          padding: 1,
           margin: 5,
           flexDirection: 'row',
           width: '100%',
-          height:25,
           //   backgroundColor:'red'
-          justifyContent:'space-between',
-          alignItems:'center'
         }}>
-          <View style={{ }}>
-
+          
         <Text
           style={{
             color: '#000',
             fontFamily: FontFamily.TTCommonsMedium,
             fontSize: 17,
-            
-            // backgroundColor:"yellow"
           }}>
           Visitors trend
         </Text>
-            </View>
-       
-
-       <View style={{marginTop:4,height:20,}}>
-
-          <FilterDropdown  onValueChange={(txt)=>{ setFilterSelected(txt.id)}} />
-       </View>
-       
-
-
+        <View
+          style={{
+            top: 3,
+            // backgroundColor:'yellowgreen',
+            width: '70%',
+            alignItems: 'flex-end',
+          }}>
+          <FilterDropdown onValueChange={(txt)=>{ setFilterSelected(txt.id)}} />
+        </View>
       </View>
-
-
-
-
-
-
-
       {shimmer ? (
         <><SpeedoMetterShimmer/></>
       ) : (
         <VictoryChart
-         
           width={props.width}
           height={props.height}
           theme={VictoryTheme.material}

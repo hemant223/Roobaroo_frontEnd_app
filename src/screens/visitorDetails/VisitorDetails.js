@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
@@ -16,7 +17,7 @@ import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {getDataAxios} from '../../fetchNodeServices';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 const DATA = [
   {
     id: '1',
@@ -40,7 +41,8 @@ const DATA = [
 const Item = ({item, navigation}) => {
   var time1 = moment(item.created_at).format('h:mm a, Do MMM YYYY');
   // console.log('====================================');
-  // console.log(item);
+  // console.log('vist>>>>ongoing>>',item);
+
   // console.log('====================================');
   return (
     <>
@@ -51,6 +53,7 @@ const Item = ({item, navigation}) => {
           }}
           style={styles.mainContainer}>
           <View
+            key={item.id}
             style={{
               width: '100%',
               // height: 30,
@@ -135,15 +138,14 @@ const Item = ({item, navigation}) => {
 };
 
 const VisitorDetails = props => {
-  console.log('====================================');
-  console.log("PROPS IN VISITOR DETAIL COMPONENET>>>>>>",props.data);
-  console.log('====================================');
-  const navigation = useNavigation()
+  // console.log('====================================');
+  // console.log("PROPS IN VISITOR DETAIL COMPONENET>>>>>>",props.data);
+  // console.log('====================================');
+  const navigation = useNavigation();
   // const [visitorData, setVisitorData] = useState([])
   // console.log('====================================');
   // console.log('data on VisitorDetailss page:',props.data);
   // console.log('====================================');
-
 
   // const getVisitorData=async()=>{
   //   var response = await getDataAxios(`visitors/displayVisitors/${props.data.MinisterId}`)
@@ -152,8 +154,8 @@ const VisitorDetails = props => {
   //   console.log('respone data of visitor:',response.result);
   //   console.log('====================================');
   // }
-  
-// alert(JSON.stringify(props.data))
+
+  // alert(JSON.stringify(props.data))
   // useEffect(() => {
   //  getVisitorData()
   // }, [])
@@ -163,20 +165,42 @@ const VisitorDetails = props => {
 
   // }, [props.data])
 
-  // alert(JSON.stringify(props.data))
+  // alert(JSON.stringify(props?.data))
+  // console.log('>>>>>>>>>',props?.data);
   return (
     <>
       <View>
-        <FlatList
-          // numColumns={numColumns}
-          data={props?.data}
-          renderItem={({item, index}) => (
-            <Item item={item} indx={index} navigation={navigation} />
-          )}
-          keyExtractor={item => item.id}
-          // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
-          scrollEnabled={true}
-        />
+        {props?.data == 'No record found' ? (
+          <Text>Record Not Found</Text>
+        ) : (
+          <FlatList
+            // numColumns={numColumns}
+            data={props?.data}
+            onEndReached={() => {
+              props.setOffset(props.offset + 5);
+              // props.setLoading(true)
+              // onEndReached
+              // if(props?.data==''||props?.data==undefined||props?.data==null){
+              //   props.setLoading(false)
+              // }
+            }}
+            renderItem={({item, index}) => (
+              <Item item={item} indx={index} navigation={navigation} />
+            )}
+            keyExtractor={item => item.id}
+            // contentContainerStyle={{ flexDirection: 'row', flexWrap: 'wrap' }}
+            scrollEnabled={true}
+            ListFooterComponent={() => {
+              if (props.loading) {
+                return (
+                  <ActivityIndicator color={'#1e70bf'} style={{margin: 20}} />
+                );
+              } else {
+                return null;
+              }
+            }}
+          />
+        )}
       </View>
     </>
   );

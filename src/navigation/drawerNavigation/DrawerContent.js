@@ -24,19 +24,19 @@ import {
     DefaultTheme,
   } from '@react-navigation/native';
   // import {store} from '../../../App';
-import {useDispatch} from 'react-redux';
-  
   import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { FontFamily } from '../../assets/fonts/FontFamily';
 import { getStoreData, removeStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
   
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import { ServerURL } from '../../fetchNodeServices';
-
+import { locationFun } from '../../helper/utils/redux/slices/locationSlice';
+import {useToast} from 'react-native-toast-notifications';
   
   export default function DrawerContent(props) {
   var dispatch = useDispatch();
+  const toast = useToast();
    
     const navigation = useNavigation();
     const [refresh, setRefresh] = React.useState(false);
@@ -48,13 +48,17 @@ import { ServerURL } from '../../fetchNodeServices';
     const [showLang, setShowLang] = useState(false)
     const [showLogout, setShowLogout] = useState(false)
     const [getUserData, setUserDataByAsync] = useState([])
+  const [locationnn, setLocation] = useState('');
     var user__Data = useSelector(state => state.userDataReducer.user_data);
+  var location = useSelector(state => state.locationReducer.location);
     
     // console.log('userData_DrawerConent_async>>>>>',getUserData);
     // console.log('====================================');
       const getUserDataByAsyncStorage=async()=>{
         const userData = await getStoreData('userData');
         setUserDataByAsync(userData)
+        const locationn = await getStoreData('Location');
+        setLocation(locationn?.location);
       }
       useEffect(() => {
         getUserDataByAsyncStorage()
@@ -94,6 +98,7 @@ import { ServerURL } from '../../fetchNodeServices';
             ({...userData, loggedIn: false}),
         );
         removeStoreData('Location')
+        dispatch(locationFun(''));
         removeStoreData('userData')
         navigation.dispatch(DrawerActions.closeDrawer())
         navigation.push('Login')
@@ -101,6 +106,20 @@ import { ServerURL } from '../../fetchNodeServices';
 
         }
         
+    }
+
+    const handleVisitBlack=()=>{
+      setShowHome(false)
+      setShowVisits(true)
+      setShowLang(false)
+      setShowLogout(false)
+      toast.show('Please Select Location', {
+        type: 'warning',
+        placement: 'bottom',
+        duration: 1000,
+        offset: 30,
+        animationType: 'zoom-in',
+      });
     }
   
     return (
@@ -127,8 +146,8 @@ import { ServerURL } from '../../fetchNodeServices';
 
        <View  style={{marginTop:20,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
        <View  style={{width:60,height:60,borderRadius:30,backgroundColor:'red',marginLeft:25}}>
-      {user__Data!=''? <Image source={{uri:`${ServerURL}/images/${user__Data.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />:
-       <Image source={{uri:`${ServerURL}/images/${getUserData.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />}
+      {getUserData.picture? <Image source={{uri:`${ServerURL}/images/${getUserData.picture}`}} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />:
+       <Image source={ImagesAssets.hemu} resizeMode='cover' style={{width:60,height:60,borderRadius:30}} />}
        </View>
        <View>
        {user__Data!=''? <Text style={{color:'#000',marginLeft:10,fontFamily:FontFamily.Popinssemibold,fontSize:18}}>{user__Data.firstname} {user__Data.lastname}</Text>:
@@ -143,11 +162,23 @@ import { ServerURL } from '../../fetchNodeServices';
      <Image source={ImagesAssets.home_un}  style={{width:16,height:16}} />}
      <Text style={{color:showHome?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Home</Text>
       </TouchableOpacity>
-     <TouchableOpacity onPress={()=>{handleVisit()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+
+
+
+    { locationnn!=undefined || location!='' ?<TouchableOpacity onPress={()=>{handleVisit()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
      {showVisits?<Image source={ImagesAssets.profile_sel}  style={{width:18,height:18}} />:
      <Image source={ImagesAssets.profile_un}  style={{width:18,height:18}} />}
      <Text style={{color:showVisits?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Visits</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>:
+
+     <TouchableOpacity onPress={()=>{handleVisitBlack()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
+     {showVisits?<Image source={ImagesAssets.profile_sel}  style={{width:18,height:18}} />:
+     <Image source={ImagesAssets.profile_un}  style={{width:18,height:18}} />}
+     <Text style={{color:showVisits?'#f47216':'#000',marginLeft:20,fontFamily:FontFamily.Popinssemibold,fontSize:16}}>Visits</Text>
+      </TouchableOpacity>}
+
+
+      
      <TouchableOpacity  onPress={()=>{handleLang()}} style={{marginTop:25,marginLeft:25,flexDirection:'row',alignItems:'center'/* ,justifyContent:'center' */}}>
      {showLang?<Image source={ImagesAssets.lang_sel}  style={{width:17,height:15}} />:
      <Image source={ImagesAssets.lang_un}  style={{width:17,height:15}} />}

@@ -20,6 +20,7 @@ import {
 } from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios} from '../../fetchNodeServices';
 import {useSelector} from 'react-redux';
+import {useToast} from 'react-native-toast-notifications';
 
 import moment from 'moment';
 const {width, height} = Dimensions.get('window');
@@ -28,10 +29,15 @@ const Dashboard = props => {
   // alert (dasboard_data)
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
+  const toast = useToast();
   const [locationnn, setLocation] = useState('');
   const [asyncUserData, setAsyncUserData] = useState('');
+  const [conditionLocation, setConditionLocation] = useState('');
+  const [conditionRefresh, setConditionRefresh] = useState(false);
   var location = useSelector(state => state.locationReducer.location);
   var user__Data = useSelector(state => state.userDataReducer.user_data);
+  // alert( props.route.params)
+
   // console.log('redux_userData>>>>>>',user__Data);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
@@ -43,8 +49,11 @@ const Dashboard = props => {
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
     // alert(JSON.stringify(locationn))
+    // var conditionLocation=locationn != '' ? locationn : locationnn
+    // setConditionLocation(conditionLocation)
   };
   // alert(location)
+  // alert(locationnn)
 
   useEffect(() => {
     getUserDataByAsyncStorage();
@@ -55,7 +64,18 @@ const Dashboard = props => {
       userData: user__Data != '' ? user__Data : userData,
     });
 
-    //   setUsedata(userData)
+    //  setUsedata(userData)
+  };
+  const handleVisitBlank = () => {
+    // var conditionLocation=location != '' ? location : locationnn
+    // setConditionLocation(conditionLocation)
+    toast.show('Please Select Location', {
+      type: 'warning',
+      placement: 'bottom',
+      duration: 1000,
+      offset: 30,
+      animationType: 'zoom-in',
+    });
   };
   const handleVisits = async () => {
     let userData = await getStoreData('userData');
@@ -82,6 +102,17 @@ const Dashboard = props => {
   );
   // alert(showModal)
 
+  // const FetchDisplayVisitorLazzyLodingData = async () => {
+  //   var data = await getDataAxios(`visitors/displayAppVisitors/${1}/${2}/${13}`)
+  //   // console.log('RRRRRR====================================');
+  //   // console.log('limit Data>>>>>>>>',data.result);
+  //   // console.log('RRRRRRRR====================================');
+  //   // alert(JSON.stringify(asyncUserData.minister_id))
+  // };
+  // useEffect(() => {
+  //   FetchDisplayVisitorLazzyLodingData();
+  // }, []);
+
   return (
     <View
       style={{
@@ -97,7 +128,7 @@ const Dashboard = props => {
           width: width * 1,
         }}>
         <SubHeader
-          userData={user__Data!=''?user__Data:asyncUserData}
+          userData={user__Data != '' ? user__Data : asyncUserData}
           locationData={location != '' ? location : locationnn}
           locationonPress={() => {
             setShowModal(true);
@@ -156,11 +187,19 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           marginTop: 10,
         }}>
-        <VisitAndProfileButton
-          onPress={() => {
-            handleVisits();
-          }}
-        />
+        {locationnn != undefined || location != '' ? (
+          <VisitAndProfileButton
+            onPress={() => {
+              handleVisits();
+            }}
+          />
+        ) : (
+          <VisitAndProfileButton
+            onPress={() => {
+              handleVisitBlank();
+            }}
+          />
+        )}
       </View>
 
       <View

@@ -85,7 +85,7 @@ function RbeSheet(props) {
             </Text>
           </View>
           <TouchableOpacity onPress={props.doneonPress}>
-            <Text style={{fontSize: 18, fontWeight: '600', marginLeft: 10}}>
+            <Text style={{fontSize: 18, fontWeight: '600', marginLeft: 10,color:'#444b5d'}}>
               Done
             </Text>
           </TouchableOpacity>
@@ -162,7 +162,7 @@ function RbeSheet(props) {
                     status={checked == item.id ? 'checked' : 'unchecked'}
                     onPress={() => handleChech(item)}
                   />
-                  <Text>{item.name}</Text>
+                  <Text style={{color:'#828793',FontFamily:FontFamily.PopinsRegular}}>{item.name}</Text>
                 </View>
               );
             })}

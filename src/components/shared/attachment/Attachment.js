@@ -50,7 +50,7 @@ export default function Attachment(props) {
   };
 
   const captureImage = async (type, mediaby) => {
-    console.log('TYPE AND MUDEIA', type, mediaby);
+    // console.log('TYPE AND MUDEIA', type, mediaby);
     let options = {
       mediaType: type,
       maxWidth: 300,

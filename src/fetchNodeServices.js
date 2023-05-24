@@ -48,7 +48,7 @@ const getDataAxios = async Url => {
       removeStoreData('token');
       // setTimeout(() => navigation.navigate('Login'), 2000);
     } else {
-      console.log(error);
+      console.log('error',error);
     }
   }
 };

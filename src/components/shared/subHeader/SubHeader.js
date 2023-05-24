@@ -100,7 +100,7 @@ const SubHeader = props => {
                   marginLeft:10
 
                 }}>
-                {props.profile && (
+                {props?.userData?.picture ?
                   <Image
                   source={{uri:`${ServerURL}/images/${props?.userData?.picture}`}}
                     style={{
@@ -108,8 +108,16 @@ const SubHeader = props => {
                       // marginHorizontal: isLandscape ? 5 : 5,
                     }}
                     resizeMode={'center'}
+                  />:
+                  <Image
+                  source={ImagesAssets.hemu}
+                    style={{
+                      ...styles.profile,
+                      // marginHorizontal: isLandscape ? 5 : 5,
+                    }}
+                    resizeMode={'center'}
                   />
-                )}
+                }
 
                 {props.rightText && (
                   <View
@@ -132,6 +140,8 @@ const SubHeader = props => {
                         }}>
                         {props?.locationData
                           ? props?.locationData
+                          :props?.locationData==''?
+                          'Loading...'
                           : 'Select Location'}
                       </Text>
                       <Ionicons

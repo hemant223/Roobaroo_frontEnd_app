@@ -15,7 +15,7 @@ import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
-import {storeData} from '../../helper/utils/AsyncStorageServices';
+import {removeStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import {useDispatch} from 'react-redux';
 import { userDataFun } from '../../helper/utils/redux/slices/userDataSlice';
 
@@ -70,7 +70,7 @@ function Login(props) {
         storeData('token', response.token);
         dispatch(userDataFun(response.data));
         setModalVisible(false)
-        props.navigation.navigate('OtpInput');
+        props.navigation.push('OtpInput');
       } else {
         handleError('This User is not exists', 'mobileNumber');
       }
