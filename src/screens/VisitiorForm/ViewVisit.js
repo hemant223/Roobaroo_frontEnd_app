@@ -158,10 +158,12 @@ const ViewVisit = props => {
         />
       ) : (
         <CenterHeader
-          centerText
-          stepContent="Step 02"
-          stepText
-          centerContent="Visiting Form"
+        centerText
+        stepContent=""
+        stepText
+        centerContent=""
+        ViewVisit
+        viewText="View Visit"
           onPressBackArrow={() => {
             navigation.push('Dashboard');
           }}
