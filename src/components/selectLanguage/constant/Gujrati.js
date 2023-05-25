@@ -1,12 +1,10 @@
 export default {
   Login: 'પ્રવેશ કરો',
-  Please_enter_your_registered_mobile_number_to_login:
-    'લોગીન કરવા માટે કૃપા કરીને તમારો નોંધાયેલ મોબાઈલ નંબર દાખલ કરો',
+  Please_enter_your_registered_mobile_number_to_login:'લોગીન કરવા માટે કૃપા કરીને તમારો નોંધાયેલ મોબાઈલ નંબર દાખલ કરો',
   Mobile_number: 'મોબાઇલ નંબર',
   Send_OTP: 'ઓટીપી મોકલો',
   Verify_OTP: 'ઓટીપી ચકાસો',
-  We_have_sent_you_an_OTP_on_your_registered_mobile_number:
-    'અમે તમને તમારા રજીસ્ટર્ડ મોબાઈલ નંબર પર એક OTP મોકલ્યો છે',
+  We_have_sent_you_an_OTP_on_your_registered_mobile_number:'અમે તમને તમારા રજીસ્ટર્ડ મોબાઈલ નંબર પર એક OTP મોકલ્યો છે',
   Submit: 'સબમિટ કરો',
   Didn_t_received_OTP_Resend_in: 'OTP મળ્યો નથી? ફરી મોકલો',
   Today_s_Visitors: 'આજના મુલાકાતીઓ',

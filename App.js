@@ -59,7 +59,7 @@ const App = props => {
 
   return (
     <Provider store={store}>
-      <ToastProvider swipeEnabled={true} offsetTop={30}>
+      <ToastProvider style={{zIndex:11}} swipeEnabled={true} offsetTop={30}>
         <MainNavigationStack />
       </ToastProvider>
     </Provider>

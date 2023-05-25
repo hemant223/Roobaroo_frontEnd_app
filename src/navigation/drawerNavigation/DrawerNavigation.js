@@ -6,6 +6,7 @@ import SplashScreen from '../../screens/splashscreen/SplashScreen';
 import Dashboard from '../../screens/dashboard/Dashboard';
 import Visits from '../../screens/visits/Visits';
 import UserDetail from '../../screens/profile/UserDetail';
+import ChangeLanguage from '../../components/selectLanguage/ChangeLanguage';
 
 const DrawerNav = createDrawerNavigator();
 
@@ -42,6 +43,11 @@ export default function DrawerNavigation(props) {
       <DrawerNav.Screen
         name="UserDetail"
         component={UserDetail}
+        options={{headerShown: false}}
+      />
+       <DrawerNav.Screen
+        name="language"
+        component={ChangeLanguage}
         options={{headerShown: false}}
       />
          </DrawerNav.Navigator>

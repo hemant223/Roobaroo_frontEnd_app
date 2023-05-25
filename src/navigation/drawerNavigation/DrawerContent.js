@@ -80,7 +80,7 @@ import {useToast} from 'react-native-toast-notifications';
         setShowLogout(false)
     }
     const handleLang=()=>{
-        // navigation.navigate('home')
+         navigation.navigate('language')
         setShowHome(false)
         setShowVisits(false)
         setShowLang(true)
