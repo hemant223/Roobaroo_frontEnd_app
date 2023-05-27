@@ -17,7 +17,7 @@ const getDataAxios = async Url => {
   // const Token = token;
   // alert(Token)
 
-  // console.log("token==================>", Token);
+  // console.log("token==================>", Token)
   // alert(Token)e
   try {
     var url = `${ServerURL}/${Url}`;

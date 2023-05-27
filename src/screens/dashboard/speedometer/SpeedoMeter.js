@@ -30,8 +30,15 @@ const SpeedoMeter = props => {
       var response = await getDataAxios(
         `visitors/todayVisitor/${id}/2020-05-09/2020-05-09`,
       );
-      setData(response?.todayVisitor[0]?.TodayVisitorCount);
-      props.setDashboard_Data(response?.todayVisitor[0]?.TodayVisitorCount);  
+      // console.log('RESPONSE', response);
+      // alert(JSON.stringify(response));
+      // console.log(
+      //   '27 Line in Speedometer===========>',
+      //   response.todayVisitor[0].TodayVisitorCount,
+      // );
+      // alert("response of speedo",JSON.stringify(response))
+   setData(response?.todayVisitor[0]?.TodayVisitorCount);
+     props.setDashboard_Data(response?.todayVisitor[0]?.TodayVisitorCount)
       setShimmer(false);
     } catch (err) {
       console.error('Catch Error ',err);

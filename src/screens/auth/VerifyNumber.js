@@ -147,7 +147,7 @@ const VerifyNumber = () => {
               borderRadius={5}
               placeholder="Enter Visitors mobile"
               placeholderColor="#b6b9bf"
-              textfontSize={13}
+              textfontSize={15}
               keyboardType="numeric"
             />
           </View>

@@ -13,38 +13,37 @@ import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
 import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
 import moment from 'moment';
-const data = [
-
-];
+const data = [];
 
 export default function SingleBarChart(props) {
   const [getUserData, setUserDataByAsync] = useState([]);
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
-  const [filterSelected, setFilterSelected] = useState(1)
-//  console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
- 
-  const [current_Week,setCurrent_Week]=useState('')
- 
- 
+  const [filterSelected, setFilterSelected] = useState(1);
+  //  console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
+
+  const [current_Week, setCurrent_Week] = useState('');
+
   const fetchVisitor = async () => {
     const userData = await getStoreData('userData');
-   
 
-    const startof_Last_week=(moment().subtract(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
-  const endof_Last_week =(moment().subtract(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
-
+    const startof_Last_week = moment()
+      .subtract(1, 'weeks')
+      .startOf('isoWeek')
+      .format('YYYY-MM-DD');
+    const endof_Last_week = moment()
+      .subtract(1, 'weeks')
+      .endOf('isoWeek')
+      .format('YYYY-MM-DD');
 
     var response = await getDataAxios(
       `visitors/todayVisitor/${userData.id}/${startof_Last_week}/${endof_Last_week}`,
-      
-     
     );
 
     var aa = response.data;
 
     setLast_Week(aa);
-   
+
     setShimmer(false);
   };
 
@@ -54,17 +53,13 @@ export default function SingleBarChart(props) {
 
   const fetchVisitorCureent_Week = async () => {
     const userData = await getStoreData('userData');
-   
 
-   
-  var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
+    var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
 
-  var cureentDate = moment().format('YYYY-MM-DD');
+    var cureentDate = moment().format('YYYY-MM-DD');
 
     var response = await getDataAxios(
       `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}`,
-    
-     
     );
 
     var yy = response.data;
@@ -92,36 +87,44 @@ export default function SingleBarChart(props) {
         style={{
           position: 'absolute',
           zIndex: 1,
-          //   backgroundColor: 'red',
-          alignSelf: 'flex-start',
+          // backgroundColor: 'red',
+          // justifyContent: 'flex-start',
           top: '4%',
-          padding: 1,
-          margin: 5,
+          // marginTop:10,
+          // padding: 0,
+          paddingHorizontal: 10,
+          // margin: 5,
           flexDirection: 'row',
           width: '100%',
-          //   backgroundColor:'red'
+          height: 25,
+          // backgroundColor:'red',s
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}>
-          
-        <Text
-          style={{
-            color: '#000',
-            fontFamily: FontFamily.TTCommonsMedium,
-            fontSize: 17,
-          }}>
-          Visitors trend
-        </Text>
-        <View
-          style={{
-            top: 3,
-            // backgroundColor:'yellowgreen',
-            width: '70%',
-            alignItems: 'flex-end',
-          }}>
-          <FilterDropdown onValueChange={(txt)=>{ setFilterSelected(txt.id)}} />
+        <View style={{}}>
+          <Text
+            style={{
+              color: '#000',
+              fontFamily: FontFamily.TTCommonsMedium,
+              fontSize: 17,
+
+              // backgroundColor:"yellow"
+            }}>
+            Visitors trend
+          </Text>
+        </View>
+        <View style={{marginTop: 10, height: 20,}}>
+          <FilterDropdown
+            onValueChange={txt => {
+              setFilterSelected(txt.id);
+            }}
+          />
         </View>
       </View>
       {shimmer ? (
-        <><SpeedoMetterShimmer/></>
+        <>
+          <SpeedoMetterShimmer />
+        </>
       ) : (
         <VictoryChart
           width={props.width}
@@ -129,7 +132,7 @@ export default function SingleBarChart(props) {
           theme={VictoryTheme.material}
           domainPadding={20}>
           <VictoryBar
-            data={filterSelected==1?last_Week:current_Week}
+            data={filterSelected == 1 ? last_Week : current_Week}
             x={props.x}
             y={props.y}
             style={{data: {fill: props.barColor}}}
@@ -142,7 +145,7 @@ export default function SingleBarChart(props) {
             // height={400}
           />
         </VictoryChart>
-     )} 
+      )}
     </View>
   );
 }

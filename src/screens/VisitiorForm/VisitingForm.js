@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   BackHandler,
   Image,
-  
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import RadioButton from '../../components/shared/buttons/RadioButton';
@@ -24,6 +23,7 @@ import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MultipleTextField from '../../components/multiple_text_field/MultipleTextField';
+import { FontFamily } from '../../assets/fonts/FontFamily';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -330,47 +330,56 @@ const VisitingForm = props => {
         </View>
 
         <View
-            style={{
-              ...styles.NameViewCss,
-              // width: '100%',
-              flexDirection: 'row',
-              // backgroundColor:'red',
-              alignSelf: 'center',
-            }}>
-            <View style={{width: '49%', marginRight: 5}}>
-              <Input
-                placeholder=""
-                label={'First name'}
-                textLabel
-                width="100%"
-                height={45}
-                borderWidth={1}
-                borderBottomWidth={1}
-                onFocus={() => handleError(null, 'firstName')}
-                error={errors.firstName}
-                onChangeText={text => handleOnchange(text, 'firstName')}
-                // value={firstName}
-                top={2}
-              />
-            </View>
-            <View style={{width: '49%', marginRight: 5}}>
-              <Input
-                placeholder=""
-                label={'Last name'}
-                textLabel
-                width="100%"
-                height={45}
-                borderWidth={1}
-                borderBottomWidth={1}
-                onFocus={() => handleError(null, 'LastName')}
-                error={errors.LastName}
-                onChangeText={text => handleOnchange(text, 'LastName')}
-                top={2}
-              />
-            </View>
-</View>
+          style={{
+            ...styles.NameViewCss,
+            // width: '100%',
+            flexDirection: 'row',
+            // backgroundColor:'red',
+            alignSelf: 'center',
+          }}>
+          <View style={{width: '49%', marginRight: 5}}>
+            <Input
+              placeholder=""
+              label={'First name'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              onFocus={() => handleError(null, 'firstName')}
+              error={errors.firstName}
+              onChangeText={text => handleOnchange(text, 'firstName')}
+              // value={firstName}
+              textfontSize={15}
+            />
+          </View>
+          <View style={{width: '49%', marginRight: 5}}>
+            <Input
+              placeholder=""
+              label={'Last name'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              onFocus={() => handleError(null, 'LastName')}
+              error={errors.LastName}
+              onChangeText={text => handleOnchange(text, 'LastName')}
+              textfontSize={15}
+            />
+          </View>
+        </View>
         {visitorname == 'Group' && (
           <View style={{width: '97%', alignSelf: 'center'}}>
+            <Text
+              style={{
+                top: 9,
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+              }}>
+              Group Member Name
+            </Text>
             <MultipleTextField
               setTextFields={setTextFields}
               textFields={textFields}
@@ -394,7 +403,7 @@ const VisitingForm = props => {
 
         <View
           style={{
-            //   backgroundColor: 'yellowgreen',
+            // backgroundColor: 'yellowgreen',
             ...styles.Date_of_Brith_Css,
           }}>
           <DateTimePicker
@@ -497,7 +506,7 @@ const VisitingForm = props => {
             label={'Reference'}
             textLabel
             width={'100%'}
-            textfontSize={14}
+            textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
             onFocus={() => handleError(null, 'Reference')}
@@ -517,7 +526,7 @@ const VisitingForm = props => {
             label={'Selected Location'}
             textLabel
             width={'100%'}
-            textfontSize={14}
+            textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
             value={location}
@@ -541,10 +550,8 @@ const VisitingForm = props => {
             onFocus={() => handleError(null, 'Reasion')}
             error={errors.Reasion}
             onChangeText={text => handleOnchange(text, 'Reasion')}
-            textfontSize={14}
+            textfontSize={15}
           />
-          
-   
         </View>
 
         <View
@@ -579,7 +586,7 @@ const VisitingForm = props => {
         <SuccessModal
           title="Your Visiting record request has been Successfully Submitted"
           onPress={() => {
-            navigation.push('Visits', {complete:0});
+            navigation.push('Visits', {complete: 0});
             setShowModal(false);
           }}
           setShowModal={setShowModal}

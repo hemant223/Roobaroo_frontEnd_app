@@ -15,6 +15,7 @@ const Input = props => {
     },
   });
   const [isFocused, setIsFocused] = React.useState(false);
+
   return (
     <View>
       {props.textLabel && (
@@ -73,6 +74,7 @@ const Input = props => {
             top:props.top,
               
             }}
+          showSoftInputOnFocus={props.showSoftInputOnFocus}
             placeholder={props.placeholder}
             placeholderTextColor={props.placeholderColor}
             onChangeText={props.onChangeText}
@@ -88,7 +90,7 @@ const Input = props => {
             }}
             onBlur={() => setIsFocused(false)}
             value={props.value}
-           
+            caretHidden={props.caretHidden}
           />
         </View>
         {props.rightIcon ? (
