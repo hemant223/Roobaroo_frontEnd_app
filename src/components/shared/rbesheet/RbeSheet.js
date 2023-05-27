@@ -8,6 +8,7 @@ import moment from 'moment';
 import DateTimePicker from '../../shared/date/DateTimePicker';
 import {Colors} from '../../../assets/config/Colors';
 import En from 'react-native-vector-icons/Entypo';
+import Dropdown from '../dropdowns/DropDownComponent';
 
 function RbeSheet(props) {
   const [check1, setCheck1] = React.useState(false);
@@ -20,20 +21,56 @@ function RbeSheet(props) {
   //   const [month, setMonth] = React.useState('Male');
   const currentDate = moment().format('MMMM D, YYYY');
   const threeMonthsAgo = moment().subtract(3, 'months').format('MMMM');
-  const threeMonthAgoLastDate=moment().subtract(3, 'months').endOf('month').format('YYYY-MM-DD')
-  const threeMonthAgoFirstDate=moment().subtract(3, 'months').startOf('month').format('YYYY-MM-DD')
+  const threeMonthAgoLastDate = moment()
+    .subtract(3, 'months')
+    .endOf('month')
+    .format('YYYY-MM-DD');
+  const threeMonthAgoFirstDate = moment()
+    .subtract(3, 'months')
+    .startOf('month')
+    .format('YYYY-MM-DD');
   const twoMonthsAgo = moment().subtract(2, 'months').format('MMMM');
-  const twoMonthAgoLastDate=moment().subtract(2, 'months').endOf('month').format('YYYY-MM-DD')
-  const twoMonthAgoFirstDate=moment().subtract(2, 'months').startOf('month').format('YYYY-MM-DD')
+  const twoMonthAgoLastDate = moment()
+    .subtract(2, 'months')
+    .endOf('month')
+    .format('YYYY-MM-DD');
+  const twoMonthAgoFirstDate = moment()
+    .subtract(2, 'months')
+    .startOf('month')
+    .format('YYYY-MM-DD');
   const oneMonthAgo = moment().subtract(1, 'months').format('MMMM');
-  const oneMonthAgoLastDate=moment().subtract(1, 'months').endOf('month').format('YYYY-MM-DD')
-  const oneMonthAgoFirstDate=moment().subtract(1, 'months').startOf('month').format('YYYY-MM-DD')
+  const oneMonthAgoLastDate = moment()
+    .subtract(1, 'months')
+    .endOf('month')
+    .format('YYYY-MM-DD');
+  const oneMonthAgoFirstDate = moment()
+    .subtract(1, 'months')
+    .startOf('month')
+    .format('YYYY-MM-DD');
   const [checked, setChecked] = React.useState();
-  
+
   const radioData = [
-    {type: `${threeMonthsAgo}`, id: 1, color: false,startDate:`${threeMonthAgoFirstDate}`,endDate:`${threeMonthAgoLastDate}`},
-    {type: `${twoMonthsAgo}`, id: 2, color: false,startDate:`${twoMonthAgoFirstDate}`,endDate:`${twoMonthAgoLastDate}`},
-    {type: `${oneMonthAgo}`, id: 3, color: false,startDate:`${oneMonthAgoFirstDate}`,endDate:`${oneMonthAgoLastDate}`},
+    {
+      type: `${threeMonthsAgo}`,
+      id: 1,
+      color: false,
+      startDate: `${threeMonthAgoFirstDate}`,
+      endDate: `${threeMonthAgoLastDate}`,
+    },
+    {
+      type: `${twoMonthsAgo}`,
+      id: 2,
+      color: false,
+      startDate: `${twoMonthAgoFirstDate}`,
+      endDate: `${twoMonthAgoLastDate}`,
+    },
+    {
+      type: `${oneMonthAgo}`,
+      id: 3,
+      color: false,
+      startDate: `${oneMonthAgoFirstDate}`,
+      endDate: `${oneMonthAgoLastDate}`,
+    },
   ];
 
   const filterData = [
@@ -42,6 +79,15 @@ function RbeSheet(props) {
     {id: 3, name: 'Newly Added'},
   ];
   //   alert(date)
+
+  const FilterLocation = [
+    {type: 'Public meetings', id: 1, color: false},
+    {type: 'Field visits', id: 2, color: false},
+    {type: 'Mantralaya', id: 3, color: false},
+    {type: 'Vidhansabha', id: 4, color: false},
+    {type: 'Jasdhan', id: 5, color: false},
+    {type: 'Residence', id: 6, color: false},
+  ];
 
   const handleChech = item => {
     setChecked(item.id);
@@ -55,7 +101,7 @@ function RbeSheet(props) {
         ref={props.refRBSheet}
         closeOnDragDown={true}
         closeOnPressMask={true}
-        height={370}
+        height={450}
         openDuration={200}
         customStyles={{
           container: {
@@ -73,11 +119,10 @@ function RbeSheet(props) {
             alignItems: 'center',
             /* backgroundColor: 'red', */
           }}>
-          <View style={{marginLeft:40}}>
-          {props.cross && <En
-              name={'cross'}
-              style={{color: '#000', fontSize: 22, }}
-            />}
+          <View style={{marginLeft: 40}}>
+            {props.cross && (
+              <En name={'cross'} style={{color: '#000', fontSize: 22}} />
+            )}
           </View>
           <View>
             <Text style={{fontSize: 20, fontWeight: '700', color: '#000'}}>
@@ -85,7 +130,13 @@ function RbeSheet(props) {
             </Text>
           </View>
           <TouchableOpacity onPress={props.doneonPress}>
-            <Text style={{fontSize: 18, fontWeight: '600', marginLeft: 10,color:'#444b5d'}}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: '600',
+                marginLeft: 10,
+                color: '#444b5d',
+              }}>
               Done
             </Text>
           </TouchableOpacity>
@@ -134,6 +185,17 @@ function RbeSheet(props) {
             />
           </View>
         </View>
+        <View
+          style={{
+            width: '85%',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            marginTop: 5,
+            alignSelf: 'center',
+          }}>
+          <Dropdown label={'By Location'} label_size={17} label_color={'#000'} labelColor={'red'} width={'100%'} />
+        </View>
 
         <View
           style={{
@@ -162,7 +224,13 @@ function RbeSheet(props) {
                     status={checked == item.id ? 'checked' : 'unchecked'}
                     onPress={() => handleChech(item)}
                   />
-                  <Text style={{color:'#828793',FontFamily:FontFamily.PopinsRegular}}>{item.name}</Text>
+                  <Text
+                    style={{
+                      color: '#828793',
+                      FontFamily: FontFamily.PopinsRegular,
+                    }}>
+                    {item.name}
+                  </Text>
                 </View>
               );
             })}

@@ -5,10 +5,12 @@ import Ad from 'react-native-vector-icons/AntDesign';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
-import {storeData} from '../../helper/utils/AsyncStorageServices';
+import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import {useDispatch} from 'react-redux';
 import {locationFun} from '../../helper/utils/redux/slices/locationSlice';
 import En from 'react-native-vector-icons/Entypo';
+import {postDataAxios} from '../../fetchNodeServices';
+import moment from 'moment';
 
 const LocationModal = props => {
   const navigation = useNavigation();
@@ -17,6 +19,8 @@ const LocationModal = props => {
   // const [showModal, setShowModal] = useState(true);
   const SelectLocationModal = ({navigation}) => {
     // const [showModal, setShowModal] = useState(true)
+    // var dispatch = useDispatch();
+
     const data = [
       {
         id: '1',
@@ -29,7 +33,7 @@ const LocationModal = props => {
       {
         id: '2',
         iconName: '',
-        title: 'Field Visits',
+        title: 'Field visits',
         color: '#f9aa4b',
         backgroundColor: '#fff6ec',
         img: ImagesAssets.FiledVisits,
@@ -47,7 +51,7 @@ const LocationModal = props => {
       {
         id: '4',
         iconName: '',
-        title: 'Vidhyansaabh',
+        title: 'Vidhansabha',
         color: '#18b797',
         backgroundColor: '#c5ede5',
         img: ImagesAssets.Vidhansabha,
@@ -55,7 +59,7 @@ const LocationModal = props => {
       {
         id: '5',
         iconName: '',
-        title: 'Jasdham',
+        title: 'Jasdhan',
         color: '#d680e6',
         backgroundColor: '#f6d9ff',
         img: ImagesAssets.jasdan,
@@ -69,30 +73,89 @@ const LocationModal = props => {
         img: ImagesAssets.Residence,
       },
     ];
+    const handleOnField = async title => {
+      const userData = await getStoreData('userData');
+
+      props.setShowModal(false);
+      navigation.navigate('home', {location: title});
+      storeData('Location', {location: title});
+      dispatch(locationFun(title));
+      // storeData('userData', {...userData, user_location: title});
+      body = {
+        firstname: userData?.firstname,
+        lastname: userData?.lastname,
+        email: userData?.email,
+        mobile_number: userData?.mobile_number,
+        status: userData?.status,
+        minister_id: userData?.minister_id,
+        picture: userData?.picture,
+        created_at: moment(userData?.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        role_id: userData?.role_id,
+        language_id: userData?.language_id,
+        user_address: userData?.user_address,
+        user_organization: userData?.user_organization,
+        user_location: title,
+      };
+
+      await postDataAxios(`users/updateUser/${userData?.id}`, body);
+    };
+    const handleOffice = async title => {
+      const userData = await getStoreData('userData');
+      props.setShowModal(false);
+      navigation.navigate('home', {location: title});
+      storeData('Location', {location: title});
+      // storeData('userData', {...userData, user_location: title});
+      dispatch(locationFun(title));
+      body = {
+        firstname: userData?.firstname,
+        lastname: userData?.lastname,
+        email: userData?.email,
+        mobile_number: userData?.mobile_number,
+        status: userData?.status,
+        minister_id: userData?.minister_id,
+        picture: userData?.picture,
+        created_at: moment(userData?.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+        role_id: userData?.role_id,
+        language_id: userData?.language_id,
+        user_address: userData?.user_address,
+        user_organization: userData?.user_organization,
+        user_location: title,
+      };
+
+      await postDataAxios(`users/updateUser/${userData?.id}`, body);
+    };
 
     return (
       <View
-        style={
-          {
-            width:'100%',
-            alignItems:'center'
-          }
-        }>
-        <View style={{flexDirection: 'row',width:'95%',justifyContent:'space-between'}}>
+        style={{
+          width: '100%',
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: '95%',
+            justifyContent: 'space-between',
+          }}>
           <View>
-          <Text
-            style={{
-              color: '#3f85c8',
-              fontFamily: FontFamily.Popinssemibold,
-              fontSize: 22,
-              width: '100%',
-              marginLeft: 10,
-            }}>
-            On-Field
-          </Text>
+            <Text
+              style={{
+                color: '#3f85c8',
+                fontFamily: FontFamily.Popinssemibold,
+                fontSize: 22,
+                width: '100%',
+                marginLeft: 10,
+              }}>
+              On-Field
+            </Text>
           </View>
-          <TouchableOpacity onPress={()=>{props.setShowModal(false)}}>
-          <En name={'cross'} style={{color: '#000', fontSize: 22}} />
+          <TouchableOpacity
+            onPress={() => {
+              props.setShowModal(false);
+            }}>
+            <En name={'cross'} style={{color: '#000', fontSize: 22}} />
           </TouchableOpacity>
         </View>
         <View
@@ -105,10 +168,7 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  props.setShowModal(false);
-                  navigation.navigate('home', {location: item.title});
-                  storeData('Location', {location: item.title});
-                  dispatch(locationFun(item.title));
+                  handleOnField(item.title);
                 }}
                 key={item.id}
                 style={{
@@ -142,7 +202,7 @@ const LocationModal = props => {
                     fontSize: 12,
                     marginTop: 4,
                   }}>
-                  {item.title}
+                  {item.title.toUpperCase()}
                 </Text>
               </TouchableOpacity>
             );
@@ -168,10 +228,7 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  props.setShowModal(false);
-                  navigation.navigate('home', {location: item?.title});
-                  storeData('Location', {location: item.title});
-                  dispatch(locationFun(item.title));
+                  handleOffice(item.title);
                 }}
                 key={item.id}
                 style={{
@@ -206,7 +263,7 @@ const LocationModal = props => {
                     fontSize: 12,
                     marginTop: 4,
                   }}>
-                  {item.title}
+                  {item.title.toUpperCase()}
                 </Text>
               </TouchableOpacity>
             );

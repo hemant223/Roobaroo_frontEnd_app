@@ -6,12 +6,19 @@ import {
   SafeAreaView,
   ActivityIndicator,
   StatusBar,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import SearchBar from '../../components/search_bar/SearchBar';
 import SearchList from '../../components/search_list/SearchList';
 import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios} from '../../fetchNodeServices';
+import {useNavigation} from '@react-navigation/native';
+import { ImagesAssets } from '../../components/shared/ImageAssets';
+
 const SearchScreen = props => {
+  const navigation = useNavigation();
+
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
   //   const [vechileData, setVechileData] = useState();
@@ -19,6 +26,10 @@ const SearchScreen = props => {
   const [getVisitorData, setVisitorData] = useState([]);
   const [getUserData, setUserDataByAsync] = useState([]);
   const [show, setShow] = useState(false);
+  const [getdata, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
 
@@ -42,44 +53,90 @@ const SearchScreen = props => {
     setRefresh(!refresh);
   }, [props]);
 
-  // const data = [
-  //     {id:1, name:'Hemu Singh',time:'11:56am, 25 Mar 2023',mobileNo:'39996754245'},
-  //     {id:2, name:'Raju Singh',time:'11:56am, 23 Mar 2023',mobileNo:'69996754245'},
-  //     {id:3, name:'dd',time:'11:56am, 21 Mar 2023',mobileNo:'19996754245'},
-  //     {id:4, name:'cc',time:'13:56am, 25 Mar 2023',mobileNo:'79996754245'},
-  //     {id:5, name:'xxx',time:'14:56am, 25 Mar 2023',mobileNo:'99996754245'},
 
-  // ]
+  const getData = async () => {
+    const userData = await getStoreData('userData');
+    var data = await getDataAxios(
+      `visitors/displayAppVisitors/${userData?.minister_id}/${5}/${offset}`,
+    );
+  // console.log('====================================');
+  // console.log('>>>>>>>>>>>>>>>>>>>>>',data.result);
+  // console.log('====================================');
+    if (data.status) {
+      const combineArray = [...getdata, ...data.result];
+      setData(combineArray);
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+    if(searchPhrase!=''){
+      setLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, [offset]);
+
+  
 
   return (
-    <View>
+    <View style={{height:'100%',marginBottom:0}}>
       <StatusBar hidden={false} translucent backgroundColor="transparent" />
       {/* {!clicked && <Image source={require('../../assets/images/logo.png')} style={{width:200,height:70,resizeMode:'contain'}} />} */}
+     
       <View
         style={{
           backgroundColor: '#005db6',
-          height: 110,
+          height: 95,
           borderBottomLeftRadius: 20,
           borderBottomRightRadius: 20,
-          justifyContent: 'flex-end',
-          alignItems: 'center',
+          // alignItems:'flex-end',
           paddingBottom: 15,
+          flexDirection:'row',
+          // justifyContent:'center'
+          alignItems:'center',
+          // marginTop:10,
+          paddingTop:30
         }}>
+            <TouchableOpacity
+            onPress={()=>{navigation.push('Dashboard')}}
+            style={{
+             
+                marginLeft: 12,
+             
+             
+            }}>
+            <Image
+              source={ImagesAssets.arrowLeft}
+              style={{
+               width:30,height:20
+                // marginHorizontal: isLandscape ? 5 : 5,
+              }}
+              // resizeMode={'center'}
+            />
+          </TouchableOpacity>
+          <View style={{marginLeft:10}}>
         <SearchBar
           searchPhrase={searchPhrase}
           setSearchPhrase={setSearchPhrase}
           clicked={clicked}
           setClicked={setClicked}
         />
+        </View>
+         
       </View>
 
       {
         show? <SearchList
+        loading={loading}
+        setOffset={setOffset}
+        offset={offset}
         searchPhrase={searchPhrase}
-        data={getVisitorData}
+        data={searchPhrase==''?getdata:getVisitorData}
         setClicked={setClicked}
       />:
-        <ActivityIndicator  color="#1e70bf" size="large"/>
+        <ActivityIndicator  color="#1e70bf" />
        
       }
     </View>

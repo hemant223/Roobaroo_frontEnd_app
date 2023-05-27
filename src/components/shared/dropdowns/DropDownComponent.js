@@ -44,9 +44,9 @@ const Dropdown = props => {
        <View style={{marginTop: 5, marginBottom: 5, marginLeft: props.labelLeft}}>
         <Text
           style={{
-            color: '#aeaeae',
+            color: props.label_color,
             fontFamily: FontFamily.Popinssemibold,
-            fontSize: 15,
+            fontSize: props.label_size,
             left:props.left,
             right:props.right,
           }}>
@@ -168,5 +168,7 @@ Dropdown.defaultProps = {
   onPressfun: () => {},
   onPressfunforAgendaType: () => {},
   height: 'auto',
-  label:'label'
+  label:'label',
+  label_color:'#aeaeae',
+  label_size:15
 };

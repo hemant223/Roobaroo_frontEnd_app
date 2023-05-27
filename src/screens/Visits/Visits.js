@@ -51,6 +51,7 @@ const Visits = props => {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const [offset1, setOffset1] = useState(0);
+  const [filterLocation, setFilterLocation] = useState('')
   // alert(  props?.route?.params?.complete)
 
   var filteringData = useSelector(state => state.filterReducer);
@@ -344,6 +345,8 @@ const Visits = props => {
           <RbeSheet
             refRBSheet={refRBSheet}
             setMonth={setMonth}
+            filterLocation={filterLocation}
+            setFilterLocation={setFilterLocation}
             month={month}
             setName={setName}
             setFrom={setFrom}

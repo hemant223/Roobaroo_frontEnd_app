@@ -4,25 +4,18 @@ import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Input from '../shared/textInputs/Inputs';
 
-const SearchBar = (props) => {
+const SearchBar = props => {
   return (
     <View style={styles.container}>
-    {/* <View
-      style={
-        !props.clicked
-          ? styles.searchBar__unclicked
-          : styles.searchBar__clicked
-      }>
-      <Feather
-        name="search"
-        size={20}
-        color="black"
-        style={{marginLeft: 5}}
-      /> */}
+      {/* <Feather name="search" size={20} color="black" style={{marginLeft: 5}} /> */}
+
       <Input
-      width={'100%'}
-      txtColor={'#cccccc'}
-      textfontSize={16}
+        width={'90%'}
+        icon
+        iconName={'search'}
+        txtColor={'#cccccc'}
+        borderRadius={20}
+        textfontSize={16}
         // style={styles.input}
         // rightIcon={props.clicked?'cross':'hair-cross'}
         placeholder="Search visitors"
@@ -32,59 +25,42 @@ const SearchBar = (props) => {
         onFocus={() => {
           props.setClicked(true);
         }}
-
       />
-
-{/* 
-      {props.clicked && (
-        <Entypo
-          name="cross"
-          size={20}
-          color="black"
-          style={{padding: 1,marginRight:5}}
-          onPress={() => {
-            props.setSearchPhrase('');
-            Keyboard.dismiss();
-            props.setClicked(false);
-          }}
-        />
-      )}
-    </View> */}
-    
-  </View>
-);
+    </View>
+  );
 };
 
 export default SearchBar;
 
 const styles = StyleSheet.create({
-container: {
-//   margin: 15,
-//   justifyContent: 'flex-start',
-  alignItems: 'center',
-  flexDirection: 'row',
-  width: '95%',
-},
-searchBar__unclicked: {
-  padding: 10,
-  flexDirection: 'row',
-  width: '95%',
-  backgroundColor: '#d9dbda',
-  borderRadius: 15,
-  alignItems: 'center',
-},
-searchBar__clicked: {
-  padding: 10,
-  flexDirection: 'row',
-  width: '95%',
-  backgroundColor: '#d9dbda',
-  borderRadius: 15,
-  alignItems: 'center',
-  justifyContent: 'space-evenly',
-},
-input: {
-  fontSize: 20,
-  marginLeft: 10,
-  width: '90%',
-},
+  container: {
+    //   margin: 15,
+    //   justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    width: '95%',
+    // backgroundColor: 'red',
+  },
+  searchBar__unclicked: {
+    padding: 10,
+    flexDirection: 'row',
+    width: '95%',
+    backgroundColor: '#d9dbda',
+    borderRadius: 15,
+    alignItems: 'center',
+  },
+  searchBar__clicked: {
+    padding: 10,
+    flexDirection: 'row',
+    width: '95%',
+    backgroundColor: '#d9dbda',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  input: {
+    fontSize: 20,
+    marginLeft: 10,
+    width: '90%',
+  },
 });

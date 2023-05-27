@@ -177,6 +177,7 @@ const VisitorDetails = props => {
             // numColumns={numColumns}
             data={props?.data}
             onEndReached={() => {
+              
               props.setOffset(props.offset + 5);
               // props.setLoading(true)
               // onEndReached

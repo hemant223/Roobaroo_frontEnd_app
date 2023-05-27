@@ -5,13 +5,13 @@ import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
 import {useFocusEffect} from '@react-navigation/native';
 import SpeedoMetterShimmerTwo from '../../../components/shared/shimmer/SpeedoMeterShimmerTwo';
-const SpeedoMeter = (props) => {
+const SpeedoMeter = props => {
   const [data, setData] = useState(0);
-  
+
   const [shimmer, setShimmer] = useState(true);
   const [getUserData, setUserDataByAsync] = useState([]);
 
-// alert (dasboard_data)
+  // alert (dasboard_data)
 
   //  alert(JSON.stringify(data))
   const getUserDataByAsyncStorage = async () => {
@@ -25,25 +25,17 @@ const SpeedoMeter = (props) => {
   // alert(JSON.stringify(getUserData));
 
   const fetchVisitor = async id => {
-    setShimmer(true);
+    // setShimmer(true);
     try {
       var response = await getDataAxios(
         `visitors/todayVisitor/${id}/2020-05-09/2020-05-09`,
       );
-      // console.log('RESPONSE', response);
-      // alert(JSON.stringify(response));
-      // console.log(
-      //   '27 Line in Speedometer===========>',
-      //   response.todayVisitor[0].TodayVisitorCount,
-      // );
-      // alert("response of speedo",JSON.stringify(response))
-   setData(response?.todayVisitor[0]?.TodayVisitorCount);
-
-     props.setDashboard_Data(response?.todayVisitor[0]?.TodayVisitorCount)
+      setData(response?.todayVisitor[0]?.TodayVisitorCount);
+      props.setDashboard_Data(response?.todayVisitor[0]?.TodayVisitorCount);  
       setShimmer(false);
     } catch (err) {
-      console.error('Catch Error ', err);
-      setShimmer(true);
+      console.error('Catch Error ',err);
+      setShimmer(false);
     }
   };
   // alert(data);
@@ -55,10 +47,6 @@ const SpeedoMeter = (props) => {
     <View
       style={{
         ...styles.container,
-        
-       
-        
-
       }}>
       {shimmer ? (
         <>

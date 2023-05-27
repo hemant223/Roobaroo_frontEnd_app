@@ -25,8 +25,6 @@ import {useToast} from 'react-native-toast-notifications';
 import moment from 'moment';
 const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
-  const [dasboard_data, setDashboard_Data] = useState(0);
-  // alert (dasboard_data)
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   const toast = useToast();
@@ -41,6 +39,7 @@ const Dashboard = props => {
   // console.log('redux_userData>>>>>>',user__Data);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
+    // alert(userData.user_location)
     setAsyncUserData(userData);
     // alert(JSON.stringify(Location.location))
     // console.log('local_userData>>>>>>',userData);
@@ -163,7 +162,7 @@ const Dashboard = props => {
             alignContent: 'center',
             paddingVertical: 20,
           }}>
-          <SpeedoMeter  setDashboard_Data={setDashboard_Data}/>
+          <SpeedoMeter />
         </View>
       </View>
 
