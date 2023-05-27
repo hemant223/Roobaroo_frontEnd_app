@@ -38,7 +38,6 @@ const SpeedoMeter = (props) => {
       // );
       // alert("response of speedo",JSON.stringify(response))
    setData(response?.todayVisitor[0]?.TodayVisitorCount);
-
      props.setDashboard_Data(response?.todayVisitor[0]?.TodayVisitorCount)
       setShimmer(false);
     } catch (err) {

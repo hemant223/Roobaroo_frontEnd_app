@@ -195,7 +195,8 @@ const Visits = props => {
       `visitors/displayAppVisitors/${userData?.minister_id}/${5}/${offset}`,
     );
   // console.log('====================================');
-  // console.log('>>>>>>>>>>>>>>>>>>>>>',data.result);
+  // console.log('>>>>>>>>>>>ddddd>>>>>>>>>>',data.result);
+ 
   // console.log('====================================');
     if (data.status) {
       const combineArray = [...getdata, ...data.result];

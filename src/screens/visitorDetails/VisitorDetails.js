@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
-import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MCIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {Colors} from '../../assets/config/Colors';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
@@ -89,6 +89,7 @@ const Item = ({item, navigation}) => {
                 resizeMode={'center'}
               />
             </View>
+
             <Text
               style={{
                 left: 5,
@@ -121,15 +122,33 @@ const Item = ({item, navigation}) => {
                 resizeMode={'center'}
               />
             </View>
-            <Text
-              style={{
-                left: 5,
-                fontFamily: FontFamily.PopinsRegular,
-                // fontSize: FontSize.small,
-                color: Colors.black,
-              }}>
-              {item.mobile_number}
-            </Text>
+            <View style={{flexDirection: 'column'}}>
+              <Text
+                style={{
+                  left: 5,
+                  fontFamily: FontFamily.PopinsRegular,
+                  // fontSize: FontSize.small,
+                  color: Colors.black,
+                }}>
+                {item.mobile_number}
+              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{right: 20, top: 5}}>
+                  <MCIcon name="location-on" color={'#186cbd'} size={15} />
+                </View>
+
+                <Text
+                  style={{
+                    right: 10,
+                    top: 2,
+                    fontFamily: FontFamily.PopinsRegular,
+                    // fontSize: FontSize.small,
+                    color: Colors.black,
+                  }}>
+                  {item.location_type}
+                </Text>
+              </View>
+            </View>
           </View>
         </TouchableOpacity>
       )}

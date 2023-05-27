@@ -9,9 +9,8 @@ import {
   BackHandler,
   Alert,
   TextArea,
-  TextInputBase,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 
 import RadioButton from '../../components/shared/buttons/RadioButton';
 import Header from '../../components/shared/header/Header';
@@ -32,7 +31,7 @@ import SuccessModal from '../../components/componentModals/SuccessModal';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
-import { TextInput } from 'react-native-gesture-handler';
+import {TextInput} from 'react-native-gesture-handler';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -53,6 +52,7 @@ const ViewVisit = props => {
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
   const [showengageTime, showsetEngagetime] = useState('');
+
   const [visitortype, setVisitorType] = React.useState(
     props?.route?.params?.visitordata?.visitor_type,
   );
@@ -62,7 +62,8 @@ const ViewVisit = props => {
   const [physically, setPhysically] = React.useState(
     props?.route?.params?.visitordata?.physically_disabled,
   );
-
+  const [engage_Time_show, setEngage_Time_show] = useState('');
+  // console.log('ABCDddddd', engage_Time_show);
   useFocusEffect(
     React.useCallback(() => {
       function handleBackButtonClick() {
@@ -81,7 +82,24 @@ const ViewVisit = props => {
       };
     }, []),
   );
+  
   // alert(JSON.stringify(props.route.params.visitordata))
+  const showEng = () => {
+    let d = Number(props.route.params.visitordata.engage_time);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor((d % 3600) / 60);
+    var s = Math.floor((d % 3600) % 60);
+    var hDisplay = h > 0 ? h + (h == 1 ? ' hour: ' : 'hr: ') : '';
+    var mDisplay = m > 0 ? m + (m == 1 ? ' minute: ' : 'min: ') : '';
+    var sDisplay = s > 0 ? s + (s == 1 ? ' second' : 'sec') : '';
+    var enga = hDisplay + mDisplay + sDisplay;
+    setEngage_Time_show(enga);
+  };
+
+  useEffect(() => {
+    showEng();
+  }, []);
+
   const handleSubmit = async () => {
     let startTime = moment(props.route.params.visitordata.created_at).format(
       'HH:mm:ss',
@@ -130,18 +148,23 @@ const ViewVisit = props => {
       group_member: props.route.params.visitordata.group_member,
       visitor_status: 'completed',
       engage_time: engagetime,
+      location_type:props.route.params.visitordata.location_type
     };
+ 
+   
 
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
       body,
-    );
+      
+      );
     if (response.status) {
       // handlClick()
 
       setShowModal(true);
     }
   };
+
   return (
     <View style={{...styles.mainView}}>
       {props.route.params.visitordata.visitor_status == 'ongoing' ? (
@@ -187,6 +210,7 @@ const ViewVisit = props => {
           }}>
           <View style={{width: '49%', marginRight: 5}}>
             <Input
+              showSoftInputOnFocus={false}
               value={props.route.params.visitordata.firstname}
               placeholder=""
               label={'First name'}
@@ -195,19 +219,24 @@ const ViewVisit = props => {
               height={45}
               borderWidth={1}
               borderBottomWidth={1}
-              top={2}
+              textfontSize={15}
+              caretHidden={true}
             />
           </View>
           <View style={{width: '49%', marginRight: 5}}>
             <Input
               placeholder=""
+              showSoftInputOnFocus={false}
               label={'Last name'}
               textLabel
               width="100%"
               height={45}
               borderWidth={1}
+              borderBottomWidth={1}
               value={props.route.params.visitordata.lastname}
-              top={2}
+              // top={3}
+              textfontSize={15}
+              caretHidden={true}
             />
           </View>
         </View>
@@ -230,15 +259,21 @@ const ViewVisit = props => {
               Group Member
             </Text>
             <TextInput
+              style={{
+                fontFamily: FontFamily.PopinsMedium,
+                color: '#000',
+                fontSize: 15,
+                width: '100%',
+              }}
               value={props.route.params.visitordata.group_member}
-              width={'100%'}
-              textfontSize={12}
+              // width={'100%'}
               borderWidth={1}
               borderBottomWidth={1}
               borderRadius={15}
               borderColor={'#ddd'}
               multiline={true}
-              
+              showSoftInputOnFocus={false}
+              caretHidden={true}
             />
           </View>
         )}
@@ -282,6 +317,10 @@ const ViewVisit = props => {
             )}
             label="Date of Birth"
             textLabel
+            textfontSize={15}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
+            // top={3}
           />
         </View>
         <View
@@ -297,14 +336,29 @@ const ViewVisit = props => {
             labelLeft={10}
           />
         </View>
-
+        {props.route.params.visitordata.visitor_status == 'completed' && (
+          <View style={{padding: 3, margin: 5}}>
+            <Input
+              showSoftInputOnFocus={false}
+              value={engage_Time_show}
+              placeholder=""
+              label={'Engage Time'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              textfontSize={15}
+              caretHidden={true}
+            />
+          </View>
+        )}
         <View
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Reference_View_Css,
           }}>
           <Input
-            placeholder="Enter reference name if any "
             label={'Vidhansabha'}
             value={props.route.params.visitordata.Vidhansabha}
             textLabel
@@ -312,22 +366,8 @@ const ViewVisit = props => {
             textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
-          />
-        </View>
-        <View
-          style={{
-            // backgroundColor: 'yellowgreen',
-            ...styles.Reference_View_Css,
-          }}>
-          <Input
-            placeholder="Enter reference name if any "
-            label={'Constituency'}
-            value={props.route.params.visitordata.ConstituencyName}
-            textLabel
-            width={'100%'}
-            textfontSize={15}
-            borderWidth={1}
-            borderBottomWidth={1}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
           />
         </View>
 
@@ -337,7 +377,26 @@ const ViewVisit = props => {
             ...styles.Reference_View_Css,
           }}>
           <Input
-            placeholder="Enter reference name if any "
+            // placeholder="Enter reference name if any "
+            label={'Constituency'}
+            value={props.route.params.visitordata.ConstituencyName}
+            textLabel
+            width={'100%'}
+            textfontSize={15}
+            borderWidth={1}
+            borderBottomWidth={1}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
+          />
+        </View>
+
+        <View
+          style={{
+            // backgroundColor: 'yellowgreen',
+            ...styles.Reference_View_Css,
+          }}>
+          <Input
+            // placeholder="Enter reference name if any "
             label={'Mantralaya'}
             value={props.route.params.visitordata.MantralayName}
             textLabel
@@ -345,6 +404,8 @@ const ViewVisit = props => {
             textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
           />
         </View>
         <View
@@ -361,6 +422,8 @@ const ViewVisit = props => {
             textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
           />
         </View>
         <View
@@ -377,6 +440,9 @@ const ViewVisit = props => {
             borderWidth={1}
             borderBottomWidth={1}
             height={100}
+            textfontSize={15}
+            showSoftInputOnFocus={false}
+            caretHidden={true}
           />
         </View>
 
@@ -416,7 +482,7 @@ const ViewVisit = props => {
           title={`Visits has been ended succesfully Engagement time was ${showengageTime}`}
           onPress={() => {
             setShowModal(false);
-            navigation.push('Visits', {complete:1});
+            navigation.push('Visits', {complete: 1});
           }}
           setShowModal={setShowModal}
           showModal={showModal}
