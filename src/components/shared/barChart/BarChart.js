@@ -12,6 +12,7 @@ import FilterDropdown from '../dropdowns/FilterDropdown';
 import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
 import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
+import {useSelector} from 'react-redux';
 import moment from 'moment';
 const data = [];
 
@@ -20,36 +21,47 @@ export default function SingleBarChart(props) {
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
   const [filterSelected, setFilterSelected] = useState(1);
-  //  console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
+  const [referesh, setReferesh] = useState(false)
+
 
   const [current_Week, setCurrent_Week] = useState('');
-
+  var location = useSelector(state => state.locationReducer.location);
+ 
   const fetchVisitor = async () => {
+    setShimmer(true)
     const userData = await getStoreData('userData');
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    var location_type = '';
 
-    const startof_Last_week = moment()
+    if (data.result[0].user_location != '') {
+      var location_type = data.result[0].user_location;
+    } else {
+     
+      location_type='undefined'
+    }
+        // alert(location_type)
+    const startDate = moment()
       .subtract(1, 'weeks')
       .startOf('isoWeek')
       .format('YYYY-MM-DD');
-    const endof_Last_week = moment()
+      const endDate = moment()
       .subtract(1, 'weeks')
       .endOf('isoWeek')
       .format('YYYY-MM-DD');
+      var response = await getDataAxios(
+        `visitors/todayVisitor/${userData?.id}/${startDate}/${endDate}/${location?location:location_type}`,
+        );
+        
+        var aa = response.data;
 
-    var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${startof_Last_week}/${endof_Last_week}`,
-    );
-
-    var aa = response.data;
-
+    console.log(aa)
     setLast_Week(aa);
-
     setShimmer(false);
   };
 
   useEffect(() => {
     fetchVisitor();
-  }, []);
+  }, [location]);
 
   const fetchVisitorCureent_Week = async () => {
     const userData = await getStoreData('userData');
@@ -64,12 +76,12 @@ export default function SingleBarChart(props) {
     }
 
     // alert(location_type)
-    var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
+    var startDate = moment().isoWeekday('Monday').format('YYYY-MM-DD');
 
-    var cureentDate = moment().format('YYYY-MM-DD');
+    var endDate = moment().format('YYYY-MM-DD');
 
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}/${location_type}`,
+      `visitors/todayVisitor/${userData.id}/${startDate}/${endDate}/${location_type}`,
     );
 
     var yy = response.data;
