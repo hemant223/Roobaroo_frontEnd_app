@@ -97,7 +97,6 @@ const LocationModal = props => {
         user_organization: userData?.user_organization,
         user_location: title,
       };
-
       await postDataAxios(`users/updateUser/${userData?.id}`, body);
     };
     const handleOffice = async title => {
