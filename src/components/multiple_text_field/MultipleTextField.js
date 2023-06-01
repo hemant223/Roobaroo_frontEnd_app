@@ -42,7 +42,7 @@ const MultiTextFieldForm = props => {
               // style={{fontSize:15,color:'#000'}}
               //   backgroundColor={'yellow'}
               placeholder="Group Member Name"
-              label={'sdfadsfa'}
+              // label={'sdfadsfa'}
               // textLabel
               textfontSize={15}
               value={field.value}

@@ -54,12 +54,22 @@ export default function SingleBarChart(props) {
   const fetchVisitorCureent_Week = async () => {
     const userData = await getStoreData('userData');
 
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    // alert(JSON.stringify(data.result[0].user_location))
+    var location_type = '';
+    if (data.result[0].user_location != '') {
+      var location_type = data.result[0].user_location;
+    } else {
+      location_type='undefined'
+    }
+
+    // alert(location_type)
     var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
 
     var cureentDate = moment().format('YYYY-MM-DD');
 
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}`,
+      `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}/${location_type}`,
     );
 
     var yy = response.data;
@@ -113,7 +123,7 @@ export default function SingleBarChart(props) {
             Visitors trend
           </Text>
         </View>
-        <View style={{marginTop: 10, height: 20,}}>
+        <View style={{marginTop: 10, height: 20}}>
           <FilterDropdown
             onValueChange={txt => {
               setFilterSelected(txt.id);

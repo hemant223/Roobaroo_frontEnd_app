@@ -23,7 +23,8 @@ import {Colors} from '../../assets/config/Colors';
 import DateTimePicker from '../../components/shared/date/DateTimePicker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MultipleTextField from '../../components/multiple_text_field/MultipleTextField';
-import { FontFamily } from '../../assets/fonts/FontFamily';
+import {FontFamily} from '../../assets/fonts/FontFamily';
+import {useSelector} from 'react-redux';
 
 const data = [
   {type: 'Single', id: 1, color: false},
@@ -87,11 +88,18 @@ const VisitingForm = props => {
 
   const [textFields, setTextFields] = useState([{value: ''}]);
   const [imageShow, setImageShow] = useState(false);
+  const [apiUserData, setApiUserData] = useState('');
 
+  var locationReducer = useSelector(state => state.locationReducer.location);
   // VidhanSbha DropDown
   const fetchVidhansbha = async () => {
     try {
       const userData = await getStoreData('userData');
+      var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+      setApiUserData(data.result[0]);
+
+      // alert(JSON.stringify(apiUserData.user_location))
+      // alert(locationReducer)
 
       // alert(JSON.stringify(userData))
       var StateId = userData.StateId;
@@ -215,7 +223,7 @@ const VisitingForm = props => {
       });
     }
     // alert(arr);
-
+   
     try {
       let i = 0;
       let isValid = true;
@@ -253,7 +261,9 @@ const VisitingForm = props => {
           created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
           group_member: arr_group,
           visitor_status: 'ongoing',
-          location_type: location,
+          location_type: locationReducer
+            ? locationReducer
+            : apiUserData.user_location,
           constituency_id: constituencyid,
           minister_id: ministarid,
         };
@@ -306,6 +316,9 @@ const VisitingForm = props => {
   //   // console.log("VALUE TWOOOOOOOOOO",valuetwo);
   //   setDob(valuetwo)
   // }
+
+  // alert(apiUserData.user_location)
+  // alert(locationReducer)
 
   return (
     <View style={{...styles.mainView}}>
@@ -377,8 +390,9 @@ const VisitingForm = props => {
                 color: '#aeaeae',
                 fontSize: 15,
                 fontFamily: FontFamily.Popinssemibold,
+                marginLeft: 10,
               }}>
-              Group Member Name
+              Group Members Name
             </Text>
             <MultipleTextField
               setTextFields={setTextFields}
@@ -524,12 +538,12 @@ const VisitingForm = props => {
           <Input
             // placeholder="Enter reference name if any "
             label={'Selected Location'}
-            textLabel
+            textLabel 
             width={'100%'}
             textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
-            value={location}
+            value={locationReducer?locationReducer:apiUserData.user_location}
           />
         </View>
 

@@ -96,10 +96,10 @@ const SubHeader = props => {
                 flexDirection: 'row',
                 marginLeft: 10,
               }}>
-              {props?.userData.picture == 'null' ||
-              props?.userData.picture == null ||
-              props?.userData.picture == undefined ||
-              props?.userData.picture == '' ? (
+              {props?.userData?.picture == 'null' ||
+              props?.userData?.picture == null ||
+              props?.userData?.picture == undefined ||
+              props?.userData?.picture == '' ? (
                 <Image
                   source={ImagesAssets.hemu}
                   style={{
@@ -142,8 +142,8 @@ const SubHeader = props => {
                       }}>
                       {props?.locationData
                         ? props?.locationData
-                        : props?.locationData == ''
-                        ? 'Loading...'
+                        // : props?.locationData == ''
+                       /*  ? 'Loading...' */
                         : 'Select Location'}
                     </Text>
                     <Ionicons

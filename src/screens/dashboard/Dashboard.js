@@ -34,25 +34,27 @@ const Dashboard = props => {
   const [conditionRefresh, setConditionRefresh] = useState(false);
   var location = useSelector(state => state.locationReducer.location);
   var user__Data = useSelector(state => state.userDataReducer.user_data);
+  const [apiUserData, setApiUserData] = useState('')
   // alert( props.route.params)
 
   // console.log('redux_userData>>>>>>',user__Data);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-    // alert(userData.user_location)
     setAsyncUserData(userData);
-    // alert(JSON.stringify(Location.location))
-    // console.log('local_userData>>>>>>',userData);
-    var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
-    // alert(JSON.stringify(data))
+   
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    if(data.status){
+      // alert(JSON.stringify(data.result[0]))
+      setApiUserData(data.result[0])
+    }
+    
+    // console.log('apiUserData>>>>',apiUserData.user_location);
+  // alert(apiUserData.user_location)
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
-    // alert(JSON.stringify(locationn))
-    // var conditionLocation=locationn != '' ? locationn : locationnn
-    // setConditionLocation(conditionLocation)
+   
   };
-  // alert(location)
-  // alert(locationnn)
+ 
 
   useEffect(() => {
     getUserDataByAsyncStorage();
@@ -128,7 +130,7 @@ const Dashboard = props => {
         }}>
         <SubHeader
           userData={user__Data != '' ? user__Data : asyncUserData}
-          locationData={location != '' ? location : locationnn}
+          locationData={location != '' ? location : apiUserData?.user_location}
           locationonPress={() => {
             setShowModal(true);
           }}
@@ -186,7 +188,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           marginTop: 10,
         }}>
-        {locationnn != undefined || location != '' ? (
+        {apiUserData?.user_location != '' || location != '' ? (
           <VisitAndProfileButton
             onPress={() => {
               handleVisits();

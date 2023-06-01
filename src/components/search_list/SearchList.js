@@ -17,12 +17,15 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 import {useToast} from 'react-native-toast-notifications';
+import { getDataAxios } from '../../fetchNodeServices';
 const Item = props => {
   const toast = useToast();
-
+// console.log('====================================');
+// console.log(props.apiUserData.user_location);
+// console.log('====================================');
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {props.locationnn != undefined || props.location != "" ? (
+      {props.apiUserData != "" || props.location != "" ? (
         <TouchableOpacity
           onPress={() => {
             props.navigation.push('ViewVisit', {visitordata: props.item});
@@ -370,7 +373,7 @@ const RenderItem = ({
   item,
   searchPhrase,
   navigation,
-  locationnn,
+  apiUserData,
   location,
   // tost,
 }) => {
@@ -379,7 +382,7 @@ const RenderItem = ({
       <Item
         item={item}
         navigation={navigation}
-        locationnn={locationnn}
+        apiUserData={apiUserData}
         location={location}
         // toast={tost}
       />
@@ -395,7 +398,7 @@ const RenderItem = ({
       <Item
         item={item}
         navigation={navigation}
-        locationnn={locationnn}
+        apiUserData={apiUserData}
         location={location}
         // toast={tost}
       />
@@ -410,7 +413,7 @@ const RenderItem = ({
       <Item
         item={item}
         navigation={navigation}
-        locationnn={locationnn}
+        apiUserData={apiUserData}
         location={location}
         // toast={tost}
       />
@@ -429,15 +432,7 @@ const RenderItem = ({
 const SearchList = props => {
   const [refresh, setRefresh] = useState(false);
   const navigation = useNavigation();
-  const [locationnn, setLocation] = useState('');
-  var location = useSelector(state => state.locationReducer.location);
-  const getLocationDataByAsyncStorage = async () => {
-    const locationn = await getStoreData('Location');
-    setLocation(locationn?.location);
-  };
-  useEffect(() => {
-    getLocationDataByAsyncStorage();
-  }, []);
+ 
   // alert(locationnn)
 // alert(props.searchPhrase)
   return (
@@ -457,8 +452,8 @@ const SearchList = props => {
             <RenderItem
               // toast={toast}
               navigation={navigation}
-              locationnn={locationnn}
-              location={location}
+              apiUserData={props.apiUserData}
+              location={props.location}
               item={item}
               refresh={refresh}
               setRefersh={setRefresh}
@@ -493,6 +488,7 @@ const styles = StyleSheet.create({
     height: '88%',
     width: '100%',
     //   backgroundColor:'#fff'
+    // marginBottom:20
   },
   item: {
     margin: 30,
