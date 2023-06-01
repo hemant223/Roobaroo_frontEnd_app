@@ -6,7 +6,7 @@ import {
 } from './helper/utils/AsyncStorageServices';
 // import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
-var ServerURL = 'http://192.168.29.194:9292';
+var ServerURL = 'http://192.168.29.136:9292';
 // var ServerURL = "http://campusshala.com:9292";
 // const navigation=useNavigation()
 // var token =
@@ -48,7 +48,7 @@ const getDataAxios = async Url => {
       removeStoreData('token');
       // setTimeout(() => navigation.navigate('Login'), 2000);
     } else {
-      console.log('error',error);
+      console.log('error', error);
     }
   }
 };
@@ -115,7 +115,7 @@ const putDataAxios = async (Url, body) => {
       });
       removeStoreData('userData');
       removeStoreData('token');
-      navigation.navigate('Login'), 2000
+      navigation.navigate('Login'), 2000;
     } else {
       console.log(error);
     }
