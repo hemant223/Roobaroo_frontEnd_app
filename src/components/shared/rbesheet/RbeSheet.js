@@ -17,6 +17,10 @@ function RbeSheet(props) {
   const [month, setMonth] = React.useState('');
   const [from, setFrom] = useState(moment().format('YYYY-MM-DD'));
   const [to, setTo] = useState(moment().format('YYYY-MM-DD'));
+  // DropDown Location State//
+  const [location, setLocation] = React.useState('');
+  const [location_Name, setLocation_Name] = React.useState('');
+
   const refRBSheet = useRef();
   //   const [month, setMonth] = React.useState('Male');
   const currentDate = moment().format('MMMM D, YYYY');
@@ -89,6 +93,14 @@ function RbeSheet(props) {
     {type: 'Residence', id: 6, color: false},
   ];
 
+  const options = [
+    {label: 'Public Meetings', value: 1},
+    {label: 'Field Visits', value: 2},
+    {label: 'Mantralaya ', value: 3},
+    {label: 'Vidhansabha ', value: 4},
+    {label: 'Jasdhan', value: 5},
+    {label: 'Residence', value: 6},
+  ];
   const handleChech = item => {
     setChecked(item.id);
     props.setName(item.name);
@@ -187,14 +199,26 @@ function RbeSheet(props) {
         </View>
         <View
           style={{
-            width: '85%',
+            width: '90%',
             flexDirection: 'row',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             marginTop: 5,
             alignSelf: 'center',
+            zIndex: 1,
+        
           }}>
-          <Dropdown label={'By Location'} label_size={17} label_color={'#000'} labelColor={'red'} width={'100%'} />
+          <Dropdown
+            options={options}
+            label={'By Location'}
+            label_size={17}
+            label_color={'#000'}
+            onSelect={setLocation}
+            setShowName={setLocation_Name}
+            showName={location_Name ? location_Name : 'Select Location'}
+            width={'100%'}
+            
+          />
         </View>
 
         <View

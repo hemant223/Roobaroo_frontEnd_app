@@ -355,6 +355,21 @@ const ViewVisit = props => {
             />
           </View>
         )}
+         <View style={{padding: 3, margin: 5}}>
+            <Input
+              showSoftInputOnFocus={false}
+              value={props.route.params.visitordata.location_type}
+              placeholder=""
+              label={'Location'}
+              textLabel
+              width="100%"
+              height={45}
+              borderWidth={1}
+              borderBottomWidth={1}
+              textfontSize={15}
+              caretHidden={true}
+            />
+          </View>
         <View
           style={{
             // backgroundColor: 'yellowgreen',

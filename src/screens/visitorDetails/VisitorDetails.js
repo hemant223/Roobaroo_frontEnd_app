@@ -110,7 +110,7 @@ const Item = ({item, navigation}) => {
               // backgroundColor: 'yellowgreen',
               bottom: 2,
             }}>
-            <View style={{top: 2, width: '6%'}}>
+            <View style={{top: 2, width: '6%',}}>
               {/* <MCIcon name="cellphone" color={'#186cbd'} size={15} /> */}
 
               <Image
@@ -121,7 +121,11 @@ const Item = ({item, navigation}) => {
                 }}
                 resizeMode={'center'}
               />
+               <View style={{top:2,backgroundColor:'red' }}>
+                  <MCIcon name="location-on" color={'#186cbd'} size={15} />
+                </View>
             </View>
+           
             <View style={{flexDirection: 'column'}}>
               <Text
                 style={{
@@ -133,13 +137,9 @@ const Item = ({item, navigation}) => {
                 {item.mobile_number}
               </Text>
               <View style={{flexDirection: 'row'}}>
-                <View style={{right: 20, top: 5}}>
-                  <MCIcon name="location-on" color={'#186cbd'} size={15} />
-                </View>
-
                 <Text
                   style={{
-                    right: 10,
+                    left: 5,
                     top: 2,
                     fontFamily: FontFamily.PopinsRegular,
                     // fontSize: FontSize.small,
