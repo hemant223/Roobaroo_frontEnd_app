@@ -113,6 +113,7 @@ const Dashboard = props => {
   // useEffect(() => {
   //   FetchDisplayVisitorLazzyLodingData();
   // }, []);
+  // alert(apiUserData?.user_location)
 
   return (
     <View
@@ -188,7 +189,7 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           marginTop: 10,
         }}>
-        {apiUserData?.user_location != '' || location != '' ? (
+        {apiUserData?.user_location != null || location != '' ? (
           <VisitAndProfileButton
             onPress={() => {
               handleVisits();

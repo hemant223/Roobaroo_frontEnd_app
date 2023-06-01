@@ -128,6 +128,7 @@ export default function DrawerContent(props) {
       animationType: 'zoom-in',
     });
   };
+  // alert(apiUserData?.user_location)
 
   return (
     <DrawerContentScrollView
@@ -249,7 +250,7 @@ export default function DrawerContent(props) {
         </Text>
       </TouchableOpacity>
 
-      {apiUserData?.user_location != '' || location != '' ? (
+      {apiUserData?.user_location != null || location != '' ? (
         <TouchableOpacity
           onPress={() => {
             handleVisit();
