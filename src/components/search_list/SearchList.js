@@ -25,7 +25,7 @@ const Item = props => {
 // console.log('====================================');
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {props.apiUserData != "" || props.location != "" ? (
+      {props.apiUserData != null || props.location != "" ? (
         <TouchableOpacity
           onPress={() => {
             props.navigation.push('ViewVisit', {visitordata: props.item});
@@ -433,7 +433,7 @@ const SearchList = props => {
   const [refresh, setRefresh] = useState(false);
   const navigation = useNavigation();
  
-  // alert(locationnn)
+  // alert(props.apiUserData)
 // alert(props.searchPhrase)
   return (
     <SafeAreaView style={styles.list__container}>
