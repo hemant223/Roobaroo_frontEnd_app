@@ -17,10 +17,7 @@ function RbeSheet(props) {
   const [month, setMonth] = React.useState('');
   const [from, setFrom] = useState(moment().format('YYYY-MM-DD'));
   const [to, setTo] = useState(moment().format('YYYY-MM-DD'));
-  // DropDown Location State//
-  const [location, setLocation] = React.useState('');
-  const [location_Name, setLocation_Name] = React.useState('');
-
+ 
   const refRBSheet = useRef();
   //   const [month, setMonth] = React.useState('Male');
   const currentDate = moment().format('MMMM D, YYYY');
@@ -205,19 +202,20 @@ function RbeSheet(props) {
             flexWrap: 'wrap',
             marginTop: 5,
             alignSelf: 'center',
-            zIndex: 1,
-        
+            zIndex:99
           }}>
           <Dropdown
-            options={options}
+            options={props.DropDownData}
+            onSelect={props.setRBDropDownLocationValue}
+            setShowName={props.setRBDropDownLocation}
             label={'By Location'}
             label_size={17}
             label_color={'#000'}
-            onSelect={setLocation}
-            setShowName={setLocation_Name}
-            showName={location_Name ? location_Name : 'Select Location'}
+            labelColor={'red'}
             width={'100%'}
-            
+            showName={
+              props.RBDropDownLocation ? props.RBDropDownLocation : 'Select Location'
+            }
           />
         </View>
 

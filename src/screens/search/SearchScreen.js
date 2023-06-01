@@ -15,6 +15,7 @@ import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios} from '../../fetchNodeServices';
 import {useNavigation} from '@react-navigation/native';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
+import { useSelector } from 'react-redux';
 
 const SearchScreen = props => {
   const navigation = useNavigation();
@@ -29,10 +30,16 @@ const SearchScreen = props => {
   const [getdata, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
-
+  const [apiUserData, setApiUserData] = useState('')
+  var location = useSelector(state => state.locationReducer.location);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
-
+ var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    if(data.status){
+      // alert(JSON.stringify(data.result[0]))
+      setApiUserData(data.result[0])
+    }
+    
     var data = await getDataAxios(
       `visitors/displayVisitors/${userData?.minister_id}`,
     );
@@ -129,6 +136,8 @@ const SearchScreen = props => {
 
       {
         show? <SearchList
+        location={location}
+        apiUserData={apiUserData.user_location}
         loading={loading}
         setOffset={setOffset}
         offset={offset}

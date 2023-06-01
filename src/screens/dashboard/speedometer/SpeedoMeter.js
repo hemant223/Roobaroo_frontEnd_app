@@ -26,9 +26,21 @@ const SpeedoMeter = props => {
 
   const fetchVisitor = async id => {
     // setShimmer(true);
+    const userData = await getStoreData('userData');
+
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    // alert(JSON.stringify(data.result[0].user_location))
+    var location_type = '';
+    if (data.result[0].user_location != '') {
+      var location_type = data.result[0].user_location;
+    } else {
+      location_type='undefined'
+    }
+    
+
     try {
       var response = await getDataAxios(
-        `visitors/todayVisitor/${id}/2020-05-09/2020-05-09`,
+        `visitors/todayVisitor/${id}/2020-05-09/2020-05-09/${location_type}`,
       );
       // console.log('RESPONSE', response);
       // alert(JSON.stringify(response));

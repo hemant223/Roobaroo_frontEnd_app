@@ -26,6 +26,15 @@ const Visits = props => {
   const navigation = useNavigation();
   var dispatch = useDispatch();
 
+  const DropDownData = [
+    {value: 1, label: 'Public meetings'},
+    {value: 2, label: 'Field visits'},
+    {value: 3, label: 'Mantralaya'},
+    {value: 4, label: 'Vidhansabha'},
+    {value: 5, label: 'Jasdhan'},
+    {value: 6, label: 'Residence'},
+  ];
+
   // alert(JSON.stringify(props?.route?.params?.userData))
   // console.log('====================================');
   // console.log('fulluserData on visitor page:',props?.route?.params?.userData);
@@ -51,8 +60,10 @@ const Visits = props => {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const [offset1, setOffset1] = useState(0);
-  const [filterLocation, setFilterLocation] = useState('')
-  // alert(  props?.route?.params?.complete)
+  const [filterLocation, setFilterLocation] = useState('');
+  const [RBDropDownLocation, setRBDropDownLocation] = useState('');
+  const [RBDropDownLocationValue, setRBDropDownLocationValue] = useState('');
+  // alert(RBDropDownLocation)
 
   var filteringData = useSelector(state => state.filterReducer);
   //  console.log('====================================');
@@ -102,7 +113,6 @@ const Visits = props => {
     }
   };
 
-
   const FetchRBsheetFilterDataBYLazzyLoading = async () => {
     var namme = '';
     if (name == 'Alphabetically A to Z') {
@@ -132,22 +142,57 @@ const Visits = props => {
       endDatee = endDate;
     }
 
-    let body = {order: namme, startDate: startDatee, endDate: endDatee,limit:5,offset:offset1};
+    var location_type = '';
+    if (RBDropDownLocation == 'Public meetings') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    } else if (RBDropDownLocation == 'Field visits') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    } else if (RBDropDownLocation == 'Mantralaya') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    } else if (RBDropDownLocation == 'Vidhansabha') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    } else if (RBDropDownLocation == 'Jasdhan') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    } else if (RBDropDownLocation == 'Residence') {
+      setRefresh(false);
+      var location_type = RBDropDownLocation;
+    }
+    // alert(location_type)
+
+    let body = {
+      order: namme,
+      startDate: startDatee,
+      endDate: endDatee,
+      // limit: 5,
+      // offset: offset1,
+      location_type: location_type,
+    };
+    var limit = 5;
+    var offset = offset1;
+    
     var response = await postDataAxios(
       `visitors/appVisitorFilter/${getUserData?.minister_id}`,
       body,
     );
-    // alert(JSON.stringify(response));
+    // alert(JSON.stringify(response.status));
+    // console.log('====================================');
+    // console.log(response.result);
+    // console.log('====================================');
     if (response.status) {
-      const combineArray = [...filterData, ...response.result];
-     
+      // const combineArray = [...filterData, ...response.result];
       // dispatch(FilterFun(response.result));
-      setFilterData(combineArray);
+      // console.log('combineArray',combineArray);
+      setFilterData(response.result);
       setRefresh(true);
-      setLoading(true)
+      setLoading(true);
     } else {
       alert('Error in Filtering');
-      setLoading(false)
+      setLoading(false);
     }
     // if(response.result==''||response.result==undefined||response.result==null){
     //   setLoading(false)
@@ -166,9 +211,8 @@ const Visits = props => {
     var data = await getDataAxios(
       `visitors/displayVisitors/${userData?.minister_id}`,
     );
-   
+
     if (data.status) {
-   
       setVisitorData(data.result);
       // alert(JSON.stringify(data?.result));
       setRefresh(true);
@@ -195,10 +239,9 @@ const Visits = props => {
     var data = await getDataAxios(
       `visitors/displayAppVisitors/${userData?.minister_id}/${5}/${offset}`,
     );
-  // console.log('====================================');
-  // console.log('>>>>>>>>>>>ddddd>>>>>>>>>>',data.result);
- 
-  // console.log('====================================');
+    // console.log('====================================');
+    // console.log('>>>>>>>>>>>ddddd>>>>>>>>>>',data.result);
+    // console.log('====================================');
     if (data.status) {
       const combineArray = [...getdata, ...data.result];
       setData(combineArray);
@@ -314,8 +357,8 @@ const Visits = props => {
                   <VisitorDetails
                     setLoading={setLoading}
                     loading={loading}
-                    setOffset={filterData != '' ?setOffset1:setOffset}
-                    offset={filterData != '' ?offset1:offset}
+                    setOffset={filterData != '' ? setOffset1 : setOffset}
+                    offset={filterData != '' ? offset1 : offset}
                     data={filterData != '' ? filterData : getdata}
                   />
                 ) : (
@@ -329,8 +372,8 @@ const Visits = props => {
                   <VisitorDetailsShow
                     setLoading={setLoading}
                     loading={loading}
-                    setOffset={filterData != '' ?setOffset1:setOffset}
-                    offset={filterData != '' ?offset1:offset}
+                    setOffset={filterData != '' ? setOffset1 : setOffset}
+                    offset={filterData != '' ? offset1 : offset}
                     data={filterData != '' ? filterData : getdata}
                   />
                 ) : (
@@ -344,6 +387,11 @@ const Visits = props => {
       <>
         {
           <RbeSheet
+            DropDownData={DropDownData}
+            setRBDropDownLocationValue={setRBDropDownLocationValue}
+            setRBDropDownLocation={setRBDropDownLocation}
+            RBDropDownLocation={RBDropDownLocation}
+            RBDropDownLocationValue={RBDropDownLocationValue}
             refRBSheet={refRBSheet}
             setMonth={setMonth}
             filterLocation={filterLocation}

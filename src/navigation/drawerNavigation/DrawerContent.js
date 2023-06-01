@@ -34,7 +34,7 @@ import {
 } from '../../helper/utils/AsyncStorageServices';
 
 import {useSelector, useDispatch} from 'react-redux';
-import {ServerURL} from '../../fetchNodeServices';
+import {ServerURL, getDataAxios} from '../../fetchNodeServices';
 import {locationFun} from '../../helper/utils/redux/slices/locationSlice';
 import {useToast} from 'react-native-toast-notifications';
 
@@ -53,6 +53,8 @@ export default function DrawerContent(props) {
   const [showLogout, setShowLogout] = useState(false);
   const [getUserData, setUserDataByAsync] = useState([]);
   const [locationnn, setLocation] = useState('');
+  const [apiUserData, setApiUserData] = useState('');
+
   var location = useSelector(state => state.locationReducer.location);
   var user__Data = useSelector(state => state.userDataReducer.user_data);
 
@@ -61,6 +63,13 @@ export default function DrawerContent(props) {
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
     setUserDataByAsync(userData);
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    if (data.status) {
+      // alert(JSON.stringify(data.result[0]))
+      setApiUserData(data.result[0]);
+    }
+    // console.log('apiUserDataaaaaa>>>>',apiUserData);
+    // alert(apiUserData.user_location)
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
   };
@@ -96,13 +105,13 @@ export default function DrawerContent(props) {
     setShowLang(false);
     setShowLogout(true);
     if (userData) {
-      storeData('userData', {...userData, loggedIn: false});
-      removeStoreData('Location');
       dispatch(locationFun(''));
+      removeStoreData('Location');
       removeStoreData('userData');
-      navigation.dispatch(DrawerActions.closeDrawer());
       navigation.push('Login');
       setShowLogout(false);
+      navigation.dispatch(DrawerActions.closeDrawer());
+      storeData('userData', {...userData, loggedIn: false});
     }
   };
 
@@ -167,7 +176,9 @@ export default function DrawerContent(props) {
             backgroundColor: 'red',
             marginLeft: 25,
           }}>
-          {getUserData?.picture == 'null' || getUserData?.picture=='' || getUserData?.picture=='undefined'  ? (
+          {getUserData?.picture == 'null' ||
+          getUserData?.picture == '' ||
+          getUserData?.picture == 'undefined' ? (
             <Image
               source={ImagesAssets.hemu}
               resizeMode="cover"
@@ -238,7 +249,7 @@ export default function DrawerContent(props) {
         </Text>
       </TouchableOpacity>
 
-      {locationnn != undefined || location != '' ? (
+      {apiUserData?.user_location != '' || location != '' ? (
         <TouchableOpacity
           onPress={() => {
             handleVisit();

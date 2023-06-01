@@ -136,7 +136,7 @@ const LocationModal = props => {
         <View
           style={{
             flexDirection: 'row',
-            width: '95%',
+            width: '100%',
             justifyContent: 'space-between',
           }}>
           <View>
@@ -163,6 +163,7 @@ const LocationModal = props => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             // backgroundColor: 'red',
+            // width:'100%'
           }}>
           {data.map(item => {
             return (
@@ -223,6 +224,7 @@ const LocationModal = props => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             // backgroundColor: 'red',
+            // width:'100%'
           }}>
           {data1.map(item => {
             return (

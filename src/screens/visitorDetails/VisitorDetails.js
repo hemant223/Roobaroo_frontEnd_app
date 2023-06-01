@@ -121,7 +121,7 @@ const Item = ({item, navigation}) => {
                 }}
                 resizeMode={'center'}
               />
-               <View style={{top:2,backgroundColor:'red' }}>
+               <View style={{top:2, }}>
                   <MCIcon name="location-on" color={'#186cbd'} size={15} />
                 </View>
             </View>
