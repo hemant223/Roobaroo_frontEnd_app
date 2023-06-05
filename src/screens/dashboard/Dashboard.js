@@ -25,8 +25,6 @@ import {useToast} from 'react-native-toast-notifications';
 import moment from 'moment';
 const {width, height} = Dimensions.get('window');
 const Dashboard = props => {
-  const [dasboard_data, setDashboard_Data] = useState(0);
-  // alert (dasboard_data)
   const [showModal, setShowModal] = useState(false);
   const navigation = useNavigation();
   const toast = useToast();
@@ -36,24 +34,32 @@ const Dashboard = props => {
   const [conditionRefresh, setConditionRefresh] = useState(false);
   var location = useSelector(state => state.locationReducer.location);
   var user__Data = useSelector(state => state.userDataReducer.user_data);
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
+  const [apiUserData, setApiUserData] = useState('')
+  
+    // alert(JSON.stringify(location))
+
   // alert( props.route.params)
 
   // console.log('redux_userData>>>>>>',user__Data);
   const getUserDataByAsyncStorage = async () => {
     const userData = await getStoreData('userData');
     setAsyncUserData(userData);
-    // alert(JSON.stringify(Location.location))
-    // console.log('local_userData>>>>>>',userData);
-    var data = await getDataAxios(`visitors/todayVisitor/${userData?.id}`);
-    // alert(JSON.stringify(data))
+   
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    if(data.status){
+      // alert(JSON.stringify(data.result[0]))
+      setApiUserData(data.result[0])
+    }
+    
+    // console.log('apiUserData>>>>',apiUserData.user_location);
+  // alert(apiUserData.user_location)
     const locationn = await getStoreData('Location');
     setLocation(locationn?.location);
-    // alert(JSON.stringify(locationn))
-    // var conditionLocation=locationn != '' ? locationn : locationnn
-    // setConditionLocation(conditionLocation)
+   
   };
-  // alert(location)
-  // alert(locationnn)
+ 
 
   useEffect(() => {
     getUserDataByAsyncStorage();
@@ -112,6 +118,7 @@ const Dashboard = props => {
   // useEffect(() => {
   //   FetchDisplayVisitorLazzyLodingData();
   // }, []);
+  // alert(apiUserData?.user_location)
 
   return (
     <View
@@ -129,7 +136,7 @@ const Dashboard = props => {
         }}>
         <SubHeader
           userData={user__Data != '' ? user__Data : asyncUserData}
-          locationData={location != '' ? location : locationnn}
+          locationData={location != '' ? location : apiUserData?.user_location}
           locationonPress={() => {
             setShowModal(true);
           }}
@@ -163,7 +170,7 @@ const Dashboard = props => {
             alignContent: 'center',
             paddingVertical: 20,
           }}>
-          <SpeedoMeter  setDashboard_Data={setDashboard_Data}/>
+          <SpeedoMeter />
         </View>
       </View>
 
@@ -187,14 +194,19 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           marginTop: 10,
         }}>
-        {locationnn != undefined || location != '' ? (
+          
+        {apiUserData?.user_location != null || location != '' ? (
           <VisitAndProfileButton
+          data={language['Add_Visitor_to_here']}
+          heading={language['Visits']}
             onPress={() => {
               handleVisits();
             }}
           />
         ) : (
           <VisitAndProfileButton
+          data={language['Add_Visitor_to_here']}
+          heading={language['Visits']}
             onPress={() => {
               handleVisitBlank();
             }}
@@ -211,11 +223,11 @@ const Dashboard = props => {
           marginTop: 10,
         }}>
         <VisitAndProfileButton
-          data="See Profile to here "
+          data={language['See_Profile_to_here']}
           onPress={() => {
             handleProfile();
           }}
-          heading="My Profile"
+          heading={language['My_Profile']}
           circleColor={'#f9aa4b'}
           backgroundColor={'#fdead2'}
         />

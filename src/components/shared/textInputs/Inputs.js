@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TextInput, StyleSheet, Dimensions, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import En from 'react-native-vector-icons/Entypo';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
 import {Colors} from '../../../assets/config/Colors';
@@ -15,6 +15,7 @@ const Input = props => {
     },
   });
   const [isFocused, setIsFocused] = React.useState(false);
+
   return (
     <View>
       {props.textLabel && (
@@ -53,10 +54,10 @@ const Input = props => {
           },
         ]}>
         {props.icon ? (
-          <View style={{width: '12%', alignSelf: 'center'}}>
+          <View style={{width: '15%', alignSelf: 'center'}}>
             <Icon
               name={props.iconName}
-              style={{color: '#000', fontSize: 22, marginRight: 10}}
+              style={{color: '#cecece', fontSize: 22, marginRight: 10}}
             />
           </View>
         ) : (
@@ -73,6 +74,7 @@ const Input = props => {
             top:props.top,
               
             }}
+          showSoftInputOnFocus={props.showSoftInputOnFocus}
             placeholder={props.placeholder}
             placeholderTextColor={props.placeholderColor}
             onChangeText={props.onChangeText}
@@ -88,7 +90,7 @@ const Input = props => {
             }}
             onBlur={() => setIsFocused(false)}
             value={props.value}
-           
+            caretHidden={props.caretHidden}
           />
         </View>
         {props.rightIcon ? (

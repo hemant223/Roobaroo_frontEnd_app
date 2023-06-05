@@ -17,7 +17,7 @@ const getDataAxios = async Url => {
   // const Token = token;
   // alert(Token)
 
-  // console.log("token==================>", Token);
+  // console.log("token==================>", Token)
   // alert(Token)e
   try {
     var url = `${ServerURL}/${Url}`;
@@ -48,7 +48,7 @@ const getDataAxios = async Url => {
       removeStoreData('token');
       // setTimeout(() => navigation.navigate('Login'), 2000);
     } else {
-      console.log('error',error);
+      console.log('error', error);
     }
   }
 };
@@ -115,7 +115,7 @@ const putDataAxios = async (Url, body) => {
       });
       removeStoreData('userData');
       removeStoreData('token');
-      navigation.navigate('Login'), 2000
+      navigation.navigate('Login'), 2000;
     } else {
       console.log(error);
     }

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
-import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MCIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {Colors} from '../../assets/config/Colors';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
@@ -41,7 +41,7 @@ const DATA = [
 const Item = ({item, navigation}) => {
   var time1 = moment(item.created_at).format('h:mm a, Do MMM YYYY');
   // console.log('====================================');
-  // console.log('vist>>>>ongoing>>',item);
+  console.log('vist>>>>ongoing>>',item);
 
   // console.log('====================================');
   return (
@@ -89,6 +89,7 @@ const Item = ({item, navigation}) => {
                 resizeMode={'center'}
               />
             </View>
+
             <Text
               style={{
                 left: 5,
@@ -109,7 +110,7 @@ const Item = ({item, navigation}) => {
               // backgroundColor: 'yellowgreen',
               bottom: 2,
             }}>
-            <View style={{top: 2, width: '6%'}}>
+            <View style={{top: 2, width: '6%',}}>
               {/* <MCIcon name="cellphone" color={'#186cbd'} size={15} /> */}
 
               <Image
@@ -120,16 +121,34 @@ const Item = ({item, navigation}) => {
                 }}
                 resizeMode={'center'}
               />
+               <View style={{top:2, }}>
+                  <MCIcon name="location-on" color={'#186cbd'} size={15} />
+                </View>
             </View>
-            <Text
-              style={{
-                left: 5,
-                fontFamily: FontFamily.PopinsRegular,
-                // fontSize: FontSize.small,
-                color: Colors.black,
-              }}>
-              {item.mobile_number}
-            </Text>
+           
+            <View style={{flexDirection: 'column'}}>
+              <Text
+                style={{
+                  left: 5,
+                  fontFamily: FontFamily.PopinsRegular,
+                  // fontSize: FontSize.small,
+                  color: Colors.black,
+                }}>
+                {item.mobile_number}
+              </Text>
+              <View style={{flexDirection: 'row'}}>
+                <Text
+                  style={{
+                    left: 5,
+                    top: 2,
+                    fontFamily: FontFamily.PopinsRegular,
+                    // fontSize: FontSize.small,
+                    color: Colors.black,
+                  }}>
+                  {item.location_type}
+                </Text>
+              </View>
+            </View>
           </View>
         </TouchableOpacity>
       )}
@@ -177,6 +196,7 @@ const VisitorDetails = props => {
             // numColumns={numColumns}
             data={props?.data}
             onEndReached={() => {
+              
               props.setOffset(props.offset + 5);
               // props.setLoading(true)
               // onEndReached

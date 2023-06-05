@@ -69,7 +69,7 @@
 //       Address:'Address',
 //   };
          
-const English = [
+[
     {
         "language_name": "English",
         "language_code": "english",
@@ -86,6 +86,30 @@ const English = [
         "label_display_order": 0,
         "label_is_default": 0
     },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Mobile_number",
+        "label_translation": "Mobile number",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "See_Profile_to_here",
+        "label_translation": "See Profile to here",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Add_Visitor_to_here",
+        "label_translation":"Add Visitor to here",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
     {
         "language_name": "English",
         "language_code": "english",
@@ -140,6 +164,14 @@ const English = [
         "language_code": "english",
         "label": "Visits",
         "label_translation": "Visits",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Visitors_trend",
+        "label_translation": "Visitors trend",
         "label_display_order": 0,
         "label_is_default": 0
     },
@@ -451,8 +483,8 @@ const English = [
     {
         "language_name": "English",
         "language_code": "english",
-        "label": "Select_Constituency",   
-        "label_translation": "Select Constituency",    
+        "label": "Select_Constituency",
+        "label_translation": "Select Constituency",
         "label_display_order": 0,
         "label_is_default": 0
     },
@@ -573,6 +605,14 @@ const English = [
     {
         "language_name": "English",
         "language_code": "english",
+        "label": "Today_s_Visitors",
+        "label_translation": "Today's Visitors",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
         "label": "Mark_as_completed",
         "label_translation": "Mark as completed",
         "label_display_order": 0,
@@ -610,9 +650,129 @@ const English = [
         "label_display_order": 0,
         "label_is_default": 0
     },
+    // =========== new words
+
+    {
+
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_OTP",
+        "label_translation":"Please Input OTP",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"Select Date of Birth",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Ministers",
+        "label_translation":"Ministers",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Ministers",
+        "label_translation":"Select Ministers",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Selected_Location",
+        "label_translation":"Selected Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Group_Members_Name",
+        "label_translation":"Group Members Name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Location",
+        "label_translation":"Select Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"Sort By Date Range",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "From_Date",
+        "label_translation":"From Date",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "End_Date",
+        "label_translation":"End Date",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_Reference",
+        "label_translation":"Please Input Reference",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"Please Input Reason To Visit",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_FirstName",
+        "label_translation":"Please Input First name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_LastName",
+        "label_translation":"Please Input Last name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "By_Location",
+        "label_translation":"By Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
     
 
 ]
-
-
-export {English}

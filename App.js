@@ -3,14 +3,16 @@ import React, {useEffect, useState, useRef} from 'react';
 
 import MainNavigationStack from './src/navigation/mainNavigationStack/MainNavigationStack';
 
-
 import {LogBox} from 'react-native';
 
 import {Provider} from 'react-redux';
 import store from './src/helper/utils/redux/store';
 
 import {ToastProvider} from 'react-native-toast-notifications';
+// import ChangeLanguage from './src/components/selectLanguage/constant/ChangeLanguage';
 
+
+export const newStore = store;
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = props => {
   useEffect(() => {
@@ -63,6 +65,7 @@ const App = props => {
         <MainNavigationStack />
       </ToastProvider>
     </Provider>
+    // <ChangeLanguage/>
     // <FlatList
     //   data={getdata}
     //   keyExtractor={item => item.id}

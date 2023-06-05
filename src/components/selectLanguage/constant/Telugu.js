@@ -567,6 +567,10 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
+
+  // ======>
+  // new word
+  // ===>
   {
 
     "language_name": "Telugu",
@@ -680,7 +684,14 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
+  {
+    "language_name": "Telugu",
+    "language_code": "telugu",
+    "label": "By_Location",
+    "label_translation":"స్థానం ద్వారా",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
  
 ]
 
-  

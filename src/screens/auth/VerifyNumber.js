@@ -16,7 +16,10 @@ import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
+import { useSelector } from 'react-redux';
 const VerifyNumber = () => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const navigation = useNavigation();
   const [inputs, setInputs] = React.useState({
     mobileNumber: '',
@@ -110,6 +113,8 @@ const VerifyNumber = () => {
         backarrowIcon
       /> */}
       <CenterHeader
+      stepContent={language['Step'] + '01'}
+      centerContent={language['Verify_Number']}
         centerText
         stepText
         onPressBackArrow={() => {
@@ -145,9 +150,9 @@ const VerifyNumber = () => {
               maxLength={10}
               borderBottomWidth={1.5}
               borderRadius={5}
-              placeholder="Enter Visitors mobile"
+              placeholder={language['Enter_Visitors_Mobile']}
               placeholderColor="#b6b9bf"
-              textfontSize={13}
+              textfontSize={15}
               keyboardType="numeric"
             />
           </View>
@@ -160,7 +165,7 @@ const VerifyNumber = () => {
               handleMobileNumber();
             }}
             titleColor="#fff"
-            title="Verify"
+            title={language['Verify']}
           />
         </View>
       </View>

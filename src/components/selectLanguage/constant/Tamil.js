@@ -567,6 +567,12 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
+
+   // ======>
+  // new word
+  // ===>
+
+
   {
 
     "language_name": "Tamil",
@@ -680,6 +686,14 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
+  {
+    "language_name": "Tamil",
+    "language_code": "tamil",
+    "label": "By_Location",
+    "label_translation":"இருப்பிடம் மூலம்",
+    "label_display_order": 0,
+    "label_is_default": 0
+  }
 ]
 
   

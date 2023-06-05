@@ -56,7 +56,7 @@ const CenterHeader = props => {
           }}>
           <View
             style={{
-              width: '43%',
+              width: '42%',
               // backgroundColor: 'yellow',
             }}>
             <TouchableOpacity
@@ -74,9 +74,9 @@ const CenterHeader = props => {
             </TouchableOpacity>
           </View>
          
-          <View>
+          <View style={{}}>
             {props.stepText && (
-              <View style={{}}>
+              <View style={{marginBottom:11}}>
                 <Text
                   style={{
                     color: '#fff',
@@ -100,9 +100,7 @@ const CenterHeader = props => {
             }}>
             <Text
               style={{
-                fontFamily: FontFamily.PopinsRegular,
-                color: '#fff',
-                fontSize: 20,
+                fontWeight: 'bold', fontSize:19, color: '#fff'
                
               }}>
               {props.viewText}
@@ -116,7 +114,7 @@ const CenterHeader = props => {
           <View
             style={{
               ...styles.centerCss,
-              //   backgroundColor: 'red',
+                // backgroundColor: 'red',
               bottom: 19,
             }}>
             <Text

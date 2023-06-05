@@ -19,9 +19,8 @@ import VerifyNumber from '../../screens/auth/VerifyNumber';
 import VerifyOtp from '../../screens/auth/VisitorOTP';
 import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 import SearchScreen from '../../screens/search/SearchScreen';
-import VisitingForm from '../../screens/VisitiorForm/VisitingForm'
-import Visits from '../../screens/visits/Visits';
-import ChangeLanguage from '../../components/selectLanguage/ChangeLanguage';
+import TestComponent from '../../components/TestComponent';
+import ChangeLanguage from '../../components/selectLanguage/constant/ChangeLanguage';
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
 
@@ -108,7 +107,7 @@ function MainNavigationStack(props) {
           options={{headerShown: false}}
         />
          <Stack.Screen
-          name="language"
+          name="change_language"
           component={ChangeLanguage}
           options={{headerShown: false}}
         />

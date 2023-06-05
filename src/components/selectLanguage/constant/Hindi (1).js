@@ -1,5 +1,5 @@
-const Hindi = 
- [
+export
+ const Translation = [
   {
     "language_name": "Hindi",
     "language_code": "hindi",
@@ -546,8 +546,5 @@ const Hindi =
   },
 
 ]
-
-
-export {Hindi}
 
 

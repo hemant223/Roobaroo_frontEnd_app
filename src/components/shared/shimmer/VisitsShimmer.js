@@ -19,7 +19,7 @@ const SpeedoMetterShimmer = () => {
             width: 150,
             height: 20,
             top: 5,
-            left:7
+            left:7,
           }}></View>
          <View
           style={{

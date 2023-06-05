@@ -12,59 +12,82 @@ import FilterDropdown from '../dropdowns/FilterDropdown';
 import {getDataAxios} from '../../../fetchNodeServices';
 import {getStoreData} from '../../../helper/utils/AsyncStorageServices';
 import SpeedoMetterShimmer from '../shimmer/SpeedoMetterShimmer';
+import {useSelector} from 'react-redux';
 import moment from 'moment';
-const data = [
-
-];
+const data = [];
 
 export default function SingleBarChart(props) {
   const [getUserData, setUserDataByAsync] = useState([]);
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
-  const [filterSelected, setFilterSelected] = useState(1)
-//  console.log('BAR CHART IN 25 LINE   FILTERSELECTED=====================>',filterSelected)
- 
-  const [current_Week,setCurrent_Week]=useState('')
- 
- 
+  const [filterSelected, setFilterSelected] = useState(1);
+  const [referesh, setReferesh] = useState(false);
+  var language = useSelector(state => state.languageNameReducer.language_name);
+  // console.log("language....",language)
+  const options = [
+    {label: language['Last_week'], id: 1},
+    {label: language['Current_week'], id: 2},
+  ];
+
+  const [current_Week, setCurrent_Week] = useState('');
+  var location = useSelector(state => state.locationReducer.location);
+
   const fetchVisitor = async () => {
+    setShimmer(true);
     const userData = await getStoreData('userData');
-   
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    var location_type = '';
 
-    const startof_Last_week=(moment().subtract(1, 'weeks').startOf('isoWeek').format('YYYY-MM-DD'));
-  const endof_Last_week =(moment().subtract(1, 'weeks').endOf('isoWeek').format('YYYY-MM-DD'));
-
-
+    if (data.result[0].user_location != '') {
+      var location_type = data.result[0].user_location;
+    } else {
+      location_type = 'undefined';
+    }
+    // alert(location_type)
+    const startDate = moment()
+      .subtract(1, 'weeks')
+      .startOf('isoWeek')
+      .format('YYYY-MM-DD');
+    const endDate = moment()
+      .subtract(1, 'weeks')
+      .endOf('isoWeek')
+      .format('YYYY-MM-DD');
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${startof_Last_week}/${endof_Last_week}`,
-      
-     
+      `visitors/todayVisitor/${userData?.id}/${startDate}/${endDate}/${
+        location ? location : location_type
+      }`,
     );
 
     var aa = response.data;
 
+    console.log(aa);
     setLast_Week(aa);
-   
     setShimmer(false);
   };
 
   useEffect(() => {
     fetchVisitor();
-  }, []);
+  }, [location]);
 
   const fetchVisitorCureent_Week = async () => {
     const userData = await getStoreData('userData');
-   
 
-   
-  var weekDay = moment().isoWeekday('Monday').format('YYYY-MM-DD');
+    var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
+    // alert(JSON.stringify(data.result[0].user_location))
+    var location_type = '';
+    if (data.result[0].user_location != '') {
+      var location_type = data.result[0].user_location;
+    } else {
+      location_type = 'undefined';
+    }
 
-  var cureentDate = moment().format('YYYY-MM-DD');
+    // alert(location_type)
+    var startDate = moment().isoWeekday('Monday').format('YYYY-MM-DD');
+
+    var endDate = moment().format('YYYY-MM-DD');
 
     var response = await getDataAxios(
-      `visitors/todayVisitor/${userData.id}/${weekDay}/${cureentDate}`,
-    
-     
+      `visitors/todayVisitor/${userData.id}/${startDate}/${endDate}/${location_type}`,
     );
 
     var yy = response.data;
@@ -92,36 +115,46 @@ export default function SingleBarChart(props) {
         style={{
           position: 'absolute',
           zIndex: 1,
-          //   backgroundColor: 'red',
-          alignSelf: 'flex-start',
+          // backgroundColor: 'red',
+          // justifyContent: 'flex-start',
           top: '4%',
-          padding: 1,
-          margin: 5,
+          // marginTop:10,
+          // padding: 0,
+          paddingHorizontal: 10,
+          // margin: 5,
           flexDirection: 'row',
           width: '100%',
-          //   backgroundColor:'red'
+          height: 25,
+          // backgroundColor:'red',s
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}>
-          
-        <Text
-          style={{
-            color: '#000',
-            fontFamily: FontFamily.TTCommonsMedium,
-            fontSize: 17,
-          }}>
-          Visitors trend
-        </Text>
-        <View
-          style={{
-            top: 3,
-            // backgroundColor:'yellowgreen',
-            width: '70%',
-            alignItems: 'flex-end',
-          }}>
-          <FilterDropdown onValueChange={(txt)=>{ setFilterSelected(txt.id)}} />
+        <View style={{}}>
+          <Text
+            style={{
+              color: '#000',
+              fontFamily: FontFamily.TTCommonsMedium,
+              fontSize: 17,
+
+              // backgroundColor:"yellow"
+            }}>
+            {language['Visitors_trend']}
+          </Text>
+        </View>
+        <View style={{marginTop: 10, height: 20}}>
+          <FilterDropdown
+            options={options}
+            defaultSelected={language['Last_week']}
+            onValueChange={txt => {
+              setFilterSelected(txt.id);
+            }}
+          />
         </View>
       </View>
       {shimmer ? (
-        <><SpeedoMetterShimmer/></>
+        <>
+          <SpeedoMetterShimmer />
+        </>
       ) : (
         <VictoryChart
           width={props.width}
@@ -129,7 +162,7 @@ export default function SingleBarChart(props) {
           theme={VictoryTheme.material}
           domainPadding={20}>
           <VictoryBar
-            data={filterSelected==1?last_Week:current_Week}
+            data={filterSelected == 1 ? last_Week : current_Week}
             x={props.x}
             y={props.y}
             style={{data: {fill: props.barColor}}}
@@ -142,7 +175,7 @@ export default function SingleBarChart(props) {
             // height={400}
           />
         </VictoryChart>
-     )} 
+      )}
     </View>
   );
 }

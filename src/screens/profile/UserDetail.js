@@ -1,136 +1,159 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import Entypo from 'react-native-vector-icons/Entypo';
 import Header from '../../components/shared/header/Header';
-import { ImagesAssets } from '../../components/shared/ImageAssets';
-import strings from '../../components/selectLanguage/constant/LocalizedStrings';
-import {
-  useNavigation,
-} from '@react-navigation/native';
-import { getStoreData } from '../../helper/utils/AsyncStorageServices';
-import { ServerURL } from '../../fetchNodeServices';
-import Hindi from '../../components/selectLanguage/constant/Hindi';
-import Tamil from '../../components/selectLanguage/constant/Tamil';
-import Bhojpuri from '../../components/selectLanguage/constant/Bhojpuri';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { translation } from '../../components/selectLanguage/constant/utils';
-import ChangeLanguage from '../../components/selectLanguage/ChangeLanguage';
-
+import {ImagesAssets} from '../../components/shared/ImageAssets';
+import {useNavigation} from '@react-navigation/native';
+import {getStoreData} from '../../helper/utils/AsyncStorageServices';
+import {ServerURL} from '../../fetchNodeServices';
+import { useSelector } from 'react-redux';
 
 const UserDetail = props => {
-  const [usedata, setUsedata] = useState('')
-  const navigation = useNavigation()
-  const [modalVisible, setModalVisible] = useState(false);
-  const [langModalVisible, setLangModalVisible] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(0);
-  useEffect(() => {
-    getLang();
-  }, []);
-  const getLang = async () => {
-    console.log(await AsyncStorage.getItem('LANG'));
-    setSelectedLang(parseInt(await AsyncStorage.getItem('LANG')));
-  };
- 
-  const saveSelectedLang = async index => {
-    await AsyncStorage.setItem('LANG', index + '');
-  };
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
+  const [usedata, setUsedata] = useState('');
+  const navigation = useNavigation();
 
   return (
-    <View style={{ width: '100%', height: '100%', }}>
-      <View style={{
-        position: 'relative', width: '100%'
-        // ,backgroundColor:'red'
-        , height: '29%'
-      }}>
+    <View style={{width: '100%', height: '100%'}}>
+      <View
+        style={{
+          position: 'relative',
+          width: '100%',
+          // ,backgroundColor:'red'
+          height: '29%',
+        }}>
         <Header
-         BackonPress={()=>{navigation.goBack()}}
-        bottom={70} backarrowIcon height={'100%'} />
-        <View style={{ position: 'absolute', zIndex: 1, height: '100%', borderRadius: 0, alignSelf: 'center', justifyContent: 'center' }}>
-         {props?.route?.params?.userData.picture? <Image source={{uri:`${ServerURL}/images/${props?.route?.params?.userData.picture}`}} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />:
-          <Image source={ImagesAssets.hemu} resizeMode='cover' style={{ width: 100, height: 100, borderRadius: 50, alignSelf: 'center' }} />}
-          <Text style={{ fontSize: 20, fontWeight: '500', color: '#fff', marginTop: 5, textAlign: 'center' }}>{props?.route?.params?.userData.firstname} {props?.route?.params?.userData.lastname}</Text>
+          BackonPress={() => {
+            navigation.goBack();
+          }}
+          bottom={70}
+          backarrowIcon
+          height={'100%'}
+        />
+        <View
+          style={{
+            position: 'absolute',
+            zIndex: 1,
+            height: '100%',
+            borderRadius: 0,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}>
+          {props?.route?.params?.userData.picture == 'null' ||
+          props?.route?.params?.userData.picture == '' ||
+          props?.route?.params?.userData.picture == 'undefined' ? (
+            <Image
+              source={ImagesAssets.hemu}
+              resizeMode="cover"
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+                alignSelf: 'center',
+              }}
+            />
+          ) : (
+            <Image
+              source={{
+                uri: `${ServerURL}/images/${props?.route?.params?.userData.picture}`,
+              }}
+              resizeMode="cover"
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+                alignSelf: 'center',
+              }}
+            />
+          )}
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: '500',
+              color: '#fff',
+              marginTop: 5,
+              textAlign: 'center',
+            }}>
+            {props?.route?.params?.userData.firstname}{' '}
+            {props?.route?.params?.userData.lastname}
+          </Text>
         </View>
       </View>
 
-
-      <View style={{ marginTop: 10 }}>
-        <View style={{ padding: 15 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={ImagesAssets.profile_organistation} resizeMode='contain' style={{ height: 20, width: 20 }} />            
-            <Text style={{ color: '#e67e22', marginLeft: 7 }}>
-          {selectedLang == 0
-          ? translation[0].English
-          : selectedLang == 1
-          ? translation[0].Hindi
-          : selectedLang == 2
-          ? translation[0].Tamil
-          : null}
-          </Text>
+      <View style={{marginTop: 10}}>
+        <View style={{padding: 15}}>
+          <View style={{flexDirection: 'row'}}>
+            <Image
+              source={ImagesAssets.profile_organistation}
+              resizeMode="contain"
+              style={{height: 20, width: 20}}
+            />
+            <Text style={{color: '#e67e22', marginLeft: 7}}>
+           { language['Organization_Party']}
+            </Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold' ,color:'#000'}}>{props?.route?.params?.userData.user_organization}</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>
+              {props?.route?.params?.userData.user_organization}
+            </Text>
           </View>
         </View>
 
-
-        <View style={{ padding: 15 }}>
-          <View style={{ flexDirection: 'row', }}>
-            <Image source={ImagesAssets.profile_mobile} resizeMode='contain' style={{ height: 20, width: 20 }} />
-            <Text style={{ color: '#e67e22', marginLeft: 7 }}>
-            {selectedLang == 0
-          ? translation[1].English
-          : selectedLang == 1
-          ? translation[1].Hindi
-          : selectedLang == 2
-          ? translation[1].Tamil
-          : null}
-          </Text>
+        <View style={{padding: 15}}>
+          <View style={{flexDirection: 'row'}}>
+            <Image
+              source={ImagesAssets.profile_mobile}
+              resizeMode="contain"
+              style={{height: 20, width: 20}}
+            />
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Mobile_number']}</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold',color:'#000' }}> {props?.route?.params?.userData.mobile_number}</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>
+              {' '}
+              {props?.route?.params?.userData.mobile_number}
+            </Text>
           </View>
-
         </View>
-        <View style={{ padding: 15 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={ImagesAssets.profile_email} resizeMode='contain' style={{ height: 20, width: 20 }} />
+        <View style={{padding: 15}}>
+          <View style={{flexDirection: 'row'}}>
+            <Image
+              source={ImagesAssets.profile_email}
+              resizeMode="contain"
+              style={{height: 20, width: 20}}
+            />
 
-            <Text style={{ color: '#e67e22', marginLeft: 7 }}>
-            {selectedLang == 0
-          ? translation[2].English
-          : selectedLang == 1
-          ? translation[2].Hindi
-          : selectedLang == 2
-          ? translation[2].Tamil
-          : null}</Text>
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Email']}</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: 'bold',color:'#000' }}>{props?.route?.params?.userData.email}</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>
+              {props?.route?.params?.userData.email}
+            </Text>
           </View>
         </View>
 
+        <View style={{padding: 15}}>
+          <View style={{flexDirection: 'row'}}>
+            <Image
+              source={ImagesAssets.profile_address}
+              resizeMode="contain"
+              style={{height: 20, width: 20}}
+            />
 
-
-        <View style={{ padding: 15 }}>
-          <View style={{ flexDirection: 'row' }}>
-            <Image source={ImagesAssets.profile_address} resizeMode='contain' style={{ height: 20, width: 20 }} />
-
-            <Text style={{ color: '#e67e22', marginLeft: 7 }}>
-            {selectedLang == 0
-          ? translation[0].English
-          : selectedLang == 1
-          ? translation[0].Hindi
-          : selectedLang == 2
-          ? translation[0].Tamil
-          : null}
-          </Text>
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Address']}</Text>
           </View>
-          <View >
-            <Text style={{ fontWeight: 'bold',color:'#000' }}>{props?.route?.params?.userData.user_address}</Text>
+          <View>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>
+              {props?.route?.params?.userData.user_address}
+            </Text>
           </View>
-
         </View>
-
-
       </View>
       {/* <TouchableOpacity
         style={styles.selectLangaugeBtn}
@@ -148,55 +171,7 @@ const UserDetail = props => {
         }}
       /> */}
     </View>
-
-
   );
-
 };
 
-
-
-
 export default UserDetail;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  btn: {
-    backgroundColor: 'purple',
-    height: 50,
-    width: '90%',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-  },
-  btnText: {
-    fontSize: 18,
-    color: '#fff',
-    fontWeight: '600',
-  },
-  selectLangaugeBtn: {
-    width: '50%',
-    height: 50,
-    borderWidth: 0.2,
-    borderRadius: 10,
-    position: 'absolute',
-    alignSelf: 'center',
-    bottom: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-});
-
-
-
-

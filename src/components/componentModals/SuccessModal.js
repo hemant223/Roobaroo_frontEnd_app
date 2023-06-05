@@ -5,9 +5,11 @@ import Video from 'react-native-video';
 import {ImagesAssets} from '../shared/ImageAssets';
 import FullSizeButtons from '../shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
+import { useSelector } from 'react-redux';
 
 const SuccessModal = props => {
   const [engadeTime,setEngadeTime]=useState()
+  var language = useSelector(state => state.languageNameReducer.language_name);
  
   // alert (engadeTime)
   const SuccessModalShow = ({onpress}) => {
@@ -42,7 +44,7 @@ const SuccessModal = props => {
           <FullSizeButtons
             onPress={onpress}
             titleColor={'#fff'}
-            title={'Thank You'}
+            title={language['Thank_you']}
             width={100}
             
           />
