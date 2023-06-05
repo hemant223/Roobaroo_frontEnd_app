@@ -59,11 +59,11 @@ const VisitingForm = props => {
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
-  const [visitorname, setVisitorName] = useState('Single');
+  const [visitorname, setVisitorName] = useState(language['Single']);
   const [SngGupId, setSngGupId] = useState("1")
-  const [gender, setGender] = React.useState('Male');
+  const [gender, setGender] = React.useState(language['Male']);
   const [physically_disabled_Name, setPhysically_disabled_Name] =
-    useState('Yes');
+    useState(language['Yes']);
 
   const [image, setImage] = React.useState('');
   const [getUserData, setUserDataByAsync] = useState([]);

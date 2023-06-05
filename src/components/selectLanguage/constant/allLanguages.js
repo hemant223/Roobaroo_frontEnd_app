@@ -1213,7 +1213,7 @@ const allLabels = {
       {
         "language_name": "Gujrati",
         "language_code": "gujrati",
-        "label": " Submit",
+        "label": "Submit",
         "label_translation":"સબમિટ કરો",
         "label_display_order": 0,
         "label_is_default": 0
