@@ -17,19 +17,20 @@ import moment from 'moment';
 const data = [];
 
 export default function SingleBarChart(props) {
+  var language = useSelector(state => state.languageNameReducer.language_name);
   const [getUserData, setUserDataByAsync] = useState([]);
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
+  const [current_Week, setCurrent_Week] = useState('');
   const [filterSelected, setFilterSelected] = useState(1);
   const [referesh, setReferesh] = useState(false);
-  var language = useSelector(state => state.languageNameReducer.language_name);
+ 
   // console.log("language....",language)
   const options = [
     {label: language['Last_week'], id: 1},
     {label: language['Current_week'], id: 2},
   ];
 
-  const [current_Week, setCurrent_Week] = useState('');
   var location = useSelector(state => state.locationReducer.location);
 
   const fetchVisitor = async () => {
@@ -143,8 +144,8 @@ export default function SingleBarChart(props) {
         </View>
         <View style={{marginTop: 10, height: 20}}>
           <FilterDropdown
-            options={options}
-            defaultSelected={language['Last_week']}
+            // options={options}
+            // defaultSelected={language['Last_week']}
             onValueChange={txt => {
               setFilterSelected(txt.id);
             }}

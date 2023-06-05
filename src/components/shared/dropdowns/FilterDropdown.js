@@ -11,6 +11,8 @@ const FilterDropdown = props => {
   const [dropdownHeight, setDropdownHeight] = useState(new Animated.Value(0));
   const [data, setData] = useState([]);
   const [icon, setIcon] = useState('angle-down');
+  // alert(JSON.stringify(data))
+  // console.log('dataaaaa>>>>>>>',data);
   const toggleDropdown = () => {
     if (dropdownHeight._value === 0) {
       Animated.timing(dropdownHeight, {
@@ -93,6 +95,7 @@ const FilterDropdown = props => {
           // width: 150,
         }}>
         {data.map((item, index) => (
+         
           <TouchableOpacity
             key={index}
             onPress={() => onItemPress(item)}
@@ -103,7 +106,7 @@ const FilterDropdown = props => {
                 fontFamily: FontFamily.PopinsRegular,
                 fontSize:11,
               }}>
-              {item.label}
+              {item.label/* =='Last Week'?language['Last_week']:language['Last_week'] */}
             </Text>
           </TouchableOpacity>
         ))}
@@ -116,16 +119,16 @@ export default FilterDropdown;
 
 FilterDropdown.defaultProps = {
   onValueChange: () => {},
-  // options: [
-  //   {label: 'Last Week', id: 1},
-  //   {label: 'Current Week', id: 2},
+  options: [
+    {label: 'Last Week', id: 1},
+    {label: 'Current Week', id: 2},
    
-  // ],
+  ],
   paddingVertical:0,
   itemHeight:25,
   radius:10,
   // onValueChange: () => {},
-  // defaultSelected: 'Last Week',
+  defaultSelected: 'Last Week',
   backgroundColor:Colors.Semiblue,
   left: null,
   right: null,
