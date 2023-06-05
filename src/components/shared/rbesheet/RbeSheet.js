@@ -9,8 +9,11 @@ import DateTimePicker from '../../shared/date/DateTimePicker';
 import {Colors} from '../../../assets/config/Colors';
 import En from 'react-native-vector-icons/Entypo';
 import Dropdown from '../dropdowns/DropDownComponent';
+import { useSelector } from 'react-redux';
 
 function RbeSheet(props) {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const [check1, setCheck1] = React.useState(false);
   const [check2, setCheck2] = React.useState(false);
   const [check3, setCheck3] = React.useState(false);
@@ -75,9 +78,9 @@ function RbeSheet(props) {
   ];
 
   const filterData = [
-    {id: 1, name: 'Alphabetically A to Z'},
-    {id: 2, name: 'Alphabetically Z to A'},
-    {id: 3, name: 'Newly Added'},
+    {id: 1, name: language['Alphabetically_A_to_Z']},
+    {id: 2, name: language['Alphabetically_Z_to_A']},
+    {id: 3, name: language['Newly_Added']},
   ];
   //   alert(date)
 
@@ -135,7 +138,7 @@ function RbeSheet(props) {
           </View>
           <View>
             <Text style={{fontSize: 20, fontWeight: '700', color: '#000'}}>
-              Set Filters
+              {language['Set_Filters']}
             </Text>
           </View>
           <TouchableOpacity onPress={props.doneonPress}>
@@ -146,7 +149,7 @@ function RbeSheet(props) {
                 marginLeft: 10,
                 color: '#444b5d',
               }}>
-              Done
+               {language['Done']}
             </Text>
           </TouchableOpacity>
         </View>
@@ -234,7 +237,7 @@ function RbeSheet(props) {
               fontSize: 17,
               marginLeft: 10,
             }}>
-            Sort by
+             {language['Sort_by']}
           </Text>
           <View>
             {filterData.map(item => {
@@ -262,7 +265,7 @@ function RbeSheet(props) {
         <View style={{/* backgroundColor: 'red', */ width: '100%'}}>
           <MYRadioButton
             // labelLeft={10}
-            label="Added Month"
+            label={language['Added_Month']}
             labelColor={'#000'}
             labelFontSize={17}
             marginVertical={5}

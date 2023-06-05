@@ -15,7 +15,10 @@ import Input from '../../components/shared/textInputs/Inputs';
 import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+import { useSelector } from 'react-redux';
 const VerifyOtp = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const navigation = useNavigation();
   const [otp, setOtp] = useState('');
   const [inputs, setInputs] = React.useState({
@@ -62,6 +65,8 @@ const VerifyOtp = props => {
   return (
     <>
       <CenterHeader
+       stepContent={language['Step'] + '01'}
+       centerContent={language['Verify_Number']}
         centerText
         stepText
         onPressBackArrow={() => {
@@ -96,7 +101,7 @@ const VerifyOtp = props => {
               borderWidth={0}
               borderBottomWidth={1.5}
               borderRadius={5}
-              placeholder="Enter OTP sent on visitors phone"
+              placeholder={language['Enter_OTP_sent_on_visitors_phone']}
               placeholderColor="#b6b9bf"
               textfontSize={15}
               keyboardType="numeric"
@@ -111,7 +116,7 @@ const VerifyOtp = props => {
               handleSubmit();
             }}
             titleColor="#fff"
-            title="Verify"
+            title={language['Verify']}
           />
         </View>
       </View>

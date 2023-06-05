@@ -41,6 +41,7 @@ import {useToast} from 'react-native-toast-notifications';
 export default function DrawerContent(props) {
   var dispatch = useDispatch();
   const toast = useToast();
+  var language = useSelector(state => state.languageNameReducer.language_name);
 
   const navigation = useNavigation();
   const [refresh, setRefresh] = React.useState(false);
@@ -92,7 +93,7 @@ export default function DrawerContent(props) {
     setShowLogout(false);
   };
   const handleLang = () => {
-    // navigation.navigate('home')
+    navigation.navigate('ChangeLanguage');
     setShowHome(false);
     setShowVisits(false);
     setShowLang(true);
@@ -246,7 +247,7 @@ export default function DrawerContent(props) {
             fontFamily: FontFamily.Popinssemibold,
             fontSize: 16,
           }}>
-          Home
+          { language['Home']}
         </Text>
       </TouchableOpacity>
 
@@ -279,7 +280,7 @@ export default function DrawerContent(props) {
               fontFamily: FontFamily.Popinssemibold,
               fontSize: 16,
             }}>
-            Visits
+           { language['Visits']}
           </Text>
         </TouchableOpacity>
       ) : (
@@ -311,7 +312,7 @@ export default function DrawerContent(props) {
               fontFamily: FontFamily.Popinssemibold,
               fontSize: 16,
             }}>
-            Visits
+           { language['Visits']}
           </Text>
         </TouchableOpacity>
       )}
@@ -344,7 +345,7 @@ export default function DrawerContent(props) {
             fontFamily: FontFamily.Popinssemibold,
             fontSize: 16,
           }}>
-          Change Language
+         { language['Change_Language']}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -375,7 +376,7 @@ export default function DrawerContent(props) {
             fontFamily: FontFamily.Popinssemibold,
             fontSize: 16,
           }}>
-          Logout
+          { language['Logout']}
         </Text>
       </TouchableOpacity>
     </DrawerContentScrollView>

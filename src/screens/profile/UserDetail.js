@@ -11,8 +11,11 @@ import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {getStoreData} from '../../helper/utils/AsyncStorageServices';
 import {ServerURL} from '../../fetchNodeServices';
+import { useSelector } from 'react-redux';
 
 const UserDetail = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const [usedata, setUsedata] = useState('');
   const navigation = useNavigation();
 
@@ -92,7 +95,7 @@ const UserDetail = props => {
               style={{height: 20, width: 20}}
             />
             <Text style={{color: '#e67e22', marginLeft: 7}}>
-              Organization/Party
+           { language['Organization_Party']}
             </Text>
           </View>
           <View>
@@ -109,7 +112,7 @@ const UserDetail = props => {
               resizeMode="contain"
               style={{height: 20, width: 20}}
             />
-            <Text style={{color: '#e67e22', marginLeft: 7}}>Mobile Number</Text>
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Mobile_number']}</Text>
           </View>
           <View>
             <Text style={{fontWeight: 'bold', color: '#000'}}>
@@ -126,7 +129,7 @@ const UserDetail = props => {
               style={{height: 20, width: 20}}
             />
 
-            <Text style={{color: '#e67e22', marginLeft: 7}}>Email</Text>
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Email']}</Text>
           </View>
           <View>
             <Text style={{fontWeight: 'bold', color: '#000'}}>
@@ -143,7 +146,7 @@ const UserDetail = props => {
               style={{height: 20, width: 20}}
             />
 
-            <Text style={{color: '#e67e22', marginLeft: 7}}>Address</Text>
+            <Text style={{color: '#e67e22', marginLeft: 7}}>{ language['Address']}</Text>
           </View>
           <View>
             <Text style={{fontWeight: 'bold', color: '#000'}}>

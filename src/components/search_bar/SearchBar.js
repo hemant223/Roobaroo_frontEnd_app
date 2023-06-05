@@ -3,8 +3,11 @@ import {StyleSheet, TextInput, View, Keyboard} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Input from '../shared/textInputs/Inputs';
+import { useSelector } from 'react-redux';
 
 const SearchBar = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   return (
     <View style={styles.container}>
       {/* <Feather name="search" size={20} color="black" style={{marginLeft: 5}} /> */}
@@ -18,7 +21,7 @@ const SearchBar = props => {
         textfontSize={16}
         // style={styles.input}
         // rightIcon={props.clicked?'cross':'hair-cross'}
-        placeholder="Search visitors"
+        placeholder={language['Search_visitors']}
         placeholderColor={'#cecece'}
         value={props.searchPhrase}
         onChangeText={props.setSearchPhrase}

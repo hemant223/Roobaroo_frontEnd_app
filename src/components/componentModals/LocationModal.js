@@ -6,7 +6,7 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../shared/ImageAssets';
 import {useNavigation} from '@react-navigation/native';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {locationFun} from '../../helper/utils/redux/slices/locationSlice';
 import En from 'react-native-vector-icons/Entypo';
 import {postDataAxios} from '../../fetchNodeServices';
@@ -15,17 +15,19 @@ import moment from 'moment';
 const LocationModal = props => {
   const navigation = useNavigation();
   var dispatch = useDispatch();
-
+  var language = useSelector(state => state.languageNameReducer.language_name);
   // const [showModal, setShowModal] = useState(true);
   const SelectLocationModal = ({navigation}) => {
     // const [showModal, setShowModal] = useState(true)
     // var dispatch = useDispatch();
+  
 
     const data = [
       {
         id: '1',
         iconName: '',
-        title: 'Public meetings',
+        title1: 'Public meetings',
+        title: language['Public_meetings'],
         color: '#3786eb',
         backgroundColor: '#ecf4fe',
         img: ImagesAssets.Publicmeetings,
@@ -33,7 +35,8 @@ const LocationModal = props => {
       {
         id: '2',
         iconName: '',
-        title: 'Field visits',
+        title1: 'Field visits',
+        title: language['Filed_Visits'],
         color: '#f9aa4b',
         backgroundColor: '#fff6ec',
         img: ImagesAssets.FiledVisits,
@@ -43,7 +46,8 @@ const LocationModal = props => {
       {
         id: '3',
         iconName: '',
-        title: 'Mantralaya',
+        title1: 'Mantralaya',
+        title: language['Mantralaya'],
         color: '#f3747f',
         backgroundColor: '#fcdee0',
         img: ImagesAssets.Mantralaya,
@@ -51,7 +55,8 @@ const LocationModal = props => {
       {
         id: '4',
         iconName: '',
-        title: 'Vidhansabha',
+        title1: 'Vidhansabha',
+        title: language['Vidhansabha'],
         color: '#18b797',
         backgroundColor: '#c5ede5',
         img: ImagesAssets.Vidhansabha,
@@ -59,7 +64,8 @@ const LocationModal = props => {
       {
         id: '5',
         iconName: '',
-        title: 'Jasdhan',
+        title1: 'Jasdhan',
+        title: language['Jasdan'],
         color: '#d680e6',
         backgroundColor: '#f6d9ff',
         img: ImagesAssets.jasdan,
@@ -67,19 +73,20 @@ const LocationModal = props => {
       {
         id: '6',
         iconName: '',
-        title: 'Residence',
+        title1: 'Residence',
+        title: language['Residence'],
         color: '#2fc2e1',
         backgroundColor: '#d5f3f9',
         img: ImagesAssets.Residence,
       },
     ];
-    const handleOnField = async title => {
+    const handleOnField = async title1 => {
       const userData = await getStoreData('userData');
 
       props.setShowModal(false);
-      navigation.navigate('home', {location: title});
-      storeData('Location', {location: title});
-      dispatch(locationFun(title));
+      navigation.navigate('home', {location: title1});
+      storeData('Location', {location: title1});
+      dispatch(locationFun(title1));
       // storeData('userData', {...userData, user_location: title});
       body = {
         firstname: userData?.firstname,
@@ -99,13 +106,13 @@ const LocationModal = props => {
       };
       await postDataAxios(`users/updateUser/${userData?.id}`, body);
     };
-    const handleOffice = async title => {
+    const handleOffice = async title1 => {
       const userData = await getStoreData('userData');
       props.setShowModal(false);
-      navigation.navigate('home', {location: title});
-      storeData('Location', {location: title});
+      navigation.navigate('home', {location: title1});
+      storeData('Location', {location: title1});
       // storeData('userData', {...userData, user_location: title});
-      dispatch(locationFun(title));
+      dispatch(locationFun(title1));
       body = {
         firstname: userData?.firstname,
         lastname: userData?.lastname,
@@ -147,7 +154,7 @@ const LocationModal = props => {
                 width: '100%',
                 marginLeft: 10,
               }}>
-              On-Field
+              {language['On_Field']}
             </Text>
           </View>
           <TouchableOpacity
@@ -168,7 +175,7 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  handleOnField(item.title);
+                  handleOnField(item.title1);
                 }}
                 key={item.id}
                 style={{
@@ -216,7 +223,7 @@ const LocationModal = props => {
             width: '100%',
             marginLeft: 10,
           }}>
-          Office
+          {language['Office']}
         </Text>
         <View
           style={{
@@ -229,7 +236,7 @@ const LocationModal = props => {
             return (
               <TouchableOpacity
                 onPress={() => {
-                  handleOffice(item.title);
+                  handleOffice(item.title1);
                 }}
                 key={item.id}
                 style={{

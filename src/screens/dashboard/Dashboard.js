@@ -34,7 +34,12 @@ const Dashboard = props => {
   const [conditionRefresh, setConditionRefresh] = useState(false);
   var location = useSelector(state => state.locationReducer.location);
   var user__Data = useSelector(state => state.userDataReducer.user_data);
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const [apiUserData, setApiUserData] = useState('')
+  
+    // alert(JSON.stringify(location))
+
   // alert( props.route.params)
 
   // console.log('redux_userData>>>>>>',user__Data);
@@ -189,14 +194,19 @@ const Dashboard = props => {
           backgroundColor: '#fff',
           marginTop: 10,
         }}>
+          
         {apiUserData?.user_location != null || location != '' ? (
           <VisitAndProfileButton
+          data={language['Add_Visitor_to_here']}
+          heading={language['Visits']}
             onPress={() => {
               handleVisits();
             }}
           />
         ) : (
           <VisitAndProfileButton
+          data={language['Add_Visitor_to_here']}
+          heading={language['Visits']}
             onPress={() => {
               handleVisitBlank();
             }}
@@ -213,11 +223,11 @@ const Dashboard = props => {
           marginTop: 10,
         }}>
         <VisitAndProfileButton
-          data="See Profile to here "
+          data={language['See_Profile_to_here']}
           onPress={() => {
             handleProfile();
           }}
-          heading="My Profile"
+          heading={language['My_Profile']}
           circleColor={'#f9aa4b'}
           backgroundColor={'#fdead2'}
         />
