@@ -21,6 +21,7 @@ import ViewVisit from '../../screens/VisitiorForm/ViewVisit';
 import SearchScreen from '../../screens/search/SearchScreen';
 import VisitingForm from '../../screens/VisitiorForm/VisitingForm'
 import Visits from '../../screens/visits/Visits';
+import ChangeLanguage from '../../components/selectLanguage/ChangeLanguage';
 function MainNavigationStack(props) {
   const Stack = createStackNavigator();
 
@@ -106,7 +107,14 @@ function MainNavigationStack(props) {
           component={ViewVisit}
           options={{headerShown: false}}
         />
+         <Stack.Screen
+          name="language"
+          component={ChangeLanguage}
+          options={{headerShown: false}}
+        />
         
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );

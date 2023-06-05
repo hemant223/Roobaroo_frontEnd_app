@@ -45,7 +45,8 @@ export default function DrawerNavigation(props) {
         component={UserDetail}
         options={{headerShown: false}}
       />
-       <DrawerNav.Screen
+    
+    <DrawerNav.Screen
         name="language"
         component={ChangeLanguage}
         options={{headerShown: false}}
