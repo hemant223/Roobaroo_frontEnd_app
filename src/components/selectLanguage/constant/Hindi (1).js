@@ -91,8 +91,8 @@ export
   {
     "language_name": "Hindi",
     "language_code": "hindi",
-    "label": "Please_Input_Reasion_to_Visit",
-    "label_translation":"कृपया आने का कारण बताएं",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"कृपया आने का कारण दर्ज करें",
     "label_display_order": 0,
     "label_is_default": 0
   },

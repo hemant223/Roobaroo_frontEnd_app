@@ -169,8 +169,8 @@
   {
     "language_name": "Marathi",
     "language_code": "marathi",
-    "label": "Please_Input_Reasion_to_Visit",
-    "label_translation":"कृपया भेट देण्याचे कारण इनपुट करा",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"कृपया भेट देण्याचे कारण प्रविष्ट करा",
     "label_display_order": 0,
     "label_is_default": 0
   },

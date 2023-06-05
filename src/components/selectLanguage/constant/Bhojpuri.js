@@ -163,8 +163,8 @@
       {
         "language_name": "Bhojpuri",
         "language_code": "bhojpuri",
-        "label": "Please_Input_Reasion_to_Visit",
-        "label_translation":"कृपया घूमे खातिर Reasion इनपुट करीं",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"कृपया घूमे के कारण इनपुट करीं",
         "label_display_order": 0,
         "label_is_default": 0
       },

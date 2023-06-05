@@ -171,8 +171,8 @@
   {
     "language_name": "Punjabi",
     "language_code": "punjabi",
-    "label": "Please_Input_Reasion_to_Visit",
-    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਵਿਜ਼ਿਟ ਲਈ ਰੀਜ਼ਨ ਇਨਪੁਟ ਕਰੋ",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਮਿਲਣ ਦਾ ਕਾਰਨ ਦਿਓ",
     "label_display_order": 0,
     "label_is_default": 0
   },

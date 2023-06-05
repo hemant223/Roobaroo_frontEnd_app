@@ -164,8 +164,8 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "Please_Input_Reasion_to_Visit",
-    "label_translation":"મહેરબાની કરીને મુલાકાત લેવા માટે રીઝન દાખલ કરો",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"કૃપા કરીને મુલાકાત લેવાનું કારણ દાખલ કરો",
     "label_display_order": 0,
     "label_is_default": 0
   },
