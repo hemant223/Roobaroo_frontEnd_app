@@ -76,6 +76,123 @@
   
 
 [
+
+
+
+
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Please_Input_OTP",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ OTP ਇਨਪੁਟ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Select_Date_of_Birth",
+    "label_translation":"ਜਨਮ ਮਿਤੀ ਚੁਣੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Ministers",
+    "label_translation":"ਮੰਤਰੀਆਂ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Select_Ministers",
+    "label_translation":"ਮੰਤਰੀਆਂ ਦੀ ਚੋਣ ਕਰੋ ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Selected_Location",
+    "label_translation":"ਚੁਣਿਆ ਟਿਕਾਣਾ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Group_Members_Name",
+    "label_translation":"ਸਮੂਹ ਮੈਂਬਰਾਂ ਦਾ ਨਾਮ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Select_Location",
+    "label_translation":"ਟਿਕਾਣਾ ਚੁਣੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Sort_By_Date_Range",
+    "label_translation":"ਮਿਤੀ ਰੇਂਜ ਦੁਆਰਾ ਕ੍ਰਮਬੱਧ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "From_Date",
+    "label_translation":"ਮਿਤੀ ਤੋਂ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "End_Date",
+    "label_translation":"ਸਮਾਪਤੀ ਮਿਤੀ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Please_Input_Reference",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਹਵਾਲਾ ਦਰਜ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Please_Input_Reasion_to_Visit",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਵਿਜ਼ਿਟ ਲਈ ਰੀਜ਼ਨ ਇਨਪੁਟ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Please_Input_FirstName",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਪਹਿਲਾ ਨਾਮ ਇਨਪੁਟ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Please_Input_LastName",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਆਖਰੀ ਨਾਮ ਦਰਜ ਕਰੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+// Now Word Punjabi
     {
         "language_name": "Punjabi",
         "language_code": "punjabi",

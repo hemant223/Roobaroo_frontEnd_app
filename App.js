@@ -8,7 +8,6 @@ import SuccessModal from './src/components/componentModals/SuccessModal';
 import VisitAndProfileButton from './src/components/visit_and_myProfile/VisitAndProfileButton';
 import VisitingForm from './src/screens/visitiorForm/VisitingForm';
 import TestComponent from './src/components/TestComponent';
-import SelectLanguage from './src/components/selectLanguage/SelectLanguage';
 import {getDataAxios} from './src/fetchNodeServices';
 import FullSizeButtons from './src/components/shared/buttons/FullSizeButtons';
 import {LogBox} from 'react-native';
@@ -20,7 +19,10 @@ import {Provider} from 'react-redux';
 import store from './src/helper/utils/redux/store';
 import RootReducer from './src/helper/utils/redux/RootReducer';
 import {ToastProvider} from 'react-native-toast-notifications';
+// import ChangeLanguage from './src/components/selectLanguage/constant/ChangeLanguage';
 
+
+export const newStore = store;
 // import { removeStoreData } from './src/helper/utils/AsyncStorageServices';
 const App = props => {
   useEffect(() => {
@@ -73,6 +75,7 @@ const App = props => {
         <MainNavigationStack />
       </ToastProvider>
     </Provider>
+    // <ChangeLanguage/>
     // <FlatList
     //   data={getdata}
     //   keyExtractor={item => item.id}

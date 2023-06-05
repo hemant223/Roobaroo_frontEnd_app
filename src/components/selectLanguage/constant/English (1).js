@@ -69,7 +69,7 @@
 //       Address:'Address',
 //   };
          
-const English = [
+[
     {
         "language_name": "English",
         "language_code": "english",
@@ -86,6 +86,30 @@ const English = [
         "label_display_order": 0,
         "label_is_default": 0
     },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Mobile_number",
+        "label_translation": "Mobile number",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "See_Profile_to_here",
+        "label_translation": "See Profile to here",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Add_Visitor_to_here",
+        "label_translation":"Add Visitor to here",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
     {
         "language_name": "English",
         "language_code": "english",
@@ -140,6 +164,14 @@ const English = [
         "language_code": "english",
         "label": "Visits",
         "label_translation": "Visits",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Visitors_trend",
+        "label_translation": "Visitors trend",
         "label_display_order": 0,
         "label_is_default": 0
     },
@@ -451,8 +483,8 @@ const English = [
     {
         "language_name": "English",
         "language_code": "english",
-        "label": "Select_Constituency",   
-        "label_translation": "Select Constituency",    
+        "label": "Select_Constituency",
+        "label_translation": "Select Constituency",
         "label_display_order": 0,
         "label_is_default": 0
     },
@@ -573,6 +605,14 @@ const English = [
     {
         "language_name": "English",
         "language_code": "english",
+        "label": "Today_s_Visitors",
+        "label_translation": "Today's Visitors",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+    {
+        "language_name": "English",
+        "language_code": "english",
         "label": "Mark_as_completed",
         "label_translation": "Mark as completed",
         "label_display_order": 0,
@@ -613,6 +653,3 @@ const English = [
     
 
 ]
-
-
-export {English}

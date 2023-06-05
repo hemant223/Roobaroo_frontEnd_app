@@ -7,8 +7,9 @@ import {useFocusEffect} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import SpeedoMetterShimmerTwo from '../../../components/shared/shimmer/SpeedoMeterShimmerTwo';
 const SpeedoMeter = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+  // console.log('language>>>>>>>>>',language);
   const [data, setData] = useState(0);
-
   const [shimmer, setShimmer] = useState(true);
   const [getUserData, setUserDataByAsync] = useState([]);
   var location = useSelector(state => state.locationReducer.location);
@@ -77,7 +78,8 @@ const SpeedoMeter = props => {
           value={data}
           min={0}
           max={100}
-          subTitle="Today's Visitor"
+          //language['Visitor_trend']
+          subTitle={language['Today_s_Visitors']}
           thumbRadius={50}
           lineColor="grey"
           linearGradient={[{offset: '100%', color: '#5bd5c2'}]}

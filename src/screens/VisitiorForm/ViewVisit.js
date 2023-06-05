@@ -32,23 +32,26 @@ import CenterHeader from '../../components/shared/header/CenterHeader';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {TextInput} from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 
-const data = [
-  {type: 'Single', id: 1, color: false},
-  {type: 'Group', id: 2, color: false},
-];
+// const data = [
+//   {type: 'Single', id: 1, color: false},
+//   {type: 'Group', id: 2, color: false},
+// ];
 
-const physicallyData = [
-  {type: 'Yes', id: 1, color: false},
-  {type: 'No', id: 2, color: false},
-];
-const genderData = [
-  {type: 'Male', id: 1, color: false},
-  {type: 'Female', id: 2, color: false},
-  {type: 'Other', id: 2, color: false},
-];
+// const physicallyData = [
+//   {type: 'Yes', id: 1, color: false},
+//   {type: 'No', id: 2, color: false},
+// ];
+// const genderData = [
+//   {type: 'Male', id: 1, color: false},
+//   {type: 'Female', id: 2, color: false},
+//   {type: 'Other', id: 2, color: false},
+// ];
 
 const ViewVisit = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+   
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
   const [showengageTime, showsetEngagetime] = useState('');
@@ -63,6 +66,21 @@ const ViewVisit = props => {
     props?.route?.params?.visitordata?.physically_disabled,
   );
   const [engage_Time_show, setEngage_Time_show] = useState('');
+  const data = [
+    {type: language['Single'], id: 1, color: false},
+    {type: language['Group'], id: 2, color: false},
+  ];
+  
+  const physicallyData = [
+    {type:language['Yes'], id: 1, color: false},
+    {type: language['No'], id: 2, color: false},
+  ];
+  
+  const genderData = [
+    {type: language['Male'], id: 1, color: false},
+    {type: language['Female'], id: 2, color: false},
+    {type: language['Other'], id: 3, color: false},
+  ];
   // console.log('ABCDddddd', engage_Time_show);
   useFocusEffect(
     React.useCallback(() => {
@@ -195,7 +213,7 @@ const ViewVisit = props => {
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
-            label="Visit type"
+           label={language['visit_type']}
             data={data}
             setType={setVisitorType}
             getType={visitortype}
@@ -215,7 +233,7 @@ const ViewVisit = props => {
               showSoftInputOnFocus={false}
               value={props.route.params.visitordata.firstname}
               placeholder=""
-              label={'First name'}
+              label={language['First_name']}
               textLabel
               width="100%"
               height={45}
@@ -229,7 +247,7 @@ const ViewVisit = props => {
             <Input
               placeholder=""
               showSoftInputOnFocus={false}
-              label={'Last name'}
+              label={language['Last_name']}
               textLabel
               width="100%"
               height={45}
@@ -286,7 +304,7 @@ const ViewVisit = props => {
           }}>
           <RadioButton
             labelLeft={10}
-            label="Gender"
+            label={language['Gender']}
             data={genderData}
             setType={setGender}
             getType={gender}
@@ -317,7 +335,7 @@ const ViewVisit = props => {
             value={moment(props.route.params.visitordata.date_of_birth).format(
               'YYYY-MM-DD',
             )}
-            label="Date of Birth"
+            label={language['Date_of_Birth']}
             textLabel
             textfontSize={15}
             showSoftInputOnFocus={false}
@@ -331,7 +349,7 @@ const ViewVisit = props => {
             ...styles.Disabled_View_Css,
           }}>
           <RadioButton
-            label="Physically Disabled"
+            label={language['Physically_Disabled']}
             data={physicallyData}
             setType={setPhysically}
             getType={physically}
@@ -376,7 +394,7 @@ const ViewVisit = props => {
             ...styles.Reference_View_Css,
           }}>
           <Input
-            label={'Vidhansabha'}
+              label={language['Vidhansabha']}
             value={props.route.params.visitordata.Vidhansabha}
             textLabel
             width={'100%'}
@@ -395,7 +413,7 @@ const ViewVisit = props => {
           }}>
           <Input
             // placeholder="Enter reference name if any "
-            label={'Constituency'}
+            label={language['Constituency']}
             value={props.route.params.visitordata.ConstituencyName}
             textLabel
             width={'100%'}
@@ -414,7 +432,7 @@ const ViewVisit = props => {
           }}>
           <Input
             // placeholder="Enter reference name if any "
-            label={'Mantralaya'}
+            label={language['Mantralaya']}
             value={props.route.params.visitordata.MantralayName}
             textLabel
             width={'100%'}
@@ -431,8 +449,8 @@ const ViewVisit = props => {
             ...styles.Reference_View_Css,
           }}>
           <Input
-            placeholder="Enter reference name if any "
-            label={'Reference'}
+            placeholder=""
+            label={language['Reference']}
             value={props.route.params.visitordata.refernce}
             textLabel
             width={'100%'}
@@ -450,7 +468,7 @@ const ViewVisit = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reason to visit'}
+            label={language['Reason_of_visit']}
             value={props.route.params.visitordata.reason_to_visit}
             textLabel
             width={'100%'}
@@ -487,7 +505,7 @@ const ViewVisit = props => {
               onPress={handleSubmit}
               titleColor="#fff"
               backgroundColor={'#18ae3b'}
-              title="Mark as completed"
+              title={language['Mark_as_completed']}
               rightIcon={'checkbox-marked-circle'}
               rightsize={16}
             />
@@ -496,7 +514,7 @@ const ViewVisit = props => {
       </ScrollView>
       {
         <SuccessModal
-          title={`Visits has been ended succesfully Engagement time was ${showengageTime}`}
+          title={`${language['visit_type']} ${showengageTime}`}
           onPress={() => {
             setShowModal(false);
             navigation.push('Visits', {complete: 1});

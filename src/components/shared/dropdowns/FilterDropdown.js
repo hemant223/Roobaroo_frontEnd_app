@@ -3,8 +3,10 @@ import {View, Text, TouchableOpacity, Animated} from 'react-native';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
 import { FontFamily } from '../../../assets/fonts/FontFamily';
 import { Colors } from '../../../assets/config/Colors';
+import { useSelector } from 'react-redux';
 
 const FilterDropdown = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
   const [selectedValue, setSelectedValue] = useState(props.defaultSelected);
   const [dropdownHeight, setDropdownHeight] = useState(new Animated.Value(0));
   const [data, setData] = useState([]);
@@ -114,16 +116,16 @@ export default FilterDropdown;
 
 FilterDropdown.defaultProps = {
   onValueChange: () => {},
-  options: [
-    {label: 'Last Week', id: 1},
-    {label: 'Current Week', id: 2},
+  // options: [
+  //   {label: 'Last Week', id: 1},
+  //   {label: 'Current Week', id: 2},
    
-  ],
+  // ],
   paddingVertical:0,
   itemHeight:25,
   radius:10,
   // onValueChange: () => {},
-  defaultSelected: 'Last Week',
+  // defaultSelected: 'Last Week',
   backgroundColor:Colors.Semiblue,
   left: null,
   right: null,

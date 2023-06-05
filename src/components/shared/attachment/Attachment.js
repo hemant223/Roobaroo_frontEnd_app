@@ -5,7 +5,10 @@ import ImgToBase64 from 'react-native-image-base64';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import FA from 'react-native-vector-icons/FontAwesome';
 import {FontFamily} from '../../../assets/fonts/FontFamily';
+import { useSelector } from 'react-redux';
 export default function Attachment(props) {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   // console.log('props---------->>>>>>>9', props)
   const [filePath, setFilePath] = React.useState('');
 //   const[image,setImage]=React.useState('')
@@ -126,7 +129,7 @@ export default function Attachment(props) {
             left: props.left,
             right: props.right,
           }}>
-          Media
+          {language['Media']}
         </Text>
       </View>
       <TouchableOpacity

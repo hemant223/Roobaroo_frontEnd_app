@@ -21,14 +21,19 @@ export default function SingleBarChart(props) {
   const [shimmer, setShimmer] = useState(true);
   const [last_Week, setLast_Week] = useState();
   const [filterSelected, setFilterSelected] = useState(1);
-  const [referesh, setReferesh] = useState(false)
-
+  const [referesh, setReferesh] = useState(false);
+  var language = useSelector(state => state.languageNameReducer.language_name);
+  // console.log("language....",language)
+  const options = [
+    {label: language['Last_week'], id: 1},
+    {label: language['Current_week'], id: 2},
+  ];
 
   const [current_Week, setCurrent_Week] = useState('');
   var location = useSelector(state => state.locationReducer.location);
- 
+
   const fetchVisitor = async () => {
-    setShimmer(true)
+    setShimmer(true);
     const userData = await getStoreData('userData');
     var data = await getDataAxios(`users/fetchUserDetail/${userData?.id}`);
     var location_type = '';
@@ -36,25 +41,26 @@ export default function SingleBarChart(props) {
     if (data.result[0].user_location != '') {
       var location_type = data.result[0].user_location;
     } else {
-     
-      location_type='undefined'
+      location_type = 'undefined';
     }
-        // alert(location_type)
+    // alert(location_type)
     const startDate = moment()
       .subtract(1, 'weeks')
       .startOf('isoWeek')
       .format('YYYY-MM-DD');
-      const endDate = moment()
+    const endDate = moment()
       .subtract(1, 'weeks')
       .endOf('isoWeek')
       .format('YYYY-MM-DD');
-      var response = await getDataAxios(
-        `visitors/todayVisitor/${userData?.id}/${startDate}/${endDate}/${location?location:location_type}`,
-        );
-        
-        var aa = response.data;
+    var response = await getDataAxios(
+      `visitors/todayVisitor/${userData?.id}/${startDate}/${endDate}/${
+        location ? location : location_type
+      }`,
+    );
 
-    console.log(aa)
+    var aa = response.data;
+
+    console.log(aa);
     setLast_Week(aa);
     setShimmer(false);
   };
@@ -72,7 +78,7 @@ export default function SingleBarChart(props) {
     if (data.result[0].user_location != '') {
       var location_type = data.result[0].user_location;
     } else {
-      location_type='undefined'
+      location_type = 'undefined';
     }
 
     // alert(location_type)
@@ -132,11 +138,13 @@ export default function SingleBarChart(props) {
 
               // backgroundColor:"yellow"
             }}>
-            Visitors trend
+            {language['Visitors_trend']}
           </Text>
         </View>
         <View style={{marginTop: 10, height: 20}}>
           <FilterDropdown
+            options={options}
+            defaultSelected={language['Last_week']}
             onValueChange={txt => {
               setFilterSelected(txt.id);
             }}

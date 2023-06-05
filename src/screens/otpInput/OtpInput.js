@@ -15,8 +15,11 @@ import { FontFamily } from '../../assets/fonts/FontFamily';
 import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
+import { useSelector } from 'react-redux';
 
 function OtpInput(props) {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   const [isModalVisible, setModalVisible] = useState(true);
   // const { otp } = props.route.params;
   const [otp, setOtp] = useState('');
@@ -89,11 +92,11 @@ function OtpInput(props) {
       <Modal isVisible={isModalVisible} style={styles.modal}>
         <View style={styles.modalContainer}>
           <View style={{ padding: 5 }}>
-            <Text style={styles.modalContainerTitle}>Verify OTP</Text>
+            <Text style={styles.modalContainerTitle}>{language['Verify_OTP']}</Text>
           </View>
           <View style={{ padding: 5 }}>
             <Text style={styles.subTitle}>
-              We've sent you an OTP on your registered mobile number
+            {language['We_have_sent_you_an_OTP_on_your_registered_mobile_number']}
             </Text>
           </View>
           <View
@@ -121,7 +124,7 @@ function OtpInput(props) {
                   handleSubmit();
                 }}
                 titleColor="#fff"
-                title="Submit"
+                title={language['Submit']}
                 height={50}
                 width={'100%'}
               />

@@ -72,11 +72,124 @@
 //   Email: 'ઈમેલ',
 //   Address: 'સરનામું',
 // };
- const Gujrati = [
+[
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": " Login",
+    "label": "Please_Input_OTP",
+    "label_translation":"કૃપા કરીને OTP ઇનપુટ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Date_of_Birth",
+    "label_translation":"જન્મ તારીખ પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Ministers",
+    "label_translation":"મંત્રીઓ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Ministers",
+    "label_translation":"મંત્રીઓ પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Selected_Location",
+    "label_translation":"પસંદ કરેલ સ્થાન",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Group_Members_Name",
+    "label_translation":"જૂથના સભ્યોનું નામ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Location",
+    "label_translation":"સ્થાન પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Sort_By_Date_Range",
+    "label_translation":"તારીખ શ્રેણી દ્વારા સૉર્ટ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "From_Date",
+    "label_translation":"તારીખ થી",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "End_Date",
+    "label_translation":"અંતિમ તારીખ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_Reference",
+    "label_translation":"કૃપા કરીને સંદર્ભ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_Reasion_to_Visit",
+    "label_translation":"મહેરબાની કરીને મુલાકાત લેવા માટે રીઝન દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_FirstName",
+    "label_translation":"કૃપા કરીને પ્રથમ નામ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_LastName",
+    "label_translation":"કૃપા કરીને છેલ્લું નામ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+// NEW GUJRATI WORD //
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Login",
     "label_translation":"પ્રવેશ કરો",
     "label_display_order": 0,
     "label_is_default": 0
@@ -88,7 +201,6 @@
     "label_translation":"લોગીન કરવા માટે કૃપા કરીને તમારો નોંધાયેલ મોબાઈલ નંબર દાખલ કરો",
     "label_display_order": 0,
     "label_is_default": 0
-  
   },
   {
     "language_name": "Gujrati",
@@ -97,9 +209,7 @@
     "label_translation":"મોબાઇલ નંબર",
     "label_display_order": 0,
     "label_is_default": 0
-  
-  },  
-
+  },
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
@@ -121,6 +231,14 @@
     "language_code": "gujrati",
     "label": "We_have_sent_you_an_OTP_on_your_registered_mobile_number",
     "label_translation":"અમે તમને તમારા રજીસ્ટર્ડ મોબાઈલ નંબર પર એક OTP મોકલ્યો છે",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Search_visitors",
+    "label_translation":"શોધ મુલાકાતીઓ",
     "label_display_order": 0,
     "label_is_default": 0
   },
@@ -191,7 +309,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": " My_Profile",
+    "label": "My_Profile",
     "label_translation":"મારી પ્રોફાઈલ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -217,6 +335,14 @@
     "language_code": "gujrati",
     "label": "Public_meetings",
     "label_translation":"જાહેર સભાઓ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Filed_Visits",
+    "label_translation":"ફાઇલ કરેલ મુલાકાતો",
     "label_display_order": 0,
     "label_is_default": 0
   },
@@ -367,7 +493,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"Visit_Type",
+    "label" :"visit_Type",
     "label_translation":"મુલાકાત પ્રકાર",
     "label_display_order": 0,
     "label_is_default": 0
@@ -415,7 +541,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"First_Name",
+    "label" :"First_name",
     "label_translation":"પ્રથમ નામ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -423,7 +549,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"Last_Name",
+    "label" :"Last_name",
     "label_translation":"છેલ્લું નામ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -455,6 +581,22 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
+    "label" :"Yes",
+    "label_translation":"હા",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label" :"No",
+    "label_translation":"ના",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
     "label" :"Select_Vidhansabha",
     "label_translation":"વિધાનસભા પસંદ કરો",
     "label_display_order": 0,
@@ -469,10 +611,44 @@
     "label_is_default": 0
   },
   {
+    "language_name": "Bhojpuri",
+    "language_code": "bhojpuri",
+    "label": "Constituency",
+    "label_translation": "મતવિસ્તારો",
+    "label_display_order": 0,
+    "label_is_default": 0
+},
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label" :"Select_Constituency",
+    "label_translation":"ચૂંટણી_વિસ્તાર",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
     "language_name": "Gujrati",
     "language_code": "gujrati",
     "label" :"Reference",
     "label_translation":"સંદર્ભ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label" :"Enter_reference_name_if_any",
+    "label_translation":"સંદર્ભ દાખલ કરો નામ જો કોઈ હોય તો ",
+   
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label" :"Reason of visit",
+    "label_translation":"મુલાકાત માટેનું કારણ",
+   
     "label_display_order": 0,
     "label_is_default": 0
   },
@@ -492,15 +668,16 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
-  
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"Your_visting_record_request_has_successfully_Submitted",
+    "label" :"Your_visiting_record_request_has_been_successfully_Submitted",
     "label_translation":"તમારી મુલાકાત રેકોર્ડ વિનંતી સફળતાપૂર્વક સબમિટ કરવામાં આવી છે",
     "label_display_order": 0,
     "label_is_default": 0
   },
+  
+
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
@@ -557,6 +734,14 @@
     "label_display_order": 0,
     "label_is_default": 0
   },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label" :"Newly_Added",
+    "label_translation":"નવા ઉમેરેલા",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
  
   {
     "language_name": "Gujrati",
@@ -585,19 +770,21 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"Mart_as_Completed",
-    "label_translation":"પૂર્ણ તરીકે ચિહ્નિત કરો",
+    "label" :"Mark_as_completed",
+    "label_translation":"પૂર્ણ થયું તરીકે ચિહ્નિત કરો",
     "label_display_order": 0,
     "label_is_default": 0
   },
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label" :"Visit_has_been_ended_succefully_Engagement_time_was",
+    "label" :"Visit_has_been_ended_successfully_Engagement_time_was",
     "label_translation":"મુલાકાત સફળતાપૂર્વક સમાપ્ત થઈ છે સગાઈનો સમય હતો",
     "label_display_order": 0,
     "label_is_default": 0
   },
+  
+
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
@@ -625,5 +812,3 @@
 
 
 ]
-
-export {Gujrati}

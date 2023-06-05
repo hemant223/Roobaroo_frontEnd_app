@@ -41,7 +41,7 @@ const DATA = [
 const Item = ({item, navigation}) => {
   var time1 = moment(item.created_at).format('h:mm a, Do MMM YYYY');
   // console.log('====================================');
-  // console.log('vist>>>>ongoing>>',item);
+  console.log('vist>>>>ongoing>>',item);
 
   // console.log('====================================');
   return (

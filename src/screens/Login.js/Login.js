@@ -16,11 +16,12 @@ import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
 import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
 import {removeStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { userDataFun } from '../../helper/utils/redux/slices/userDataSlice';
 
 function Login(props) {
   var dispatch = useDispatch();
+  var language = useSelector(state => state.languageNameReducer.language_name);
 
   const [isModalVisible, setModalVisible] = useState(true);
   const [inputs, setInputs] = React.useState({
@@ -89,11 +90,11 @@ function Login(props) {
       <Modal isVisible={isModalVisible} style={styles.modal}>
         <View style={styles.modalContainer}>
           <View style={{padding: 5}}>
-            <Text style={styles.modalContainerTitle}>LOGIN</Text>
+            <Text style={styles.modalContainerTitle}>{language['Login']}</Text>
           </View>
           <View style={{padding: 5}}>
             <Text style={styles.subTitle}>
-              Please enter your registered mobile number to login
+            {language['Please_enter_your_registered_mobile_number_to_login']}
             </Text>
           </View>
           <View style={{padding: 10}}>
@@ -106,7 +107,7 @@ function Login(props) {
               onFocus={() => handleError(null, 'mobileNumber')}
               error={errors.mobileNumber}
               onChangeText={text => handleOnchange(text, 'mobileNumber')}
-              placeholder="Mobile number"
+              placeholder={language['Mobile_number']}
               placeholderColor="grey"
               keyboardType="numeric"
               textfontSize={15}
@@ -119,7 +120,7 @@ function Login(props) {
                   handleSubmit();
                 }}
                 titleColor="#fff"
-                title="Send OTP"
+                title={language['Send_OTP']}
                 height={50}
                 width={'100%'}
               />

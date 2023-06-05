@@ -26,22 +26,24 @@ import MultipleTextField from '../../components/multiple_text_field/MultipleText
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {useSelector} from 'react-redux';
 
-const data = [
-  {type: 'Single', id: 1, color: false},
-  {type: 'Group', id: 2, color: false},
-];
 
-const physicallyData = [
-  {type: 'Yes', id: 1, color: false},
-  {type: 'No', id: 2, color: false},
-];
-
-const genderdata = [
-  {type: 'Male', id: 1, color: false},
-  {type: 'Female', id: 2, color: false},
-  {type: 'Other', id: 3, color: false},
-];
 const VisitingForm = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+  const data = [
+    {type: language['Single'], id: 1, color: false},
+    {type: language['Group'], id: 2, color: false},
+  ];
+  
+  const physicallyData = [
+    {type:language['Yes'], id: 1, color: false},
+    {type: language['No'], id: 2, color: false},
+  ];
+  
+  const genderdata = [
+    {type: language['Male'], id: 1, color: false},
+    {type: language['Female'], id: 2, color: false},
+    {type: language['Other'], id: 3, color: false},
+  ];
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = React.useState({
@@ -58,6 +60,7 @@ const VisitingForm = props => {
 
   // const [userid, setUserId] = React.useState(1);
   const [visitorname, setVisitorName] = useState('Single');
+  const [SngGupId, setSngGupId] = useState("1")
   const [gender, setGender] = React.useState('Male');
   const [physically_disabled_Name, setPhysically_disabled_Name] =
     useState('Yes');
@@ -74,7 +77,7 @@ const VisitingForm = props => {
   const [constituencyid, setContituencyid] = React.useState('');
   const [constituency, setConstituency] = useState();
   const [concetencyNamee, setConcetencyNamee] = useState('');
-  // alert(constituencyid)
+  // alert(SngGupId)
   // Mantralay DropDown State//
   const [mantralay, setMantralay] = useState();
   const [mantralayId, setMantralayId] = useState();
@@ -223,7 +226,7 @@ const VisitingForm = props => {
       });
     }
     // alert(arr);
-   
+
     try {
       let i = 0;
       let isValid = true;
@@ -324,9 +327,9 @@ const VisitingForm = props => {
     <View style={{...styles.mainView}}>
       <CenterHeader
         centerText
-        stepContent="Step 02"
+        stepContent={language['Step'] + '02'}
+        centerContent={language['Visiting_Form']}
         stepText
-        centerContent="Visiting Form"
         onPressBackArrow={() => {
           navigation.push('Dashboard');
         }}
@@ -334,10 +337,11 @@ const VisitingForm = props => {
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
           <RadioButton
-            label="Visit type"
+            label={language['visit_type']}
             data={data}
             setType={setVisitorName}
             getType={visitorname}
+            setId={setSngGupId}
             // labelLeft={10}
           />
         </View>
@@ -352,8 +356,8 @@ const VisitingForm = props => {
           }}>
           <View style={{width: '49%', marginRight: 5}}>
             <Input
-              placeholder=""
-              label={'First name'}
+              placeholder={language['First_name']}
+              label={language['First_name']}
               textLabel
               width="100%"
               height={45}
@@ -368,8 +372,8 @@ const VisitingForm = props => {
           </View>
           <View style={{width: '49%', marginRight: 5}}>
             <Input
-              placeholder=""
-              label={'Last name'}
+              placeholder={language['Last_name']}
+              label={language['Last_name']}
               textLabel
               width="100%"
               height={45}
@@ -382,7 +386,7 @@ const VisitingForm = props => {
             />
           </View>
         </View>
-        {visitorname == 'Group' && (
+        {SngGupId == '2' && (
           <View style={{width: '97%', alignSelf: 'center'}}>
             <Text
               style={{
@@ -408,7 +412,7 @@ const VisitingForm = props => {
           }}>
           <RadioButton
             // labelLeft={10}
-            label="Gender"
+            label={language['Gender']}
             data={genderdata}
             setType={setGender}
             getType={gender}
@@ -425,7 +429,7 @@ const VisitingForm = props => {
             backgroundColor={Colors.Textinputbg}
             height={40}
             // setDate={setDob}
-            label="Date of Birth"
+            label={language['Date_of_Birth']}
             setDate={setDob}
           />
         </View>
@@ -436,7 +440,7 @@ const VisitingForm = props => {
             ...styles.Disabled_View_Css,
           }}>
           <RadioButton
-            label="Physically Disabled"
+            label={language['Physically_Disabled']}
             data={physicallyData}
             getType={physically_disabled_Name}
             setType={setPhysically_disabled_Name}
@@ -450,14 +454,14 @@ const VisitingForm = props => {
             ...styles.Vidhansabha_View_Css,
           }}>
           <Dropdown
-            label={'Vidhansabha'}
+            label={language['Vidhansabha']}
             labelLeft={10}
             borderRadius={12}
             options={vidhansabhaName}
             onSelect={setVidhansabha}
             setShowName={setVidhansabhaNamee}
             showName={
-              vidhansabhaNamee ? vidhansabhaNamee : 'Select Vidhansabha'
+              vidhansabhaNamee ? vidhansabhaNamee : language['Select_Vidhansabha']
             }
           />
         </View>
@@ -467,13 +471,13 @@ const VisitingForm = props => {
             ...styles.Constintuency_View_Css,
           }}>
           <Dropdown
-            label={'Constituency'}
+            label={language['Constituency']}
             labelLeft={10}
             borderRadius={12}
             options={constituency}
             onSelect={setContituencyid}
             setShowName={setConcetencyNamee}
-            showName={concetencyNamee ? concetencyNamee : 'Select Constituency'}
+            showName={concetencyNamee ? concetencyNamee : language['Select_Constituency']}
           />
         </View>
         <View
@@ -498,14 +502,14 @@ const VisitingForm = props => {
             ...styles.Mantralya_View_Css,
           }}>
           <Dropdown
-            label={'Mantralaya'}
+            label={language['Mantralaya']}
             labelLeft={10}
             borderRadius={12}
             options={mantralay}
             onSelect={setMantralayId}
             setShowName={setMantralayName}
             showName={
-              showMantralayName ? showMantralayName : 'Select Mantralaya'
+              showMantralayName ? showMantralayName :language['Select_Mantralaya']
             }
           />
         </View>
@@ -516,8 +520,8 @@ const VisitingForm = props => {
             ...styles.Reference_View_Css,
           }}>
           <Input
-            placeholder="Enter reference name if any "
-            label={'Reference'}
+            placeholder={language['Enter_reference_name_if_any']}
+            label={language['Reference']}
             textLabel
             width={'100%'}
             textfontSize={15}
@@ -538,12 +542,14 @@ const VisitingForm = props => {
           <Input
             // placeholder="Enter reference name if any "
             label={'Selected Location'}
-            textLabel 
+            textLabel
             width={'100%'}
             textfontSize={15}
             borderWidth={1}
             borderBottomWidth={1}
-            value={locationReducer?locationReducer:apiUserData.user_location}
+            value={
+              locationReducer ? locationReducer : apiUserData.user_location
+            }
           />
         </View>
 
@@ -555,7 +561,7 @@ const VisitingForm = props => {
           }}>
           <Input
             placeholder=" "
-            label={'Reason to visit'}
+            label={language['Reason_of_visit']}
             textLabel
             width={'100%'}
             borderWidth={1}
@@ -591,6 +597,7 @@ const VisitingForm = props => {
             // bottom:19
           }}>
           <FullSizeButtons
+          title={language['Submit']}
             /* onPress={()=>{setShowModal(true)}} */ onPress={() => validate()}
             titleColor="#fff"
           />
@@ -598,7 +605,7 @@ const VisitingForm = props => {
       </ScrollView>
       {
         <SuccessModal
-          title="Your Visiting record request has been Successfully Submitted"
+          title={language['Your_visiting_record_request_has_been_successfully_Submitted']}
           onPress={() => {
             navigation.push('Visits', {complete: 0});
             setShowModal(false);

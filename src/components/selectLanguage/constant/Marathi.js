@@ -77,6 +77,120 @@
 
 
 [
+  
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Please_Input_OTP",
+    "label_translation":"कृपया ओटीपी प्रविष्ट करा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Select_Date_of_Birth",
+    "label_translation":"जन्मतारीख निवडा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Ministers",
+    "label_translation":"मंत्री",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Select_Ministers",
+    "label_translation":"मंत्री निवडा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Selected_Location",
+    "label_translation":"निवडलेले स्थान",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Group_Members_Name",
+    "label_translation":"गट सदस्यांचे नाव",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Select_Location",
+    "label_translation":"स्थान निवडा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Sort_By_Date_Range",
+    "label_translation":"तारीख श्रेणीनुसार क्रमवारी लावा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "From_Date",
+    "label_translation":"या तारखेपासून",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "End_Date",
+    "label_translation":"शेवटची तारीख",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Please_Input_Reference",
+    "label_translation":"कृपया संदर्भ इनपुट करा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Please_Input_Reasion_to_Visit",
+    "label_translation":"कृपया भेट देण्याचे कारण इनपुट करा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Please_Input_FirstName",
+    "label_translation":"कृपया प्रथम नाव प्रविष्ट करा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "marathi",
+    "label": "Please_Input_LastName",
+    "label_translation":"कृपया आडनाव प्रविष्ट करा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+// New Word Marathi
     {
         "language_name": "Marathi",
         "language_code": "marathi",

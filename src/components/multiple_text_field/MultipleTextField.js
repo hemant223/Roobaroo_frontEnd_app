@@ -56,9 +56,9 @@ const MultiTextFieldForm = props => {
             />
           </View>
           {index == 0 && (
-            <Text style={{color: 'gray'}}> {props.textFields.length}</Text>
+            <Text style={{color: 'gray',marginLeft:props.textFields.length<10? 0:25}}> {props.textFields.length}</Text>
           )}
-          {index == 0 && (
+          {index == 0 && props.textFields.length<10 && (
             <TouchableOpacity
               style={{marginLeft: 10}}
               onPress={() => addTextField()}>
@@ -68,7 +68,7 @@ const MultiTextFieldForm = props => {
           {index > 0 && (
             // <Button  title="Remove" onPress={() => removeTextField(index)} />
             <TouchableOpacity
-              style={{marginLeft: 17}}
+              style={{marginLeft: 20}}
               onPress={() => removeTextField(index)}>
               <Ant
                 name={'minuscircleo'}

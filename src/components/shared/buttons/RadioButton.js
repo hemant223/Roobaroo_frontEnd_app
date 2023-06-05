@@ -12,8 +12,8 @@ const RadioButton = props => {
 
   const handleRadio = (item, index) => {
     props.setType(item.type);
-    // alert(item.endDate)
     {props.startDate &&props.startDate(item.startDate)}
+    {props.setId &&props.setId(item.id)}
     {props.endDate && props.endDate(item.endDate)}
 
   };

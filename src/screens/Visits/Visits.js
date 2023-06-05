@@ -25,14 +25,15 @@ import {FilterFun} from '../../helper/utils/redux/slices/filteringSlice';
 const Visits = props => {
   const navigation = useNavigation();
   var dispatch = useDispatch();
+  var language = useSelector(state => state.languageNameReducer.language_name);
 
   const DropDownData = [
-    {value: 1, label: 'Public meetings'},
-    {value: 2, label: 'Field visits'},
-    {value: 3, label: 'Mantralaya'},
-    {value: 4, label: 'Vidhansabha'},
-    {value: 5, label: 'Jasdhan'},
-    {value: 6, label: 'Residence'},
+    {value: 1, label: language['Public_meetings']},
+    {value: 2, label: language['Filed_Visits']},
+    {value: 3, label: language['Mantralaya']},
+    {value: 4, label: language['Vidhansabha']},
+    {value: 5, label: language['Jasdan']},
+    {value: 6, label:language['Residence']},
   ];
 
   // alert(JSON.stringify(props?.route?.params?.userData))
@@ -301,6 +302,7 @@ const Visits = props => {
           add
           height={90}
           rightText
+          rightContent={language['Visits']}
           backarrowIcon
           sort
           sortonPress={() => {
@@ -317,7 +319,7 @@ const Visits = props => {
             />
           )} */}
         <SegmentedControlTab
-          values={['Ongoing', 'Completed']}
+          values={[language['Ongoing'], language['Completed']]}
           selectedIndex={selectedIndex}
           tabStyle={{
             //   backgroundColor: Colors.white,
