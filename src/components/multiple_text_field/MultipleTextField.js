@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {View, TextInput, Button, TouchableOpacity, Text} from 'react-native';
 import Input from '../shared/textInputs/Inputs';
 import Ant from 'react-native-vector-icons/AntDesign';
+import { useSelector } from 'react-redux';
 
 const MultiTextFieldForm = props => {
+  var language = useSelector(state => state.languageNameReducer.language_name);
+
   //   const [textFields, props.setTextFields] = useState([{value: ''},{value: ''}]);
   //   alert(JSON.stringify(props.textFields.length))
   const addTextField = () => {
@@ -41,7 +44,7 @@ const MultiTextFieldForm = props => {
             <Input
               // style={{fontSize:15,color:'#000'}}
               //   backgroundColor={'yellow'}
-              placeholder="Group Member Name"
+              placeholder={language['Group_Members_Name']}
               // label={'sdfadsfa'}
               // textLabel
               textfontSize={15}

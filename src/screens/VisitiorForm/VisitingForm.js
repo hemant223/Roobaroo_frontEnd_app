@@ -59,11 +59,11 @@ const VisitingForm = props => {
   const [location, setLocation] = useState();
 
   // const [userid, setUserId] = React.useState(1);
-  const [visitorname, setVisitorName] = useState('Single');
+  const [visitorname, setVisitorName] = useState(language['Single']);
   const [SngGupId, setSngGupId] = useState("1")
-  const [gender, setGender] = React.useState('Male');
+  const [gender, setGender] = React.useState(language['Male']);
   const [physically_disabled_Name, setPhysically_disabled_Name] =
-    useState('Yes');
+    useState(language['Yes']);
 
   const [image, setImage] = React.useState('');
   const [getUserData, setUserDataByAsync] = useState([]);
@@ -396,7 +396,7 @@ const VisitingForm = props => {
                 fontFamily: FontFamily.Popinssemibold,
                 marginLeft: 10,
               }}>
-              Group Members Name
+              {language['Group_Members_Name']}
             </Text>
             <MultipleTextField
               setTextFields={setTextFields}
@@ -425,6 +425,7 @@ const VisitingForm = props => {
             ...styles.Date_of_Brith_Css,
           }}>
           <DateTimePicker
+          placeholder={language['Select_Date_of_Birth']}
             borderRadius={30}
             backgroundColor={Colors.Textinputbg}
             height={40}
@@ -486,13 +487,13 @@ const VisitingForm = props => {
             ...styles.Minister_View_Css,
           }}>
           <Dropdown
-            label={'Ministers'}
+            label={language['Ministers']}
             labelLeft={10}
             borderRadius={12}
             options={minister}
             onSelect={setMinisterid}
             setShowName={setMinisterName}
-            showName={ministerName ? ministerName : 'Select Ministers'}
+            showName={ministerName ? ministerName :language['Select_Ministers']}
           />
         </View>
 
@@ -541,7 +542,7 @@ const VisitingForm = props => {
           }}>
           <Input
             // placeholder="Enter reference name if any "
-            label={'Selected Location'}
+            label={language['Selected_Location']}
             textLabel
             width={'100%'}
             textfontSize={15}

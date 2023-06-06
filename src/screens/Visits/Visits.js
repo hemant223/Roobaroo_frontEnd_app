@@ -28,12 +28,12 @@ const Visits = props => {
   var language = useSelector(state => state.languageNameReducer.language_name);
 
   const DropDownData = [
-    {value: 1, label: language['Public_meetings']},
-    {value: 2, label: language['Filed_Visits']},
-    {value: 3, label: language['Mantralaya']},
-    {value: 4, label: language['Vidhansabha']},
-    {value: 5, label: language['Jasdan']},
-    {value: 6, label:language['Residence']},
+    {value: 1, label: language['Public_meetings'],label1:'Public meetings'},
+    {value: 2, label: language['Filed_Visits'],label1:'Field visits'},
+    {value: 3, label: language['Mantralaya'],label1:'Mantralaya'},
+    {value: 4, label: language['Vidhansabha'],label1:'Vidhansabha'},
+    {value: 5, label: language['Jasdan'],label1:'Jasdhan'},
+    {value: 6, label:language['Residence'],label1:'Residence'},
   ];
 
   // alert(JSON.stringify(props?.route?.params?.userData))

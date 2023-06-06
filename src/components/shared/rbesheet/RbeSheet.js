@@ -20,7 +20,7 @@ function RbeSheet(props) {
   const [month, setMonth] = React.useState('');
   const [from, setFrom] = useState(moment().format('YYYY-MM-DD'));
   const [to, setTo] = useState(moment().format('YYYY-MM-DD'));
- 
+ const [Rblocations, setRblocations] = useState('')
   const refRBSheet = useRef();
   //   const [month, setMonth] = React.useState('Male');
   const currentDate = moment().format('MMMM D, YYYY');
@@ -78,9 +78,9 @@ function RbeSheet(props) {
   ];
 
   const filterData = [
-    {id: 1, name: language['Alphabetically_A_to_Z']},
-    {id: 2, name: language['Alphabetically_Z_to_A']},
-    {id: 3, name: language['Newly_Added']},
+    {id: 1, name: language['Alphabetically_A_to_Z'],name1:'Alphabetically A to Z'},
+    {id: 2, name: language['Alphabetically_Z_to_A'],name1:'Alphabetically Z to A'},
+    {id: 3, name: language['Newly_Added'],name1:'Newly Added'},
   ];
   //   alert(date)
 
@@ -103,7 +103,8 @@ function RbeSheet(props) {
   ];
   const handleChech = item => {
     setChecked(item.id);
-    props.setName(item.name);
+    props.setName(item.name1);
+
   };
   return (
     <View
@@ -170,7 +171,7 @@ function RbeSheet(props) {
                 fontFamily: FontFamily.Popinssemibold,
                 fontSize: 17,
               }}>
-              Sort By Date range
+             {language['Sort_By_Date_Range']}
             </Text>
           </View>
           <View style={{width: '45%'}}>
@@ -179,7 +180,7 @@ function RbeSheet(props) {
               backgroundColor={Colors.Textinputbg}
               // height={37}
               // setDate={setDob}
-              placeholder="From Date"
+              placeholder={language['From_Date']}
               // label={'Hemu'}
               setDate={props.setFrom}
             />
@@ -190,7 +191,7 @@ function RbeSheet(props) {
               backgroundColor={Colors.Textinputbg}
               // height={40}
               // setDate={setDob}
-              placeholder="End Date"
+              placeholder={language['End_Date']}
               setDate={props.setTo}
               // format={'YYYY'}
               // setDateFormate={setTo}
@@ -210,14 +211,15 @@ function RbeSheet(props) {
           <Dropdown
             options={props.DropDownData}
             onSelect={props.setRBDropDownLocationValue}
-            setShowName={props.setRBDropDownLocation}
-            label={'By Location'}
+            setShowName1={props.setRBDropDownLocation}
+            setShowName={setRblocations}
+            label={language['By_Location']}
             label_size={17}
             label_color={'#000'}
             labelColor={'red'}
             width={'100%'}
             showName={
-              props.RBDropDownLocation ? props.RBDropDownLocation : 'Select Location'
+              Rblocations ? Rblocations: language['Select_Location']
             }
           />
         </View>
@@ -244,7 +246,7 @@ function RbeSheet(props) {
               return (
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <RadioButton
-                    value={item.date}
+                    value={item.id}
                     color={'#f47216'}
                     status={checked == item.id ? 'checked' : 'unchecked'}
                     onPress={() => handleChech(item)}

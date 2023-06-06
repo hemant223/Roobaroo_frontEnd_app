@@ -13,7 +13,7 @@ const Dropdown = props => {
     
     try {
       setSelectedValue(item.label);
-
+      {props.setShowName1 &&props.setShowName1(item.label1)}
       setShowDropdown(false);
       props.onSelect(item.value);
       props.setShowName(item.label);

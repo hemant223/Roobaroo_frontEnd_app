@@ -4,10 +4,10 @@ import {
   getStoreData,
   removeStoreData,
 } from './helper/utils/AsyncStorageServices';
-// import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {StackActions } from '@react-navigation/native';
 
-var ServerURL = 'http://192.168.29.194:9292';
-// var ServerURL = "http://campusshala.com:9292";
+// var ServerURL = 'http://192.168.29.137:9292';
+var ServerURL = "http://campusshala.com:9292";
 // const navigation=useNavigation()
 // var token =
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjEsIkRldmljZUlkIjoiT3RoZXIgMC4wLjAgLyBPdGhlciAwLjAuMCIsIkNyZWF0ZWRUaW1lIjoiMDk6NTQ6MDciLCJDcmVhdGVkRGF0ZSI6IjIwMjMtMDUtMTJUMDQ6MjQ6MDcuMjU0WiIsImlhdCI6MTY4Mzg2NTQ0NywiZXhwIjoxNjgzODcyNjQ3fQ.9rTyQqAdwV_rSAy8y80kVHxlt7jMx4pCDC4_kXMC9s0';
@@ -46,6 +46,10 @@ const getDataAxios = async Url => {
       // localStorage.clear();
       removeStoreData('userData');
       removeStoreData('token');
+      return {
+        status:'405',
+        mSG:''
+      }
       // setTimeout(() => navigation.navigate('Login'), 2000);
     } else {
       console.log('error', error);

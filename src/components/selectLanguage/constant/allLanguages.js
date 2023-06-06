@@ -3,6 +3,165 @@
 const allLabels = {
     "Hindi":[
       {
+
+        "language_name": "Hindi",
+    
+        "language_code": "hindi",
+    
+        "label": "By_Location",
+    
+        "label_translation":"स्थान द्वारा",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
+    
+      {
+    
+        "language_name": "Hindi",
+    
+        "language_code": "hindi",
+    
+        "label": "Location",
+    
+        "label_translation":"जगह",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
+    
+      {
+    
+        "language_name": "Hindi",
+    
+        "language_code": "hindi",
+    
+        "label": "View_Visit",
+    
+        "label_translation":"विज़िट देखें",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Please_Input_OTP",
+        "label_translation":"कृपया ओटीपी डालें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"जन्म तिथि का चयन करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Ministers",
+        "label_translation":"मंत्रियों",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Select_Ministers",
+        "label_translation":"मंत्रियों का चयन करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Selected_Location",
+        "label_translation":"चयनित स्थान",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Group_Members_Name",
+        "label_translation":"समूह के सदस्यों का नाम",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Select_Location",
+        "label_translation":"स्थान चुनें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"तिथि सीमा के अनुसार क्रमबद्ध करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "From_Date",
+        "label_translation":"की तिथि से",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "End_Date",
+        "label_translation":"अंतिम तिथि",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Please_Input_Reference",
+        "label_translation":"कृपया इनपुट संदर्भ",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"कृपया आने का कारण दर्ज करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Please_Input_FirstName",
+        "label_translation":"कृपया प्रथम नाम दर्ज करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Please_Input_LastName",
+        "label_translation":"कृपया अंतिम नाम दर्ज करें",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
         "language_name": "Hindi",
         "language_code": "hindi",
         "label": "Login",
@@ -575,6 +734,142 @@ const allLabels = {
 
 
     "English":[
+      {
+    
+        "language_name": "English",
+    
+        "language_code": "english",
+    
+        "label": "View_Visit",
+    
+        "label_translation":"View Visit",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_OTP",
+        "label_translation":"Please Input OTP",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"Select Date of Birth",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Ministers",
+        "label_translation":"Ministers",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Ministers",
+        "label_translation":"Select Ministers",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Selected_Location",
+        "label_translation":"Selected Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Group_Members_Name",
+        "label_translation":"Group Members Name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Select_Location",
+        "label_translation":"Select Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"Sort By Date Range",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "From_Date",
+        "label_translation":"From Date",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "End_Date",
+        "label_translation":"End Date",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_Reference",
+        "label_translation":"Please Input Reference",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"Please Input Reason To Visit",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_FirstName",
+        "label_translation":"Please Input First name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "Please_Input_LastName",
+        "label_translation":"Please Input Last name",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "English",
+        "language_code": "english",
+        "label": "By_Location",
+        "label_translation":"By Location",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+    
     {
         "language_name": "English",
         "language_code": "english",
@@ -1156,6 +1451,165 @@ const allLabels = {
     "Gujrati":[
       {
         "language_name": "Gujrati",
+
+        "language_code": "gujrati",
+
+        "label": "By_Location",
+
+        "label_translation":"સ્થાન દ્વારા",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+      },
+
+      {
+
+        "language_name": "Gujrati",
+
+        "language_code": "gujrati",
+
+        "label": "Location",
+
+        "label_translation":"સ્થાન",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+
+      },
+
+
+      {
+
+        "language_name": "Gujrati",
+
+        "language_code": "gujrati",
+
+        "label": "View_Visit",
+
+        "label_translation":"મુલાકાત જુઓ",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+},
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Please_Input_OTP",
+        "label_translation":"કૃપા કરીને OTP ઇનપુટ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"જન્મ તારીખ પસંદ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Ministers",
+        "label_translation":"મંત્રીઓ",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Select_Ministers",
+        "label_translation":"મંત્રીઓ પસંદ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Selected_Location",
+        "label_translation":"પસંદ કરેલ સ્થાન",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Group_Members_Name",
+        "label_translation":"જૂથના સભ્યોનું નામ",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Select_Location",
+        "label_translation":"સ્થાન પસંદ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"તારીખ શ્રેણી દ્વારા સૉર્ટ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "From_Date",
+        "label_translation":"તારીખ થી",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "End_Date",
+        "label_translation":"અંતિમ તારીખ",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Please_Input_Reference",
+        "label_translation":"કૃપા કરીને સંદર્ભ દાખલ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"કૃપા કરીને મુલાકાત લેવાનું કારણ દાખલ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Please_Input_FirstName",
+        "label_translation":"કૃપા કરીને પ્રથમ નામ દાખલ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Please_Input_LastName",
+        "label_translation":"કૃપા કરીને છેલ્લું નામ દાખલ કરો",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Gujrati",
         "language_code": "gujrati",
         "label": "Login",
         "label_translation":"પ્રવેશ કરો",
@@ -1213,7 +1667,7 @@ const allLabels = {
       {
         "language_name": "Gujrati",
         "language_code": "gujrati",
-        "label": " Submit",
+        "label": "Submit",
         "label_translation":"સબમિટ કરો",
         "label_display_order": 0,
         "label_is_default": 0
@@ -1689,7 +2143,7 @@ const allLabels = {
       {
         "language_name": "Gujrati",
         "language_code": "gujrati",
-        "label" :"Sort_By",
+        "label" :"Sort_by",
         "label_translation":"દ્વારા સૉર્ટ કરો",
         "label_display_order": 0,
         "label_is_default": 0
@@ -1783,6 +2237,165 @@ const allLabels = {
 
 
     "Bhojpuri":[
+      {
+  
+        "language_name": "Bhojpuri",
+
+        "language_code": "bhojpuri",
+
+        "label": "By_Location",
+
+        "label_translation":"लोकेशन के हिसाब से",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+      },
+
+      {
+
+        "language_name": "Bhojpuri",
+
+        "language_code": "bhojpuri",
+
+        "label": "Location",
+
+        "label_translation":"अस्थान",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+      },
+
+      {
+
+        "language_name": "Bhojpuri",
+
+        "language_code": "bhojpuri",
+
+        "label": "View_Visit",
+
+        "label_translation":"देखल जाव विजिट कइल",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+    },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_OTP",
+        "label_translation":"कृपया ओटीपी इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"जन्म तिथि के चयन करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Ministers",
+        "label_translation":"मंत्री लोग के बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Ministers",
+        "label_translation":"मंत्री लोग के चुनल जाला",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Selected_Location",
+        "label_translation":"चुनल गइल स्थान बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Group_Members_Name",
+        "label_translation":"समूह के सदस्यन के नाम बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Location",
+        "label_translation":"लोकेशन के चयन करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"तारीख सीमा के हिसाब से सॉर्ट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "From_Date",
+        "label_translation":"तारीख से बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "End_Date",
+        "label_translation":"समाप्ति के तारीख बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_Reference",
+        "label_translation":"कृपया संदर्भ इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"कृपया घूमे के कारण इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_FirstName",
+        "label_translation":"कृपया पहिला नाम इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_LastName",
+        "label_translation":"कृपया अंतिम नाम इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
       {
           "language_name": "Bhojpuri",
           "language_code": "bhojpuri",
