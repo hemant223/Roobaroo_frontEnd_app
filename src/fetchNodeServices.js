@@ -4,7 +4,7 @@ import {
   getStoreData,
   removeStoreData,
 } from './helper/utils/AsyncStorageServices';
-// import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {StackActions } from '@react-navigation/native';
 
 // var ServerURL = 'http://192.168.29.137:9292';
 var ServerURL = "http://campusshala.com:9292";
@@ -46,6 +46,10 @@ const getDataAxios = async Url => {
       // localStorage.clear();
       removeStoreData('userData');
       removeStoreData('token');
+      return {
+        status:'405',
+        mSG:''
+      }
       // setTimeout(() => navigation.navigate('Login'), 2000);
     } else {
       console.log('error', error);

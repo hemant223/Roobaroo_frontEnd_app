@@ -84,10 +84,11 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": " Please_enter_your_registered_mobile_number_to_login",
+    "label": "Please_enter_your_registered_mobile_number_to_login",
     "label_translation":"લોગીન કરવા માટે કૃપા કરીને તમારો નોંધાયેલ મોબાઈલ નંબર દાખલ કરો",
     "label_display_order": 0,
     "label_is_default": 0
+  
   },
   {
     "language_name": "Gujrati",
@@ -96,7 +97,9 @@
     "label_translation":"મોબાઇલ નંબર",
     "label_display_order": 0,
     "label_is_default": 0
-  },
+  
+  },  
+
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
@@ -148,7 +151,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Visitors_trend",
+    "label": "Visitors_trend",
     "label_translation":"મુલાકાતીઓ વલણ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -156,7 +159,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Last_week",
+    "label": "Last_week",
     "label_translation":"ગયા સપ્તાહે",
     "label_display_order": 0,
     "label_is_default": 0
@@ -164,7 +167,15 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Visits",
+    "label": "Current_week",
+    "label_translation":"વર્તમાન સપ્તાહ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Visits",
     "label_translation":"મુલાકાતો",
     "label_display_order": 0,
     "label_is_default": 0
@@ -188,7 +199,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  See_Profile_to_here",
+    "label": "See_Profile_to_here",
     "label_translation":"અહીં પ્રોફાઇલ જુઓ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -196,7 +207,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  On_Field",
+    "label": "On_Field",
     "label_translation":"મેદાન પર",
     "label_display_order": 0,
     "label_is_default": 0
@@ -204,7 +215,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Public_meetings",
+    "label": "Public_meetings",
     "label_translation":"જાહેર સભાઓ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -212,7 +223,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Field_Visits",
+    "label": "Field_Visits",
     "label_translation":"ક્ષેત્રની મુલાકાતો",
     "label_display_order": 0,
     "label_is_default": 0
@@ -220,7 +231,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Office",
+    "label": "Office",
     "label_translation":"ઓફિસ",
     "label_display_order": 0,
     "label_is_default": 0
@@ -228,7 +239,7 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
-    "label": "  Mantralaya",
+    "label": "Mantralaya",
     "label_translation":"મંત્રાલય",
     "label_display_order": 0,
     "label_is_default": 0

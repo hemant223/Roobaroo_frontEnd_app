@@ -70,6 +70,123 @@
 
 //   }
   const Bhojpuri = [
+
+
+    {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_OTP",
+        "label_translation":"कृपया ओटीपी इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Date_of_Birth",
+        "label_translation":"जन्म तिथि के चयन करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Ministers",
+        "label_translation":"मंत्री लोग के बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Ministers",
+        "label_translation":"मंत्री लोग के चुनल जाला",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Selected_Location",
+        "label_translation":"चुनल गइल स्थान बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Group_Members_Name",
+        "label_translation":"समूह के सदस्यन के नाम बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Select_Location",
+        "label_translation":"लोकेशन के चयन करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Sort_By_Date_Range",
+        "label_translation":"तारीख सीमा के हिसाब से सॉर्ट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "From_Date",
+        "label_translation":"तारीख से बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "End_Date",
+        "label_translation":"समाप्ति के तारीख बा",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_Reference",
+        "label_translation":"कृपया संदर्भ इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_Reason_to_Visit",
+        "label_translation":"कृपया घूमे के कारण इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_FirstName",
+        "label_translation":"कृपया पहिला नाम इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Please_Input_LastName",
+        "label_translation":"कृपया अंतिम नाम इनपुट करीं",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      // New Word Bhojpuri//
+
+
     {
         "language_name": "Bhojpuri",
         "language_code": "bhojpuri",

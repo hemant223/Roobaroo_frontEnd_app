@@ -76,6 +76,119 @@
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
+    "label": "Please_Input_OTP",
+    "label_translation":"કૃપા કરીને OTP ઇનપુટ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Date_of_Birth",
+    "label_translation":"જન્મ તારીખ પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Ministers",
+    "label_translation":"મંત્રીઓ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Ministers",
+    "label_translation":"મંત્રીઓ પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Selected_Location",
+    "label_translation":"પસંદ કરેલ સ્થાન",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Group_Members_Name",
+    "label_translation":"જૂથના સભ્યોનું નામ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Select_Location",
+    "label_translation":"સ્થાન પસંદ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Sort_By_Date_Range",
+    "label_translation":"તારીખ શ્રેણી દ્વારા સૉર્ટ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "From_Date",
+    "label_translation":"તારીખ થી",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "End_Date",
+    "label_translation":"અંતિમ તારીખ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_Reference",
+    "label_translation":"કૃપા કરીને સંદર્ભ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"કૃપા કરીને મુલાકાત લેવાનું કારણ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_FirstName",
+    "label_translation":"કૃપા કરીને પ્રથમ નામ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
+    "label": "Please_Input_LastName",
+    "label_translation":"કૃપા કરીને છેલ્લું નામ દાખલ કરો",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+// NEW GUJRATI WORD //
+  {
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
     "label": "Login",
     "label_translation":"પ્રવેશ કરો",
     "label_display_order": 0,

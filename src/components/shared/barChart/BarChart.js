@@ -24,13 +24,25 @@ export default function SingleBarChart(props) {
   const [current_Week, setCurrent_Week] = useState('');
   const [filterSelected, setFilterSelected] = useState(1);
   const [referesh, setReferesh] = useState(false);
- 
+  const [options, setOptions] = useState([]);
+  const [show, setShow] = useState(false);
+  // alert(JSON.stringify(language))
   // console.log("language....",language)
-  const options = [
-    {label: language['Last_week'], id: 1},
-    {label: language['Current_week'], id: 2},
-  ];
-
+  // const options = [
+  //   {label: language['Last_week'], id: 1},
+  //   {label: language['Current_week'], id: 2},
+  // ];
+  useEffect(() => {
+    setShow(false);
+    setOptions([
+      {label: language['Last_week'], id: 1},
+      {label: language['Current_week'], id: 2},
+    ]);
+    // alert(language['Last_week']);
+    setTimeout(()=>{
+      setShow(true);
+    },0)
+  }, [language.Last_week]);
   var location = useSelector(state => state.locationReducer.location);
 
   const fetchVisitor = async () => {
@@ -143,13 +155,15 @@ export default function SingleBarChart(props) {
           </Text>
         </View>
         <View style={{marginTop: 10, height: 20}}>
-          <FilterDropdown
-            // options={options}
-            // defaultSelected={language['Last_week']}
-            onValueChange={txt => {
-              setFilterSelected(txt.id);
-            }}
-          />
+          {show && (
+            <FilterDropdown
+              options={options}
+              defaultSelected={language['Last_week']}
+              onValueChange={txt => {
+                setFilterSelected(txt.id);
+              }}
+            />
+          )}
         </View>
       </View>
       {shimmer ? (

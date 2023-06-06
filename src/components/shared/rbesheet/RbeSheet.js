@@ -171,7 +171,7 @@ function RbeSheet(props) {
                 fontFamily: FontFamily.Popinssemibold,
                 fontSize: 17,
               }}>
-              Sort By Date range
+             {language['Sort_By_Date_Range']}
             </Text>
           </View>
           <View style={{width: '45%'}}>
@@ -180,7 +180,7 @@ function RbeSheet(props) {
               backgroundColor={Colors.Textinputbg}
               // height={37}
               // setDate={setDob}
-              placeholder="From Date"
+              placeholder={language['From_Date']}
               // label={'Hemu'}
               setDate={props.setFrom}
             />
@@ -191,7 +191,7 @@ function RbeSheet(props) {
               backgroundColor={Colors.Textinputbg}
               // height={40}
               // setDate={setDob}
-              placeholder="End Date"
+              placeholder={language['End_Date']}
               setDate={props.setTo}
               // format={'YYYY'}
               // setDateFormate={setTo}
@@ -213,13 +213,13 @@ function RbeSheet(props) {
             onSelect={props.setRBDropDownLocationValue}
             setShowName1={props.setRBDropDownLocation}
             setShowName={setRblocations}
-            label={'By Location'}
+            label={language['By_Location']}
             label_size={17}
             label_color={'#000'}
             labelColor={'red'}
             width={'100%'}
             showName={
-              Rblocations ? Rblocations: 'Select Location'
+              Rblocations ? Rblocations: language['Select_Location']
             }
           />
         </View>

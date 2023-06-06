@@ -32,7 +32,7 @@ import CenterHeader from '../../components/shared/header/CenterHeader';
 
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {TextInput} from 'react-native-gesture-handler';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 // const data = [
 //   {type: 'Single', id: 1, color: false},
@@ -51,7 +51,7 @@ import { useSelector } from 'react-redux';
 
 const ViewVisit = props => {
   var language = useSelector(state => state.languageNameReducer.language_name);
-   
+
   const navigation = useNavigation();
   const [showModal, setShowModal] = useState(false);
   const [showengageTime, showsetEngagetime] = useState('');
@@ -70,12 +70,12 @@ const ViewVisit = props => {
     {type: language['Single'], id: 1, color: false},
     {type: language['Group'], id: 2, color: false},
   ];
-  
+
   const physicallyData = [
-    {type:language['Yes'], id: 1, color: false},
+    {type: language['Yes'], id: 1, color: false},
     {type: language['No'], id: 2, color: false},
   ];
-  
+
   const genderData = [
     {type: language['Male'], id: 1, color: false},
     {type: language['Female'], id: 2, color: false},
@@ -100,8 +100,8 @@ const ViewVisit = props => {
       };
     }, []),
   );
-  
-  // alert(JSON.stringify(props.route.params.visitordata))
+
+  // alert(JSON.stringify(props?.route.params.visitordata.gender))
   const showEng = () => {
     let d = Number(props.route.params.visitordata.engage_time);
     var h = Math.floor(d / 3600);
@@ -166,16 +166,13 @@ const ViewVisit = props => {
       group_member: props.route.params.visitordata.group_member,
       visitor_status: 'completed',
       engage_time: engagetime,
-      location_type:props.route.params.visitordata.location_type
+      location_type: props.route.params.visitordata.location_type,
     };
- 
-   
 
     let response = await postDataAxios(
       `visitors/updateVisitor/${props.route.params.visitordata.id}`,
       body,
-      
-      );
+    );
     if (response.status) {
       // handlClick()
 
@@ -192,19 +189,19 @@ const ViewVisit = props => {
           stepText
           centerContent=""
           ViewVisit
-          viewText="View Visit"
+          viewText={language['View_Visit']}
           onPressBackArrow={() => {
             navigation.push('Dashboard');
           }}
         />
       ) : (
         <CenterHeader
-        centerText
-        stepContent=""
-        stepText
-        centerContent=""
-        ViewVisit
-        viewText="View Visit"
+          centerText
+          stepContent=""
+          stepText
+          centerContent=""
+          ViewVisit
+          viewText={language['View_Visit']}
           onPressBackArrow={() => {
             navigation.push('Dashboard');
           }}
@@ -212,13 +209,45 @@ const ViewVisit = props => {
       )}
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
-          <RadioButton
-           label={language['visit_type']}
+          {/* <RadioButton
+            label={language['visit_type']}
             data={data}
             setType={setVisitorType}
             getType={visitortype}
             labelLeft={10}
-          />
+          /> */}
+           <View>
+            <Text
+              style={{
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+                marginLeft: 11,
+              }}>
+              {language['visit_type']}
+            </Text>
+          </View>
+
+          <View
+            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            <Text
+              style={{
+                // color: '#aeaeae',
+                color: '#000',
+                fontSize: 15,
+                fontFamily: FontFamily.PopinsMedium,
+                backgroundColor: '#f47216',
+                   padding: 7,
+                  //   borderWidth: 1,
+                borderRadius:14,
+                paddingHorizontal:15
+                
+                
+              }}>
+              {props.route.params.visitordata.visitor_type}
+            </Text>
+          </View>
+
         </View>
         <View
           style={{
@@ -302,13 +331,44 @@ const ViewVisit = props => {
             // backgroundColor: 'yellowgreen',
             ...styles.genderCss,
           }}>
-          <RadioButton
+          {/* <RadioButton
             labelLeft={10}
             label={language['Gender']}
             data={genderData}
             setType={setGender}
             getType={gender}
-          />
+          /> */}
+          <View>
+            <Text
+              style={{
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+                marginLeft: 11,
+              }}>
+              {language['Gender']}
+            </Text>
+          </View>
+
+          <View
+            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            <Text
+              style={{
+                // color: '#aeaeae',
+                color: '#000',
+                fontSize: 15,
+                fontFamily: FontFamily.PopinsMedium,
+                backgroundColor: '#f47216',
+                   padding: 7,
+                  //   borderWidth: 1,
+                borderRadius:14,
+                paddingHorizontal:15
+                
+                
+              }}>
+              {props?.route.params.visitordata.gender}
+            </Text>
+          </View>
         </View>
 
         {/* <TouchableOpacity style={{backgroundColor:'red'}}>
@@ -348,13 +408,44 @@ const ViewVisit = props => {
             //   backgroundColor: 'yellowgreen',
             ...styles.Disabled_View_Css,
           }}>
-          <RadioButton
+          {/* <RadioButton
             label={language['Physically_Disabled']}
             data={physicallyData}
             setType={setPhysically}
             getType={physically}
             labelLeft={10}
-          />
+          /> */}
+            <View>
+            <Text
+              style={{
+                color: '#aeaeae',
+                fontSize: 15,
+                fontFamily: FontFamily.Popinssemibold,
+                marginLeft: 11,
+              }}>
+              {language['Physically_Disabled']}
+            </Text>
+          </View>
+
+          <View
+            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            <Text
+              style={{
+                // color: '#aeaeae',
+                color: '#000',
+                fontSize: 15,
+                fontFamily: FontFamily.PopinsMedium,
+                backgroundColor: '#f47216',
+                   padding: 7,
+                  //   borderWidth: 1,
+                borderRadius:14,
+                paddingHorizontal:15
+                
+                
+              }}>
+              { props.route.params.visitordata.physically_disabled}
+            </Text>
+          </View>
         </View>
         {props.route.params.visitordata.visitor_status == 'completed' && (
           <View style={{padding: 3, margin: 5}}>
@@ -373,28 +464,28 @@ const ViewVisit = props => {
             />
           </View>
         )}
-         <View style={{padding: 3, margin: 5}}>
-            <Input
-              showSoftInputOnFocus={false}
-              value={props.route.params.visitordata.location_type}
-              placeholder=""
-              label={'Location'}
-              textLabel
-              width="100%"
-              height={45}
-              borderWidth={1}
-              borderBottomWidth={1}
-              textfontSize={15}
-              caretHidden={true}
-            />
-          </View>
+        <View style={{padding: 3, margin: 5}}>
+          <Input
+            showSoftInputOnFocus={false}
+            value={props.route.params.visitordata.location_type}
+            placeholder=""
+            label={language['Location']}
+            textLabel
+            width="100%"
+            height={45}
+            borderWidth={1}
+            borderBottomWidth={1}
+            textfontSize={15}
+            caretHidden={true}
+          />
+        </View>
         <View
           style={{
             // backgroundColor: 'yellowgreen',
             ...styles.Reference_View_Css,
           }}>
           <Input
-              label={language['Vidhansabha']}
+            label={language['Vidhansabha']}
             value={props.route.params.visitordata.Vidhansabha}
             textLabel
             width={'100%'}

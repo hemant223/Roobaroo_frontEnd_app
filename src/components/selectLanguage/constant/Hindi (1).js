@@ -3,6 +3,119 @@ export
   {
     "language_name": "Hindi",
     "language_code": "hindi",
+    "label": "Please_Input_OTP",
+    "label_translation":"कृपया ओटीपी डालें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Select_Date_of_Birth",
+    "label_translation":"जन्म तिथि का चयन करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Ministers",
+    "label_translation":"मंत्रियों",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Select_Ministers",
+    "label_translation":"मंत्रियों का चयन करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Selected_Location",
+    "label_translation":"चयनित स्थान",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Group_Members_Name",
+    "label_translation":"समूह के सदस्यों का नाम",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Select_Location",
+    "label_translation":"स्थान चुनें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Sort_By_Date_Range",
+    "label_translation":"तिथि सीमा के अनुसार क्रमबद्ध करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "From_Date",
+    "label_translation":"की तिथि से",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "End_Date",
+    "label_translation":"अंतिम तिथि",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Please_Input_Reference",
+    "label_translation":"कृपया इनपुट संदर्भ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Please_Input_Reason_to_Visit",
+    "label_translation":"कृपया आने का कारण दर्ज करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Please_Input_FirstName",
+    "label_translation":"कृपया प्रथम नाम दर्ज करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Please_Input_LastName",
+    "label_translation":"कृपया अंतिम नाम दर्ज करें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  // New Word Hindi//
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
     "label": "Login",
     "label_translation": "लॉग इन करें",
     "label_display_order": 0,
