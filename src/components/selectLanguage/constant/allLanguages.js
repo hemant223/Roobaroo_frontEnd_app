@@ -729,11 +729,57 @@ const allLabels = {
         "label_display_order": 0,
         "label_is_default": 0
       },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Location",
+        "label_translation": "जगह",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Hindi",
+        "language_code": "hindi",
+        "label": "Engage_time",
+        "label_translation": "व्यस्त समय",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
     
     ],
 
 
     "English":[
+      {
+    
+        "language_name": "English",
+    
+        "language_code": "english",
+    
+        "label": "Location",
+    
+        "label_translation":"Location",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
+      {
+    
+        "language_name": "English",
+    
+        "language_code": "english",
+    
+        "label": "Engage_Time",
+    
+        "label_translation":"Engage Time",
+    
+        "label_display_order": 0,
+    
+        "label_is_default": 0
+    
+      },
       {
     
         "language_name": "English",
@@ -1479,6 +1525,22 @@ const allLabels = {
 
 
       },
+      {
+
+        "language_name": "Gujrati",
+
+        "language_code": "gujrati",
+
+        "label": "Engage_Time",
+
+        "label_translation":"વ્યસ્ત સમય",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+
+      },
 
 
       {
@@ -2033,6 +2095,22 @@ const allLabels = {
         "label_is_default": 0
       },
       {
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label" :"Location",
+        "label_translation":"સ્થાન",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Location",
+        "label_translation": "अस्थान",
+        "label_display_order": 0,
+        "label_is_default": 0
+    },
+      {
         "language_name": "Bhojpuri",
         "language_code": "bhojpuri",
         "label": "Constituency",
@@ -2262,6 +2340,21 @@ const allLabels = {
         "label": "Location",
 
         "label_translation":"अस्थान",
+
+        "label_display_order": 0,
+
+        "label_is_default": 0
+
+      },
+      {
+
+        "language_name": "Bhojpuri",
+
+        "language_code": "bhojpuri",
+
+        "label": "Engage_Time",
+
+        "label_translation":"एंगेजमेंट के समय बा",
 
         "label_display_order": 0,
 

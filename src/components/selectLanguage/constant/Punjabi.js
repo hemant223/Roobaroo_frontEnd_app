@@ -91,6 +91,14 @@
   {
     "language_name": "Punjabi",
     "language_code": "punjabi",
+    "label": "Engage_time",
+    "label_translation":"ਰੁਝੇਵੇਂ ਦਾ ਸਮਾਂ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
     "label": "By_Location",
     "label_translation":"ਸਥਾਨ ਦੁਆਰਾ",
     "label_display_order": 0,
