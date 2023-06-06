@@ -73,6 +73,40 @@
 //   Address: 'સરનામું',
 // };
 [
+
+
+{
+
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "By_Location",
+        "label_translation":"સ્થાન દ્વારા",
+        "label_display_order": 0,
+        "label_is_default": 0
+
+      },
+
+      {
+
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "Location",
+        "label_translation":"સ્થાન",
+        "label_display_order": 0,
+        "label_is_default": 0
+
+      },
+
+      {
+
+        "language_name": "Gujrati",
+        "language_code": "gujrati",
+        "label": "View_Visit",
+        "label_translation":"મુલાકાત જુઓ",
+        "label_display_order": 0,
+        "label_is_default": 0
+
+      },
   {
     "language_name": "Gujrati",
     "language_code": "gujrati",
@@ -611,8 +645,8 @@
     "label_is_default": 0
   },
   {
-    "language_name": "Bhojpuri",
-    "language_code": "bhojpuri",
+    "language_name": "Gujrati",
+    "language_code": "gujrati",
     "label": "Constituency",
     "label_translation": "મતવિસ્તારો",
     "label_display_order": 0,

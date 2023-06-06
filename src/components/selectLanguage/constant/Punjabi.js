@@ -91,6 +91,30 @@
   {
     "language_name": "Punjabi",
     "language_code": "punjabi",
+    "label": "By_Location",
+    "label_translation":"ਸਥਾਨ ਦੁਆਰਾ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "Location",
+    "label_translation":"ਟਿਕਾਣਾ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
+    "label": "View_Visit",
+    "label_translation":"ਵਿਜ਼ਿਟ ਦੇਖੋ",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Punjabi",
+    "language_code": "punjabi",
     "label": "Select_Date_of_Birth",
     "label_translation":"ਜਨਮ ਮਿਤੀ ਚੁਣੋ",
     "label_display_order": 0,
@@ -172,7 +196,7 @@
     "language_name": "Punjabi",
     "language_code": "punjabi",
     "label": "Please_Input_Reason_to_Visit",
-    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਮਿਲਣ ਦਾ ਕਾਰਨ ਦਿਓ",
+    "label_translation":"ਕਿਰਪਾ ਕਰਕੇ ਮਿਲਣ ਦਾ ਕਾਰਨ ਦਿਓs",
     "label_display_order": 0,
     "label_is_default": 0
   },

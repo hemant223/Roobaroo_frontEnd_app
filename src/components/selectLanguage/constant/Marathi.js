@@ -77,6 +77,31 @@
 
 
 [
+
+  {
+    "language_name": "Marathi",
+    "language_code": "parathi",
+    "label": "By_Location",
+    "label_translation":"स्थानानुसार",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "parathi",
+    "label": "Location",
+    "label_translation":"स्थान",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Marathi",
+    "language_code": "parathi",
+    "label": "View_Visit",
+    "label_translation":"भेट पहा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
   
   {
     "language_name": "Marathi",

@@ -3,6 +3,30 @@ export
   {
     "language_name": "Hindi",
     "language_code": "hindi",
+    "label": "By_Location",
+    "label_translation":"स्थान द्वारा",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "Location",
+    "label_translation":"जगह",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
+    "label": "View_Visit",
+    "label_translation":"विज़िट देखें",
+    "label_display_order": 0,
+    "label_is_default": 0
+  },
+  {
+    "language_name": "Hindi",
+    "language_code": "hindi",
     "label": "Please_Input_OTP",
     "label_translation":"कृपया ओटीपी डालें",
     "label_display_order": 0,

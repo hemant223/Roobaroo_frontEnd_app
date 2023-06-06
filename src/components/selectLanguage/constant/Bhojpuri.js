@@ -70,7 +70,30 @@
 
 //   }
   const Bhojpuri = [
-
+    {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "By_Location",
+        "label_translation":"लोकेशन के हिसाब से",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "Location",
+        "label_translation":"अस्थान",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
+      {
+        "language_name": "Bhojpuri",
+        "language_code": "bhojpuri",
+        "label": "View_Visit",
+        "label_translation":"देखल जाव विजिट कइल",
+        "label_display_order": 0,
+        "label_is_default": 0
+      },
 
     {
         "language_name": "Bhojpuri",
