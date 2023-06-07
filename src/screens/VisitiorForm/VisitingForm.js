@@ -247,6 +247,7 @@ const VisitingForm = props => {
         isValid = false;
       }
       if (isValid) {
+      
         let body = {
           firstname: inputs.firstName,
           lastname: inputs.LastName,
@@ -584,7 +585,8 @@ const VisitingForm = props => {
 
         {image && (
           <Image
-            source={{uri: `data:image/png;base64,${image}`}}
+          source={{uri: `data:image/jpeg;base64,${image}`}}
+            
             style={{height: 100, width: 100, margin: 5}}
           />
         )}

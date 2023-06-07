@@ -308,6 +308,7 @@ const Visits = props => {
           sortonPress={() => {
             refRBSheet.current.open();
           }}
+          marginLeft={0}
         />
       </View>
 

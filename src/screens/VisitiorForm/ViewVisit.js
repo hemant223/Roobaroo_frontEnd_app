@@ -183,29 +183,55 @@ const ViewVisit = props => {
   return (
     <View style={{...styles.mainView}}>
       {props.route.params.visitordata.visitor_status == 'ongoing' ? (
-        <CenterHeader
-          centerText
-          stepContent=""
-          stepText
-          centerContent=""
-          ViewVisit
-          viewText={language['View_Visit']}
-          onPressBackArrow={() => {
-            navigation.push('Dashboard');
-          }}
-        />
+        // <CenterHeader
+        //   centerText
+        //   stepContent=""
+        //   stepText
+        //   centerContent=""
+        //   ViewVisit
+        //   viewText={language['View_Visit']}
+        //   onPressBackArrow={() => {
+        //     navigation.push('Dashboard');
+        //   }}
+        // />
+        <Header
+        BackonPress={() => {
+          props.navigation.push('Visits');
+        
+        }}
+        width={'59%'}
+        marginLeft={0}
+        rightText
+        rightContent={language['View_Visit']}
+        backarrowIcon
+ 
+        
+      />
       ) : (
-        <CenterHeader
-          centerText
-          stepContent=""
-          stepText
-          centerContent=""
-          ViewVisit
-          viewText={language['View_Visit']}
-          onPressBackArrow={() => {
-            navigation.push('Dashboard');
-          }}
-        />
+        // <CenterHeader
+        //   centerText
+        //   stepContent=""
+        //   stepText
+        //   centerContent=""
+        //   ViewVisit
+        //   viewText={language['View_Visit']}
+        //   onPressBackArrow={() => {
+        //     navigation.push('Dashboard');
+        //   }}
+        // />
+        <Header
+        BackonPress={() => {
+          props.navigation.push('Visits');
+        
+        }}
+        width={'59%'}
+        marginLeft={0}
+        rightText
+        rightContent={language['View_Visit']}
+        backarrowIcon
+ 
+        
+      />
       )}
       <ScrollView>
         <View style={{...styles.visitTypeViewCss}}>
