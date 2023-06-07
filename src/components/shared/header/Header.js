@@ -20,7 +20,7 @@ const Header = props => {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: props.backgroundColor,
-      //backgroundColor:props.backgroucColor
+      // backgroundColor:props.backgroucColor,
       height: props.height,
       borderBottomLeftRadius: props.borderBottomLeftRadius,
       borderBottomRightRadius: props.borderBottomRightRadius,
@@ -84,8 +84,9 @@ const Header = props => {
 
           <View
             style={{
-              width: '50%',
-              marginLeft: 10 /*  backgroundColor: 'red' */,
+              width: props.width,
+              marginLeft: props.marginLeft  ,
+              // backgroundColor:'red'
             }}>
             {props.rightText && (
               <View style={{justifyContent: 'center'}}>
@@ -165,4 +166,6 @@ Header.defaultProps = {
   verifyBottom: 33,
   stepBottom: 33,
   arrowtop: 35,
+  marginLeft:12,
+  width:'50%'
 };

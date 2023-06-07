@@ -110,7 +110,7 @@ const Visits = props => {
       setFilterData(response.result);
       setRefresh(true);
     } else {
-      alert('Error in Filtering');
+      // alert('Error in Filtering');
     }
   };
 
@@ -218,7 +218,7 @@ const Visits = props => {
       // alert(JSON.stringify(data?.result));
       setRefresh(true);
     } else {
-      alert('data fetch error');
+      // alert('data fetch error');
     }
     if (data.result) {
       setTimeout(() => {
@@ -308,6 +308,7 @@ const Visits = props => {
           sortonPress={() => {
             refRBSheet.current.open();
           }}
+          marginLeft={0}
         />
       </View>
 

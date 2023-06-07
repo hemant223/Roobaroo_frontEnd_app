@@ -66,13 +66,13 @@ export default function Attachment(props) {
     };
     let isCameraPermitted = await requestCameraPermission();
     let isStoragePermitted = await requestExternalWritePermission();
-    console.log(
-      'isCameraPermitted---->>>>',
-      isCameraPermitted + '' + isStoragePermitted,
-    );
+    // console.log(
+    //   'isCameraPermitted---->>>>',
+    //   isCameraPermitted + '' + isStoragePermitted,
+    // );
     if (isCameraPermitted && isStoragePermitted) {
       mediaby(options, response => {
-        console.log('Response = ', response);
+        // console.log('Response = ', response);
         if (response.didCancel) {
           alert('User cancelled camera picker');
           return;
@@ -100,7 +100,7 @@ export default function Attachment(props) {
         response.assets.map(i => {
           ImgToBase64.getBase64String(`${i.uri}`).then(base64String => {
             props.setImage(base64String)
-            console.log('Base 64 String ....', base64String);
+            // console.log('Base 64 String ....', base64String);
             let body = {
               imgurl: base64String,
               id: i.fileName,

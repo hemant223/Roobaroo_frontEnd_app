@@ -2945,7 +2945,7 @@ const allLabels = {
           "language_name": "Bhojpuri",
           "language_code": "bhojpuri",
           "label": "Media",
-          "label_translation": "मीडिया के ह",
+          "label_translation": "मीडिया",
           "label_display_order": 0,
           "label_is_default": 0
       },

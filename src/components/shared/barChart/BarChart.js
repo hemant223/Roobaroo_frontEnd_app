@@ -73,7 +73,7 @@ export default function SingleBarChart(props) {
 
     var aa = response.data;
 
-    console.log(aa);
+    // console.log(aa);
     setLast_Week(aa);
     setShimmer(false);
   };

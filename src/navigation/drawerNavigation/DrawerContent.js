@@ -180,7 +180,6 @@ export default function DrawerContent(props) {
             marginLeft: 25,
           }}>
           {getUserData?.picture == null ||
-          getUserData?.picture == '' ||
           getUserData?.picture == undefined ? (
             <Image
               source={ImagesAssets.hemu}

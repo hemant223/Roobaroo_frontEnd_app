@@ -6,11 +6,11 @@ const ShowData = async lng => {
   // var dispatch = useDispatch();
 // alert(lng)
   var obj = {};
-  console.log('<>><><><><><>>', lng);
+  // console.log('<>><><><><><>>', lng);
   let storage = await AsyncStorage.getItem(`${lng}`);
-  console.log("STORAGE===>",storage)
+  // console.log("STORAGE===>",storage)
   storage = JSON.parse(storage);
-  console.log('Storage Hai Show Label Me', storage);
+  // console.log('Storage Hai Show Label Me', storage);
   
   storage.map(item => {
     obj[item.label] = item.label_translation;

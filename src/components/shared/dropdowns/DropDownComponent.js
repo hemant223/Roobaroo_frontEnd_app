@@ -21,7 +21,7 @@ const Dropdown = props => {
       props.onPressfun(item.value);
       props.onPressfunforAgendaType(item.label);
     } catch (e) {
-      console.log('In Catch in DropdownComponent Line 16', e);
+      // console.log('In Catch in DropdownComponent Line 16', e);
     }
   };
  

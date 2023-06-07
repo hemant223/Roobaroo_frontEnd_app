@@ -12,7 +12,7 @@ export async function getStoreData(key) {
          return null;
       }
    } catch (e) {
-      console.log('Async Data Error', e);
+      // console.log('Async Data Error', e);
       return null;
    }
 }
@@ -23,7 +23,7 @@ export async function storeData(key, body) {
    try {
       await AsyncStorage.setItem(`${key}`, JSON.stringify(body));
    } catch (e) {
-      console.log('Error in saving data');
+      // console.log('Error in saving data');
    }
 }
 
@@ -34,7 +34,7 @@ export const removeStoreData = (key) => {
       AsyncStorage.removeItem(key)
 
    } catch (e) {
-      console.log("Error for " + key, e)
+      // console.log("Error for " + key, e)
    }
 
 }
