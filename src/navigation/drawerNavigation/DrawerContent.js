@@ -179,8 +179,10 @@ export default function DrawerContent(props) {
             backgroundColor: 'red',
             marginLeft: 25,
           }}>
-          {getUserData?.picture == null ||
-          getUserData?.picture == undefined ? (
+          {
+          getUserData?.picture == 'null' || 
+          getUserData?.picture == null
+          ? (
             <Image
               source={ImagesAssets.hemu}
               resizeMode="cover"
