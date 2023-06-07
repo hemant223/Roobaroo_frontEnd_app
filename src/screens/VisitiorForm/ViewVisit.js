@@ -191,7 +191,7 @@ const ViewVisit = props => {
           ViewVisit
           viewText={language['View_Visit']}
           onPressBackArrow={() => {
-            navigation.push('Dashboard');
+            navigation.push('Visits');
           }}
         />
       ) : (
@@ -203,7 +203,7 @@ const ViewVisit = props => {
           ViewVisit
           viewText={language['View_Visit']}
           onPressBackArrow={() => {
-            navigation.push('Dashboard');
+          navigation.push('Visits');
           }}
         />
       )}
@@ -216,7 +216,7 @@ const ViewVisit = props => {
             getType={visitortype}
             labelLeft={10}
           /> */}
-           <View>
+          <View>
             <Text
               style={{
                 color: '#aeaeae',
@@ -229,25 +229,28 @@ const ViewVisit = props => {
           </View>
 
           <View
-            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            style={{
+              marginLeft: 7,
+              marginTop: 5 /* backgroundColor: '#aeaeae' */,
+              width: 80,
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
             <Text
               style={{
                 // color: '#aeaeae',
-                color: '#000',
+                color: '#fff',
                 fontSize: 15,
                 fontFamily: FontFamily.PopinsMedium,
                 backgroundColor: '#f47216',
-                   padding: 7,
-                  //   borderWidth: 1,
-                borderRadius:14,
-                paddingHorizontal:15
-                
-                
+                padding: 7,
+                //   borderWidth: 1,
+                borderRadius: 14,
+                paddingHorizontal: 15,
               }}>
               {props.route.params.visitordata.visitor_type}
             </Text>
           </View>
-
         </View>
         <View
           style={{
@@ -351,20 +354,24 @@ const ViewVisit = props => {
           </View>
 
           <View
-            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            style={{
+              marginLeft: 7,
+              marginTop: 5 /* backgroundColor: '#aeaeae' */,
+              width: 80,
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
             <Text
               style={{
                 // color: '#aeaeae',
-                color: '#000',
+                color: '#fff',
                 fontSize: 15,
                 fontFamily: FontFamily.PopinsMedium,
                 backgroundColor: '#f47216',
-                   padding: 7,
-                  //   borderWidth: 1,
-                borderRadius:14,
-                paddingHorizontal:15
-                
-                
+                padding: 7,
+                //   borderWidth: 1,
+                borderRadius: 14,
+                paddingHorizontal: 15,
               }}>
               {props?.route.params.visitordata.gender}
             </Text>
@@ -415,7 +422,7 @@ const ViewVisit = props => {
             getType={physically}
             labelLeft={10}
           /> */}
-            <View>
+          <View>
             <Text
               style={{
                 color: '#aeaeae',
@@ -428,22 +435,26 @@ const ViewVisit = props => {
           </View>
 
           <View
-            style={{marginLeft: 7, marginTop: 5 /* backgroundColor: '#aeaeae' */,width:80,alignItems:'center',flexDirection:'row'}}>
+            style={{
+              marginLeft: 7,
+              marginTop: 5 /* backgroundColor: '#aeaeae' */,
+              width: 80,
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
             <Text
               style={{
                 // color: '#aeaeae',
-                color: '#000',
+                color: '#fff',
                 fontSize: 15,
                 fontFamily: FontFamily.PopinsMedium,
                 backgroundColor: '#f47216',
-                   padding: 7,
-                  //   borderWidth: 1,
-                borderRadius:14,
-                paddingHorizontal:15
-                
-                
+                padding: 7,
+                //   borderWidth: 1,
+                borderRadius: 14,
+                paddingHorizontal: 15,
               }}>
-              { props.route.params.visitordata.physically_disabled}
+              {props.route.params.visitordata.physically_disabled}
             </Text>
           </View>
         </View>
@@ -605,7 +616,7 @@ const ViewVisit = props => {
       </ScrollView>
       {
         <SuccessModal
-          title={`${language['visit_type']} ${showengageTime}`}
+          title={`${language['Visit_has_been_ended_successfully_Engagement_time_was']} ${showengageTime}`}
           onPress={() => {
             setShowModal(false);
             navigation.push('Visits', {complete: 1});

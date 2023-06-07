@@ -1202,7 +1202,7 @@ const allLabels = {
         "language_name": "English",
         "language_code": "english",
         "label": "visit_type",
-        "label_translation": "visit type",
+        "label_translation": "Visit type",
         "label_display_order": 0,
         "label_is_default": 0
     },

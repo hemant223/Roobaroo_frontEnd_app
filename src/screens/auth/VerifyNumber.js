@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import CenterHeader from '../../components/shared/header/CenterHeader';
 import {getStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
 import {getDataAxios, postDataAxios} from '../../fetchNodeServices';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 const VerifyNumber = () => {
   var language = useSelector(state => state.languageNameReducer.language_name);
 
@@ -69,15 +69,39 @@ const VerifyNumber = () => {
       isValid = false;
     }
     if (isValid) {
-
-      var body = {mobile_number: inputs.mobileNumber};
-
+      var matchNo ;
+      const userData = await getStoreData('userData');
+      var data = await getDataAxios(
+        `visitors/displayVisitors/${userData?.minister_id}`,
+      );
+      // console.log('====================================>>>>');
+      // console.log('visitrrrr>>', data.result);
+      // console.log('====================================>>>>>');
+      {
+        data.result.map(item => {
+          // console.log('item.mobile_number>>', item.mobile_number);
+          matchNo = inputs.mobileNumber == item.mobile_number;
+        });
+      }
+      if (matchNo) {
+        handleError('Number Already exists', 'mobileNumber');
+      } else {
+        var otpp = parseInt(Math.random() * 8999) + 1000;
+     var body = {mobile: inputs.mobileNumber,otp:otpp};
+     let response = await postDataAxios(`visitors/visitorSendOTP`,body)
+     navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber,otp:otpp});
+      }
+      // var otpp = parseInt(Math.random() * 8999) + 1000;
+      // var body = {mobile: inputs.mobileNumber,otp:otpp};
+      // let response = await postDataAxios(`visitors/visitorSendOTP`,body)
+      // alert(response.otp)
       // let response = await postDataAxios(`visitors/addVisitor`,body)
       // alert(response.status)
       // if (response.status == false) {
       //   handleError('Mobile no already registerrrrr', 'mobileNumber');
       // } else {
-      navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber});
+
+      // navigation.navigate('VerifyOtp', {mobileNo: inputs.mobileNumber,otp:otpp});
       // }
       // //   // alert('hh'):
       //  }
@@ -113,8 +137,8 @@ const VerifyNumber = () => {
         backarrowIcon
       /> */}
       <CenterHeader
-      stepContent={language['Step'] + '01'}
-      centerContent={language['Verify_Number']}
+        stepContent={language['Step'] + '01'}
+        centerContent={language['Verify_Number']}
         centerText
         stepText
         onPressBackArrow={() => {

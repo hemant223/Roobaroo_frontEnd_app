@@ -16,13 +16,18 @@ import { ImagesAssets } from '../../components/shared/ImageAssets';
 import { getStoreData, storeData } from '../../helper/utils/AsyncStorageServices';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import { useSelector } from 'react-redux';
+import {useToast} from 'react-native-toast-notifications';
+import { postDataAxios } from '../../fetchNodeServices';
 
 function OtpInput(props) {
+  const toast = useToast();
+
   var language = useSelector(state => state.languageNameReducer.language_name);
 
   const [isModalVisible, setModalVisible] = useState(true);
   // const { otp } = props.route.params;
   const [otp, setOtp] = useState('');
+  const [newotp, setNewOtp] = useState('9999');
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(30)
 
@@ -40,15 +45,22 @@ function OtpInput(props) {
   //   generateOtp();
   //   // alert(otp)
   // }, []);
-
+  // alert(newotp)
   const handleSubmit = async () => {
     let userData = await getStoreData('userData');
-    if (9999 == otp) {
+    if (otp == props?.route?.params?.otp || newotp==otp) {
       storeData('userData', { ...userData, loggedIn: true });
       setModalVisible(false)
       props.navigation.push('Dashboard');
     } else {
-      alert('Enter correct Otp');
+      // alert('Enter correct Otp');
+      toast.show('Enter correct Otp', {
+        type: 'warning',
+        placement: 'top',
+        duration: 1000,
+        offset: 30,
+        animationType: 'zoom-in',
+      });
     }
   };
 
@@ -74,10 +86,16 @@ function OtpInput(props) {
     };
   }, [seconds]);
 
-  const resendOTP = () => {
+  const resendOTP = async() => {
     setMinutes(0);
     setSeconds(30);
+    var otpp = parseInt(Math.random() * 8999) + 1000;
+    setNewOtp(otpp)
+        const body = {mobile:  props?.route?.params?.mobileNo,otp:otpp};
+        let res = await postDataAxios(`users/LoginSendOTP`,body)
+        
   };
+  // alert(newotp)
 
   return (
     <View>

@@ -102,7 +102,7 @@ const LocationModal = props => {
         language_id: userData?.language_id,
         user_address: userData?.user_address,
         user_organization: userData?.user_organization,
-        user_location: title,
+        user_location: title1,
       };
       await postDataAxios(`users/updateUser/${userData?.id}`, body);
     };
@@ -127,7 +127,7 @@ const LocationModal = props => {
         language_id: userData?.language_id,
         user_address: userData?.user_address,
         user_organization: userData?.user_organization,
-        user_location: title,
+        user_location: title1,
       };
 
       await postDataAxios(`users/updateUser/${userData?.id}`, body);

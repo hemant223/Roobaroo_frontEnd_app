@@ -130,6 +130,7 @@ export default function DrawerContent(props) {
     });
   };
   // alert(apiUserData?.user_location)
+  // alert(getUserData?.picture)
 
   return (
     <DrawerContentScrollView
@@ -178,9 +179,9 @@ export default function DrawerContent(props) {
             backgroundColor: 'red',
             marginLeft: 25,
           }}>
-          {getUserData?.picture == 'null' ||
+          {getUserData?.picture == null ||
           getUserData?.picture == '' ||
-          getUserData?.picture == 'undefined' ? (
+          getUserData?.picture == undefined ? (
             <Image
               source={ImagesAssets.hemu}
               resizeMode="cover"

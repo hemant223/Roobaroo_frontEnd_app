@@ -16,7 +16,7 @@ const SearchBar = props => {
         width={'90%'}
         icon
         iconName={'search'}
-        txtColor={'#cccccc'}
+        txtColor={'#000'}
         borderRadius={20}
         textfontSize={16}
         // style={styles.input}

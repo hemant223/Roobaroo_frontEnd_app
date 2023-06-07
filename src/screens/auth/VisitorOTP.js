@@ -52,8 +52,8 @@ const VerifyOtp = props => {
     }
 
     if (isValid) {
-      // alert(inputs.otp)
-      if (inputs.otp == 99999) {
+      
+      if (inputs.otp == props?.route?.params?.otp) {
         // storeData('VisitorsMobileNo',props?.route?.params?.mobileNo)
         navigation.navigate('VisitingForm',{mobileNo:props?.route?.params?.mobileNo});
       } else {
@@ -105,7 +105,7 @@ const VerifyOtp = props => {
               placeholderColor="#b6b9bf"
               textfontSize={15}
               keyboardType="numeric"
-              maxLength={5}
+              maxLength={4}
             />
           </View>
         </View>

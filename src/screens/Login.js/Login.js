@@ -65,13 +65,18 @@ function Login(props) {
       var body = {mobile: inputs.mobileNumber};
       // var response = await postDataAxiosWithoutToken('users/authenticate', body);
       var response = await postDataAxios('users/authenticate', body);
+      // var res = await postDataAxios('users/LoginSendOTP', body);
     // console.log('responseee>>>>',response);
       if (response.status) {
+        var otpp = parseInt(Math.random() * 8999) + 1000;
+        const body = {mobile: inputs.mobileNumber,otp:otpp};
+        let res = await postDataAxios(`users/LoginSendOTP`,body)
+            //  alert(res.otp)
         storeData('userData', response.data);
         storeData('token', response.token);
         dispatch(userDataFun(response.data));
         setModalVisible(false)
-        props.navigation.push('OtpInput');
+        props.navigation.push('OtpInput',{mobileNo:inputs.mobileNumber,otp:otpp});
       } else {
         handleError('This User is not exists', 'mobileNumber');
       }

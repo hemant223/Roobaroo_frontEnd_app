@@ -44,7 +44,7 @@ function DateTimePicker(props) {
   return (
     <>
       {props.label && (
-        <View style={{left: 8}}>
+        <View style={{left: 14}}>
           <Text
             style={{
               color: '#aeaeae',

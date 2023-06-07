@@ -342,7 +342,7 @@ const VisitingForm = props => {
             setType={setVisitorName}
             getType={visitorname}
             setId={setSngGupId}
-            labelLeft={17}
+            labelLeft={19}
           />
         </View>
 
@@ -411,11 +411,12 @@ const VisitingForm = props => {
             ...styles.genderCss,
           }}>
           <RadioButton
-            labelLeft={18}
+            labelLeft={19}
             label={language['Gender']}
             data={genderdata}
             setType={setGender}
             getType={gender}
+            // labelLeft={19}
           />
         </View>
 
@@ -445,7 +446,7 @@ const VisitingForm = props => {
             data={physicallyData}
             getType={physically_disabled_Name}
             setType={setPhysically_disabled_Name}
-            labelLeft={10}
+            labelLeft={19}
           />
         </View>
 
@@ -628,7 +629,8 @@ const styles = StyleSheet.create({
   },
 
   visitTypeViewCss: {
-    padding: 3,
+    // padding: 3,
+    paddingVertical:3
     // margin: 4,
   },
   NameViewCss: {
