@@ -25,7 +25,7 @@ function OtpInput(props) {
   var language = useSelector(state => state.languageNameReducer.language_name);
 
   const [isModalVisible, setModalVisible] = useState(true);
-  // const { otp } = props.route.params;
+  
   const [otp, setOtp] = useState('');
   const [newotp, setNewOtp] = useState('9999');
   const [minutes, setMinutes] = useState(0);
@@ -35,17 +35,7 @@ function OtpInput(props) {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  //   alert(otp);
-  // const generateOtp = () => {
-  //   var otpp = parseInt(Math.random() * 8999) + 10000;
-  //   // alert(otpp)
-  //   setOtp(otpp);
-  // };
-  // useEffect(() => {
-  //   generateOtp();
-  //   // alert(otp)
-  // }, []);
-  // alert(newotp)
+ 
   const handleSubmit = async () => {
     let userData = await getStoreData('userData');
     if (otp == props?.route?.params?.otp || newotp==otp) {

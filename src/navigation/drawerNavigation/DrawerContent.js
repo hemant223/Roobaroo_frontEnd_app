@@ -181,7 +181,7 @@ export default function DrawerContent(props) {
           }}>
           {
           getUserData?.picture == 'null' || 
-          getUserData?.picture == null
+          getUserData?.picture == null    
           ? (
             <Image
               source={ImagesAssets.hemu}

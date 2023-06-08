@@ -35,7 +35,7 @@ const getDataAxios = async Url => {
     return result;
   } catch (error) {
     if (error.response.status === 401) {
-      // alert("Session Expired");
+      alert("Session Expired");
       Swal.fire({
         position: 'top-end',
         icon: 'info',
@@ -46,11 +46,13 @@ const getDataAxios = async Url => {
       // localStorage.clear();
       removeStoreData('userData');
       removeStoreData('token');
-      return {
-        status:'405',
-        mSG:''
-      }
+      // return {
+      //   status:'405',
+      //   mSG:''
+      // }
       // setTimeout(() => navigation.navigate('Login'), 2000);
+      // StackActions.replace('Login')
+      // alert('ggg')
     } else {
       console.log('error', error);
     }
@@ -75,7 +77,7 @@ const postDataAxios = async (Url, body) => {
     return result;
   } catch (error) {
     if (error.response.status === 401) {
-      alert('Session Expired');
+      // alert('Session Expired');
       Swal.fire({
         position: 'top-end',
         icon: 'info',
@@ -85,9 +87,12 @@ const postDataAxios = async (Url, body) => {
       });
       removeStoreData('userData');
       removeStoreData('token');
-      // setTimeout(() => navigation.navigate('Login'), 2000);
+    //  StackActions.replace('Login')
+    
+      // navigation.dispatch(pushAction)
     } else {
       console.log(error);
+      // alert('gggaaaa')
     }
   }
 };

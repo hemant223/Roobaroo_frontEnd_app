@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Button,
+  
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
+
   StyleSheet,
   ImageBackground,
   Keyboard,
@@ -14,10 +13,17 @@ import Input from '../../components/shared/textInputs/Inputs';
 import FullSizeButtons from '../../components/shared/buttons/FullSizeButtons';
 import {FontFamily} from '../../assets/fonts/FontFamily';
 import {ImagesAssets} from '../../components/shared/ImageAssets';
-import {getDataAxios, postDataAxios, postDataAxiosWithoutToken} from '../../fetchNodeServices';
-import {removeStoreData, storeData} from '../../helper/utils/AsyncStorageServices';
+import {
+  getDataAxios,
+  postDataAxios,
+  postDataAxiosWithoutToken,
+} from '../../fetchNodeServices';
+import {
+  removeStoreData,
+  storeData,
+} from '../../helper/utils/AsyncStorageServices';
 import {useDispatch, useSelector} from 'react-redux';
-import { userDataFun } from '../../helper/utils/redux/slices/userDataSlice';
+import {userDataFun} from '../../helper/utils/redux/slices/userDataSlice';
 
 function Login(props) {
   var dispatch = useDispatch();
@@ -36,18 +42,7 @@ function Login(props) {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-  // alert(opt)
-  //   const generateOtp = () => {
-  //     var otpp = parseInt(Math.random() * 8999) + 1000;
-  //   alert(otpp);
-  // setOpt(otpp);
-  //   };
-  //   useEffect(() => {
-  //     generateOtp;
-  //   }, []);
+
 
   const handleSubmit = async () => {
     let isValid = true;
@@ -63,26 +58,28 @@ function Login(props) {
 
     if (isValid) {
       var body = {mobile: inputs.mobileNumber};
-      // var response = await postDataAxiosWithoutToken('users/authenticate', body);
       var response = await postDataAxios('users/authenticate', body);
-      // var res = await postDataAxios('users/LoginSendOTP', body);
-    // console.log('responseee>>>>',response);
-      if (response.status) {
-        var otpp = parseInt(Math.random() * 8999) + 1000;
-        const body = {mobile: inputs.mobileNumber,otp:otpp};
-        let res = await postDataAxios(`users/LoginSendOTP`,body)
-            //  alert(res.otp)
-        storeData('userData', response.data);
-        storeData('token', response.token);
-        dispatch(userDataFun(response.data));
-        setModalVisible(false)
-        props.navigation.push('OtpInput',{mobileNo:inputs.mobileNumber,otp:otpp});
-      } else {
-        handleError('This User is not exists', 'mobileNumber');
+      if(response.roleName[0]=='user_staff'){
+        if (response.status) {
+          var otpp = parseInt(Math.random() * 8999) + 1000;
+          const body = {mobile: inputs.mobileNumber,otp:otpp};
+          let res = await postDataAxios(`users/LoginSendOTP`,body)
+          storeData('userData', response.data);
+          storeData('token', response.token);
+          dispatch(userDataFun(response.data));
+          setModalVisible(false)
+          props.navigation.push('OtpInput',{mobileNo:inputs.mobileNumber,otp:otpp});
+        } else {
+          handleError('This User is not exists', 'mobileNumber');
+        }
+
+      }else{
+        handleError('This User is not exists', 'mobileNumber')
       }
+     
     }
   };
-  // alert(mobNumber)
+
   return (
     <View>
       <View style={{height: '100%', width: '100%'}}>
@@ -99,7 +96,7 @@ function Login(props) {
           </View>
           <View style={{padding: 5}}>
             <Text style={styles.subTitle}>
-            {language['Please_enter_your_registered_mobile_number_to_login']}
+              {language['Please_enter_your_registered_mobile_number_to_login']}
             </Text>
           </View>
           <View style={{padding: 10}}>
